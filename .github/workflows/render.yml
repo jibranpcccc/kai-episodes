@@ -1,5 +1,9 @@
 name: render
 
+# Renders every episode in episodes/*.html to MP4.
+# One matrix job per episode, so 100 episodes render in parallel batches
+# instead of one long sequential job (the 6-hour limit).
+
 on:
   push:
     branches: [ main ]
@@ -8,22 +12,47 @@ on:
       fps:
         description: "frames per second"
         default: "30"
-      only:
-        description: "render only this episode filename (blank = all)"
-        default: ""
+      max_parallel:
+        description: "episodes rendered at once"
+        default: "8"
 
 permissions:
   contents: read
 
+concurrency:
+  group: render-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  render:
+  discover:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    outputs:
+      episodes: ${{ steps.ls.outputs.list }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: ls
+        run: |
+          LIST=$(ls episodes/*.html 2>/dev/null | xargs -r -n1 basename \
+                 | sed 's/\.html$//' | jq -R -s -c 'split("\n")|map(select(length>0))')
+          [ -z "$LIST" ] && LIST='[]'
+          echo "list=$LIST" >> "$GITHUB_OUTPUT"
+          echo "found: $LIST"
+
+  render:
+    needs: discover
+    if: ${{ needs.discover.outputs.episodes != '[]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJson(github.event.inputs.max_parallel || '8') }}
+      matrix:
+        episode: ${{ fromJson(needs.discover.outputs.episodes) }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install ffmpeg
+      - name: Install ffmpeg + fonts
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-inter
@@ -35,20 +64,25 @@ jobs:
 
       - name: Install Playwright + Chromium
         run: |
-          python -m pip install --upgrade pip
-          pip install playwright
+          python -m pip install --upgrade pip -q
+          pip install playwright -q
           python -m playwright install --with-deps chromium
 
-      - name: Render episodes
+      # gate: unresolved cues, audio/timeline drift, scene overlap,
+      # boundaries off a pause, missing fonts, empty frames
+      - name: Validate ${{ matrix.episode }}
+        run: python scripts/check.py --frames --only "${{ matrix.episode }}"
+
+      - name: Render ${{ matrix.episode }}
         env:
           FPS: ${{ github.event.inputs.fps || '30' }}
-          ONLY: ${{ github.event.inputs.only || '' }}
+          ONLY: ${{ matrix.episode }}
         run: python scripts/render.py
 
-      - name: Upload MP4s
+      - name: Upload ${{ matrix.episode }}
         uses: actions/upload-artifact@v4
         with:
-          name: videos
+          name: video-${{ matrix.episode }}
           path: out/*.mp4
           if-no-files-found: error
           retention-days: 30
