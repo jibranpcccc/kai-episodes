@@ -1,0 +1,54 @@
+name: render
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      fps:
+        description: "frames per second"
+        default: "30"
+      only:
+        description: "render only this episode filename (blank = all)"
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-inter
+          ffmpeg -version | head -1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Playwright + Chromium
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Render episodes
+        env:
+          FPS: ${{ github.event.inputs.fps || '30' }}
+          ONLY: ${{ github.event.inputs.only || '' }}
+        run: python scripts/render.py
+
+      - name: Upload MP4s
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos
+          path: out/*.mp4
+          if-no-files-found: error
+          retention-days: 30
