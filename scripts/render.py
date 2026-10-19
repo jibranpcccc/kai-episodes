@@ -52,8 +52,13 @@ def render_one(page, html_path: Path) -> Path:
     has_audio = extract_audio(html, vo)
     print(f"[{name}] embedded audio: {'yes' if has_audio else 'NO'}")
 
-    page.goto(html_path.resolve().as_uri())
+    # ?t=0 puts the player into render mode (hides HUD/controls, unscales the stage);
+    # we also set the class explicitly in case the query string is dropped.
+    page.goto(html_path.resolve().as_uri() + "?t=0")
     page.wait_for_function("!!(window.EPISODE && window.renderAt)", timeout=60000)
+    page.evaluate("document.body.classList.add('render')")
+    page.wait_for_timeout(250)          # let webfonts settle before frame 0
+    assert page.evaluate("document.body.classList.contains('render')"), "render mode not applied"
 
     total = float(page.evaluate("window.EPISODE.total"))
     n = max(1, int(round(total * FPS)))
