@@ -113,6 +113,24 @@ def check_static(name, html):
         if not any(abs(w + 0.285 - s) < 0.12 for s in starts):
             warn(name, f"wipe at {w:.2f}s does not align with a scene cut")
 
+    # 3b. visual density: no still frame longer than maxGap
+    mg = re.search(r"maxGap:\s*([0-9.]+)", html)
+    budget = float(mg.group(1)) if mg else None
+    events = []
+    for i, (a, b) in enumerate(sc):
+        blk = re.search(r'<section class="scene" data-scene="%d">(.*?)</section>' % i, html, re.S)
+        if not blk:
+            continue
+        for v in re.findall(r'data-in="([0-9.]+)"', blk.group(1)):
+            events.append(a + float(v))
+    events = sorted(set(events))
+    if len(events) > 1:
+        worst = max(q - p for p, q in zip(events, events[1:]))
+        if budget is not None and worst > budget:
+            fail(name, f"visual gap {worst:.2f}s exceeds declared {budget:.1f}s")
+        elif budget is None and worst > 3.5:
+            warn(name, f"visual gap {worst:.2f}s (declare maxGap to enforce)")
+
     # 4. fonts referenced by the page must exist
     fonts = set(re.findall(r"url\(['\"]?([^'\")]+\.ttf)", html))
     for f in fonts:
