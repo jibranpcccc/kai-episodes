@@ -118,7 +118,7 @@ def check_static(name, html):
     budget = float(mg.group(1)) if mg else None
     events = []
     for i, (a, b) in enumerate(sc):
-        blk = re.search(r'<section class="scene" data-scene="%d">(.*?)</section>' % i, html, re.S)
+        blk = re.search(r'<section class="scene[^"]*" data-scene="%d">(.*?)</section>' % i, html, re.S)
         if not blk:
             continue
         for v in re.findall(r'data-in="([0-9.]+)"', blk.group(1)):
