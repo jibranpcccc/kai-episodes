@@ -3,7 +3,7 @@
 
 **Channel**: Byte Forensics (@ByteForensics)  
 **Format**: FUSION Interactive Vector Presentation Engine  
-**Runtime**: 66.9 seconds pilot (5 scenes, 185 words, 65 beats)  
+**Runtime**: 721.1 seconds full episode (55 scenes, 1,963 words, 611 beats)  
 **Master Audio**: Google Gemini / Edge Studio Baritone (`en-US-AndrewNeural` +4%), Loudness: -14.1 LUFS (EBU R128), True Peak: -1.7 dBFS  
 
 ---

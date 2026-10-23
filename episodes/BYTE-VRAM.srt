@@ -95,5 +95,961 @@ compressed model automatically performs like its full-precision parent.
 And no pretending that every GPU with the
 
 25
-00:01:03,344 --> 00:01:06,870
+00:01:03,344 --> 00:01:05,970
 same memory capacity behaves the same way.
+
+26
+00:01:06,294 --> 00:01:09,143
+Start with the mistake underneath almost every local
+
+27
+00:01:09,143 --> 00:01:12,231
+AI hardware guide. People compare model size to
+
+28
+00:01:12,231 --> 00:01:15,501
+VRAM and stop there. An eight-gigabyte card,
+
+29
+00:01:15,501 --> 00:01:18,960
+a six-gigabyte download, two gigabytes left. Simple.
+
+30
+00:01:19,280 --> 00:01:21,680
+But those six gigabytes are primarily the model's
+
+31
+00:01:21,680 --> 00:01:25,166
+stored weights. During inference, the runtime also needs
+
+32
+00:01:25,166 --> 00:01:28,639
+working memory, conversation state, and other buffers.
+
+33
+00:01:28,639 --> 00:01:30,382
+A vision model may need a separate
+
+34
+00:01:30,382 --> 00:01:33,363
+visual encoder. The operating system and whatever
+
+35
+00:01:33,363 --> 00:01:35,322
+else is running on your GPU may
+
+36
+00:01:35,322 --> 00:01:37,270
+already be using some of that memory.
+
+37
+00:01:37,592 --> 00:01:39,863
+The difference matters because running out of headroom
+
+38
+00:01:39,863 --> 00:01:43,289
+changes the experience. Depending on your software, loading
+
+39
+00:01:43,289 --> 00:01:46,089
+may fail, some layers may move to ordinary
+
+40
+00:01:46,089 --> 00:01:48,890
+system RAM, or performance may become much worse
+
+41
+00:01:48,890 --> 00:01:51,378
+than you expected. That's why our question isn't,
+
+42
+00:01:51,378 --> 00:01:53,277
+can the file fit? It's, can the
+
+43
+00:01:53,277 --> 00:01:55,210
+whole workload fit with room to operate?
+
+44
+00:01:55,530 --> 00:01:58,478
+Now look at an actual eight-gigabyte option. Unsloth
+
+45
+00:01:58,478 --> 00:02:02,865
+publishes a four-bit Qwen three-point-five, nine-billion-parameter model
+
+46
+00:02:02,865 --> 00:02:06,014
+in GGUF format. The Q-four-K-M file is
+
+47
+00:02:06,014 --> 00:02:09,115
+about five-point-six-eight gigabytes. That is a real
+
+48
+00:02:09,115 --> 00:02:11,747
+published file size, not a benchmark, and
+
+49
+00:02:11,747 --> 00:02:14,330
+not a guarantee about total GPU allocation.
+
+50
+00:02:14,650 --> 00:02:16,683
+On an eight-gigabyte card, it gives you a
+
+51
+00:02:16,683 --> 00:02:19,436
+sensible starting point for local text work. You
+
+52
+00:02:19,436 --> 00:02:23,162
+can experiment with summarizing notes, explaining code, drafting
+
+53
+00:02:23,162 --> 00:02:25,980
+emails, or asking questions about a short document.
+
+54
+00:02:26,300 --> 00:02:28,470
+But don't jump straight to the model's maximum
+
+55
+00:02:28,470 --> 00:02:31,799
+advertised context, and don't assume image understanding is
+
+56
+00:02:31,799 --> 00:02:33,938
+free. If your setup needs an additional
+
+57
+00:02:33,938 --> 00:02:36,670
+vision projector, that consumes more memory too.
+
+58
+00:02:36,990 --> 00:02:39,445
+And here is the counterintuitive part. The Qwen
+
+59
+00:02:39,445 --> 00:02:44,205
+three-point-eight, twenty-seven-billion-parameter model also has extreme low-bit community
+
+60
+00:02:44,205 --> 00:02:47,727
+quantizations. One published one-bit-class file is about
+
+61
+00:02:47,727 --> 00:02:51,669
+six-point-one-nine gigabytes. On paper, that is extraordinarily
+
+62
+00:02:51,669 --> 00:02:54,460
+close to the nine-billion model's four-bit download.
+
+63
+00:02:54,780 --> 00:02:57,732
+But these are not equivalent representations. Much more
+
+64
+00:02:57,732 --> 00:03:00,653
+aggressive compression can change the model's accuracy and
+
+65
+00:03:00,653 --> 00:03:03,862
+reliability, and some formats need specific runtime
+
+66
+00:03:03,862 --> 00:03:06,194
+support. You cannot conclude that the tiny
+
+67
+00:03:06,194 --> 00:03:09,126
+twenty-seven-billion file is the better assistant just
+
+68
+00:03:09,126 --> 00:03:11,870
+because its original model had more parameters.
+
+69
+00:03:12,190 --> 00:03:14,106
+If I had eight gigabytes and needed a
+
+70
+00:03:14,106 --> 00:03:16,726
+dependable everyday tool, I would begin with a
+
+71
+00:03:16,726 --> 00:03:20,283
+reasonably quantized smaller model, not the most spectacular
+
+72
+00:03:20,283 --> 00:03:22,690
+parameter count I could squeeze into a download.
+
+73
+00:03:23,011 --> 00:03:25,571
+I'd only move to the extreme compression after
+
+74
+00:03:25,571 --> 00:03:27,530
+checking real answers on the tasks I care
+
+75
+00:03:27,530 --> 00:03:30,342
+about. That is a recommendation based on memory
+
+76
+00:03:30,342 --> 00:03:32,758
+and quality trade-offs, not a claim that we've
+
+77
+00:03:32,758 --> 00:03:34,880
+benchmarked those two versions head to head.
+
+78
+00:03:35,200 --> 00:03:38,320
+Twelve gigabytes changes the calculation. It sounds
+
+79
+00:03:38,320 --> 00:03:40,267
+like only four more gigabytes, but
+
+80
+00:03:40,267 --> 00:03:41,880
+it opens a useful middle ground.
+
+81
+00:03:42,200 --> 00:03:46,530
+Unsloth's Qwen three, fourteen-billion-parameter Q-four-K-M file is
+
+82
+00:03:46,530 --> 00:03:49,258
+about nine gigabytes. That leaves more room
+
+83
+00:03:49,258 --> 00:03:50,989
+than trying to force a much larger
+
+84
+00:03:50,989 --> 00:03:54,006
+model into a tiny quantization, although context
+
+85
+00:03:54,006 --> 00:03:56,250
+and runtime overhead still have to fit.
+
+86
+00:03:56,586 --> 00:03:58,377
+For someone working with code, this is an
+
+87
+00:03:58,377 --> 00:04:00,685
+interesting class of hardware. You can ask a
+
+88
+00:04:00,685 --> 00:04:03,173
+model to explain a function, suggest a small
+
+89
+00:04:03,173 --> 00:04:06,440
+patch, review a test, or transform structured text.
+
+90
+00:04:06,760 --> 00:04:09,544
+But distinguish answering a coding question from running
+
+91
+00:04:09,544 --> 00:04:12,453
+an autonomous coding agent. An agent may repeatedly
+
+92
+00:04:12,453 --> 00:04:15,926
+read files, call tools, receive outputs, and build
+
+93
+00:04:15,926 --> 00:04:18,342
+a long history of the work. That history
+
+94
+00:04:18,342 --> 00:04:21,203
+can make context memory and prompt-processing time
+
+95
+00:04:21,203 --> 00:04:23,290
+as important as the weight file itself.
+
+96
+00:04:23,619 --> 00:04:24,989
+Here's the decision I would make at
+
+97
+00:04:24,989 --> 00:04:27,129
+twelve gigabytes. If I wanted better
+
+98
+00:04:27,129 --> 00:04:29,617
+reasoning on short, contained tasks, I
+
+99
+00:04:29,617 --> 00:04:31,790
+would try a fourteen-billion four-bit model.
+
+100
+00:04:32,110 --> 00:04:35,010
+If I needed longer sessions, several documents, or
+
+101
+00:04:35,010 --> 00:04:37,341
+greater responsiveness, I would compare it with a
+
+102
+00:04:37,341 --> 00:04:40,731
+smaller nine-billion model using more headroom. The bigger
+
+103
+00:04:40,731 --> 00:04:43,060
+one is an option, not an automatic winner.
+
+104
+00:04:43,380 --> 00:04:46,654
+At sixteen gigabytes, the temptation gets stronger.
+
+105
+00:04:46,654 --> 00:04:49,707
+You can download some twenty-seven-billion-parameter quantizations
+
+106
+00:04:49,707 --> 00:04:51,840
+that are smaller than sixteen gigabytes.
+
+107
+00:04:52,183 --> 00:04:55,477
+For example, Unsloth lists a dynamic three-bit Qwen
+
+108
+00:04:55,477 --> 00:05:00,537
+three-point-eight, twenty-seven-billion file at around thirteen-point-one gigabytes.
+
+109
+00:05:00,537 --> 00:05:04,410
+Another four-bit-class variant is around fourteen-point-three gigabytes.
+
+110
+00:05:04,730 --> 00:05:07,690
+Both numbers are real download sizes. Neither proves
+
+111
+00:05:07,690 --> 00:05:11,055
+a clean full-GPU experience at your preferred context
+
+112
+00:05:11,055 --> 00:05:13,928
+length. Thirteen-point-one gigabytes of weights on a
+
+113
+00:05:13,928 --> 00:05:17,053
+sixteen-gigabyte card leaves less than three gigabytes
+
+114
+00:05:17,053 --> 00:05:21,200
+before runtime overhead. Fourteen-point-three leaves even less.
+
+115
+00:05:21,520 --> 00:05:24,550
+If you enable vision, increase context, run another
+
+116
+00:05:24,550 --> 00:05:27,339
+GPU application, or encounter a backend that
+
+117
+00:05:27,339 --> 00:05:30,150
+needs larger buffers, the margin can disappear.
+
+118
+00:05:30,470 --> 00:05:32,968
+This is where people confuse a successful launch
+
+119
+00:05:32,968 --> 00:05:35,179
+with a good purchase decision. Imagine you
+
+120
+00:05:35,179 --> 00:05:37,595
+finally load the larger model. It answers
+
+121
+00:05:37,595 --> 00:05:39,790
+a short question. You post the screenshot.
+
+122
+00:05:40,110 --> 00:05:42,959
+Then you paste a big repository file, expand
+
+123
+00:05:42,959 --> 00:05:45,603
+the context, and discover that generation slows
+
+124
+00:05:45,603 --> 00:05:48,091
+down or the backend starts offloading. The
+
+125
+00:05:48,091 --> 00:05:50,351
+screenshot was real. The conclusion that your
+
+126
+00:05:50,351 --> 00:05:52,810
+card comfortably runs that workload was not.
+
+127
+00:05:53,130 --> 00:05:55,659
+So sixteen gigabytes gives you two reasonable
+
+128
+00:05:55,659 --> 00:05:58,243
+routes. A fourteen-billion model at a less
+
+129
+00:05:58,243 --> 00:06:01,020
+aggressive quantization can be the steady choice,
+
+130
+00:06:01,020 --> 00:06:03,340
+with more space for context and overhead.
+
+131
+00:06:03,660 --> 00:06:06,031
+A twenty-seven-billion model at three bits can be
+
+132
+00:06:06,031 --> 00:06:08,940
+the experiment, if you accept the quality trade-off
+
+133
+00:06:08,940 --> 00:06:11,464
+and carefully check memory use. The right answer
+
+134
+00:06:11,464 --> 00:06:14,817
+depends on your job. Short reasoning, coding, document
+
+135
+00:06:14,817 --> 00:06:17,858
+analysis, and long multi-step agent runs do not
+
+136
+00:06:17,858 --> 00:06:20,290
+stress a machine in exactly the same way.
+
+137
+00:06:20,610 --> 00:06:22,739
+Now we get to twenty-four gigabytes, where the
+
+138
+00:06:22,739 --> 00:06:26,333
+twenty-seven-billion class starts to look much more practical.
+
+139
+00:06:26,333 --> 00:06:30,287
+Unsloth lists a Qwen three-point-eight, twenty-seven-billion dynamic
+
+140
+00:06:30,287 --> 00:06:34,169
+Q-four-K-M file at about sixteen-point-five gigabytes, and
+
+141
+00:06:34,169 --> 00:06:37,580
+a dynamic Q-five-K-M file at about nineteen-point-eight.
+
+142
+00:06:37,900 --> 00:06:40,178
+That means a twenty-four-gigabyte card offers a
+
+143
+00:06:40,178 --> 00:06:42,907
+realistic path to a moderately quantized
+
+144
+00:06:42,907 --> 00:06:45,323
+twenty-seven-billion model while leaving some room
+
+145
+00:06:45,323 --> 00:06:46,520
+for the rest of the runtime.
+
+146
+00:06:46,840 --> 00:06:49,252
+But pay attention to the words, some room.
+
+147
+00:06:49,252 --> 00:06:51,716
+The model's native context specification is not
+
+148
+00:06:51,716 --> 00:06:53,927
+a promise that the full advertised window
+
+149
+00:06:53,927 --> 00:06:56,390
+will fit in twenty-four gigabytes of VRAM.
+
+150
+00:06:56,710 --> 00:06:59,502
+The Qwen model card describes a hybrid architecture
+
+151
+00:06:59,502 --> 00:07:02,231
+rather than a stack of identical traditional attention
+
+152
+00:07:02,231 --> 00:07:05,680
+layers. That affects how context memory grows, but
+
+153
+00:07:05,680 --> 00:07:07,860
+it does not make the memory cost disappear.
+
+154
+00:07:08,180 --> 00:07:10,795
+Image inputs and longer histories still affect the
+
+155
+00:07:10,795 --> 00:07:13,487
+requirements, and the exact result depends on the
+
+156
+00:07:13,487 --> 00:07:16,576
+implementation. Even at twenty-four gigabytes, there is
+
+157
+00:07:16,576 --> 00:07:19,620
+a choice between quality, context, and speed.
+
+158
+00:07:19,940 --> 00:07:23,629
+A less compressed model consumes more space, potentially
+
+159
+00:07:23,629 --> 00:07:26,609
+leaving less capacity for a long conversation. A
+
+160
+00:07:26,609 --> 00:07:29,338
+smaller quantization creates breathing room but may
+
+161
+00:07:29,338 --> 00:07:31,802
+lose some precision. A longer context can
+
+162
+00:07:31,802 --> 00:07:34,061
+also increase the time spent processing the
+
+163
+00:07:34,061 --> 00:07:36,040
+prompt before you see the next answer.
+
+164
+00:07:36,360 --> 00:07:38,660
+And twenty-four gigabytes on one card is not
+
+165
+00:07:38,660 --> 00:07:40,764
+magically the same as twelve on each of
+
+166
+00:07:40,764 --> 00:07:44,454
+two cards. Multi-GPU runtimes can split layers or
+
+167
+00:07:44,454 --> 00:07:46,701
+tensors, but how that behaves depends on
+
+168
+00:07:46,701 --> 00:07:49,220
+the runtime, the interconnect, and the workload.
+
+169
+00:07:49,540 --> 00:07:51,907
+Adding the capacities is not the same as
+
+170
+00:07:51,907 --> 00:07:55,410
+creating one physically unified pool of high-bandwidth memory.
+
+171
+00:07:55,735 --> 00:07:56,985
+So what does a sensible user
+
+172
+00:07:56,985 --> 00:07:59,280
+actually do? Not guess. Measure the
+
+173
+00:07:59,280 --> 00:08:01,050
+configuration they intend to use.
+
+174
+00:08:01,414 --> 00:08:03,853
+First, download a model version from a traceable
+
+175
+00:08:03,853 --> 00:08:07,628
+publisher and note the exact quantization. Q-four-K-M and
+
+176
+00:08:07,628 --> 00:08:10,380
+a one-bit-style format are not interchangeable just
+
+177
+00:08:10,380 --> 00:08:12,664
+because both say the same model name.
+
+178
+00:08:12,664 --> 00:08:15,079
+Record the file size, the runtime, and
+
+179
+00:08:15,079 --> 00:08:17,460
+whether any vision component is being loaded.
+
+180
+00:08:17,782 --> 00:08:20,907
+Second, pick a realistic starting context. For
+
+181
+00:08:20,907 --> 00:08:22,975
+a first check on a smaller GPU,
+
+182
+00:08:22,975 --> 00:08:24,826
+use a modest window and see whether
+
+183
+00:08:24,826 --> 00:08:26,650
+it fits. You can grow it later.
+
+184
+00:08:26,970 --> 00:08:30,638
+Ollama's current documentation is unusually explicit about why
+
+185
+00:08:30,638 --> 00:08:33,919
+this matters: its default context allocation changes with
+
+186
+00:08:33,919 --> 00:08:36,371
+the available VRAM, and it warns that
+
+187
+00:08:36,371 --> 00:08:39,148
+larger context lengths require more memory. In
+
+188
+00:08:39,148 --> 00:08:41,552
+Ollama, the process listing can also show
+
+189
+00:08:41,552 --> 00:08:43,463
+whether a model is running entirely on
+
+190
+00:08:43,463 --> 00:08:45,660
+the GPU or partly on the CPU.
+
+191
+00:08:45,993 --> 00:08:49,190
+Third, check the memory estimate before you celebrate.
+
+192
+00:08:49,190 --> 00:08:52,291
+LM Studio provides an estimate-only loading option that
+
+193
+00:08:52,291 --> 00:08:54,875
+accounts for settings such as context length and
+
+194
+00:08:54,875 --> 00:08:58,288
+GPU offload. Treat that as a useful estimate,
+
+195
+00:08:58,288 --> 00:09:00,524
+not a substitute for running the model. Then
+
+196
+00:09:00,524 --> 00:09:02,620
+watch actual usage during a real task.
+
+197
+00:09:02,960 --> 00:09:05,808
+Fourth, test something more demanding than hello. Ask
+
+198
+00:09:05,808 --> 00:09:08,284
+the model to explain an unfamiliar block of
+
+199
+00:09:08,284 --> 00:09:11,181
+code and identify a specific bug. Give it
+
+200
+00:09:11,181 --> 00:09:13,597
+a document and ask for three facts that
+
+201
+00:09:13,597 --> 00:09:15,592
+are easy to verify. If you want a
+
+202
+00:09:15,592 --> 00:09:18,188
+coding assistant, ask it to make a small,
+
+203
+00:09:18,188 --> 00:09:20,580
+reviewable change and run the relevant test.
+
+204
+00:09:20,900 --> 00:09:23,041
+Record whether it solved the task, how long
+
+205
+00:09:23,041 --> 00:09:25,421
+it took, and whether it made mistakes.
+
+206
+00:09:25,421 --> 00:09:27,580
+Speed without correctness is not a win.
+
+207
+00:09:27,929 --> 00:09:29,936
+Fifth, try the same workload at a longer
+
+208
+00:09:29,936 --> 00:09:32,568
+context. This is the step that exposes the
+
+209
+00:09:32,568 --> 00:09:35,056
+difference between a model that merely loads
+
+210
+00:09:35,056 --> 00:09:36,871
+and one you can actually work with.
+
+211
+00:09:36,871 --> 00:09:38,818
+If it falls back to system RAM
+
+212
+00:09:38,818 --> 00:09:41,066
+or slows dramatically, you have discovered the
+
+213
+00:09:41,066 --> 00:09:43,962
+practical boundary of that configuration. You haven't
+
+214
+00:09:43,962 --> 00:09:46,840
+discovered that the entire GPU is useless.
+
+215
+00:09:47,160 --> 00:09:50,068
+One warning about published speed numbers. Tokens per
+
+216
+00:09:50,068 --> 00:09:52,328
+second is not a universal property of a
+
+217
+00:09:52,328 --> 00:09:56,294
+model. It depends on the GPU, quantization, backend,
+
+218
+00:09:56,294 --> 00:09:58,460
+settings, and the type of work being measured.
+
+219
+00:09:58,782 --> 00:10:01,366
+Prompt processing speed and the speed of generating
+
+220
+00:10:01,366 --> 00:10:03,698
+new tokens are different things. A number
+
+221
+00:10:03,698 --> 00:10:05,609
+from one card at a short context
+
+222
+00:10:05,609 --> 00:10:08,109
+is not an honest head-to-head comparison with
+
+223
+00:10:08,109 --> 00:10:10,190
+another card at a much longer context.
+
+224
+00:10:10,510 --> 00:10:13,495
+And a final warning about parameter counts. Twenty-seven
+
+225
+00:10:13,495 --> 00:10:16,788
+billion parameters describes the scale of a model.
+
+226
+00:10:16,788 --> 00:10:18,242
+It does not tell you how well an
+
+227
+00:10:18,242 --> 00:10:20,875
+ultra-compressed version will solve your task, whether it
+
+228
+00:10:20,875 --> 00:10:23,254
+has the tools your application needs, or whether
+
+229
+00:10:23,254 --> 00:10:25,394
+you can tolerate its latency. The useful
+
+230
+00:10:25,394 --> 00:10:27,353
+model is not always the one with
+
+231
+00:10:27,353 --> 00:10:29,150
+the largest number printed in its name.
+
+232
+00:10:29,470 --> 00:10:32,316
+Here is the practical verdict. With eight gigabytes,
+
+233
+00:10:32,316 --> 00:10:35,008
+start with a smaller, sensible four-bit model and
+
+234
+00:10:35,008 --> 00:10:39,203
+short-to-moderate context. With twelve, a fourteen-billion four-bit model
+
+235
+00:10:39,203 --> 00:10:41,655
+becomes a serious option, but keep a smaller
+
+236
+00:10:41,655 --> 00:10:44,000
+model around for longer or lighter jobs.
+
+237
+00:10:44,320 --> 00:10:47,799
+With sixteen, a heavily quantized twenty-seven-billion model
+
+238
+00:10:47,799 --> 00:10:49,854
+is possible to experiment with, but a
+
+239
+00:10:49,854 --> 00:10:53,090
+well-supported fourteen-billion setup may be more comfortable.
+
+240
+00:10:53,411 --> 00:10:56,644
+With twenty-four, a four-bit twenty-seven-billion model becomes a
+
+241
+00:10:56,644 --> 00:11:00,214
+much more realistic everyday candidate, provided your chosen
+
+242
+00:11:00,214 --> 00:11:03,210
+context and runtime stay within the memory budget.
+
+243
+00:11:03,530 --> 00:11:05,514
+None of those are promises that every card
+
+244
+00:11:05,514 --> 00:11:07,882
+will achieve the same speed. They are starting
+
+245
+00:11:07,882 --> 00:11:10,923
+points based on published model sizes and documented
+
+246
+00:11:10,923 --> 00:11:13,880
+memory behavior. The only honest final verdict comes
+
+247
+00:11:13,880 --> 00:11:16,640
+from testing the exact GPU and workload.
+
+248
+00:11:16,960 --> 00:11:19,960
+Which brings us back to that six-gigabyte twenty-seven-billion
+
+249
+00:11:19,960 --> 00:11:22,844
+model. The surprising part isn't that somebody compressed
+
+250
+00:11:22,844 --> 00:11:25,080
+it that far. The surprising part is how
+
+251
+00:11:25,080 --> 00:11:27,448
+often we treat download size as if it
+
+252
+00:11:27,448 --> 00:11:29,950
+settles the entire question of local AI.
+
+253
+00:11:30,270 --> 00:11:32,737
+It doesn't. Your real limit is the combination
+
+254
+00:11:32,737 --> 00:11:36,715
+of weights, working memory, context, software support, and
+
+255
+00:11:36,715 --> 00:11:38,122
+the quality you are willing to give
+
+256
+00:11:38,122 --> 00:11:40,573
+up. Once you measure those things together,
+
+257
+00:11:40,573 --> 00:11:42,809
+your GPU stops being a mystery and
+
+258
+00:11:42,809 --> 00:11:44,610
+starts being a budget you can manage.
+
+259
+00:11:44,930 --> 00:11:46,940
+If you're running local AI right now, tell
+
+260
+00:11:46,940 --> 00:11:49,139
+me your graphics card, how much VRAM it
+
+261
+00:11:49,139 --> 00:11:51,615
+has, the model you're using, and the longest
+
+262
+00:11:51,615 --> 00:11:55,257
+context you've actually tested. Not the advertised maximum.
+
+263
+00:11:55,257 --> 00:11:57,456
+The one that worked. That's the information that
+
+264
+00:11:57,456 --> 00:12:01,140
+makes the next hardware decision useful for everybody.
