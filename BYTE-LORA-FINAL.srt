@@ -1,0 +1,1187 @@
+1
+00:00:00,001 --> 00:00:02,946
+Training a tiny adapter can exhaust your GPU.
+
+2
+00:00:02,946 --> 00:00:05,061
+That is the first distinction to make before
+
+3
+00:00:05,061 --> 00:00:07,862
+fine-tuning a local model. Three point six
+
+4
+00:00:07,862 --> 00:00:10,771
+nine million trainable parameters for query and
+
+5
+00:00:10,771 --> 00:00:13,475
+value alone, or twenty-nine point nine three
+
+6
+00:00:13,475 --> 00:00:15,940
+million when all seven projections are targeted.
+
+7
+00:00:16,262 --> 00:00:18,245
+The adapter file describes the changes you
+
+8
+00:00:18,245 --> 00:00:20,469
+learned. It does not describe everything the
+
+9
+00:00:20,469 --> 00:00:22,693
+machine needed while learning them. Loading a
+
+10
+00:00:22,693 --> 00:00:24,928
+model and answering a question proves that
+
+11
+00:00:24,928 --> 00:00:27,452
+an inference workload fits. Training that same
+
+12
+00:00:27,452 --> 00:00:29,290
+model creates a different memory bill.
+
+13
+00:00:29,620 --> 00:00:31,988
+Three separate problems, three separate parts of the
+
+14
+00:00:31,988 --> 00:00:33,983
+machine, and every one of them is on
+
+15
+00:00:33,983 --> 00:00:36,495
+this screen right now. Quantise it and the
+
+16
+00:00:36,495 --> 00:00:39,211
+file shrinks. Load it into memory. And keep
+
+17
+00:00:39,211 --> 00:00:40,305
+it on a drive that does not
+
+18
+00:00:40,305 --> 00:00:42,840
+spin. Count them as three separate budgets.
+
+19
+00:00:43,160 --> 00:00:45,174
+Training requires far more than the saved
+
+20
+00:00:45,174 --> 00:00:48,011
+adapter. The base model stays frozen, but
+
+21
+00:00:48,011 --> 00:00:51,220
+every forward pass stores temporary activations, and
+
+22
+00:00:51,220 --> 00:00:55,006
+backpropagation calculates gradients for the trainable matrices.
+
+23
+00:00:55,006 --> 00:00:57,120
+That execution state fills your memory.
+
+24
+00:00:57,440 --> 00:01:00,261
+LoRA freezes the original weight matrix and learns
+
+25
+00:01:00,261 --> 00:01:03,566
+an additional update through two smaller matrices.
+
+26
+00:01:03,566 --> 00:01:04,936
+Think of the frozen model as a
+
+27
+00:01:04,936 --> 00:01:07,485
+machine whose controls you are adjusting. You
+
+28
+00:01:07,485 --> 00:01:09,864
+do not rebuild every component. But the
+
+29
+00:01:09,864 --> 00:01:12,530
+machine still runs during each training example.
+
+30
+00:01:12,850 --> 00:01:15,226
+The error signal still travels backward through the
+
+31
+00:01:15,226 --> 00:01:18,291
+computation so the adapter can learn. Intermediate
+
+32
+00:01:18,291 --> 00:01:20,779
+tensors needed for that backward pass remain
+
+33
+00:01:20,779 --> 00:01:22,810
+part of the job. Frozen weights are
+
+34
+00:01:22,810 --> 00:01:25,110
+not permission to delete the learning process.
+
+35
+00:01:25,430 --> 00:01:27,922
+The adapter arithmetic is concrete. For a
+
+36
+00:01:27,922 --> 00:01:30,771
+projection with input width two thousand forty-eight
+
+37
+00:01:30,771 --> 00:01:33,379
+and output width two thousand forty-eight, rank
+
+38
+00:01:33,379 --> 00:01:35,614
+sixteen times their sum gives one hundred
+
+39
+00:01:35,614 --> 00:01:38,198
+two thousand four hundred added values. One
+
+40
+00:01:38,198 --> 00:01:40,602
+matrix maps the input into the rank,
+
+41
+00:01:40,602 --> 00:01:42,490
+another maps the rank into the output.
+
+42
+00:01:42,810 --> 00:01:45,653
+Converting it into a memory prediction requires another
+
+43
+00:01:45,653 --> 00:01:49,571
+question: what precision holds those values, their gradients,
+
+44
+00:01:49,571 --> 00:01:51,855
+and the optimizer history? Then we still have
+
+45
+00:01:51,855 --> 00:01:53,260
+to account for the rest of training.
+
+46
+00:01:53,580 --> 00:01:56,049
+Use an actual architecture. Qwen two point
+
+47
+00:01:56,049 --> 00:01:59,547
+five, three billion, Instruct has thirty-six layers
+
+48
+00:01:59,547 --> 00:02:01,229
+and a hidden width of two thousand
+
+49
+00:02:01,229 --> 00:02:03,934
+forty-eight. Its sixteen query heads share
+
+50
+00:02:03,934 --> 00:02:06,020
+only two key and value heads.
+
+51
+00:02:06,340 --> 00:02:08,808
+Each attention head is one hundred twenty-eight values
+
+52
+00:02:08,808 --> 00:02:12,065
+wide. Two key and value heads serve sixteen
+
+53
+00:02:12,065 --> 00:02:14,913
+query heads, so the value projection produces two
+
+54
+00:02:14,913 --> 00:02:18,351
+hundred fifty-six outputs, not two thousand forty-eight. The
+
+55
+00:02:18,351 --> 00:02:20,860
+narrow projections are the smaller ones to train.
+
+56
+00:02:21,180 --> 00:02:23,507
+Put rank sixteen adapters on query and
+
+57
+00:02:23,507 --> 00:02:26,801
+value only. The query projection adds sixty-five
+
+58
+00:02:26,801 --> 00:02:29,685
+thousand five hundred thirty-six values per layer
+
+59
+00:02:29,685 --> 00:02:32,173
+and the value projection thirty-six thousand eight
+
+60
+00:02:32,173 --> 00:02:34,630
+hundred sixty-four. That is the whole adapter.
+
+61
+00:02:34,950 --> 00:02:37,585
+Multiply by thirty-six layers and the total
+
+62
+00:02:37,585 --> 00:02:41,047
+is three million, six hundred eighty-six thousand,
+
+63
+00:02:41,047 --> 00:02:44,172
+four hundred parameters, with no trained biases.
+
+64
+00:02:44,172 --> 00:02:46,170
+That count is derived, not measured.
+
+65
+00:02:46,490 --> 00:02:49,367
+Expand that same rank to query, key,
+
+66
+00:02:49,367 --> 00:02:52,288
+value, attention output, and the three feed-forward
+
+67
+00:02:52,288 --> 00:02:55,918
+projections. The exact total is twenty-nine million,
+
+68
+00:02:55,918 --> 00:02:58,946
+nine hundred thirty-three thousand, five hundred sixty-eight
+
+69
+00:02:58,946 --> 00:03:01,790
+trainable parameters. The rank stays at sixteen.
+
+70
+00:03:02,110 --> 00:03:04,316
+The base architecture did not change, and
+
+71
+00:03:04,316 --> 00:03:05,891
+the places you allowed it to adapt
+
+72
+00:03:05,891 --> 00:03:08,150
+changed. That is the whole difference between
+
+73
+00:03:08,150 --> 00:03:09,650
+the two counts you just computed.
+
+74
+00:03:09,970 --> 00:03:11,503
+That is why somebody else saying rank
+
+75
+00:03:11,503 --> 00:03:15,398
+sixteen is insufficient information. Ask which projections,
+
+76
+00:03:15,398 --> 00:03:17,898
+which layers, whether embeddings or biases are
+
+77
+00:03:17,898 --> 00:03:20,866
+trained, and what precision the implementation actually
+
+78
+00:03:20,866 --> 00:03:23,474
+uses. A small rank is a setting.
+
+79
+00:03:23,474 --> 00:03:25,490
+It is not a complete training specification.
+
+80
+00:03:25,810 --> 00:03:28,953
+On GPT three with one hundred seventy-five billion
+
+81
+00:03:28,953 --> 00:03:32,450
+parameters, full fine-tuning scored seventy-three point eight
+
+82
+00:03:32,450 --> 00:03:35,203
+on Wiki SQL and eighty-nine point five
+
+83
+00:03:35,203 --> 00:03:37,005
+on matched Multi N L I. A
+
+84
+00:03:37,005 --> 00:03:38,965
+LoRA row with four point seven million
+
+85
+00:03:38,965 --> 00:03:41,561
+scored seventy-three point four and ninety-one point
+
+86
+00:03:41,561 --> 00:03:43,740
+seven. Those are the paper's own numbers.
+
+87
+00:03:44,060 --> 00:03:46,645
+Those are the original authors' task results,
+
+88
+00:03:46,645 --> 00:03:49,734
+with task-specific variation, not measurements from this
+
+89
+00:03:49,734 --> 00:03:52,246
+channel or promises for a desktop model.
+
+90
+00:03:52,246 --> 00:03:54,734
+Now separate LoRA from quantized LoRA, because
+
+91
+00:03:54,734 --> 00:03:56,010
+they are not the same method.
+
+92
+00:03:56,330 --> 00:03:59,630
+Quantized LoRA keeps the small trainable matrices and
+
+93
+00:03:59,630 --> 00:04:02,154
+changes how the frozen base is stored. The
+
+94
+00:04:02,154 --> 00:04:04,414
+base sits in a reduced precision, and
+
+95
+00:04:04,414 --> 00:04:06,469
+the adapters still train in a higher
+
+96
+00:04:06,469 --> 00:04:09,110
+one. One method, two different memory bills.
+
+97
+00:04:09,430 --> 00:04:12,180
+In the final QLoRA paper, a Llama seven
+
+98
+00:04:12,180 --> 00:04:15,293
+billion model tuned on Alpaca scored thirty-eight point
+
+99
+00:04:15,293 --> 00:04:17,697
+four on five-shot M M L U using
+
+100
+00:04:17,697 --> 00:04:21,183
+brain float sixteen adapter tuning. Normal float four
+
+101
+00:04:21,183 --> 00:04:24,110
+with double quantization scored thirty-nine point zero.
+
+102
+00:04:24,430 --> 00:04:26,861
+On F L A N version two, the
+
+103
+00:04:26,861 --> 00:04:29,818
+corresponding scores were forty-five point six for brain
+
+104
+00:04:29,818 --> 00:04:32,426
+float sixteen and forty-four point five for
+
+105
+00:04:32,426 --> 00:04:34,998
+normal float four. One dataset moved up
+
+106
+00:04:34,998 --> 00:04:37,198
+zero point six points, the other down
+
+107
+00:04:37,198 --> 00:04:39,469
+one point one. It has a boundary:
+
+108
+00:04:39,469 --> 00:04:43,020
+the named model, datasets, methods, and evaluation.
+
+109
+00:04:43,340 --> 00:04:46,047
+It does not establish that four-bit training improves
+
+110
+00:04:46,047 --> 00:04:48,331
+every task. It does not tell us whether
+
+111
+00:04:48,331 --> 00:04:50,747
+our Qwen adapter follows an internal coding
+
+112
+00:04:50,747 --> 00:04:53,060
+convention, or whether your data follows one.
+
+113
+00:04:53,392 --> 00:04:55,435
+For that decision, write down the behavior you
+
+114
+00:04:55,435 --> 00:04:57,562
+want to change and examples that test it
+
+115
+00:04:57,562 --> 00:05:00,579
+before training begins. The only number guaranteed to
+
+116
+00:05:00,579 --> 00:05:03,040
+improve is the number of checkpoints on disk.
+
+117
+00:05:03,360 --> 00:05:07,309
+The famous sixty-five-billion model on a forty-eight-gigabyte GPU
+
+118
+00:05:07,309 --> 00:05:10,217
+is also a scoped research demonstration. Keep the
+
+119
+00:05:10,217 --> 00:05:12,886
+original recipe attached to that sentence. It
+
+120
+00:05:12,886 --> 00:05:14,989
+is not a universal allowance for longer
+
+121
+00:05:14,989 --> 00:05:18,030
+examples, a different architecture, or arbitrary batch
+
+122
+00:05:18,030 --> 00:05:20,440
+sizes. The scope travels with the number.
+
+123
+00:05:20,760 --> 00:05:23,159
+Treat it as evidence that quantized adapter
+
+124
+00:05:23,159 --> 00:05:26,224
+training can make a previously inaccessible experiment
+
+125
+00:05:26,224 --> 00:05:29,096
+possible. Then budget your own experiment. An
+
+126
+00:05:29,096 --> 00:05:32,233
+engineering result becomes misleading when the equipment
+
+127
+00:05:32,233 --> 00:05:34,880
+and settings disappear while the headline survives.
+
+128
+00:05:35,250 --> 00:05:37,918
+Four-bit training does not mean every training tensor
+
+129
+00:05:37,918 --> 00:05:40,779
+uses four bits. In the documented bits and
+
+130
+00:05:40,779 --> 00:05:43,808
+bytes route, normal float four stores the converted
+
+131
+00:05:43,808 --> 00:05:46,104
+base weights, and a separate compute setting
+
+132
+00:05:46,104 --> 00:05:49,577
+selects the arithmetic precision. Our configuration uses
+
+133
+00:05:49,577 --> 00:05:52,960
+brain float sixteen computation on compatible hardware.
+
+134
+00:05:53,280 --> 00:05:55,972
+The adapters are extra trainable tensors on top
+
+135
+00:05:55,972 --> 00:05:59,951
+of the frozen base. Activations, gradients, and optimizer
+
+136
+00:05:59,951 --> 00:06:02,823
+states have their own representations. Read those
+
+137
+00:06:02,823 --> 00:06:04,987
+settings as separate lines in a budget,
+
+138
+00:06:04,987 --> 00:06:06,660
+and name the precision for each one.
+
+139
+00:06:06,980 --> 00:06:10,214
+Multiplying the model's advertised parameter count by half
+
+140
+00:06:10,214 --> 00:06:12,702
+a byte does not produce the peak. Even
+
+141
+00:06:12,702 --> 00:06:14,974
+the converted weights need their scales: a
+
+142
+00:06:14,974 --> 00:06:17,102
+scale stored in thirty-two bits for each
+
+143
+00:06:17,102 --> 00:06:19,602
+block of sixty-four weights adds half a
+
+144
+00:06:19,602 --> 00:06:21,356
+bit per weight. That is four and
+
+145
+00:06:21,356 --> 00:06:23,610
+a half bits, before the scales shrink.
+
+146
+00:06:23,930 --> 00:06:27,322
+Nested quantization compresses the scales as well, taking
+
+147
+00:06:27,322 --> 00:06:29,617
+back zero point three seven three of a
+
+148
+00:06:29,617 --> 00:06:32,430
+bit. The large-tensor average becomes four point
+
+149
+00:06:32,430 --> 00:06:34,569
+one two seven bits per weight. It
+
+150
+00:06:34,569 --> 00:06:36,420
+is larger than four bits, and it
+
+151
+00:06:36,420 --> 00:06:38,415
+says nothing about tensors the loader did
+
+152
+00:06:38,415 --> 00:06:40,520
+not convert. Read it as an average.
+
+153
+00:06:40,850 --> 00:06:42,713
+Here is a quieter trap. The pinned
+
+154
+00:06:42,713 --> 00:06:45,297
+P E F T preparation function freezes
+
+155
+00:06:45,297 --> 00:06:48,663
+the base and promotes ordinary half-precision parameters
+
+156
+00:06:48,663 --> 00:06:51,451
+to full precision, excluding the special four-bit
+
+157
+00:06:51,451 --> 00:06:54,300
+parameters. That promotion is a full precision
+
+158
+00:06:54,300 --> 00:06:56,370
+component you cannot see from the label.
+
+159
+00:06:56,690 --> 00:06:58,825
+Our Qwen model has a tied vocabulary
+
+160
+00:06:58,825 --> 00:07:01,529
+embedding. That embedding contains about three hundred
+
+161
+00:07:01,529 --> 00:07:04,017
+eleven million values, and at four bytes
+
+162
+00:07:04,017 --> 00:07:05,977
+each it is about one point two
+
+163
+00:07:05,977 --> 00:07:09,246
+four five decimal gigabytes. This is derived
+
+164
+00:07:09,246 --> 00:07:11,970
+tensor arithmetic, not an allocation measurement.
+
+165
+00:07:12,328 --> 00:07:15,453
+Placement is another separate decision. The pinned Transformers
+
+166
+00:07:15,453 --> 00:07:19,035
+guide says automatic device mapping is for inference.
+
+167
+00:07:19,035 --> 00:07:21,054
+It is not evidence that an inference offload
+
+168
+00:07:21,054 --> 00:07:24,263
+layout is a valid training layout. Our inspection
+
+169
+00:07:24,263 --> 00:07:27,653
+plan names one CUDA device explicitly and disables
+
+170
+00:07:27,653 --> 00:07:30,880
+the inference cache. Neither choice manufactures memory.
+
+171
+00:07:31,200 --> 00:07:34,101
+Disabling the cache removes a mechanism for reusing
+
+172
+00:07:34,101 --> 00:07:37,046
+past keys and values during generation. It does
+
+173
+00:07:37,046 --> 00:07:39,618
+not remove the tensors needed to differentiate
+
+174
+00:07:39,618 --> 00:07:42,118
+a training example. A successful loader is
+
+175
+00:07:42,118 --> 00:07:44,534
+still only the beginning of the experiment,
+
+176
+00:07:44,534 --> 00:07:46,710
+and the experiment is the expensive part.
+
+177
+00:07:47,031 --> 00:07:49,255
+The useful controls change different parts of
+
+178
+00:07:49,255 --> 00:07:52,764
+that experiment. Gradient checkpointing saves fewer intermediate
+
+179
+00:07:52,764 --> 00:07:56,009
+tensors and recomputes them during backward, trading
+
+180
+00:07:56,009 --> 00:07:58,642
+additional work for memory. A microbatch of
+
+181
+00:07:58,642 --> 00:08:00,970
+one keeps fewer examples live together.
+
+182
+00:08:01,291 --> 00:08:04,644
+Accumulating eight such microsteps builds an effective batch
+
+183
+00:08:04,644 --> 00:08:07,853
+of eight on one device, without processing all
+
+184
+00:08:07,853 --> 00:08:11,099
+eight simultaneously. Sequence length remains its own
+
+185
+00:08:11,099 --> 00:08:13,839
+control, and these choices do not guarantee
+
+186
+00:08:13,839 --> 00:08:17,140
+the same optimization behavior in every implementation.
+
+187
+00:08:17,460 --> 00:08:20,156
+Return to the twenty-nine point nine three million
+
+188
+00:08:20,156 --> 00:08:23,834
+parameter adapter. Assume full-precision adapter weights at four
+
+189
+00:08:23,834 --> 00:08:27,283
+bytes each, full-precision gradients at four bytes each,
+
+190
+00:08:27,283 --> 00:08:30,120
+and two full-precision Adam moment buffers, eight bytes
+
+191
+00:08:30,120 --> 00:08:33,060
+together. That is sixteen bytes per trainable value.
+
+192
+00:08:33,380 --> 00:08:36,091
+Our exact count is twenty-nine million, nine
+
+193
+00:08:36,091 --> 00:08:39,385
+hundred thirty-three thousand, five hundred sixty-eight trainable
+
+194
+00:08:39,385 --> 00:08:42,642
+values. Sixteen bytes per value yields four
+
+195
+00:08:42,642 --> 00:08:45,406
+hundred fifty-six point seven five mebibytes for
+
+196
+00:08:45,406 --> 00:08:47,690
+those four arrays. That is a theoretical
+
+197
+00:08:47,690 --> 00:08:50,620
+adapter subtotal, not your full training footprint.
+
+198
+00:08:50,940 --> 00:08:53,853
+That subtotal covers the adapter arrays only. The
+
+199
+00:08:53,853 --> 00:08:57,050
+frozen base, the saved activations, and the temporary
+
+200
+00:08:57,050 --> 00:09:00,115
+workspaces all sit outside it, and so does
+
+201
+00:09:00,115 --> 00:09:02,976
+anything else the implementation keeps. Calling it the
+
+202
+00:09:02,976 --> 00:09:05,367
+required video memory would erase most of
+
+203
+00:09:05,367 --> 00:09:07,050
+the question we came here to answer.
+
+204
+00:09:07,370 --> 00:09:10,546
+On eight gigabytes, regard the three-billion family as
+
+205
+00:09:10,546 --> 00:09:14,332
+a constrained experiment candidate. Start with short examples,
+
+206
+00:09:14,332 --> 00:09:17,337
+perhaps five hundred twelve tokens, a microbatch of
+
+207
+00:09:17,337 --> 00:09:20,474
+one, and checkpointing. Those are starting choices,
+
+208
+00:09:20,474 --> 00:09:22,337
+not a tested fit claim, so on
+
+209
+00:09:22,337 --> 00:09:24,930
+twelve gigabytes retain that controlled setup first.
+
+210
+00:09:25,250 --> 00:09:27,550
+Measure a complete training step: a forward
+
+211
+00:09:27,550 --> 00:09:30,194
+pass, a backward pass, and an optimizer
+
+212
+00:09:30,194 --> 00:09:32,886
+update. An optimizer can allocate state when
+
+213
+00:09:32,886 --> 00:09:35,398
+the first update happens, so a forward-only
+
+214
+00:09:35,398 --> 00:09:37,820
+demonstration can miss the failure that matters.
+
+215
+00:09:38,140 --> 00:09:40,525
+At sixteen gigabytes, you have more freedom to
+
+216
+00:09:40,525 --> 00:09:43,866
+test broader adapter targets or longer examples, one
+
+217
+00:09:43,866 --> 00:09:46,029
+change at a time. At twenty-four, a
+
+218
+00:09:46,029 --> 00:09:49,503
+seven-billion experiment becomes another candidate to investigate
+
+219
+00:09:49,503 --> 00:09:52,388
+after the smaller control works. Neither capacity
+
+220
+00:09:52,388 --> 00:09:55,450
+guarantees full fine-tuning or a long-context run.
+
+221
+00:09:55,770 --> 00:09:58,477
+Also check the hardware behind the capacity. Our
+
+222
+00:09:58,477 --> 00:10:02,527
+pinned normal-float configuration requires a compatible CUDA stack
+
+223
+00:10:02,527 --> 00:10:06,073
+and a device supporting its selected brain-float computation.
+
+224
+00:10:06,073 --> 00:10:08,032
+Two cards with the same memory label can
+
+225
+00:10:08,032 --> 00:10:11,390
+require different precision choices and different software support.
+
+226
+00:10:11,710 --> 00:10:14,098
+On an Apple machine with sixty-four or one
+
+227
+00:10:14,098 --> 00:10:17,451
+hundred twenty-eight gigabytes of unified memory, the capacity
+
+228
+00:10:17,451 --> 00:10:20,143
+number describes a different system. M L X
+
+229
+00:10:20,143 --> 00:10:22,643
+L M has its own adapter training path
+
+230
+00:10:22,643 --> 00:10:25,204
+for the Qwen two family. The CUDA configuration
+
+231
+00:10:25,204 --> 00:10:27,220
+on screen is not a Mac recipe.
+
+232
+00:10:27,552 --> 00:10:30,857
+For comparison, calculate this architecture's inference cache
+
+233
+00:10:30,857 --> 00:10:33,633
+separately. One sequence at eight thousand one
+
+234
+00:10:33,633 --> 00:10:36,386
+hundred ninety-two tokens needs two hundred eighty-eight
+
+235
+00:10:36,386 --> 00:10:39,258
+mebibytes of logical key and value storage
+
+236
+00:10:39,258 --> 00:10:41,734
+in sixteen-bit precision. That is about zero
+
+237
+00:10:41,734 --> 00:10:44,400
+point three zero two decimal gigabytes.
+
+238
+00:10:44,720 --> 00:10:46,910
+An ideal Q eight zero payload is
+
+239
+00:10:46,910 --> 00:10:50,347
+one hundred fifty-three mebibytes, because each thirty-two-value
+
+240
+00:10:50,347 --> 00:10:53,773
+block carries thirty-four bytes, including its scale.
+
+241
+00:10:53,773 --> 00:10:56,453
+two hundred eighty-eight mebibytes needs two hundred
+
+242
+00:10:56,453 --> 00:11:00,455
+eighty-eight mebibytes. Both figures exclude runtime overhead,
+
+243
+00:11:00,455 --> 00:11:02,070
+and neither is a training peak.
+
+244
+00:11:02,390 --> 00:11:05,871
+During a training step, autograd, loss computation,
+
+245
+00:11:05,871 --> 00:11:08,599
+batch shape, and the attention implementation decide
+
+246
+00:11:08,599 --> 00:11:11,051
+what must remain live on the device.
+
+247
+00:11:11,051 --> 00:11:12,710
+Checkpointing has a time cost worth
+
+248
+00:11:12,710 --> 00:11:14,950
+counting, because it recomputes the graph.
+
+249
+00:11:15,274 --> 00:11:17,714
+Suppose the whole system averages two hundred fifty
+
+250
+00:11:17,714 --> 00:11:19,938
+watts for one hour. That is zero point
+
+251
+00:11:19,938 --> 00:11:23,436
+two five kilowatt-hours. A configuration that uses less
+
+252
+00:11:23,436 --> 00:11:25,671
+memory but takes longer can consume more
+
+253
+00:11:25,671 --> 00:11:27,980
+total energy, depending on its power draw.
+
+254
+00:11:28,301 --> 00:11:29,995
+We have no measured power trace for
+
+255
+00:11:29,995 --> 00:11:32,796
+this recipe. Log wall time and whole-system
+
+256
+00:11:32,796 --> 00:11:35,584
+energy if efficiency matters to your decision.
+
+257
+00:11:35,584 --> 00:11:37,507
+A smaller checkpoint file cannot tell you
+
+258
+00:11:37,507 --> 00:11:39,640
+how many watt-hours its training consumed.
+
+259
+00:11:39,960 --> 00:11:41,893
+The useful reason to train an adapter is
+
+260
+00:11:41,893 --> 00:11:44,405
+a behavior you can describe and test.
+
+261
+00:11:44,405 --> 00:11:46,869
+Here are three cases: write your team's
+
+262
+00:11:46,869 --> 00:11:50,402
+issue summaries consistently, apply a stable classification
+
+263
+00:11:50,402 --> 00:11:53,430
+policy, or follow a domain-specific response pattern.
+
+264
+00:11:53,750 --> 00:11:56,432
+Build representative examples and keep a separate
+
+265
+00:11:56,432 --> 00:11:59,316
+evaluation set. Compare the adapted result with
+
+266
+00:11:59,316 --> 00:12:01,444
+the same base model, using the same
+
+267
+00:12:01,444 --> 00:12:04,160
+prompt template and deployment precision. Check what
+
+268
+00:12:04,160 --> 00:12:06,792
+improved and what regressed. If the underlying
+
+269
+00:12:06,792 --> 00:12:09,581
+problem is simply a changing spreadsheet, first
+
+270
+00:12:09,581 --> 00:12:12,160
+establish why changing the weights is necessary.
+
+271
+00:12:12,480 --> 00:12:15,355
+The accompanying listing prints a configuration. It
+
+272
+00:12:15,355 --> 00:12:17,891
+downloads no model and starts no training.
+
+273
+00:12:17,891 --> 00:12:20,115
+A configuration is a proposal, and
+
+274
+00:12:20,115 --> 00:12:21,650
+a proposal is not a run.
+
+275
+00:12:21,970 --> 00:12:24,609
+The proposal is explicit. The revision, the
+
+276
+00:12:24,609 --> 00:12:27,553
+target modules, the rank, the precision, the
+
+277
+00:12:27,553 --> 00:12:29,837
+sequence length, and the microbatch are all
+
+278
+00:12:29,837 --> 00:12:31,990
+named before any memory is allocated.
+
+279
+00:12:32,310 --> 00:12:34,168
+A complete run needs more than the
+
+280
+00:12:34,168 --> 00:12:36,944
+listing. It needs tokenized data, a checked
+
+281
+00:12:36,944 --> 00:12:40,117
+loss mask, an evaluation procedure, and full-step
+
+282
+00:12:40,117 --> 00:12:41,932
+profiling on the machine you actually
+
+283
+00:12:41,932 --> 00:12:44,030
+own, not on a paper configuration.
+
+284
+00:12:44,350 --> 00:12:47,050
+After training, two things must be preserved: the
+
+285
+00:12:47,050 --> 00:12:50,223
+exact base revision and the adapter settings. Then
+
+286
+00:12:50,223 --> 00:12:53,095
+check the deployed adapter too, because merging and
+
+287
+00:12:53,095 --> 00:12:56,809
+quantized inference introduce another implementation choice that deserves
+
+288
+00:12:56,809 --> 00:12:59,090
+its own validation on your own hardware.
+
+289
+00:12:59,410 --> 00:13:01,693
+The verdict is simple. LoRA reduces what
+
+290
+00:13:01,693 --> 00:13:04,626
+you update. Quantized LoRA also reduces how
+
+291
+00:13:04,626 --> 00:13:07,006
+the frozen base is stored. Neither one
+
+292
+00:13:07,006 --> 00:13:09,170
+removes the rest of the learning process.
+
+293
+00:13:09,490 --> 00:13:12,361
+Buy capacity around a measured training workload,
+
+294
+00:13:12,361 --> 00:13:14,392
+or reduce the workload until it matches
+
+295
+00:13:14,392 --> 00:13:16,844
+the hardware you already own. The adapter
+
+296
+00:13:16,844 --> 00:13:19,104
+is the change you keep. Training memory
+
+297
+00:13:19,104 --> 00:13:21,900
+is the work required to discover it.

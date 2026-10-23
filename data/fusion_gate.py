@@ -172,6 +172,10 @@ def extra_checks(s, F, beats, scenes, words, total):
 
         chap = os.path.join(ROOT, NAME + "-chapters.txt")
         if not os.path.exists(chap):
+            chap = os.path.join(ROOT, "episodes", NAME + "-chapters.txt")
+        if not os.path.exists(chap) and os.path.exists(PATH):
+            chap = os.path.join(os.path.dirname(PATH), NAME + "-chapters.txt")
+        if not os.path.exists(chap):
             bad("14d", "no chapters file beside the episode")
         else:
             lines = [x for x in io.open(chap, encoding="utf-8").read().splitlines()
