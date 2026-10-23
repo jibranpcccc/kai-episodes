@@ -570,11 +570,12 @@ def main():
             if key in seen_groups:
                 continue
             seen_groups.add(key)
-            t_arr = b.get("arr", b["s"])
-            w = word_at(words, t_arr)
+            delay_s = float(b.get("delay", 0) or 0) / 1000.0
+            t_vis = b.get("arr", b["s"]) + delay_s
+            w = word_at(words, t_vis)
             if w is None:
                 continue
-            off = t_arr - w[0]
+            off = t_vis - w[0]
             if abs(off) <= WORD_TOL:
                 continue
             nud = b.get("nudge", 0)
@@ -583,10 +584,35 @@ def main():
             if nud < 0 and -nud <= TEASE_BOUND:
                 continue        # a deliberate tease: it lands before its word
             v5 += 1
-            bad("5", "arrival for %r at %.2fs is %.2fs from the word '%s'"
-                % ((b.get("anchor") or "")[:30], t_arr, off, w[1]))
+            bad("5", "visible arrival for %r at %.2fs is %.2fs from the word '%s'"
+                % ((b.get("anchor") or "")[:30], t_vis, off, w[1]))
         if v5 == 0:
-            ok("5", "every arrival lands within %.2fs of its spoken word" % WORD_TOL)
+            ok("5", "every visible arrival lands within %.2fs of its spoken word" % WORD_TOL)
+
+        # ---------------------------------------------------------------
+        # 5b physical DOM visibility test in Chromium engine
+        invisible_elements = []
+        sample_beats = [b for b in beats if b.get("el") and b["el"].startswith("#")][:30]
+        for b in sample_beats:
+            dur_s = float(b.get("dur", 340) or 340) / 1000.0
+            delay_s = float(b.get("delay", 0) or 0) / 1000.0
+            t_check = min(total - 0.05, b["s"] + delay_s + dur_s + 0.05)
+            vis = pg.evaluate("""(data) => {
+              window.__FUSION__.renderState(data.t);
+              const el = document.querySelector(data.sel);
+              if (!el) return { found: false };
+              const s = getComputedStyle(el);
+              const op = parseFloat(s.opacity);
+              const disp = s.display;
+              const vis = s.visibility;
+              return { found: true, visible: op > 0.05 && disp !== 'none' && vis !== 'hidden', opacity: op };
+            }""", {"t": t_check, "sel": b["el"]})
+            if vis.get("found") and not vis.get("visible"):
+                invisible_elements.append(b["el"])
+        if not invisible_elements:
+            ok("5b", "sampled elements are physically visible in DOM at arrival time")
+        else:
+            bad("5b", "elements remain invisible at arrival time: %s" % invisible_elements[:5])
 
         # ---------------------------------------------------------------
         # 11  static-frame band + 12  ink coverage, sampled at 3 fps

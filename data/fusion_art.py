@@ -64,14 +64,14 @@ def laptop_wait():
     b.append('<path d="M70 236 L410 236 L404 264 L76 264 Z" fill="none" stroke="%s" '
              'stroke-width="3" stroke-linejoin="round"/>' % INK)
     b.append('<rect x="196" y="243" width="88" height="8" rx="4" fill="%s" opacity=".45"/>' % INK)
-    # --- the clock
-    b.append('<rect x="120" y="300" width="240" height="86" rx="10" fill="rgba(245,197,49,.10)" '
-             'stroke="%s" stroke-width="2"/>' % GOLD)
-    b.append('<text x="240" y="366" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="58" font-weight="800" fill="%s" letter-spacing="3">00:20</text>' % GOLD)
-    b.append('<text x="240" y="432" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="17" font-weight="700" fill="%s" letter-spacing="4">'
-             'TIME TO FIRST TOKEN</text>' % GREY)
+    # --- active inference status box (replaces old TTFT)
+    b.append('<rect x="110" y="300" width="260" height="86" rx="10" fill="rgba(56,217,232,.10)" '
+             'stroke="%s" stroke-width="2"/>' % CYAN)
+    b.append('<text x="240" y="342" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="20" font-weight="800" fill="%s" letter-spacing="2">SUSTAINED LOAD</text>' % CYAN)
+    b.append('<text x="240" y="368" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="12" font-weight="700" fill="%s" letter-spacing="2">'
+             'RUNTIME MEMORY ALLOCATION</text>' % GREY)
     return _svg("58 6 364 442", "".join(b), "laptop")
 
 
@@ -256,6 +256,66 @@ def caveat_mark():
     return _svg("86 14 304 284", "".join(b), "caveat")
 
 
+
+
+def vram_stack():
+    """Diagram showing why weight file size on disk is different from runtime GPU memory."""
+    b = []
+    # --- NVMe / Disk block (Passive storage)
+    b.append('<rect x="50" y="20" width="380" height="110" rx="10" fill="rgba(246,246,244,.03)" '
+             'stroke="%s" stroke-width="2"/>' % INK)
+    b.append('<text x="70" y="48" font-family="FuseMono, monospace" font-size="13" font-weight="700" '
+             'fill="%s" letter-spacing="2">PASSIVE DISK STORAGE (NVME SSD)</text>' % GREY)
+    b.append('<rect x="70" y="62" width="340" height="48" rx="6" fill="rgba(56,217,232,.12)" '
+             'stroke="%s" stroke-width="1.5"/>' % CYAN)
+    b.append('<text x="240" y="92" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="17" font-weight="800" fill="%s" letter-spacing="1">DOWNLOADED WEIGHTS: ~6.2 GB</text>' % CYAN)
+
+    # --- Loading arrow
+    b.append('<path d="M240 138 L240 178" stroke="%s" stroke-width="2" stroke-dasharray="4 4"/>' % GOLD)
+    b.append('<polygon points="234,176 240,188 246,176" fill="%s"/>' % GOLD)
+    b.append('<text x="240" y="162" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="11" font-weight="700" fill="%s" letter-spacing="1">LOADED INTO VRAM</text>' % GOLD)
+
+    # --- Active GPU VRAM Allocation block
+    b.append('<rect x="50" y="194" width="380" height="230" rx="10" fill="rgba(246,246,244,.03)" '
+             'stroke="%s" stroke-width="2"/>' % INK)
+    b.append('<text x="70" y="220" font-family="FuseMono, monospace" font-size="13" font-weight="700" '
+             'fill="%s" letter-spacing="2">ACTIVE RUNTIME VRAM ALLOCATION</text>' % GOLD)
+
+    # Layer 1: Model weights
+    b.append('<rect x="70" y="232" width="340" height="40" rx="4" fill="rgba(56,217,232,.18)" '
+             'stroke="%s" stroke-width="1.5"/>' % CYAN)
+    b.append('<text x="86" y="257" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
+             'fill="%s">BASE WEIGHTS (FILE)</text>' % CYAN)
+    b.append('<text x="394" y="257" text-anchor="end" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
+             'fill="%s">~6.2 GB</text>' % CYAN)
+
+    # Layer 2: KV Cache
+    b.append('<rect x="70" y="278" width="340" height="40" rx="4" fill="rgba(245,197,49,.18)" '
+             'stroke="%s" stroke-width="1.5"/>' % GOLD)
+    b.append('<text x="86" y="303" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
+             'fill="%s">+ KV CACHE (CONTEXT BUFFER)</text>' % GOLD)
+    b.append('<text x="394" y="303" text-anchor="end" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
+             'fill="%s">GROWS O(L)</text>' % GOLD)
+
+    # Layer 3: CUDA & OS overhead
+    b.append('<rect x="70" y="324" width="340" height="40" rx="4" fill="rgba(225,42,39,.18)" '
+             'stroke="%s" stroke-width="1.5"/>' % RED)
+    b.append('<text x="86" y="349" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
+             'fill="%s">+ CUDA KERNELS &amp; BUFFERS</text>' % RED)
+    b.append('<text x="394" y="349" text-anchor="end" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
+             'fill="%s">~1.5 GB</text>' % RED)
+
+    # Summary pill
+    b.append('<rect x="70" y="372" width="340" height="28" rx="4" fill="rgba(225,42,39,.25)" '
+             'stroke="%s" stroke-width="1"/>' % RED)
+    b.append('<text x="240" y="391" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="12" font-weight="800" fill="%s" letter-spacing="1">TOTAL VRAM ALLOCATION &gt; 8.0 GB (OOM RISK)</text>' % RED)
+
+    return _svg("40 10 400 424", "".join(b), "vram_stack")
+
+
 ART = {
     "laptop":  laptop_wait,
     "gpu":     gpu_card,
@@ -263,6 +323,7 @@ ART = {
     "clock":   stopwatch,
     "meter":   bandwidth_meter,
     "caveat":  caveat_mark,
+    "vram_stack": vram_stack,
 }
 
 
