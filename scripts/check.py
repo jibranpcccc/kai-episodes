@@ -211,6 +211,16 @@ def main():
         for f in files:
             name = f.stem
             html = f.read_text(encoding="utf-8")
+            if "window.FUSION" in html:
+                gate_py = ROOT / "data" / "fusion_gate.py"
+                if gate_py.exists():
+                    print(f"[{name}] Running 30-check FUSION Quality Gate...")
+                    res = subprocess.run([sys.executable, str(gate_py), name], cwd=str(ROOT))
+                    if res.returncode != 0:
+                        fail(name, "FUSION quality gate failed")
+                    else:
+                        print(f"  {name:22} GATE PASS")
+                    continue
             ep = check_static(name, html)
             if ep:
                 check_audio(name, html, ep, tmp)

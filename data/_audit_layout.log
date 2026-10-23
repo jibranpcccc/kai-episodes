@@ -1,0 +1,48 @@
+srt cues=251 words=1824
+scenes=45 beats=572 total=627.25
+  [ 0] t_early=1.2      t_60=6.48     t_full=10.75    vis=61   ink=51   draw=51   txt=18   beats=13  01 HOOK
+  [ 1] t_early=12.32    t_60=18.068   t_full=22.65    vis=66   ink=57   draw=57   txt=18   beats=13  02 CHAIN
+  [ 2] t_early=24.22    t_60=33.646   t_full=39.401   vis=89   ink=75   draw=75   txt=30   beats=18  03 ROWS
+  [ 3] t_early=42.25    t_60=51.388   t_full=56.917   vis=66   ink=47   draw=47   txt=21   beats=17  04 BARS
+  [ 4] t_early=59.8     t_60=68.65    t_full=75.208   vis=45   ink=32   draw=32   txt=19   beats=15  05 RAIL
+  [ 5] t_early=76.87    t_60=83.098   t_full=87.754   vis=22   ink=15   draw=15   txt=9    beats=11  06 NOTE
+  [ 6] t_early=89.57    t_60=96.908   t_full=101.751  vis=48   ink=36   draw=36   txt=21   beats=11  07 ROWS
+  [ 7] t_early=104.12   t_60=111.728  t_full=116.891  vis=47   ink=42   draw=42   txt=8    beats=9   08 GALLERY
+  [ 8] t_early=119.12   t_60=127.076  t_full=133.13   vis=30   ink=23   draw=23   txt=10   beats=12  09 NOTE
+  [ 9] t_early=134.7    t_60=143.226  t_full=148.216  vis=74   ink=61   draw=61   txt=25   beats=17  10 ROWS
+  [10] t_early=151.23   t_60=159.696  t_full=164.297  vis=57   ink=48   draw=48   txt=32   beats=17  11 CHAIN
+  [11] t_early=167.66   t_60=173.66   t_full=178.41   vis=125  ink=107  draw=107  txt=20   beats=16  12 STRIP
+  [12] t_early=179.98   t_60=187.918  t_full=192.729  vis=103  ink=91   draw=91   txt=24   beats=14  13 ROWS
+  [13] t_early=195.53   t_60=200.234  t_full=204.051  vis=64   ink=52   draw=52   txt=13   beats=11  14 BARS
+  [14] t_early=205.69   t_60=211.726  t_full=216.301  vis=91   ink=81   draw=81   txt=16   beats=11  15 ROWS
+  [15] t_early=218.07   t_60=224.772  t_full=229.646  vis=43   ink=35   draw=35   txt=23   beats=13  16 NODES
+  [16] t_early=231.56   t_60=239.072  t_full=241.929  vis=34   ink=24   draw=24   txt=11   beats=11  17 HOOK
+  [17] t_early=246.4    t_60=251.434  t_full=255.54   vis=90   ink=79   draw=79   txt=20   beats=10  18 ROWS
+  [18] t_early=257.11   t_60=264.478  t_full=269.962  vis=68   ink=60   draw=60   txt=17   beats=15  19 NODES
+  [19] t_early=271.71   t_60=277.812  t_full=282.63   vis=52   ink=37   draw=37   txt=15   beats=13  20 BARS
+  [20] t_early=284.2    t_60=288.778  t_full=292.539  vis=62   ink=51   draw=51   txt=17   beats=10  21 ROWS
+  [21] t_early=294.15   t_60=302.952  t_full=309.57   vis=30   ink=23   draw=23   txt=10   beats=12  22 NOTE
+  [22] t_early=311.14   t_60=320.218  t_full=325.758  vis=48   ink=35   draw=35   txt=25   beats=12  23 ROWS
+  [23] t_early=328.59   t_60=335.022  t_full=340.06   vis=72   ink=54   draw=54   txt=17   beats=15  24 BARS
+  [24] t_early=341.63   t_60=347.126  t_full=350.643  vis=42   ink=30   draw=30   txt=21   beats=11  25 ROWS
+  [25] t_early=353.11   t_60=362.878  t_full=369.996  vis=89   ink=76   draw=76   txt=7    beats=16  26 STRIP
+  [26] t_early=371.71   t_60=380.242  t_full=385.539  vis=40   ink=29   draw=29   txt=13   beats=11  27 RAIL
+  [27] t_early=388.25   t_60=395.57   t_full=401.2    vis=33   ink=25   draw=25   txt=12   beats=12  28 NOTE
+  [28] t_early=402.77   t_60=406.472  t_full=408.769  vis=30   ink=25   draw=25   txt=8    beats=5   29 TITLE
+  [29] t_early=411.26   t_60=415.502  t_full=419.08   vis=66   ink=55   draw=55   txt=29   beats=12  30 ROWS
+  [30] t_early=420.65   t_60=425.822  t_full=429.64   vis=46   ink=38   draw=38   txt=11   beats=11  31 NODES
+  [31] t_early=431.59   t_60=437.752  t_full=441.438  vis=32   ink=20   draw=20   txt=11   beats=11  32 BARS
+  [32] t_early=444.18   t_60=449.568  t_full=453.099  vis=97   ink=86   draw=86   txt=18   beats=12  33 ROWS
+  [33] t_early=455.48   t_60=463.514  t_full=469.62   vis=30   ink=23   draw=23   txt=10   beats=12  34 NOTE
+  [34] t_early=471.19   t_60=479.548  t_full=485.87   vis=89   ink=75   draw=75   txt=30   beats=13  35 ROWS
+  [35] t_early=487.44   t_60=495.9    t_full=501.214  vis=53   ink=44   draw=44   txt=29   beats=15  36 CHAIN
+  [36] t_early=503.86   t_60=509.326  t_full=512.532  vis=56   ink=44   draw=44   txt=13   beats=10  37 ROWS
+  [37] t_early=515.29   t_60=520.318  t_full=524.42   vis=58   ink=46   draw=46   txt=11   beats=11  38 BARS
+  [38] t_early=525.99   t_60=535.65   t_full=542.84   vis=40   ink=29   draw=29   txt=19   beats=13  39 NOTE
+  [39] t_early=544.41   t_60=549.54   t_full=553.411  vis=69   ink=61   draw=61   txt=21   beats=17  40 NODES
+  [40] t_early=555.28   t_60=562.582  t_full=568.118  vis=54   ink=41   draw=41   txt=25   beats=12  41 ROWS
+  [41] t_early=569.77   t_60=576.85   t_full=581.676  vis=45   ink=38   draw=38   txt=25   beats=14  42 NODES
+  [42] t_early=583.89   t_60=592.818  t_full=598.86   vis=72   ink=56   draw=56   txt=17   beats=15  43 BARS
+  [43] t_early=601.09   t_60=608.158  t_full=613.193  vis=29   ink=19   draw=19   txt=14   beats=12  44 HOOK
+  [44] t_early=615.19   t_60=621.406  t_full=626.3    vis=29   ink=22   draw=22   txt=9    beats=11  45 NOTE
+wrote C:\Users\jibra\Desktop\1\KAI\data\_audit_layout.json

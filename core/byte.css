@@ -1,0 +1,95 @@
+/* ============================================================
+   BYTE FORENSICS — chalkboard design system
+   Dark slate, chalk line-work, neon accents, taped labels.
+   ============================================================ */
+
+@font-face{font-family:"ByteMono";src:url("fonts/JetBrainsMono-Regular.ttf");font-weight:400}
+@font-face{font-family:"ByteMono";src:url("fonts/JetBrainsMono-Bold.ttf");font-weight:700}
+@font-face{font-family:"ByteMono";src:url("fonts/JetBrainsMono-ExtraBold.ttf");font-weight:800}
+@font-face{font-family:"ByteDisplay";src:url("fonts/Anton-Regular.ttf");font-weight:400}
+@font-face{font-family:"ByteBlack";src:url("fonts/ArchivoBlack-Regular.ttf");font-weight:400}
+
+:root{
+  /* board */
+  --black:#14120F;
+  --board:#191612;
+  --white:#EDEAE3;      /* chalk */
+  --gray:#B8B2A6;
+  --dim:#7A7469;
+  --hair:#3A352E;
+
+  /* neon chalk */
+  --yellow:#F5D547;
+  --red:#E8483D;
+  --lime:#B4E33D;
+  --blue:#38D9E8;
+  --azure:#38D9E8;
+  --cream:#EDEAE3;
+
+  --mono:"ByteMono", ui-monospace, Consolas, monospace;
+  --sans:"ByteDisplay", "ByteBlack", Impact, sans-serif;
+}
+
+/* chalkboard surface */
+#stage{
+  background-color:var(--board) !important;
+  background-image:
+    radial-gradient(circle at 18% 8%, rgba(255,255,255,.045), transparent 55%),
+    radial-gradient(circle at 82% 92%, rgba(255,255,255,.03), transparent 55%),
+    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+  background-size:auto, auto, 72px 72px, 72px 72px;
+}
+
+/* ---------- type ---------- */
+.bf-cap{
+  font-family:var(--mono);font-weight:700;font-size:19px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--dim);
+}
+.bf-big{
+  font-family:var(--sans);font-weight:400;letter-spacing:-.01em;line-height:.92;
+  color:var(--white);
+}
+.bf-sub{font-family:var(--mono);font-size:17px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+
+/* ---------- chalk box ---------- */
+.chalk{
+  border:3px dashed rgba(237,234,227,.55);
+  border-radius:12px;
+  padding:18px 26px;
+}
+.chalk-solid{border-style:solid;border-color:var(--white)}
+
+/* ---------- taped label ---------- */
+.bf-tape{
+  display:inline-block;background:var(--red);color:#1A0A08;
+  font-family:var(--mono);font-weight:800;font-size:26px;letter-spacing:.08em;
+  text-transform:uppercase;padding:10px 22px;transform:rotate(-4deg);
+  box-shadow:0 8px 20px rgba(0,0,0,.5);
+}
+.bf-tape--yellow{background:var(--yellow);color:#18120300}
+
+/* ---------- bars ---------- */
+.bf-bar{display:flex;align-items:center;gap:20px;height:64px}
+.bf-bar__lab{width:210px;font-family:var(--mono);font-weight:700;font-size:18px;
+             letter-spacing:.16em;text-transform:uppercase;color:var(--gray)}
+.bf-bar__track{flex:1;height:40px;background:rgba(255,255,255,.05);
+               border:2px solid var(--hair);position:relative}
+.bf-bar__fill{height:100%;background:var(--blue);transition:width .9s cubic-bezier(.25,.8,.25,1)}
+.bf-bar__val{width:150px;text-align:right;font-family:var(--mono);font-weight:800;font-size:27px;color:var(--white)}
+
+/* ---------- rows ---------- */
+.bf-row{display:flex;align-items:center;height:84px;padding:0 28px;
+        border:3px solid var(--white);border-radius:10px;background:rgba(0,0,0,.18)}
+.bf-row__k{font-family:var(--mono);font-weight:800;font-size:30px;letter-spacing:.06em;
+           text-transform:uppercase;flex:1}
+.bf-row__v{font-family:var(--mono);font-weight:800;font-size:34px}
+.bf-row--hot{border-color:var(--red);box-shadow:0 0 0 2px rgba(232,72,61,.25)}
+.bf-row--good{border-color:var(--lime);box-shadow:0 0 0 2px rgba(180,227,61,.2)}
+
+/* ---------- misc ---------- */
+.bf-hr{height:2px;background:var(--hair);width:100%}
+.bf-wm{position:absolute;right:26px;bottom:22px;font-family:var(--mono);font-size:15px;
+       letter-spacing:.08em;color:#5A554C}
+.bf-dot{width:13px;height:13px;border-radius:50%;background:var(--yellow);
+        display:inline-block;box-shadow:0 0 0 5px rgba(245,213,71,.15)}

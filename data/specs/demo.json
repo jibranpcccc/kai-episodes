@@ -1,0 +1,92 @@
+{
+  "name": "DEMO",
+  "kicker": "Byte Forensics \u00b7 generator demo",
+  "title": "Generated Episode Test",
+  "subtitle": "one JSON in, one episode out",
+  "scenes": [
+    {
+      "type": "hook",
+      "head": "generated from a json spec",
+      "vo": "Here is the whole idea in one line. A thirty billion parameter model uses less memory than a twenty-seven billion one.",
+      "a": {
+        "v": "30",
+        "u": "B",
+        "c": "lime",
+        "lab": "the one you found"
+      },
+      "b": {
+        "v": "27",
+        "u": "B",
+        "c": "dim",
+        "lab": "the one they tell you"
+      },
+      "tape": "it fits better",
+      "art": "gpu",
+      "cues": {
+        "h": "Here is",
+        "a": "thirty billion",
+        "b": "twenty-seven billion",
+        "t": "less memory"
+      }
+    },
+    {
+      "type": "table",
+      "head": "measured vram",
+      "vo": "At four K, the smaller model needs sixteen gigabytes and the bigger one needs eighteen. At one twenty-eight K, seventeen against twenty-six.",
+      "items": [
+        [
+          "4K",
+          "16",
+          "18",
+          "good"
+        ],
+        [
+          "128K",
+          "17",
+          "26",
+          "hot"
+        ]
+      ],
+      "cues": {
+        "h": "At four K",
+        "0": "smaller model",
+        "1": "one twenty-eight K"
+      }
+    },
+    {
+      "type": "caveat",
+      "head": "the caveats",
+      "vo": "Two honest caveats. The quantization levels differ. And this measures hardware, not model quality.",
+      "items": [
+        "Different quantization levels",
+        "Measures hardware, not quality"
+      ],
+      "tape": "read these",
+      "cues": {
+        "h": "Two honest caveats",
+        "0": "quantization levels",
+        "1": "hardware",
+        "t": "model quality"
+      }
+    },
+    {
+      "type": "close",
+      "head": "done",
+      "vo": "Stop shopping by parameter count. Shop by what fits.",
+      "line": "Shop by what fits.",
+      "chips": [
+        "FILE",
+        "CACHE",
+        "CONTEXT"
+      ],
+      "cues": {
+        "h": "Stop shopping",
+        "l": "Stop shopping",
+        "0": "what fits",
+        "1": "what fits",
+        "2": "what fits",
+        "w": "what fits"
+      }
+    }
+  ]
+}

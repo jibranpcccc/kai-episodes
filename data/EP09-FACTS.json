@@ -1,0 +1,1113 @@
+{
+  "episode": "BYTE-EP09-FINAL",
+  "title": "WHY A LONGER CONTEXT COSTS YOU MORE MEMORY",
+  "reviewed": "2026-10-23",
+  "evidence_classes": [
+    "MEASURED",
+    "EXTERNAL MEASUREMENT",
+    "DERIVED",
+    "ESTIMATED",
+    "UNVERIFIED"
+  ],
+  "class_meaning": {
+    "MEASURED": "measured by us on our own rig",
+    "EXTERNAL MEASUREMENT": "measured by a third party; the source is named and the rig is stated",
+    "DERIVED": "computed by us from a stated formula and stated inputs",
+    "ESTIMATED": "an assumption we state on screen; not a measurement",
+    "UNVERIFIED": "claimed somewhere but not checked against a source"
+  },
+  "sources": {
+    "S_QWEN": {
+      "title": "We Tested Qwen3.8 27B: How Much GPU and VRAM Do You Really Need?",
+      "url": "https://www.hardware-corner.net/qwen3-8-27b-hardware-tests/",
+      "published": "2026-08-17",
+      "rig": "Ubuntu 24.04, NVIDIA driver 595.58.03, CUDA 12.8, llama.cpp build 153d324bc (10364), MTP disabled, full model offload, Flash Attention",
+      "model": "Qwen3.8 27B, Q4_K Small, 16.68 GiB on disk",
+      "class": "EXTERNAL MEASUREMENT",
+      "note": "The article states that different builds, quantizations, KV cache settings and system configurations produce different results, so its numbers are measurements of this setup rather than universal figures."
+    },
+    "S_GLIMMER": {
+      "title": "Muse Glimmer 30B Hardware Requirements and Benchmark Results",
+      "url": "https://www.hardware-corner.net/hardware-for-muse-glimmer-30b-llm/",
+      "published": "2026-08-12",
+      "rig": "Ubuntu 24.04, NVIDIA driver 595.58.03, CUDA 13, llama.cpp build 153d324bc",
+      "model": "Muse Glimmer 30B, Q4_K Medium, 14.78 GiB on disk",
+      "class": "EXTERNAL MEASUREMENT",
+      "note": "A separate run from S_QWEN. Same llama.cpp build and driver, different CUDA toolkit. Its VRAM table is headed 'VRAM Requirement', not 'Measured VRAM Usage'."
+    },
+    "S_LLAMA": {
+      "title": "llama.cpp server README",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md",
+      "class": "EXTERNAL MEASUREMENT",
+      "note": "Documents --slot-save-path (save slot KV cache to disk), --cache-prompt (prompt caching, on by default), --cache-reuse (reuse cached chunks by KV shifting), --cache-idle-slots, and --kv-unified (one unified KV buffer across sequences)."
+    },
+    "S_VLLM": {
+      "title": "vLLM automatic prefix caching",
+      "url": "https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/",
+      "class": "EXTERNAL MEASUREMENT",
+      "note": "vLLM reuses the KV cache of previously computed prefixes across requests when the feature is enabled; it is not enabled by default."
+    },
+    "S_CFG": {
+      "title": "Qwen2.5 3B Instruct config",
+      "class": "EXTERNAL MEASUREMENT",
+      "note": "36 layers, 2 KV heads, head dimension 128. Used only as the worked example for the KV arithmetic, never as a fit claim."
+    }
+  },
+  "facts": [
+    {
+      "id": "F01",
+      "claim": "The worked example model has 36 transformer layers",
+      "value": "36",
+      "unit": "layers",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_CFG",
+      "scenes": [
+        1,
+        3,
+        10,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "id": "F02",
+      "claim": "The worked example model has 2 KV heads",
+      "value": "2",
+      "unit": "heads",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_CFG",
+      "scenes": [
+        1,
+        3,
+        10,
+        14,
+        15
+      ]
+    },
+    {
+      "id": "F03",
+      "claim": "The head dimension is 128",
+      "value": "128",
+      "unit": "values",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_CFG",
+      "scenes": [
+        1,
+        3,
+        10,
+        14,
+        15
+      ]
+    },
+    {
+      "id": "F04",
+      "claim": "The KV arithmetic is derived from the Qwen2.5 3B Instruct config, not from the benchmarked model",
+      "value": "2.5",
+      "unit": "model version",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_CFG",
+      "scenes": [
+        1,
+        3,
+        10,
+        14,
+        15,
+        17,
+        30,
+        31,
+        32,
+        33,
+        37,
+        38
+      ]
+    },
+    {
+      "id": "F05",
+      "claim": "The measured model is Qwen3.8 27B",
+      "value": "3.8",
+      "unit": "model version",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        4,
+        16,
+        20,
+        21,
+        24,
+        25,
+        26,
+        39,
+        43
+      ]
+    },
+    {
+      "id": "F06",
+      "claim": "The worked example context is 8,192 tokens",
+      "value": "8,192",
+      "unit": "tokens",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        1,
+        3,
+        14,
+        17,
+        30,
+        31,
+        32,
+        33,
+        37,
+        38
+      ]
+    },
+    {
+      "id": "F07",
+      "claim": "KV cache at 8,192 tokens in fp16 is 288 MiB (36 layers x 2 heads x 128 dim x 2 for K and V x 2 bytes x 8,192 tokens)",
+      "value": "288",
+      "unit": "MiB",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        1,
+        3,
+        14,
+        17,
+        30,
+        32,
+        37,
+        38
+      ],
+      "spoken_as": [
+        "two hundred and eighty-eight"
+      ],
+      "spoken_in": [
+        3,
+        14,
+        17,
+        30,
+        32,
+        37
+      ]
+    },
+    {
+      "id": "F08",
+      "claim": "288 MiB is 0.302 GB",
+      "value": "0.302",
+      "unit": "GB",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        3
+      ]
+    },
+    {
+      "id": "F09",
+      "claim": "KV cache at 4,096 tokens in fp16 is 144 MiB",
+      "value": "144",
+      "unit": "MiB",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        14
+      ]
+    },
+    {
+      "id": "F10",
+      "claim": "The 16,384-token step of the derived cache scale",
+      "value": "16,384",
+      "unit": "tokens",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        15
+      ]
+    },
+    {
+      "id": "F11",
+      "claim": "The 32,768-token step of the derived cache scale",
+      "value": "32,768",
+      "unit": "tokens",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        15
+      ]
+    },
+    {
+      "id": "F12",
+      "claim": "KV cache at 16,384 tokens in fp16 is 576 MiB; two independent requests at 8,192 tokens also cost 576 MiB",
+      "value": "576",
+      "unit": "MiB",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        15,
+        37,
+        38
+      ],
+      "spoken_as": [
+        "five hundred and seventy-six",
+        "five hundred and seventy six"
+      ],
+      "spoken_in": [
+        15,
+        38
+      ]
+    },
+    {
+      "id": "F13",
+      "claim": "KV cache at 32,768 tokens in fp16 is 1,152 MiB; four independent requests at 8,192 tokens also cost 1,152 MiB",
+      "value": "1,152",
+      "unit": "MiB",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        15,
+        38
+      ],
+      "spoken_as": [
+        "one thousand one hundred and fifty-two",
+        "one thousand one hundred and fifty two"
+      ],
+      "spoken_in": [
+        15,
+        38
+      ]
+    },
+    {
+      "id": "F14",
+      "claim": "The 4,096-token step of the derived cache scale",
+      "value": "4,096",
+      "unit": "tokens",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        14
+      ]
+    },
+    {
+      "id": "F15",
+      "claim": "One key vector per token per layer",
+      "value": "1",
+      "unit": "vector",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        10
+      ]
+    },
+    {
+      "id": "F16",
+      "claim": "A runtime usually keeps the cache in one contiguous buffer",
+      "value": "1",
+      "unit": "buffer",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        13
+      ]
+    },
+    {
+      "id": "F17",
+      "claim": "The 4K-to-16K step of the measured total VRAM curve costs 1 GB",
+      "value": "1",
+      "unit": "GB",
+      "class": "DERIVED",
+      "source": "S_QWEN",
+      "scenes": [
+        23
+      ]
+    },
+    {
+      "id": "F18",
+      "claim": "The context length is one input the user chooses",
+      "value": "1",
+      "unit": "input",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        44
+      ]
+    },
+    {
+      "id": "F19",
+      "claim": "The 32K-to-64K step of the measured total VRAM curve costs 2 GB",
+      "value": "2",
+      "unit": "GB",
+      "class": "DERIVED",
+      "source": "S_QWEN",
+      "scenes": [
+        23
+      ]
+    },
+    {
+      "id": "F20",
+      "claim": "The 64K-to-128K step of the measured total VRAM curve costs 4 GB",
+      "value": "4",
+      "unit": "GB",
+      "class": "DERIVED",
+      "source": "S_QWEN",
+      "scenes": [
+        23
+      ]
+    },
+    {
+      "id": "F21",
+      "claim": "Four independent requests in flight",
+      "value": "4",
+      "unit": "requests",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        38
+      ]
+    },
+    {
+      "id": "F22",
+      "claim": "The 128K-to-256K step of the measured total VRAM curve costs 8 GB",
+      "value": "8",
+      "unit": "GB",
+      "class": "DERIVED",
+      "source": "S_QWEN",
+      "scenes": [
+        23
+      ]
+    },
+    {
+      "id": "F23",
+      "claim": "Two independent requests in flight",
+      "value": "2",
+      "unit": "requests",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        38
+      ]
+    },
+    {
+      "id": "F24",
+      "claim": "The dual-card configuration uses two RTX 5060 Ti cards",
+      "value": "2",
+      "unit": "cards",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        26,
+        29,
+        39
+      ]
+    },
+    {
+      "id": "F25",
+      "claim": "Qwen3.8 27B measured 18 GB of VRAM at 4K",
+      "value": "18",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        4,
+        20,
+        24,
+        43
+      ],
+      "spoken_as": [
+        "eighteen gigabytes",
+        "against eighteen"
+      ],
+      "spoken_in": [
+        4,
+        20,
+        24,
+        43
+      ]
+    },
+    {
+      "id": "F26",
+      "claim": "A Q4_0 block holds 18 bytes per 32 values; the size is an assumption, stated on screen",
+      "value": "18",
+      "unit": "bytes per 32 values",
+      "class": "ESTIMATED",
+      "source": "S_CFG",
+      "scenes": [
+        32,
+        33
+      ],
+      "spoken_as": [
+        "eighteen bytes to thirty-two values"
+      ],
+      "spoken_in": [
+        33
+      ]
+    },
+    {
+      "id": "F27",
+      "claim": "Qwen3.8 27B measured 19 GB of VRAM at 16K",
+      "value": "19",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        4,
+        20,
+        43
+      ],
+      "spoken_as": [
+        "nineteen at sixteen",
+        "sixteen k, nineteen",
+        "costs nineteen"
+      ],
+      "spoken_in": [
+        4,
+        20,
+        43
+      ]
+    },
+    {
+      "id": "F28",
+      "claim": "Qwen3.8 27B measured 20 GB of VRAM at 32K",
+      "value": "20",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        20,
+        24
+      ],
+      "spoken_as": [
+        "thirty two k, twenty",
+        "against twenty"
+      ],
+      "spoken_in": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "F29",
+      "claim": "Muse Glimmer 30B requires 20 GB at 256K",
+      "value": "20",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        25
+      ],
+      "spoken_as": [
+        "twenty against thirty four"
+      ],
+      "spoken_in": [
+        25
+      ]
+    },
+    {
+      "id": "F30",
+      "claim": "Qwen3.8 27B measured 22 GB of VRAM at 64K",
+      "value": "22",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        4,
+        21,
+        25,
+        43
+      ],
+      "spoken_as": [
+        "twenty two",
+        "twenty-two"
+      ],
+      "spoken_in": [
+        4,
+        21,
+        25,
+        43
+      ]
+    },
+    {
+      "id": "F31",
+      "claim": "A 100,000-token prompt at 4,624.93 tokens per second waits about 22 seconds",
+      "value": "22",
+      "unit": "s",
+      "class": "DERIVED",
+      "source": "S_GLIMMER",
+      "scenes": [
+        27
+      ],
+      "spoken_as": [
+        "twenty two seconds"
+      ],
+      "spoken_in": [
+        27
+      ]
+    },
+    {
+      "id": "F32",
+      "claim": "Qwen3.8 27B requires 26 GB at 128K, which is more than a 24 GB card holds",
+      "value": "26",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        4,
+        21,
+        43
+      ],
+      "spoken_as": [
+        "twenty-six gigabytes",
+        "twenty six gigabytes",
+        "twenty-six",
+        "twenty six"
+      ],
+      "spoken_in": [
+        4,
+        21,
+        43
+      ]
+    },
+    {
+      "id": "F33",
+      "claim": "Qwen3.8 27B requires 34 GB at 256K",
+      "value": "34",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        4,
+        21,
+        25
+      ],
+      "spoken_as": [
+        "thirty-four",
+        "thirty four"
+      ],
+      "spoken_in": [
+        4,
+        21,
+        25
+      ]
+    },
+    {
+      "id": "F34",
+      "claim": "A Q8_0 block holds 34 bytes per 32 values",
+      "value": "34",
+      "unit": "bytes per 32 values",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        30,
+        31,
+        32,
+        33
+      ],
+      "spoken_as": [
+        "thirty-four bytes to thirty-two values",
+        "thirty four bytes to thirty two values"
+      ],
+      "spoken_in": [
+        31,
+        32
+      ]
+    },
+    {
+      "id": "F35",
+      "claim": "The reference card in this episode is a 24 GB card",
+      "value": "24",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        4,
+        20,
+        24,
+        25,
+        26,
+        39,
+        43
+      ],
+      "spoken_as": [
+        "twenty-four gigabyte card",
+        "twenty four gigabyte card",
+        "twenty-four gigabytes",
+        "twenty four gigabytes"
+      ],
+      "spoken_in": [
+        4,
+        20,
+        21,
+        24,
+        26,
+        43
+      ]
+    },
+    {
+      "id": "F36",
+      "claim": "Muse Glimmer 30B requires 16 GB at 4K and at 32K",
+      "value": "16",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        24
+      ]
+    },
+    {
+      "id": "F37",
+      "claim": "The cache precision in the worked example is 16-bit (fp16)",
+      "value": "16",
+      "unit": "bit",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        37
+      ]
+    },
+    {
+      "id": "F38",
+      "claim": "The Qwen3.8 27B benchmark post was published on 17 August 2026",
+      "value": "17",
+      "unit": "day",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        18,
+        19,
+        24
+      ]
+    },
+    {
+      "id": "F39",
+      "claim": "Muse Glimmer 30B requires 17 GB at 64K",
+      "value": "17",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        25
+      ],
+      "spoken_as": [
+        "seventeen"
+      ],
+      "spoken_in": [
+        25
+      ]
+    },
+    {
+      "id": "F40",
+      "claim": "The Muse Glimmer 30B benchmark post was published on 12 August 2026",
+      "value": "12",
+      "unit": "day",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        18,
+        19,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "F41",
+      "claim": "The Muse Glimmer run used CUDA 13",
+      "value": "13",
+      "unit": "toolkit",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        5,
+        18,
+        19
+      ],
+      "spoken_as": [
+        "cuda thirteen"
+      ],
+      "spoken_in": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "F42",
+      "claim": "The Qwen3.8 run used CUDA 12.8",
+      "value": "12.8",
+      "unit": "toolkit",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        18,
+        19
+      ],
+      "spoken_as": [
+        "cuda twelve point eight"
+      ],
+      "spoken_in": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "F43",
+      "claim": "Both benchmark runs were published in 2026",
+      "value": "2026",
+      "unit": "year",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "F44",
+      "claim": "Both benchmark runs used Ubuntu 24.04",
+      "value": "24.04",
+      "unit": "OS version",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        18
+      ],
+      "spoken_as": [
+        "ubuntu twenty four point zero four"
+      ],
+      "spoken_in": [
+        18
+      ]
+    },
+    {
+      "id": "F45",
+      "claim": "Both benchmark runs used NVIDIA driver 595.58.03",
+      "value": "595.58.03",
+      "unit": "driver",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        18
+      ],
+      "spoken_as": [
+        "five nine five point five eight point zero three"
+      ],
+      "spoken_in": [
+        18
+      ]
+    },
+    {
+      "id": "F46",
+      "claim": "The 4K-to-64K Qwen3.8 VRAM figures were measured on an RTX 3090",
+      "value": "3090",
+      "unit": "GPU",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        4,
+        16,
+        20,
+        21,
+        24,
+        25,
+        29
+      ],
+      "spoken_as": [
+        "rtx thirty ninety"
+      ],
+      "spoken_in": [
+        20
+      ]
+    },
+    {
+      "id": "F47",
+      "claim": "At 64K the RTX 4090 generates 38.41 tokens per second",
+      "value": "4090",
+      "unit": "GPU",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        26,
+        29,
+        39
+      ],
+      "spoken_as": [
+        "rtx forty ninety"
+      ],
+      "spoken_in": [
+        26,
+        39
+      ]
+    },
+    {
+      "id": "F48",
+      "claim": "The dual-card configuration is two RTX 5060 Ti cards",
+      "value": "5060",
+      "unit": "GPU",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        26,
+        29,
+        39
+      ]
+    },
+    {
+      "id": "F49",
+      "claim": "The prefill figures are Muse Glimmer 30B on an RTX 5090",
+      "value": "5090",
+      "unit": "GPU",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        5,
+        27,
+        29
+      ],
+      "spoken_as": [
+        "rtx fifty ninety"
+      ],
+      "spoken_in": [
+        5,
+        27
+      ]
+    },
+    {
+      "id": "F50",
+      "claim": "At 64K the RTX 4090 generates 38.41 tokens per second",
+      "value": "38.41",
+      "unit": "tokens per second",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        26,
+        39
+      ],
+      "spoken_as": [
+        "thirty-eight point four one",
+        "thirty eight point four one"
+      ],
+      "spoken_in": [
+        26,
+        39
+      ]
+    },
+    {
+      "id": "F51",
+      "claim": "At 64K the two RTX 5060 Ti cards generate 18.50 tokens per second",
+      "value": "18.50",
+      "unit": "tokens per second",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        26,
+        39
+      ],
+      "spoken_as": [
+        "eighteen point five"
+      ],
+      "spoken_in": [
+        26,
+        39
+      ]
+    },
+    {
+      "id": "F52",
+      "claim": "At 64K the M5 Max generates 18.2 tokens per second",
+      "value": "18.2",
+      "unit": "tokens per second",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        26
+      ],
+      "spoken_as": [
+        "eighteen point two"
+      ],
+      "spoken_in": [
+        26
+      ]
+    },
+    {
+      "id": "F53",
+      "claim": "Muse Glimmer 30B prefills at 4,624.93 tokens per second at 4K on an RTX 5090",
+      "value": "4,625",
+      "unit": "tokens per second",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        5,
+        27
+      ],
+      "spoken_as": [
+        "four thousand six hundred and twenty five",
+        "four thousand six hundred and twenty-five"
+      ],
+      "spoken_in": [
+        5,
+        27
+      ]
+    },
+    {
+      "id": "F54",
+      "claim": "Muse Glimmer 30B prefills at 1,874.17 tokens per second at 256K on an RTX 5090",
+      "value": "1,874",
+      "unit": "tokens per second",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        5,
+        27
+      ],
+      "spoken_as": [
+        "one thousand eight hundred and seventy four",
+        "one thousand eight hundred and seventy-four"
+      ],
+      "spoken_in": [
+        5,
+        27
+      ]
+    },
+    {
+      "id": "F55",
+      "claim": "Muse Glimmer 30B prefills at 4,373.80 tokens per second at 16K",
+      "value": "4,373",
+      "unit": "tokens per second",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        5
+      ],
+      "spoken_as": [
+        "four thousand three hundred and seventy-three"
+      ],
+      "spoken_in": [
+        5
+      ]
+    },
+    {
+      "id": "F56",
+      "claim": "Muse Glimmer 30B prefills at 3,606.35 tokens per second at 64K",
+      "value": "3,606",
+      "unit": "tokens per second",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_GLIMMER",
+      "scenes": [
+        5
+      ],
+      "spoken_as": [
+        "three thousand six hundred and six"
+      ],
+      "spoken_in": [
+        5
+      ]
+    },
+    {
+      "id": "F57",
+      "claim": "A 100,000-token prompt at 1,874.17 tokens per second waits about 53 seconds",
+      "value": "53",
+      "unit": "s",
+      "class": "DERIVED",
+      "source": "S_GLIMMER",
+      "scenes": [
+        27
+      ],
+      "spoken_as": [
+        "fifty three"
+      ],
+      "spoken_in": [
+        27
+      ]
+    },
+    {
+      "id": "F58",
+      "claim": "The dual RTX 5060 Ti configuration provides roughly 32 GB of aggregate GPU memory",
+      "value": "32",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        26
+      ]
+    },
+    {
+      "id": "F59",
+      "claim": "A ggml quantisation block holds 32 values",
+      "value": "32",
+      "unit": "values per block",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        30,
+        31,
+        32,
+        33
+      ]
+    },
+    {
+      "id": "F60",
+      "claim": "The M5 Max configuration has 128 GB of unified memory",
+      "value": "128",
+      "unit": "GB",
+      "class": "EXTERNAL MEASUREMENT",
+      "source": "S_QWEN",
+      "scenes": [
+        26
+      ]
+    },
+    {
+      "id": "F61",
+      "claim": "The same cache at Q8_0 is 153 MiB at 8,192 tokens",
+      "value": "153",
+      "unit": "MiB",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        31,
+        32
+      ],
+      "spoken_as": [
+        "a hundred and fifty-three"
+      ],
+      "spoken_in": [
+        31,
+        32
+      ]
+    },
+    {
+      "id": "F62",
+      "claim": "The same cache at Q4_0 is 81 MiB at 8,192 tokens; this size is an assumption, stated on screen",
+      "value": "81",
+      "unit": "MiB",
+      "class": "ESTIMATED",
+      "source": "S_CFG",
+      "scenes": [
+        33
+      ],
+      "spoken_as": [
+        "eighty-one"
+      ],
+      "spoken_in": [
+        33
+      ]
+    },
+    {
+      "id": "F63",
+      "claim": "Adding context adds no new weights",
+      "value": "0",
+      "unit": "new weights",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        1
+      ]
+    },
+    {
+      "id": "F64",
+      "claim": "After the measurement there are no guesses left",
+      "value": "0",
+      "unit": "guesses",
+      "class": "DERIVED",
+      "source": "S_CFG",
+      "scenes": [
+        44
+      ]
+    }
+  ],
+  "spoken_contract": "spoken_as lists the phrase(s) the narration uses for the claim. spoken_in lists the windows whose narration must contain at least one of them. A claim that is corrected on screen but never spoken fails this contract."
+}

@@ -1,0 +1,123 @@
+{
+ "NA9D49kQFuU": {
+  "frames_sampled": 279,
+  "bright": 28.1,
+  "dark": 0.914,
+  "ink": 0.0321,
+  "red": 0.0038,
+  "yellow": 0.0044,
+  "blue": 0.0105,
+  "cuts_4s": 79,
+  "face_share": 0.0
+ },
+ "04ePeOyRN0k": {
+  "frames_sampled": 232,
+  "bright": 26.7,
+  "dark": 0.917,
+  "ink": 0.0301,
+  "red": 0.0042,
+  "yellow": 0.0146,
+  "blue": 0.0054,
+  "cuts_4s": 38,
+  "face_share": 0.0
+ },
+ "IRyiP_U7RuA": {
+  "frames_sampled": 243,
+  "bright": 21.5,
+  "dark": 0.951,
+  "ink": 0.0115,
+  "red": 0.0028,
+  "yellow": 0.006,
+  "blue": 0.0016,
+  "cuts_4s": 17,
+  "face_share": 0.0
+ },
+ "i9mRnbdDYxk": {
+  "frames_sampled": 279,
+  "bright": 29.1,
+  "dark": 0.892,
+  "ink": 0.0291,
+  "red": 0.0032,
+  "yellow": 0.007,
+  "blue": 0.0302,
+  "cuts_4s": 65,
+  "face_share": 0.0
+ },
+ "3R7yba577uA": {
+  "frames_sampled": 295,
+  "bright": 23.8,
+  "dark": 0.949,
+  "ink": 0.021,
+  "red": 0.0027,
+  "yellow": 0.0038,
+  "blue": 0.0056,
+  "cuts_4s": 29,
+  "face_share": 0.0
+ },
+ "L4UV6b2Xc64": {
+  "frames_sampled": 231,
+  "bright": 22.0,
+  "dark": 0.934,
+  "ink": 0.0089,
+  "red": 0.0047,
+  "yellow": 0.0031,
+  "blue": 0.0058,
+  "cuts_4s": 21,
+  "face_share": 0.0
+ },
+ "IMVjEsKX5UQ": {
+  "frames_sampled": 226,
+  "bright": 27.0,
+  "dark": 0.922,
+  "ink": 0.0273,
+  "red": 0.0045,
+  "yellow": 0.005,
+  "blue": 0.0134,
+  "cuts_4s": 74,
+  "face_share": 0.0
+ },
+ "1--PzaHafAU": {
+  "frames_sampled": 250,
+  "bright": 23.4,
+  "dark": 0.94,
+  "ink": 0.0175,
+  "red": 0.0063,
+  "yellow": 0.0037,
+  "blue": 0.0028,
+  "cuts_4s": 28,
+  "face_share": 0.0
+ },
+ "yJCHNdQ8sLs": {
+  "frames_sampled": 245,
+  "bright": 21.4,
+  "dark": 0.941,
+  "ink": 0.0047,
+  "red": 0.0043,
+  "yellow": 0.0028,
+  "blue": 0.0032,
+  "cuts_4s": 10,
+  "face_share": 0.0
+ },
+ "uavLRbbfM94": {
+  "frames_sampled": 283,
+  "bright": 24.2,
+  "dark": 0.924,
+  "ink": 0.0142,
+  "red": 0.003,
+  "yellow": 0.0034,
+  "blue": 0.0095,
+  "cuts_4s": 21,
+  "face_share": 0.0
+ },
+ "6tihP50zlcE": {
+  "frames_sampled": 337,
+  "bright": 30.4,
+  "dark": 0.911,
+  "ink": 0.0429,
+  "red": 0.0053,
+  "yellow": 0.0064,
+  "blue": 0.0073,
+  "cuts_4s": 124,
+  "face_share": 0.0
+ }
+}

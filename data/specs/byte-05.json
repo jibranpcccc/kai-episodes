@@ -1,0 +1,512 @@
+{
+ "name": "BYTE-05",
+ "kicker": "Byte Forensics",
+ "title": "Unified Memory Is Not Free",
+ "subtitle": "128 GB looks great until you measure it",
+ "scenes": [
+  {
+   "type": "hook",
+   "art": "laptop",
+   "head": "128 GB unified vs 24 GB discrete",
+   "vo": "Okay, so a machine with one hundred and twenty-eight gigabytes of unified memory will hold any model you can throw at it. That part is true. So why does it feel slower than a gaming card with a fifth of the memory? Because bandwidth is not capacity, and the benchmark measured both machines on the same model.",
+   "a": {
+    "v": "128",
+    "u": "GB",
+    "c": "orange",
+    "lab": "unified"
+   },
+   "b": {
+    "v": "45",
+    "u": "t/s",
+    "c": "lime",
+    "lab": "one 3090"
+   },
+   "tape": "capacity is not bandwidth",
+   "cues": {
+    "h": "Okay, so",
+    "a": "one hundred and twenty-eight",
+    "b": "gaming card",
+    "t": "bandwidth is not capacity"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "m5 max \u00b7 128 gb unified",
+   "vo": "On an M5 Max with one hundred and twenty-eight gigabytes, Qwen three point eight generates thirty-one point four tokens a second at four K. At sixteen K it is twenty-three point six. At thirty-two K, twenty-one point six. At sixty-four K, eighteen point two. That is a real machine doing real work, and it is slower than a three thousand ninety at every single row.",
+   "items": [
+    [
+     "M5 Max \u00b7 4K",
+     "100",
+     "31.4",
+     "orange"
+    ],
+    [
+     "M5 Max \u00b7 16K",
+     "75",
+     "23.6",
+     "orange"
+    ],
+    [
+     "M5 Max \u00b7 32K",
+     "69",
+     "21.6",
+     "yellow"
+    ],
+    [
+     "M5 Max \u00b7 64K",
+     "58",
+     "18.2",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "On an M5 Max",
+    "0": "thirty-one point four",
+    "1": "twenty-three point six",
+    "2": "twenty-one point six",
+    "3": "eighteen point two"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "gb10 \u00b7 the small box",
+   "vo": "The GB10 box is the same story with a smaller number. Twelve point two tokens a second at four K. Eleven point nine at eight K. Ten point eight at thirty-two K. Nine point seven at sixty-four K. Eight at one twenty-eight K. And five point nine four at two hundred fifty-six K. It will hold the context. It will not move quickly through it.",
+   "items": [
+    [
+     "GB10 \u00b7 4K",
+     "100",
+     "12.20",
+     "orange"
+    ],
+    [
+     "GB10 \u00b7 32K",
+     "89",
+     "10.88",
+     "orange"
+    ],
+    [
+     "GB10 \u00b7 128K",
+     "66",
+     "8.03",
+     "red"
+    ],
+    [
+     "GB10 \u00b7 256K",
+     "49",
+     "5.94",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "The GB10 box",
+    "0": "twelve point two",
+    "1": "ten point eight",
+    "2": "eight at one twenty-eight",
+    "3": "five point nine four"
+   }
+  },
+  {
+   "type": "table",
+   "head": "same model, three machines",
+   "vo": "Put them in one table. At four K, the three thousand ninety does forty-five, the M5 Max does thirty-one, the GB10 does twelve. At sixty-four K, thirty-four, eighteen, and eight. The memory ceiling is the opposite order. The machine with the most memory is the slowest, by a factor of four.",
+   "items": [
+    [
+     "4K \u00b7 3090",
+     "40.3",
+     "45.3",
+     "good"
+    ],
+    [
+     "4K \u00b7 M5 Max",
+     "31.4",
+     "18.2",
+     "hot"
+    ],
+    [
+     "64K \u00b7 GB10",
+     "8.0",
+     "5.9",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "Put them in one table",
+    "0": "three thousand ninety does",
+    "1": "the M5 Max",
+    "2": "the GB10 does"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "what unified memory is for",
+   "vo": "Two caveats, and they matter. Unified memory is genuinely better when the model does not fit anywhere else, and it is quieter and cheaper to run than four cards. And this measures a dense thirty billion parameter model. A machine with one hundred and twenty-eight gigabytes can hold something no consumer card can, and that is worth something real.",
+   "items": [
+    "Wins when the model fits nowhere else",
+    "Quieter, cheaper than four cards",
+    "This tested dense models only"
+   ],
+   "tape": "capacity has a price",
+   "cues": {
+    "h": "Two caveats",
+    "0": "does not fit anywhere else",
+    "1": "quieter and cheaper",
+    "2": "dense thirty billion",
+    "t": "capacity has a price"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the honest summary",
+   "vo": "So the summary is not that unified memory is bad. It is that you should buy it for the model that does not fit, not for the speed. If your model fits on a twenty-four gigabyte card, the discrete card wins on tokens per second, on prefill, and on price. If it does not fit, the unified machine is the only door.",
+   "items": [
+    [
+     "Model fits 24 GB",
+     "discrete card wins",
+     "good"
+    ],
+    [
+     "Model needs 128 GB",
+     "unified is the only door",
+     "good"
+    ],
+    [
+     "Buying for speed",
+     "wrong reason",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "the summary",
+    "0": "does not fit",
+    "1": "twenty-four gigabyte card",
+    "2": "only door"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "m5 max prefill",
+   "vo": "Prefill on the M5 Max tells the same story. Eight hundred and thirty-four tokens a second at a short prompt, falling to four hundred and twenty-four at longer context. On the three thousand ninety, Glimmer does fourteen hundred and seventy-six and still holds five hundred and eighty-four at two hundred fifty-six K. The unified machine is not slow because it is badly built. It is slow because it is feeding a very wide model from memory that is not a graphics card.",
+   "items": [
+    [
+     "M5 Max \u00b7 short",
+     "56",
+     "834",
+     "orange"
+    ],
+    [
+     "3090 \u00b7 short",
+     "100",
+     "1,477",
+     "lime"
+    ],
+    [
+     "M5 Max \u00b7 long",
+     "29",
+     "425",
+     "red"
+    ],
+    [
+     "3090 \u00b7 256K",
+     "40",
+     "584",
+     "lime"
+    ]
+   ],
+   "cues": {
+    "h": "Prefill on the M5 Max",
+    "0": "eight hundred and thirty-four",
+    "1": "fourteen hundred and seventy-six",
+    "2": "four hundred and twenty-four",
+    "3": "five hundred and eighty-four"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "gb10 prefill",
+   "vo": "The GB10 is lower again. Eight hundred and twelve tokens a second at four K, falling to two hundred and twenty-eight at two hundred fifty-six K. That is a machine that will hold the context and then take minutes to read it. For an agent that re-reads a large codebase on every step, that is the difference between usable and unusable.",
+   "items": [
+    [
+     "GB10 \u00b7 4K",
+     "100",
+     "813",
+     "orange"
+    ],
+    [
+     "GB10 \u00b7 64K",
+     "52",
+     "426",
+     "orange"
+    ],
+    [
+     "GB10 \u00b7 256K",
+     "28",
+     "228",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "The GB10 is lower",
+    "0": "eight hundred and twelve",
+    "1": "two hundred and twenty-eight",
+    "2": "two hundred and twenty-eight at two hundred"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "what unified memory is genuinely for",
+   "vo": "So be fair to it. Unified memory is the only way to hold a model that does not fit on any consumer card, and it does that at a fraction of the power and noise of a four card rig. It is also the only option on a laptop, where a discrete card with that much memory does not exist. The mistake is buying it for speed, because speed is the one thing it does not sell.",
+   "items": [
+    [
+     "Holds models nothing else can",
+     "genuine win",
+     "good"
+    ],
+    [
+     "Quiet, low power",
+     "genuine win",
+     "good"
+    ],
+    [
+     "Speed",
+     "not what you are buying",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "So be fair to it",
+    "0": "the only way",
+    "1": "quiet",
+    "2": "not what you are buying"
+   }
+  },
+  {
+   "type": "table",
+   "head": "the full comparison",
+   "vo": "Here is everything in one place. At four K, the three thousand ninety does forty-five point three, the M5 Max does thirty-one point four, the GB10 does twelve point two, and the two-card setup does twenty-two point four seven. At sixty-four K it is thirty-four, eighteen, eight, and eighteen point five. Sort by memory and you get one order. Sort by speed and you get the exact opposite.",
+   "items": [
+    [
+     "3090 \u00b7 4K",
+     "45.3",
+     "45.3",
+     "good"
+    ],
+    [
+     "M5 Max \u00b7 4K",
+     "31.4",
+     "31.4",
+     "hot"
+    ],
+    [
+     "2x 5060 Ti \u00b7 4K",
+     "22.5",
+     "22.5",
+     "hot"
+    ],
+    [
+     "GB10 \u00b7 4K",
+     "12.2",
+     "12.2",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "everything in one place",
+    "0": "forty-five point three",
+    "1": "thirty-one point four",
+    "2": "twenty-two point four seven",
+    "3": "twelve point two"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "the honest limits of this test",
+   "vo": "Two limits. These are dense models, and a mixture of experts model activates a fraction of its parameters per token, so the bandwidth penalty shrinks and unified memory looks much better. And this is one benchmark on one software build. Treat the ratio as a shape, not a law, and measure your own model before you spend four figures on a machine.",
+   "items": [
+    "Dense models only: MoE behaves differently",
+    "One build, one benchmark: shape, not law"
+   ],
+   "tape": "shape, not law",
+   "cues": {
+    "h": "Two limits",
+    "0": "dense models",
+    "1": "one benchmark",
+    "t": "shape, not law"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "a 5090 for scale",
+   "vo": "For scale, a five-oh-ninety does eighty-three point two tokens a second on Glimmer at four K, and sixty-eight point nine eight at two hundred fifty-six K. That is not a subtle difference from twelve point seven on the GB10. It is roughly six and a half times faster, on a card that also costs less than the small box. Unified memory is a capacity purchase, and the numbers make that unavoidable.",
+   "items": [
+    [
+     "5090 \u00b7 4K",
+     "100",
+     "83.2",
+     "lime"
+    ],
+    [
+     "GB10 \u00b7 4K",
+     "15",
+     "12.8",
+     "red"
+    ],
+    [
+     "5090 \u00b7 256K",
+     "83",
+     "69.0",
+     "lime"
+    ],
+    [
+     "GB10 \u00b7 256K",
+     "12",
+     "10.3",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "For scale",
+    "0": "eighty-three point two",
+    "1": "twelve point seven",
+    "2": "sixty-eight point nine eight",
+    "3": "six and a half times"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the laptop case is different",
+   "vo": "But the laptop case is genuinely different, and it deserves saying. A laptop with unified memory is the only way to run a large model on battery, quietly, with no external power supply. A three thousand ninety in a laptop does not exist. So if portability is the requirement, unified memory is not a compromise, it is the category. You are not choosing between fast and slow, you are choosing between possible and impossible.",
+   "items": [
+    [
+     "Desktop",
+     "discrete card wins on speed",
+     "good"
+    ],
+    [
+     "Laptop",
+     "unified is the only option",
+     "good"
+    ],
+    [
+     "Portability",
+     "not a compromise, a category",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "the laptop case",
+    "0": "on battery",
+    "1": "does not exist",
+    "2": "the category"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "what to measure before buying",
+   "vo": "Before you buy either, measure two things. Tokens per second at the context you actually use, and time to first token at the prompt length you actually paste. Those two numbers describe the entire experience. Everything else on a spec sheet, including the memory figure that started this video, is a proxy that can mislead you in either direction.",
+   "items": [
+    "Tokens per second at your context",
+    "Time to first token at your prompt length"
+   ],
+   "tape": "two numbers, that is it",
+   "cues": {
+    "h": "measure two things",
+    "0": "Tokens per second",
+    "1": "time to first token",
+    "t": "two numbers"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "when unified actually wins",
+   "vo": "Unified memory wins in three specific situations. The model does not fit on any consumer card. You need it to run on a laptop or on battery. Or you need it quiet, because a workstation that sounds like a hairdryer is not usable in a room with other people. None of those are speed arguments, and all of them are legitimate. Buy it for those reasons and you will be happy.",
+   "items": [
+    [
+     "Model does not fit",
+     "only door",
+     "good"
+    ],
+    [
+     "Laptop or battery",
+     "only option",
+     "good"
+    ],
+    [
+     "Silence",
+     "genuine requirement",
+     "good"
+    ]
+   ],
+   "cues": {
+    "h": "three specific situations",
+    "0": "does not fit",
+    "1": "on a laptop",
+    "2": "quiet"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "the number that decides it",
+   "vo": "If you take one number from this video, take the ratio. Forty-five point three tokens a second on a discrete card against twelve point seven six on the small unified box, for the same model at the same context. That is three and a half times. If that gap does not matter to your workload, buy the quiet machine. If it does, buy the card, and stop paying for memory you are not using.",
+   "items": [
+    "Discrete card 45.3 t/s",
+    "GB10 12.76 t/s",
+    "Same model, same context"
+   ],
+   "tape": "three and a half times",
+   "cues": {
+    "h": "If you take one number",
+    "0": "forty-five point three",
+    "1": "twelve point seven six",
+    "t": "three and a half times"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the one sentence version",
+   "vo": "One sentence. Unified memory buys you capacity and silence, and it charges you in tokens per second, roughly three and a half times the price of a discrete card at four K and even more at long context. Buy it when the model does not fit anywhere else, or when it has to live on a laptop. Do not buy it expecting speed, because the entire design is a trade away from speed.",
+   "items": [
+    [
+     "Buys",
+     "capacity, silence",
+     "good"
+    ],
+    [
+     "Charges",
+     "tokens per second",
+     "hot"
+    ],
+    [
+     "Buy it when",
+     "nothing else fits",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "One sentence",
+    "0": "capacity and silence",
+    "1": "three and a half times",
+    "2": "nothing else fits"
+   }
+  },
+  {
+   "type": "close",
+   "art": "laptop",
+   "head": "close",
+   "vo": "So stop reading the memory number first. Read the bandwidth, then the measured tokens per second, then the capacity. In that order the machine chooses itself, and you stop paying for gigabytes you will never fill.",
+   "line": "Bandwidth, then speed, then capacity.",
+   "chips": [
+    "BANDWIDTH",
+    "TOKENS",
+    "CAPACITY"
+   ],
+   "cues": {
+    "h": "stop reading",
+    "l": "Bandwidth, then speed",
+    "0": "bandwidth",
+    "1": "tokens per second",
+    "w": "capacity"
+   }
+  }
+ ],
+ "rate": "-10%"
+}

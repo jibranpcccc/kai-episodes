@@ -1,0 +1,1209 @@
+[
+ {
+  "n": 1,
+  "layout": "hook",
+  "art": "kv_cache",
+  "title": "THE CONVERSATION OUTLIVES THE CARD",
+  "kicker": "KV CACHE &middot; THE SECOND BILL",
+  "vo_words": 35,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chips",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "stats",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 1,
+   "subject": "the conversation outlives the card",
+   "act": 1,
+   "plan_art": "kv_cache"
+  }
+ },
+ {
+  "n": 2,
+  "layout": "chain",
+  "art": "cache_grid",
+  "title": "EVERY TOKEN ADDS TWO VECTORS",
+  "kicker": "KV CACHE &middot; HOW IT FILLS",
+  "vo_words": 38,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chain",
+   "compare",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 2,
+   "subject": "every token adds two vectors",
+   "act": 1,
+   "plan_art": "cache_grid"
+  }
+ },
+ {
+  "n": 3,
+  "layout": "rows",
+  "art": "chip",
+  "title": "THE BILL, TOKEN BY TOKEN",
+  "kicker": "KV CACHE &middot; THE ARITHMETIC",
+  "vo_words": 50,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 3,
+   "subject": "the arithmetic: 288 MiB",
+   "act": 1,
+   "plan_art": "chip"
+  }
+ },
+ {
+  "n": 4,
+  "layout": "bars",
+  "art": "gauge",
+  "title": "THE FILE DOES NOT MOVE, THE CACHE DOES",
+  "kicker": "KV CACHE &middot; MEASURED",
+  "vo_words": 48,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "bars",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 4,
+   "subject": "measured VRAM by context",
+   "act": 1,
+   "plan_art": "gauge"
+  }
+ },
+ {
+  "n": 5,
+  "layout": "rail",
+  "art": "timer_flat",
+  "title": "THE CARD IS NOT SLOWER, THE PROMPT IS BIGGER",
+  "kicker": "KV CACHE &middot; THE WAIT",
+  "vo_words": 47,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rails",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 5,
+   "subject": "prefill rate by context",
+   "act": 1,
+   "plan_art": "timer_flat"
+  }
+ },
+ {
+  "n": 6,
+  "layout": "note",
+  "art": "magnifier",
+  "title": "A CACHE SIZE IS NOT A MEMORY PLAN",
+  "kicker": "KV CACHE &middot; THE BOUNDARY",
+  "vo_words": 45,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "header_at",
+   "kicker",
+   "layout",
+   "note_head",
+   "note_items",
+   "source",
+   "source_at",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 6,
+   "subject": "a cache size is not a memory plan",
+   "act": 1,
+   "plan_art": "magnifier"
+  }
+ },
+ {
+  "n": 7,
+  "layout": "rows",
+  "art": "checklist",
+  "title": "MEASURE THE CACHE, THEN BUY THE CARD",
+  "kicker": "KV CACHE &middot; THE ORDER",
+  "vo_words": 48,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 7,
+   "subject": "measure the cache, then buy the card",
+   "act": 1,
+   "plan_art": "checklist"
+  }
+ },
+ {
+  "n": 8,
+  "layout": "gallery",
+  "art": "cache_grid",
+  "title": "THREE THINGS CALLED MEMORY",
+  "kicker": "KV CACHE &middot; THREE THINGS CALLED MEMORY",
+  "vo_words": 51,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "blurb",
+   "blurb_at",
+   "header_at",
+   "kicker",
+   "layout",
+   "meta",
+   "meta_at",
+   "name",
+   "name_at",
+   "side",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 8,
+   "subject": "three different things called memory",
+   "act": 2,
+   "plan_art": "cache_grid"
+  }
+ },
+ {
+  "n": 9,
+  "layout": "note",
+  "art": "caveat",
+  "title": "THE CACHE IS NOT THE FILE",
+  "kicker": "KV CACHE &middot; WHAT IT IS NOT",
+  "vo_words": 50,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "header_at",
+   "kicker",
+   "layout",
+   "note_head",
+   "note_items",
+   "source",
+   "source_at",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 9,
+   "subject": "the cache is not the file",
+   "act": 2,
+   "plan_art": "caveat"
+  }
+ },
+ {
+  "n": 10,
+  "layout": "rows",
+  "art": "vram_module",
+  "title": "WHAT THE CACHE HOLDS",
+  "kicker": "KV CACHE &middot; WHAT IS INSIDE IT",
+  "vo_words": 50,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 10,
+   "subject": "what is inside the cache",
+   "act": 2,
+   "plan_art": "vram_module"
+  }
+ },
+ {
+  "n": 11,
+  "layout": "chain",
+  "art": "pipeline",
+  "title": "PREFILL WRITES, DECODE READS",
+  "kicker": "KV CACHE &middot; TWO PHASES",
+  "vo_words": 50,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chain",
+   "compare",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 11,
+   "subject": "prefill writes it, decode reads it",
+   "act": 2,
+   "plan_art": "pipeline"
+  }
+ },
+ {
+  "n": 12,
+  "layout": "strip",
+  "art": "collapse+context_window+token_blocks",
+  "title": "THREE STATES A CACHE IS IN",
+  "kicker": "KV CACHE &middot; THREE STATES",
+  "vo_words": 40,
+  "keys": [
+   "closing",
+   "header_at",
+   "items",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 12,
+   "subject": "the three states a cache is in",
+   "act": 2,
+   "plan_art": "token_blocks"
+  }
+ },
+ {
+  "n": 13,
+  "layout": "rows",
+  "art": "context_window",
+  "title": "ONE BUFFER, ONE ROW PER LAYER",
+  "kicker": "KV CACHE &middot; HOW A RUNTIME STORES IT",
+  "vo_words": 51,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 13,
+   "subject": "how a runtime stores it",
+   "act": 2,
+   "plan_art": "context_window"
+  }
+ },
+ {
+  "n": 14,
+  "layout": "bars",
+  "art": "memory_bank",
+  "title": "DOUBLE THE TOKENS, DOUBLE THE CACHE",
+  "kicker": "KV CACHE &middot; SCALES WITH CONTEXT",
+  "vo_words": 26,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "bars",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 14,
+   "subject": "cache size across model sizes",
+   "act": 2,
+   "plan_art": "memory_bank"
+  }
+ },
+ {
+  "n": 15,
+  "layout": "rows",
+  "art": "context_window",
+  "title": "AND IT KEEPS DOUBLING",
+  "kicker": "KV CACHE &middot; SCALES WITH CONTEXT &middot; THE LONG END",
+  "vo_words": 28,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": null
+ },
+ {
+  "n": 16,
+  "layout": "nodes",
+  "art": "pipeline",
+  "title": "THE WHOLE CACHE, EVERY TOKEN",
+  "kicker": "KV CACHE &middot; THE COST OF THE NEXT TOKEN",
+  "vo_words": 43,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chain",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 15,
+   "subject": "the cost of the next token",
+   "act": 2,
+   "plan_art": "pipeline"
+  }
+ },
+ {
+  "n": 17,
+  "layout": "hook",
+  "art": "prompt_stream",
+  "title": "THE SECOND BILL",
+  "kicker": "KV CACHE &middot; THE SECOND BILL",
+  "vo_words": 49,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chips",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "source_at",
+   "stats",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 16,
+   "subject": "the second bill",
+   "act": 2,
+   "plan_art": "prompt_stream"
+  }
+ },
+ {
+  "n": 18,
+  "layout": "rows",
+  "art": "motherboard",
+  "title": "THE MACHINE, EXACTLY",
+  "kicker": "KV CACHE &middot; THE RIG &middot; THE MACHINE",
+  "vo_words": 27,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 17,
+   "subject": "the rig, exactly",
+   "act": 3,
+   "plan_art": "motherboard"
+  }
+ },
+ {
+  "n": 19,
+  "layout": "nodes",
+  "art": "chip",
+  "title": "THE STACK, EXACTLY",
+  "kicker": "KV CACHE &middot; THE RIG &middot; THE STACK",
+  "vo_words": 29,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chain",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": null
+ },
+ {
+  "n": 20,
+  "layout": "bars",
+  "art": "gauge",
+  "title": "THE CURVE STARTS FLAT",
+  "kicker": "KV CACHE &middot; MEASURED &middot; QWEN 3.8 27B",
+  "vo_words": 29,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "bars",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 18,
+   "subject": "the full VRAM curve",
+   "act": 3,
+   "plan_art": "gauge"
+  }
+ },
+ {
+  "n": 21,
+  "layout": "rows",
+  "art": "vram_module",
+  "title": "WHERE THE CURVE STEEPSENS",
+  "kicker": "KV CACHE &middot; MEASURED &middot; THE STEEP END",
+  "vo_words": 27,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": null
+ },
+ {
+  "n": 22,
+  "layout": "note",
+  "art": "caveat",
+  "title": "THE CURVE BENDS",
+  "kicker": "KV CACHE &middot; NOT LINEAR",
+  "vo_words": 50,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "header_at",
+   "kicker",
+   "layout",
+   "note_head",
+   "note_items",
+   "source",
+   "source_at",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 19,
+   "subject": "the curve is not linear",
+   "act": 3,
+   "plan_art": "caveat"
+  }
+ },
+ {
+  "n": 23,
+  "layout": "rows",
+  "art": "scales",
+  "title": "WHERE THE STEP GROWS",
+  "kicker": "KV CACHE &middot; THE KNEE",
+  "vo_words": 49,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 20,
+   "subject": "where the knee is",
+   "act": 3,
+   "plan_art": "scales"
+  }
+ },
+ {
+  "n": 24,
+  "layout": "bars",
+  "art": "gpu",
+  "title": "ONE CARD, TWO MODELS",
+  "kicker": "KV CACHE &middot; TWO MODELS &middot; ONE CARD",
+  "vo_words": 29,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "bars",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 21,
+   "subject": "two models, one card",
+   "act": 3,
+   "plan_art": "gpu"
+  }
+ },
+ {
+  "n": 25,
+  "layout": "rows",
+  "art": "scales",
+  "title": "THE GAP AT THE LONG END",
+  "kicker": "KV CACHE &middot; TWO MODELS &middot; THE LONG END",
+  "vo_words": 29,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": null
+ },
+ {
+  "n": 26,
+  "layout": "strip",
+  "art": "ram_stick+sodimm+vram_module",
+  "title": "WHAT THE CARD HOLDS",
+  "kicker": "KV CACHE &middot; THE HARDWARE",
+  "vo_words": 50,
+  "keys": [
+   "closing",
+   "header_at",
+   "items",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 22,
+   "subject": "what each card size holds",
+   "act": 3,
+   "plan_art": "vram_module"
+  }
+ },
+ {
+  "n": 27,
+  "layout": "rail",
+  "art": "clock",
+  "title": "TIME TO FIRST TOKEN",
+  "kicker": "KV CACHE &middot; LATENCY",
+  "vo_words": 50,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rails",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 23,
+   "subject": "time to first token",
+   "act": 3,
+   "plan_art": "clock"
+  }
+ },
+ {
+  "n": 28,
+  "layout": "note",
+  "art": "clock",
+  "title": "WHAT A RATE HIDES",
+  "kicker": "KV CACHE &middot; THE HIDDEN PART",
+  "vo_words": 47,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "header_at",
+   "kicker",
+   "layout",
+   "note_head",
+   "note_items",
+   "source",
+   "source_at",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 24,
+   "subject": "what a throughput number hides",
+   "act": 3,
+   "plan_art": "clock"
+  }
+ },
+ {
+  "n": 29,
+  "layout": "title",
+  "art": "token_blocks",
+  "title": "THE PART PEOPLE QUOTE WRONG",
+  "kicker": "ACT BREAK &middot; KV CACHE",
+  "vo_words": 30,
+  "keys": [
+   "art",
+   "closing",
+   "head_at",
+   "kicker",
+   "layout",
+   "source",
+   "source_at",
+   "sub",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 25,
+   "subject": "ACT BREAK: the part people quote wrong",
+   "act": 3,
+   "plan_art": "token_blocks"
+  }
+ },
+ {
+  "n": 30,
+  "layout": "rows",
+  "art": "gguf_blocks",
+  "title": "THE CACHE CAN BE HELD COARSER",
+  "kicker": "KV CACHE &middot; PRECISION &middot; THE BASELINE",
+  "vo_words": 27,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 26,
+   "subject": "quantising the cache",
+   "act": 4,
+   "plan_art": "gguf_blocks"
+  }
+ },
+ {
+  "n": 31,
+  "layout": "nodes",
+  "art": "die",
+  "title": "SAME FORMULA, FEWER BYTES",
+  "kicker": "KV CACHE &middot; PRECISION &middot; THE COARSER CACHE",
+  "vo_words": 27,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chain",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": null
+ },
+ {
+  "n": 32,
+  "layout": "bars",
+  "art": "scales",
+  "title": "THREE SIZES FOR THE SAME CACHE",
+  "kicker": "KV CACHE &middot; THREE PRECISIONS",
+  "vo_words": 29,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "bars",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 27,
+   "subject": "fp16 against q8_0 against q4_0",
+   "act": 4,
+   "plan_art": "scales"
+  }
+ },
+ {
+  "n": 33,
+  "layout": "rows",
+  "art": "wafer",
+  "title": "THE SMALLEST SIZE, AND ITS ASSUMPTION",
+  "kicker": "KV CACHE &middot; THREE PRECISIONS &middot; THE ASSUMPTION",
+  "vo_words": 29,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": null
+ },
+ {
+  "n": 34,
+  "layout": "note",
+  "art": "caveat",
+  "title": "A SMALLER CACHE IS NOT THE SAME ANSWER",
+  "kicker": "KV CACHE &middot; WHAT THE SMALLER CACHE COSTS",
+  "vo_words": 50,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "header_at",
+   "kicker",
+   "layout",
+   "note_head",
+   "note_items",
+   "source",
+   "source_at",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 28,
+   "subject": "quantisation changes what you read back",
+   "act": 4,
+   "plan_art": "caveat"
+  }
+ },
+ {
+  "n": 35,
+  "layout": "rows",
+  "art": "chip",
+  "title": "THE WORKSPACE IS THE OTHER HALF",
+  "kicker": "KV CACHE &middot; THE WORKSPACE",
+  "vo_words": 51,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 29,
+   "subject": "the workspace and the activations",
+   "act": 4,
+   "plan_art": "chip"
+  }
+ },
+ {
+  "n": 36,
+  "layout": "chain",
+  "art": "pipeline",
+  "title": "WHAT IS LIVE AT THE SAME TIME",
+  "kicker": "KV CACHE &middot; ONE FORWARD PASS",
+  "vo_words": 51,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chain",
+   "compare",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 30,
+   "subject": "what stays live during a forward pass",
+   "act": 4,
+   "plan_art": "pipeline"
+  }
+ },
+ {
+  "n": 37,
+  "layout": "rows",
+  "art": "gpu",
+  "title": "NO CACHE IS SHARED",
+  "kicker": "KV CACHE &middot; BATCH SIZE &middot; ONE REQUEST",
+  "vo_words": 29,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": null
+ },
+ {
+  "n": 38,
+  "layout": "bars",
+  "art": "vram_module",
+  "title": "EVERY REQUEST CARRIES ITS OWN CACHE",
+  "kicker": "KV CACHE &middot; BATCH SIZE &middot; MORE REQUESTS",
+  "vo_words": 29,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "bars",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 31,
+   "subject": "batch size against memory",
+   "act": 4,
+   "plan_art": "gpu"
+  }
+ },
+ {
+  "n": 39,
+  "layout": "note",
+  "art": "collapse",
+  "title": "PAGE IT, OR SPILL IT",
+  "kicker": "KV CACHE &middot; WHEN IT DOES NOT FIT",
+  "vo_words": 52,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "header_at",
+   "kicker",
+   "layout",
+   "note_head",
+   "note_items",
+   "source",
+   "source_at",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 32,
+   "subject": "offload, page and spill",
+   "act": 4,
+   "plan_art": "collapse"
+  }
+ },
+ {
+  "n": 40,
+  "layout": "nodes",
+  "art": "memory_bank",
+  "title": "WHAT ACTUALLY MOVES THE NUMBER",
+  "kicker": "KV CACHE &middot; WHAT MOVES THE NUMBER",
+  "vo_words": 33,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chain",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 33,
+   "subject": "what actually moves the number",
+   "act": 4,
+   "plan_art": "memory_bank"
+  }
+ },
+ {
+  "n": 41,
+  "layout": "rows",
+  "art": "checklist",
+  "title": "WHAT TO WRITE DOWN BEFORE YOU BUY",
+  "kicker": "KV CACHE &middot; THE CHECKLIST",
+  "vo_words": 47,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "rows",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 34,
+   "subject": "the checklist",
+   "act": 5,
+   "plan_art": "checklist"
+  }
+ },
+ {
+  "n": 42,
+  "layout": "nodes",
+  "art": "pipeline",
+  "title": "MEASURE IN THIS ORDER",
+  "kicker": "KV CACHE &middot; THE ORDER",
+  "vo_words": 45,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chain",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 35,
+   "subject": "the order of operations",
+   "act": 5,
+   "plan_art": "pipeline"
+  }
+ },
+ {
+  "n": 43,
+  "layout": "bars",
+  "art": "vram_module",
+  "title": "THE SAME CARD, AND LESS ROOM EVERY STEP",
+  "kicker": "KV CACHE &middot; WHAT FITS",
+  "vo_words": 43,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "bars",
+   "closing",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 36,
+   "subject": "what each card size holds",
+   "act": 5,
+   "plan_art": "vram_module"
+  }
+ },
+ {
+  "n": 44,
+  "layout": "hook",
+  "art": "question",
+  "title": "WHAT IS THE MODEL ACTUALLY FOR",
+  "kicker": "KV CACHE &middot; THE REAL QUESTION",
+  "vo_words": 44,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "chips",
+   "header_at",
+   "kicker",
+   "layout",
+   "source",
+   "stats",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 37,
+   "subject": "the behaviour you want",
+   "act": 5,
+   "plan_art": "question"
+  }
+ },
+ {
+  "n": 45,
+  "layout": "note",
+  "art": "caveat",
+  "title": "THE CACHE IS THE SECOND BILL",
+  "kicker": "KV CACHE &middot; THE VERDICT",
+  "vo_words": 43,
+  "keys": [
+   "art",
+   "art_at",
+   "art_caption",
+   "header_at",
+   "kicker",
+   "layout",
+   "note_head",
+   "note_items",
+   "source",
+   "source_at",
+   "tape",
+   "tape_at",
+   "title",
+   "vo"
+  ],
+  "plan": {
+   "plan_n": 38,
+   "subject": "the verdict",
+   "act": 5,
+   "plan_art": "caveat"
+  }
+ }
+]

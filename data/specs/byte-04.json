@@ -1,0 +1,521 @@
+{
+ "name": "BYTE-04",
+ "kicker": "Byte Forensics",
+ "title": "Two Cheap Cards vs One Good Card",
+ "subtitle": "dual GPU vs single, measured",
+ "scenes": [
+  {
+   "type": "hook",
+   "art": "gpu",
+   "head": "2 \u00d7 16 GB vs 1 \u00d7 24 GB",
+   "vo": "Okay, so two sixteen gigabyte cards cost less than one good twenty-four gigabyte card, and together they hold thirty-two gigabytes. On paper that is more memory for less money, and on paper it wins. So why does everyone who tries it come back and buy the single card anyway? Because capacity and speed are two different numbers, and the benchmark actually tested both.",
+   "a": {
+    "v": "32",
+    "u": "GB",
+    "c": "cyan",
+    "lab": "two cards"
+   },
+   "b": {
+    "v": "24",
+    "u": "GB",
+    "c": "lime",
+    "lab": "one card"
+   },
+   "tape": "capacity is not speed",
+   "cues": {
+    "h": "Okay, so",
+    "a": "thirty-two gigabytes",
+    "b": "twenty-four gigabyte card",
+    "t": "capacity and speed"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "two cards running qwen 3.8",
+   "vo": "The test was a pair of RTX fifty-sixty Ti cards, thirty-two gigabytes total. Running Qwen three point eight, generation starts at twenty-two point four seven tokens a second at four K context. It holds twenty point four three at thirty-two K. At sixty-four K it is eighteen point five. At one twenty-eight K it is fifteen point five five. Every number is real, and every number is modest.",
+   "items": [
+    [
+     "5060 Ti \u00d72 \u00b7 4K",
+     "100",
+     "22.47",
+     "cyan"
+    ],
+    [
+     "5060 Ti \u00d72 \u00b7 32K",
+     "91",
+     "20.43",
+     "cyan"
+    ],
+    [
+     "5060 Ti \u00d72 \u00b7 64K",
+     "82",
+     "18.50",
+     "yellow"
+    ],
+    [
+     "5060 Ti \u00d72 \u00b7 128K",
+     "69",
+     "15.55",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "The test was",
+    "0": "twenty-two point four seven",
+    "1": "thirty-two K",
+    "2": "sixty-four K",
+    "3": "one twenty-eight K"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "one 3090 running glimmer",
+   "vo": "Now the same job on a single three thousand ninety running Muse Glimmer. Forty-five point three tokens a second at four K. Forty-two point four at sixty-four K. Thirty-eight point one at one twenty-eight K. Roughly double the speed of two cards, at every context length, from one slot.",
+   "items": [
+    [
+     "3090 \u00b7 4K",
+     "100",
+     "45.30",
+     "lime"
+    ],
+    [
+     "3090 \u00b7 64K",
+     "94",
+     "42.45",
+     "lime"
+    ],
+    [
+     "3090 \u00b7 128K",
+     "84",
+     "38.13",
+     "lime"
+    ]
+   ],
+   "cues": {
+    "h": "Now the same job",
+    "0": "forty-five point three",
+    "1": "forty-two point four",
+    "2": "thirty-eight point one"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "prefill is worse",
+   "vo": "And it gets worse before the first word. Prefill on the two-card setup is eleven hundred and sixty-seven tokens a second at four K, and five hundred and twelve at one twenty-eight K. The single three thousand ninety does fourteen hundred and seventy-six and five hundred and eighty-four. So the two-card route loses on the wait as well as the generation.",
+   "items": [
+    [
+     "5060 Ti \u00d72 \u00b7 4K",
+     "79",
+     "1,167",
+     "orange"
+    ],
+    [
+     "3090 \u00b7 4K",
+     "100",
+     "1,477",
+     "lime"
+    ],
+    [
+     "5060 Ti \u00d72 \u00b7 128K",
+     "35",
+     "513",
+     "red"
+    ],
+    [
+     "3090 \u00b7 256K",
+     "40",
+     "584",
+     "lime"
+    ]
+   ],
+   "cues": {
+    "h": "before the first word",
+    "0": "eleven hundred",
+    "1": "fourteen hundred",
+    "2": "five hundred and twelve",
+    "3": "five hundred and eighty-four"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "why it is slower",
+   "vo": "The reason is not mysterious. Two cards split a model across a PCIe bus, so every layer boundary is a transfer, and every batch waits for the slowest half. One card has no bus to cross. You are paying for memory you can address instantly, and that is the whole product.",
+   "items": [
+    [
+     "Split across PCIe",
+     "every layer crosses the bus",
+     "hot"
+    ],
+    [
+     "Batch waits",
+     "for the slowest card",
+     "hot"
+    ],
+    [
+     "Single card",
+     "no bus to cross",
+     "good"
+    ]
+   ],
+   "cues": {
+    "h": "The reason",
+    "0": "Two cards split",
+    "1": "every batch",
+    "2": "One card has no bus"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "when two cards is right",
+   "vo": "Two caveats. If you already own one sixteen gigabyte card, adding a second is a real upgrade path, and thirty-two gigabytes does reach one twenty-eight K on Qwen three point eight. And these numbers are for dense models that split cleanly. Mixture of experts models behave differently and this data does not cover them.",
+   "items": [
+    "Already own one card: adding a second works",
+    "Dense models only: MoE is not covered here"
+   ],
+   "tape": "capacity, not speed",
+   "cues": {
+    "h": "Two caveats",
+    "0": "already own one",
+    "1": "Mixture of experts",
+    "t": "capacity"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "what the bus actually costs",
+   "vo": "Splitting a model across two cards means every layer boundary becomes a transfer over PCIe. On a consumer board that is sixteen lanes shared with your storage and your chipset. The cards cannot compute a layer until the previous layer has crossed the bus and landed. So you are not running two GPUs, you are running one slow GPU with extra steps.",
+   "items": [
+    [
+     "Layer boundary",
+     "a PCIe transfer",
+     "hot"
+    ],
+    [
+     "16 lanes",
+     "shared with storage",
+     "hot"
+    ],
+    [
+     "Result",
+     "one slow GPU with extra steps",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "Splitting a model",
+    "0": "every layer boundary",
+    "1": "sixteen lanes",
+    "2": "extra steps"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "the gap widens with context",
+   "vo": "The gap is not constant, it widens. At four K the two-card setup is at twenty-two point four seven and the three thousand ninety is at forty-five point three. That is roughly double. At one twenty-eight K the two-card setup is at fifteen point five five and the single card is at thirty-eight point one three. That is nearly two and a half times. The longer the context, the worse the split gets.",
+   "items": [
+    [
+     "2 cards \u00b7 4K",
+     "50",
+     "22.47",
+     "orange"
+    ],
+    [
+     "1 card \u00b7 4K",
+     "100",
+     "45.30",
+     "lime"
+    ],
+    [
+     "2 cards \u00b7 128K",
+     "41",
+     "15.55",
+     "red"
+    ],
+    [
+     "1 card \u00b7 128K",
+     "84",
+     "38.13",
+     "lime"
+    ]
+   ],
+   "cues": {
+    "h": "The gap is not constant",
+    "0": "twenty-two point four seven",
+    "1": "forty-five point three",
+    "2": "fifteen point five five",
+    "3": "thirty-eight point one three"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the costs nobody budgets",
+   "vo": "Then there are the costs that never appear in a token per second table. Two cards need two sets of power cables, two slots of cooling, and a motherboard with enough lanes to feed both. Your case airflow has to handle double the heat in half the space. And when one card is idle during a split workload, you are paying for silicon that is doing nothing.",
+   "items": [
+    [
+     "Power",
+     "two sets of cables",
+     "hot"
+    ],
+    [
+     "Cooling",
+     "double the heat, same case",
+     "hot"
+    ],
+    [
+     "Idle half",
+     "paying for unused silicon",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "the costs that never appear",
+    "0": "two sets of power",
+    "1": "double the heat",
+    "2": "idle"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "prefill tells the same story",
+   "vo": "Prefill agrees. The two-card setup processes a four K prompt at eleven hundred and sixty-seven tokens a second. The three thousand ninety does fourteen hundred and seventy-six. At one twenty-eight K the two-card setup is at five hundred and twelve, and the single card running Glimmer is at five hundred and eighty-four at two hundred fifty-six K, with four times the context. It is not close in either direction.",
+   "items": [
+    [
+     "2 cards \u00b7 4K prefill",
+     "79",
+     "1,167",
+     "orange"
+    ],
+    [
+     "1 card \u00b7 4K prefill",
+     "100",
+     "1,477",
+     "lime"
+    ],
+    [
+     "2 cards \u00b7 128K prefill",
+     "35",
+     "513",
+     "red"
+    ],
+    [
+     "1 card \u00b7 256K prefill",
+     "40",
+     "584",
+     "lime"
+    ]
+   ],
+   "cues": {
+    "h": "Prefill agrees",
+    "0": "eleven hundred and sixty-seven",
+    "1": "fourteen hundred and seventy-six",
+    "2": "five hundred and twelve",
+    "3": "five hundred and eighty-four"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "when the two-card route wins",
+   "vo": "Two honest cases where two cards win. If you already own one, the second card is the cheapest capacity you will ever buy, and thirty-two gigabytes genuinely reaches one twenty-eight K on Qwen three point eight. And if your workload is throughput across many small requests rather than one long context, splitting can pay off, because each card can serve independently. This benchmark tested one long request, not a queue.",
+   "items": [
+    "You already own one card",
+    "Many small requests, not one long one"
+   ],
+   "tape": "it depends on the workload",
+   "cues": {
+    "h": "Two honest cases",
+    "0": "already own one",
+    "1": "many small requests",
+    "t": "depends on the workload"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "the 4090 sits in the middle",
+   "vo": "There is a middle option people forget. An RTX four-oh-ninety does forty-six point one six tokens a second on Qwen three point eight at four K, against forty point three one on the three thousand ninety. That is a real gain, but it is fifteen percent, not double, and both cards are twenty-four gigabytes. You are buying speed again, not capacity, and you are paying a large premium for fifteen percent.",
+   "items": [
+    [
+     "3090 \u00b7 4K",
+     "87",
+     "40.31",
+     "lime"
+    ],
+    [
+     "4090 \u00b7 4K",
+     "100",
+     "46.16",
+     "cyan"
+    ],
+    [
+     "5090 \u00b7 4K",
+     "100",
+     "74.83",
+     "orange"
+    ]
+   ],
+   "cues": {
+    "h": "a middle option",
+    "0": "forty-six point one six",
+    "1": "forty point three one",
+    "2": "fifteen percent"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "if you must split",
+   "vo": "If you must split, split a model that splits well. Dense models divide cleanly by layer, so a two-card split works and simply costs you the bus. Mixture of experts models route each token to a subset of experts, which means the split is uneven and the bus cost is unpredictable. If you are determined to run two cards, pick a dense model and accept the throughput you measured, rather than hoping it behaves like one card.",
+   "items": [
+    [
+     "Dense models",
+     "split cleanly by layer",
+     "good"
+    ],
+    [
+     "MoE models",
+     "uneven routing, unpredictable cost",
+     "hot"
+    ],
+    [
+     "Two cards",
+     "always a bus in the middle",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "If you must split",
+    "0": "Dense models",
+    "1": "Mixture of experts",
+    "2": "a bus in the middle"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "the summarised comparison",
+   "vo": "So here is the whole comparison in four bars. One three thousand ninety running Glimmer: forty-five point three at four K, thirty-eight point one at one twenty-eight K. Two fifty-sixty Ti cards running Qwen: twenty-two point four seven and fifteen point five five. Half the speed, at every length, for more money than one card.",
+   "items": [
+    [
+     "1 card \u00b7 4K",
+     "100",
+     "45.3",
+     "lime"
+    ],
+    [
+     "2 cards \u00b7 4K",
+     "50",
+     "22.5",
+     "orange"
+    ],
+    [
+     "1 card \u00b7 128K",
+     "84",
+     "38.1",
+     "lime"
+    ],
+    [
+     "2 cards \u00b7 128K",
+     "34",
+     "15.6",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "the whole comparison",
+    "0": "forty-five point three",
+    "1": "twenty-two point four seven",
+    "2": "thirty-eight point one",
+    "3": "fifteen point five five"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "if you are buying today",
+   "vo": "If you are buying today, the order of operations is this. Decide the context length you actually need. Find the model that fits that context on the memory you can afford. Then, and only then, buy the fastest card with that much memory. Doing it in the other order is how people end up with two cards, half the speed, and a model that still does not fit the way they wanted.",
+   "items": [
+    [
+     "1. Pick the context",
+     "the length you really use",
+     "good"
+    ],
+    [
+     "2. Find the model",
+     "that fits that context",
+     "good"
+    ],
+    [
+     "3. Buy the card",
+     "fastest with that memory",
+     "good"
+    ]
+   ],
+   "cues": {
+    "h": "If you are buying today",
+    "0": "the context length",
+    "1": "Find the model",
+    "2": "buy the fastest card"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "the honest bottom line",
+   "vo": "The bottom line is uncomfortable for the two-card route. In every measurement in front of us, one card with twenty-four gigabytes beat two cards with thirty-two, on generation, on prefill, and on simplicity. The only cases where two cards win are the ones where you already own one, or where your workload is a queue of small requests rather than one long conversation. Measure your own workload before you decide which of those you are.",
+   "items": [
+    "One card won on both metrics",
+    "Two cards win only on ownership or queue workloads"
+   ],
+   "tape": "measure your workload",
+   "cues": {
+    "h": "The bottom line",
+    "0": "beat two cards",
+    "1": "queue of small requests",
+    "t": "Measure your own"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the one sentence version",
+   "vo": "One sentence. Two sixteen gigabyte cards give you thirty-two gigabytes of capacity and roughly half the tokens per second of a single twenty-four gigabyte card, at every context length the benchmark tested, on both generation and prefill. If you already own one of those sixteen gigabyte cards, the second one is the cheapest capacity you will ever buy. If you own neither, buy the single card and stop shopping for slots.",
+   "items": [
+    [
+     "2 cards",
+     "32 GB, ~half speed",
+     "hot"
+    ],
+    [
+     "1 card",
+     "24 GB, full speed",
+     "good"
+    ],
+    [
+     "Already own one",
+     "the second is cheap",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "One sentence",
+    "0": "thirty-two gigabytes",
+    "1": "twenty-four gigabyte",
+    "2": "the second one"
+   }
+  },
+  {
+   "type": "close",
+   "art": "gpu",
+   "head": "close",
+   "vo": "So if you are buying from scratch, one twenty-four gigabyte card does more with less. If you already own a sixteen, a second one is the cheap path to capacity, and you should expect roughly half the tokens per second. That is the trade, and now you can see both sides of it.",
+   "line": "Buy capacity or buy speed. Not both.",
+   "chips": [
+    "CAPACITY",
+    "SPEED",
+    "PREFILL"
+   ],
+   "cues": {
+    "h": "buying from scratch",
+    "l": "Buy capacity",
+    "0": "sixteen",
+    "1": "capacity",
+    "w": "both sides"
+   }
+  }
+ ],
+ "rate": "-10%"
+}

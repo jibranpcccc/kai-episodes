@@ -1,0 +1,490 @@
+{
+ "name": "BYTE-03",
+ "kicker": "Byte Forensics",
+ "title": "Your 24GB Card Cannot Do 128K",
+ "subtitle": "context vs VRAM, measured",
+ "scenes": [
+  {
+   "type": "hook",
+   "art": "gpu",
+   "head": "24 GB \u00b7 128K context \u00b7 pick one",
+   "vo": "Okay, so you have got a twenty-four gigabyte card, and you want one twenty-eight K of context, because that is the number printed on every model released this year. Here is the problem. Context is not free, and it is not linear. The model file is the part everyone measures, and it is the part that barely changes. The hard part arrives after the model is loaded, when you start filling the window. That is the distinction the rest of this video depends on, so hold onto it.",
+   "a": {
+    "v": "24",
+    "u": "GB",
+    "c": "cyan",
+    "lab": "your card"
+   },
+   "b": {
+    "v": "128",
+    "u": "K",
+    "c": "red",
+    "lab": "what you asked for"
+   },
+   "tape": "context is not free",
+   "cues": {
+    "h": "Okay, so",
+    "a": "twenty-four gigabyte card",
+    "b": "one twenty-eight K",
+    "t": "Context is not free"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "two things live in your vram",
+   "vo": "Two things live in your VRAM. The weights, a fixed file. And the cache, which grows with every token. At four K of context, Glimmer sits at sixteen gigabytes total, and Qwen sits at eighteen. Both fit comfortably on a twenty-four gigabyte card, and that is exactly where every tutorial stops, because that is the part that looks fine. None of that is a measurement error, and none of it is a driver bug, it is just how a context window fills.",
+   "items": [
+    [
+     "Weights",
+     "fixed file",
+     "good"
+    ],
+    [
+     "KV cache",
+     "grows every token",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "Two things live",
+    "0": "The weights",
+    "1": "the cache"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "now push the context",
+   "vo": "Sixteen gigabytes for Glimmer at thirty-two K. Twenty for Qwen at thirty-two K. Eighteen for Glimmer at one twenty-eight K. Twenty-six for Qwen at one twenty-eight K. The file never moved. The cache kept adding two, then four, then eight gigabytes as the window opened, and that is the whole mechanism. Read the right hand column twice, because that is the one that decides whether you are buying a card or a model.",
+   "items": [
+    [
+     "Glimmer 32K",
+     "67",
+     "16 GB",
+     "lime"
+    ],
+    [
+     "Qwen 32K",
+     "83",
+     "20 GB",
+     "dim"
+    ],
+    [
+     "Glimmer 128K",
+     "75",
+     "18 GB",
+     "cyan"
+    ],
+    [
+     "Qwen 128K",
+     "100",
+     "26 GB",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "Sixteen gigabytes for Glimmer",
+    "0": "Sixteen gigabytes",
+    "1": "Twenty for Qwen",
+    "2": "Eighteen for Glimmer",
+    "3": "Twenty-six for Qwen"
+   }
+  },
+  {
+   "type": "table",
+   "head": "the full curve",
+   "vo": "Four K, sixteen against eighteen. Thirty-two K, sixteen against twenty. Sixty-four K, seventeen against twenty-two. One twenty-eight K, eighteen against twenty-six. Two fifty-six K, twenty against thirty-four. Five rows, measured, not calculated, and the last row is the one that decides whether your card is enough. That is why people report a model crashing when what actually happened is that it ran out of room.",
+   "items": [
+    [
+     "4K",
+     "16",
+     "18",
+     "good"
+    ],
+    [
+     "32K",
+     "16",
+     "20",
+     "good"
+    ],
+    [
+     "64K",
+     "17",
+     "22",
+     "good"
+    ],
+    [
+     "128K",
+     "18",
+     "26",
+     "hot"
+    ],
+    [
+     "256K",
+     "20",
+     "34",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "Four K, sixteen",
+    "0": "Four K, sixteen",
+    "1": "Thirty-two K, sixteen",
+    "2": "Sixty-four K, seventeen",
+    "3": "One twenty-eight K, eighteen",
+    "4": "Two fifty-six K, twenty"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "what happens when you exceed it",
+   "vo": "It spills into system memory over PCIe. Throughput collapses rather than halves. And the cliff is printed on no spec sheet anywhere. That is what happens when you exceed the card, and it is why the number on the box matters less than the number in your cache. The file is what you download, and the cache is what you live with.",
+   "items": [
+    "Spills to system RAM over PCIe",
+    "Throughput collapses, not halves, collapses",
+    "The cliff is on no spec sheet"
+   ],
+   "tape": "the cliff is invisible",
+   "cues": {
+    "h": "It spills",
+    "0": "It spills into system memory",
+    "1": "Throughput collapses",
+    "2": "no spec sheet",
+    "t": "no spec sheet"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "what actually works on 24 gb",
+   "vo": "So what works? Option one, Glimmer at its full context window. Option two, Qwen at sixty-four K, and you plan around that instead of discovering it at token ninety thousand. Option three, quantize harder and accept the quality loss. There is no fourth option where you keep the model, the context, and the card. That is the number that should be on the box, and it never is.",
+   "items": [
+    [
+     "Glimmer 30B",
+     "full 256K",
+     "good"
+    ],
+    [
+     "Qwen 3.8",
+     "64K ceiling",
+     "hot"
+    ],
+    [
+     "Quantize harder",
+     "quality loss",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "So what works",
+    "0": "Option one",
+    "1": "Option two",
+    "2": "Option three"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the mistake everyone makes",
+   "vo": "The mistake is comparing file sizes and calling it a memory comparison. File size is a constant, known before you load anything. The cache is a variable, and it grows with every token. The decision is made by the variable, not by the file, and the file is what everybody quotes. Treat that as the real capacity of your card, and plan around twenty-two.",
+   "items": [
+    [
+     "File size",
+     "constant, known before you load",
+     "good"
+    ],
+    [
+     "KV cache",
+     "variable, grows with every token",
+     "hot"
+    ],
+    [
+     "The decision",
+     "made by the variable",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "The mistake is",
+    "0": "File size is a constant",
+    "1": "The cache is a variable",
+    "2": "The decision"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "the cache is the whole story",
+   "vo": "Two gigabytes apart at four K. Four apart at thirty-two. Eight apart at one twenty-eight. Fourteen apart at two fifty-six. The file difference was two gigabytes, and the cache difference becomes fourteen, which is the entire argument in four numbers. Write it down for two machines and the purchase decision makes itself.",
+   "items": [
+    [
+     "gap at 4K",
+     "11",
+     "2 GB",
+     "lime"
+    ],
+    [
+     "gap at 32K",
+     "24",
+     "4 GB",
+     "cyan"
+    ],
+    [
+     "gap at 128K",
+     "47",
+     "8 GB",
+     "orange"
+    ],
+    [
+     "gap at 256K",
+     "82",
+     "14 GB",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "Two gigabytes apart",
+    "0": "Two gigabytes apart",
+    "1": "Four apart",
+    "2": "Eight apart",
+    "3": "Fourteen apart"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "the desktop tax",
+   "vo": "Compositor and browser take VRAM. Two monitors take more. So plan for twenty-two usable gigabytes, not twenty-four. A card does not give the model all of its memory, and the benchmarks never include your desktop. So the card chooses the model, not the other way round.",
+   "items": [
+    "Compositor and browser take VRAM",
+    "Two monitors take more",
+    "Plan for 22 GB usable, not 24"
+   ],
+   "tape": "twenty-four is twenty-two",
+   "cues": {
+    "h": "Compositor and browser",
+    "0": "Compositor and browser",
+    "1": "Two monitors",
+    "2": "twenty-two usable",
+    "t": "twenty-two usable"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "how to check your own card",
+   "vo": "Load the model at your target context. Read the reported VRAM before you type anything. Then double the context and watch the number climb, and when it starts spilling you have found your real ceiling. It is always lower than the box says, and it is specific to your machine. That is the only reason to buy a faster card, and it is a good one.",
+   "items": [
+    [
+     "Load at target context",
+     "read VRAM before typing",
+     "good"
+    ],
+    [
+     "Double the context",
+     "watch the number climb",
+     "good"
+    ],
+    [
+     "Spilling begins",
+     "that is your real ceiling",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "Load the model",
+    "0": "Load the model",
+    "1": "double the context",
+    "2": "spilling"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "what you actually get",
+   "vo": "Twenty gigabytes for Glimmer at its full two fifty-six K window. Twenty-six for Qwen at one twenty-eight K, which does not fit on twenty-four. Twenty-two for Qwen at sixty-four K, which does. One model fits its whole window. The other one has to be planned around. So read the window first, and the model second, and the card third.",
+   "items": [
+    [
+     "Glimmer \u00b7 256K",
+     "83",
+     "20 GB",
+     "lime"
+    ],
+    [
+     "Qwen \u00b7 128K",
+     "100",
+     "26 GB",
+     "red"
+    ],
+    [
+     "Qwen \u00b7 64K",
+     "85",
+     "22 GB",
+     "yellow"
+    ]
+   ],
+   "cues": {
+    "h": "Twenty gigabytes",
+    "0": "Twenty gigabytes",
+    "1": "Twenty-six for Qwen",
+    "2": "Twenty-two for Qwen"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "better cards do not fix vram",
+   "vo": "Forty-five point three tokens a second on a three thousand ninety. Eighty-three point two on a five-oh-ninety. Both cards have twenty-four gigabytes, so the faster card buys speed and never capacity, and no amount of speed makes a model fit. A worse model that fits is still usable, and a better model that spills is not.",
+   "items": [
+    [
+     "3090 \u00b7 24 GB",
+     "100",
+     "45.3",
+     "lime"
+    ],
+    [
+     "5090 \u00b7 24 GB",
+     "100",
+     "83.2",
+     "cyan"
+    ]
+   ],
+   "cues": {
+    "h": "Forty-five point three",
+    "0": "Forty-five point three",
+    "1": "Eighty-three point two"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the capacity is identical",
+   "vo": "Twenty-four gigabytes each. Same window, more speed. And if the cache is bigger, the window shrinks. There is no third option where you keep the window and the card and the model at once. Everything else on a spec sheet is a proxy.",
+   "items": [
+    [
+     "24 GB card",
+     "same window, more speed",
+     "good"
+    ],
+    [
+     "Bigger cache",
+     "window shrinks",
+     "hot"
+    ],
+    [
+     "No third option",
+     "capacity or nothing",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "Twenty-four gigabytes each",
+    "0": "Same window, more speed",
+    "1": "window shrinks",
+    "2": "no third option"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "the one real escape",
+   "vo": "Quantize harder, fit more context. The quality cost is real, and unmeasured here. A four-bit model at sixteen point six eight gigabytes becomes a three-bit or two-bit model that is dramatically smaller, and the cache shrinks with it, so you will fit more. You will also get a measurably worse model. And all three are the ones you will hear repeated in comment sections.",
+   "items": [
+    "Lower quantization fits more context",
+    "Quality cost is real and unmeasured here"
+   ],
+   "tape": "nothing is free",
+   "cues": {
+    "h": "Quantize harder",
+    "0": "Quantize harder",
+    "1": "quality cost",
+    "t": "quality cost"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the buying decision",
+   "vo": "Long context first, pick the efficient model. Card already owned, fit the model to the window. And two fifty-six K on one card is an efficiency question, not a speed question. Notice what is not on that list: the parameter count. That is the whole video in one line, and it is worth the price of a card.",
+   "items": [
+    [
+     "Long context first",
+     "pick the efficient model",
+     "good"
+    ],
+    [
+     "Card already owned",
+     "fit the model to the window",
+     "good"
+    ],
+    [
+     "256K on one card",
+     "efficiency, not speed",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "Long context first",
+    "0": "Long context first",
+    "1": "Card already owned",
+    "2": "efficiency question"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "three myths this kills",
+   "vo": "Parameters equal memory. Box numbers equal experience. And speed fixes capacity. Three myths, and all three are false, because parameters are quantized, boxes do not know your context length, and twenty-four gigabytes is twenty-four gigabytes whether it is fast or slow. Which is why the benchmark exists in the first place.",
+   "items": [
+    "Parameters equal memory",
+    "Box numbers equal experience",
+    "Speed fixes capacity"
+   ],
+   "tape": "all three are false",
+   "cues": {
+    "h": "Parameters equal memory",
+    "0": "Parameters equal memory",
+    "1": "Box numbers",
+    "2": "speed fixes capacity",
+    "t": "three are false"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the one sentence version",
+   "vo": "Glimmer does two fifty-six K in twenty gigabytes. Qwen needs thirty-four for the same window. And your card has twenty-four, fixed. If you remember one sentence, remember that one, because no amount of card speed changes the arithmetic. So measure your own machine before you spend anything.",
+   "items": [
+    [
+     "Glimmer 30B",
+     "256K in 20 GB",
+     "good"
+    ],
+    [
+     "Qwen 3.8",
+     "256K needs 34 GB",
+     "hot"
+    ],
+    [
+     "Your card",
+     "24 GB, fixed",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "Glimmer does",
+    "0": "Glimmer does",
+    "1": "Qwen needs",
+    "2": "your card has twenty-four"
+   }
+  },
+  {
+   "type": "close",
+   "art": "chip",
+   "head": "close",
+   "vo": "Three caveats before you spend anything. Glimmer was measured at four-bit medium and Qwen at four-bit small, so this is not a perfectly fair fight. These are hardware measurements, not quality measurements. And your desktop uses VRAM too, so leave a gigabyte for the compositor. And that is the forensic part, so see you in the next one.",
+   "line": "Leave a gigabyte for the desktop.",
+   "chips": [
+    "FILE",
+    "CACHE",
+    "CONTEXT"
+   ],
+   "cues": {
+    "h": "Three caveats",
+    "l": "Leave a gigabyte",
+    "0": "four-bit medium",
+    "1": "hardware measurements",
+    "w": "compositor",
+    "2": "compositor"
+   }
+  }
+ ],
+ "rate": "-13%"
+}

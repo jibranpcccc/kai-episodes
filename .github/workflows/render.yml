@@ -1,20 +1,21 @@
 name: render
 
-# Renders every episode in episodes/*.html to MP4.
-# One matrix job per episode, so 100 episodes render in parallel batches
-# instead of one long sequential job (the 6-hour limit).
+# Renders episode HTML files to MP4 on GitHub Cloud Runners.
+# Trigger on-demand via Actions -> render -> Run workflow (default: BYTE-VRAM).
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
     inputs:
+      episode:
+        description: "Specific episode to render (e.g. BYTE-VRAM, BYTE-LORA-FINAL, or 'all')"
+        required: false
+        default: "BYTE-VRAM"
       fps:
         description: "frames per second"
         default: "30"
       max_parallel:
         description: "episodes rendered at once"
-        default: "8"
+        default: "4"
 
 permissions:
   contents: read
@@ -32,8 +33,12 @@ jobs:
       - uses: actions/checkout@v4
       - id: ls
         run: |
-          LIST=$(ls episodes/*.html 2>/dev/null | xargs -r -n1 basename \
-                 | sed 's/\.html$//' | jq -R -s -c 'split("\n")|map(select(length>0))')
+          if [ -n "${{ github.event.inputs.episode }}" ] && [ "${{ github.event.inputs.episode }}" != "all" ]; then
+            LIST="[\"${{ github.event.inputs.episode }}\"]"
+          else
+            LIST=$(ls episodes/*.html 2>/dev/null | xargs -r -n1 basename \
+                   | sed 's/\.html$//' | jq -R -s -c 'split("\n")|map(select(length>0))')
+          fi
           [ -z "$LIST" ] && LIST='[]'
           echo "list=$LIST" >> "$GITHUB_OUTPUT"
           echo "found: $LIST"
@@ -45,7 +50,7 @@ jobs:
     timeout-minutes: 120
     strategy:
       fail-fast: false
-      max-parallel: ${{ fromJson(github.event.inputs.max_parallel || '8') }}
+      max-parallel: ${{ fromJson(github.event.inputs.max_parallel || '4') }}
       matrix:
         episode: ${{ fromJson(needs.discover.outputs.episodes) }}
 
@@ -55,31 +60,30 @@ jobs:
       - name: Install ffmpeg + fonts
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg fonts-inter
+          sudo apt-get install -y -qq ffmpeg fonts-inter fonts-noto-color-emoji
           ffmpeg -version | head -1
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install Playwright + Chromium
+      - name: Install Playwright + Dependencies
         run: |
           python -m pip install --upgrade pip -q
-          pip install playwright -q
+          pip install playwright numpy pillow edge-tts -q
           python -m playwright install --with-deps chromium
 
-      # gate: unresolved cues, audio/timeline drift, scene overlap,
-      # boundaries off a pause, missing fonts, empty frames
+      # gate: runs the 30-check FUSION gate or legacy static checks
       - name: Validate ${{ matrix.episode }}
-        run: python scripts/check.py --frames --only "${{ matrix.episode }}"
+        run: python -u scripts/check.py --only "${{ matrix.episode }}"
 
       - name: Render ${{ matrix.episode }}
         env:
           FPS: ${{ github.event.inputs.fps || '30' }}
           ONLY: ${{ matrix.episode }}
-        run: python scripts/render.py
+        run: python -u scripts/render.py
 
-      - name: Upload ${{ matrix.episode }}
+      - name: Upload ${{ matrix.episode }} MP4
         uses: actions/upload-artifact@v4
         with:
           name: video-${{ matrix.episode }}

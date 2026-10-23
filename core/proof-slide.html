@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="kai.css">
+<style>
+  body{margin:0;background:#000}
+  .g-wrap{position:absolute;left:170px;top:345px;width:470px;height:300px}
+  .g-lab{position:absolute;font:700 18px/1 var(--mono);color:#6E7270;letter-spacing:.06em}
+  .g-chip{position:absolute;left:146px;top:230px;font-size:17px;padding:10px 22px}
+  .g-stat{position:absolute;left:272px;top:648px;display:flex;align-items:baseline;gap:16px}
+  .g-stat .stat__num{font-size:96px;font-weight:900;letter-spacing:-.035em;color:var(--azure)}
+  .g-stat .stat__unit{font-size:40px;color:#6E7270}
+  .table{position:absolute;left:806px;top:346px;width:999px;display:flex;flex-direction:column;gap:22px}
+  .table .row__name{font-size:33px;letter-spacing:.04em}
+  .table .row__val{font-size:37px}
+  .tbl-tape{position:absolute;left:1395px;top:302px;z-index:5;font-size:24px;padding:10px 22px}
+</style></head>
+<body>
+<div class="stage" id="stage">
+
+  <div class="chip g-chip">4-BIT &middot; 128K CONTEXT</div>
+
+  <!-- ===== GAUGE : centre (235,235) r=200 in a 470x300 box ===== -->
+  <div class="g-wrap">
+    <svg width="470" height="300" viewBox="0 0 470 300" fill="none">
+      <!-- feet -->
+      <line x1="4" y1="235" x2="35" y2="235" stroke="#F6F6F4" stroke-width="4"/>
+      <line x1="435" y1="235" x2="466" y2="235" stroke="#F6F6F4" stroke-width="4"/>
+      <!-- arc -->
+      <path d="M35,235 A200,200 0 0 1 435,235" stroke="#F6F6F4" stroke-width="4"/>
+      <!-- blue range 58-78 -->
+      <path d="M289.6,46.6 A200,200 0 0 1 389.1,107.5" stroke="#2294D6" stroke-width="18" stroke-linecap="butt"/>
+      <!-- ticks every 12.5 -->
+      <g stroke="#F6F6F4" stroke-width="3" stroke-linecap="butt">
+        <line x1="35" y1="235" x2="55" y2="235"/>
+        <line x1="58.4" y1="158.4" x2="76" y2="166"/>
+        <line x1="93.6" y1="93.6" x2="107.3" y2="107.3"/>
+        <line x1="158.4" y1="58.4" x2="166" y2="76"/>
+        <line x1="235" y1="35" x2="235" y2="55"/>
+        <line x1="311.6" y1="58.4" x2="304" y2="76"/>
+        <line x1="376.4" y1="93.6" x2="362.7" y2="107.3"/>
+        <line x1="411.6" y1="158.4" x2="394" y2="166"/>
+        <line x1="435" y1="235" x2="415" y2="235"/>
+      </g>
+      <!-- needle @70 -->
+      <line x1="235" y1="235" x2="341.7" y2="105.5" stroke="#F6F6F4" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="235" cy="235" r="15" fill="#0D1110" stroke="#F6F6F4" stroke-width="5"/>
+      <circle cx="341.7" cy="105.5" r="7.5" fill="#F6F6F4"/>
+    </svg>
+    <div class="g-lab" style="left:8px;top:252px">0</div>
+    <div class="g-lab" style="left:62px;top:138px">25</div>
+    <div class="g-lab" style="left:214px;top:2px">50</div>
+    <div class="g-lab" style="left:372px;top:138px">75</div>
+    <div class="g-lab" style="left:414px;top:252px">100</div>
+  </div>
+
+  <div class="g-stat"><span class="stat__num">70</span><span class="stat__unit">tok/s</span></div>
+
+  <div class="table">
+    <div class="row row--sel">
+      <span class="cm"></span>
+      <span class="row__rank">#1</span>
+      <span class="row__name">4&times; V620 SERVER</span>
+      <span class="row__val" style="color:var(--azure)">60&ndash;70</span>
+    </div>
+    <div class="row"><span class="row__rank">#2</span><span class="row__name">STRIX HALO</span><span class="row__val">47&ndash;54</span></div>
+    <div class="row"><span class="row__rank">#3</span><span class="row__name">MAC STUDIO</span><span class="row__val">40</span></div>
+    <div class="row"><span class="row__rank">#4</span><span class="row__name">DGX SPARK</span><span class="row__val">27</span></div>
+    <div class="row"><span class="row__rank">#5</span><span class="row__name">RTX SPARK</span><span class="row__val">?</span></div>
+  </div>
+
+  <div class="tape tbl-tape">RAW OUTPUT</div>
+  <div class="wm">&lt;kaiexplainsyt&gt;</div>
+</div>
+</body></html>

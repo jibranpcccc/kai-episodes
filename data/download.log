@@ -1,0 +1,2134 @@
+START 2026-10-19T13:55:14.3002454+05:00  count=11
+=== [1/11] NA9D49kQFuU  13:55:14 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=NA9D49kQFuU
+[youtube] NA9D49kQFuU: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] NA9D49kQFuU: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] NA9D49kQFuU: Downloading m3u8 information
+[info] NA9D49kQFuU: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\NA9D49kQFuU.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\NA9D49kQFuU.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\NA9D49kQFuU.f399.mp4
+
+[download]   0.0% of   12.45MiB at   59.47KiB/s ETA 03:34
+[download]   0.0% of   12.45MiB at  167.35KiB/s ETA 01:16
+[download]   0.1% of   12.45MiB at  374.14KiB/s ETA 00:34
+[download]   0.1% of   12.45MiB at  752.10KiB/s ETA 00:16
+[download]   0.2% of   12.45MiB at  204.60KiB/s ETA 01:02
+[download]   0.5% of   12.45MiB at  242.62KiB/s ETA 00:52
+[download]   1.0% of   12.45MiB at  335.97KiB/s ETA 00:37
+[download]   2.0% of   12.45MiB at  490.71KiB/s ETA 00:25
+[download]   4.0% of   12.45MiB at  786.52KiB/s ETA 00:15
+[download]   8.0% of   12.45MiB at    1.25MiB/s ETA 00:09
+[download]  16.1% of   12.45MiB at    2.09MiB/s ETA 00:04
+[download]  32.1% of   12.45MiB at    3.55MiB/s ETA 00:02
+[download]  64.2% of   12.45MiB at    5.82MiB/s ETA 00:00
+[download]  79.4% of   12.45MiB at    6.77MiB/s ETA 00:00
+[download]  79.4% of   12.45MiB at  Unknown B/s ETA Unknown
+[download]  79.4% of   12.45MiB at    2.82MiB/s ETA 00:00  
+[download]  79.4% of   12.45MiB at    3.79MiB/s ETA 00:00
+[download]  79.5% of   12.45MiB at    3.82MiB/s ETA 00:00
+[download]  79.6% of   12.45MiB at    5.25MiB/s ETA 00:00
+[download]  79.9% of   12.45MiB at    8.04MiB/s ETA 00:00
+[download]  80.4% of   12.45MiB at    9.26MiB/s ETA 00:00
+[download]  81.4% of   12.45MiB at   11.73MiB/s ETA 00:00
+[download]  83.4% of   12.45MiB at   14.10MiB/s ETA 00:00
+[download]  87.4% of   12.45MiB at   15.92MiB/s ETA 00:00
+[download]  95.4% of   12.45MiB at   19.10MiB/s ETA 00:00
+[download] 100.0% of   12.45MiB at    6.66MiB/s ETA 00:00
+[download] 100% of   12.45MiB in 00:00:05 at 2.25MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\NA9D49kQFuU.f251.webm
+
+[download]   0.0% of   16.95MiB at  668.84KiB/s ETA 00:26
+[download]   0.0% of   16.95MiB at    1.07MiB/s ETA 00:15
+[download]   0.0% of   16.95MiB at    1.83MiB/s ETA 00:09
+[download]   0.1% of   16.95MiB at    2.93MiB/s ETA 00:05
+[download]   0.2% of   16.95MiB at    4.84MiB/s ETA 00:03
+[download]   0.4% of   16.95MiB at    8.35MiB/s ETA 00:02
+[download]   0.7% of   16.95MiB at   14.46MiB/s ETA 00:01
+[download]   1.5% of   16.95MiB at   21.17MiB/s ETA 00:00
+[download]   2.9% of   16.95MiB at   24.84MiB/s ETA 00:00
+[download]   5.9% of   16.95MiB at   23.37MiB/s ETA 00:00
+[download]  11.8% of   16.95MiB at   20.79MiB/s ETA 00:00
+[download]  23.6% of   16.95MiB at   22.54MiB/s ETA 00:00
+[download]  47.2% of   16.95MiB at   23.39MiB/s ETA 00:00
+[download]  58.2% of   16.95MiB at   22.23MiB/s ETA 00:00
+[download]  58.2% of   16.95MiB at  843.75KiB/s ETA 00:08
+[download]  58.2% of   16.95MiB at  983.42KiB/s ETA 00:07
+[download]  58.2% of   16.95MiB at    1.82MiB/s ETA 00:03
+[download]  58.3% of   16.95MiB at    3.02MiB/s ETA 00:02
+[download]  58.4% of   16.95MiB at    4.93MiB/s ETA 00:01
+[download]  58.6% of   16.95MiB at    8.20MiB/s ETA 00:00
+[download]  58.9% of   16.95MiB at   14.47MiB/s ETA 00:00
+[download]  59.7% of   16.95MiB at  111.02KiB/s ETA 01:03
+[download]  60.0% of   16.95MiB at  138.81KiB/s ETA 00:49
+[download]  60.8% of   16.95MiB at  193.85KiB/s ETA 00:35
+[download]  62.3% of   16.95MiB at  302.04KiB/s ETA 00:21
+[download]  65.2% of   16.95MiB at  514.10KiB/s ETA 00:11
+[download]  71.1% of   16.95MiB at  924.34KiB/s ETA 00:05
+[download]  82.9% of   16.95MiB at    1.65MiB/s ETA 00:01
+[download] 100.0% of   16.95MiB at    2.61MiB/s ETA 00:00
+[download] 100% of   16.95MiB in 00:00:03 at 5.06MiB/s   
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\NA9D49kQFuU.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\NA9D49kQFuU.f399.mp4 (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\NA9D49kQFuU.f251.webm (pass -k to keep)
+[exit 0] NA9D49kQFuU
+=== [2/11] 04ePeOyRN0k  13:55:30 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=04ePeOyRN0k
+[youtube] 04ePeOyRN0k: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] 04ePeOyRN0k: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] 04ePeOyRN0k: Downloading m3u8 information
+[info] 04ePeOyRN0k: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\04ePeOyRN0k.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\04ePeOyRN0k.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\04ePeOyRN0k.f399.mp4
+
+[download]   0.0% of    7.16MiB at  419.35KiB/s ETA 00:17
+[download]   0.0% of    7.16MiB at  836.57KiB/s ETA 00:08
+[download]   0.1% of    7.16MiB at    1.49MiB/s ETA 00:04
+[download]   0.2% of    7.16MiB at    2.56MiB/s ETA 00:02
+[download]   0.4% of    7.16MiB at    4.45MiB/s ETA 00:01
+[download]   0.9% of    7.16MiB at    4.06MiB/s ETA 00:01
+[download]   1.7% of    7.16MiB at    5.18MiB/s ETA 00:01
+[download]   3.5% of    7.16MiB at    5.63MiB/s ETA 00:01
+[download]   7.0% of    7.16MiB at    9.40MiB/s ETA 00:00
+[download]  14.0% of    7.16MiB at   14.25MiB/s ETA 00:00
+[download]  27.9% of    7.16MiB at   11.23MiB/s ETA 00:00
+[download]  55.9% of    7.16MiB at   12.87MiB/s ETA 00:00
+[download] 100.0% of    7.16MiB at   13.95MiB/s ETA 00:00
+[download] 100% of    7.16MiB in 00:00:00 at 9.20MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\04ePeOyRN0k.f251.webm
+
+[download]   0.0% of   14.05MiB at  707.90KiB/s ETA 00:20
+[download]   0.0% of   14.05MiB at    1.20MiB/s ETA 00:11
+[download]   0.0% of   14.05MiB at    2.12MiB/s ETA 00:06
+[download]   0.1% of   14.05MiB at    1.66MiB/s ETA 00:08
+[download]   0.2% of   14.05MiB at    2.80MiB/s ETA 00:05
+[download]   0.4% of   14.05MiB at    4.31MiB/s ETA 00:03
+[download]   0.9% of   14.05MiB at    7.19MiB/s ETA 00:01
+[download]   1.8% of   14.05MiB at   12.05MiB/s ETA 00:01
+[download]   3.6% of   14.05MiB at   20.35MiB/s ETA 00:00
+[download]   7.1% of   14.05MiB at   15.71MiB/s ETA 00:00
+[download]  14.2% of   14.05MiB at   14.37MiB/s ETA 00:00
+[download]  28.5% of   14.05MiB at   19.05MiB/s ETA 00:00
+[download]  57.0% of   14.05MiB at   19.52MiB/s ETA 00:00
+[download]  69.4% of   14.05MiB at   16.44MiB/s ETA 00:00
+[download]  69.4% of   14.05MiB at  198.94KiB/s ETA 00:22
+[download]  69.5% of   14.05MiB at  491.58KiB/s ETA 00:08
+[download]  69.5% of   14.05MiB at  990.06KiB/s ETA 00:04
+[download]  69.5% of   14.05MiB at    1.82MiB/s ETA 00:02
+[download]  69.7% of   14.05MiB at    3.32MiB/s ETA 00:01
+[download]  69.9% of   14.05MiB at    5.98MiB/s ETA 00:00
+[download]  70.3% of   14.05MiB at   10.93MiB/s ETA 00:00
+[download]  71.2% of   14.05MiB at   13.18MiB/s ETA 00:00
+[download]  73.0% of   14.05MiB at   11.66MiB/s ETA 00:00
+[download]  76.5% of   14.05MiB at   11.64MiB/s ETA 00:00
+[download]  83.7% of   14.05MiB at   12.50MiB/s ETA 00:00
+[download]  97.9% of   14.05MiB at   17.53MiB/s ETA 00:00
+[download] 100.0% of   14.05MiB at    9.17MiB/s ETA 00:00
+[download] 100% of   14.05MiB in 00:00:01 at 11.81MiB/s  
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\04ePeOyRN0k.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\04ePeOyRN0k.f399.mp4 (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\04ePeOyRN0k.f251.webm (pass -k to keep)
+[exit 0] 04ePeOyRN0k
+=== [3/11] IRyiP_U7RuA  13:55:39 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=IRyiP_U7RuA
+[youtube] IRyiP_U7RuA: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] IRyiP_U7RuA: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] IRyiP_U7RuA: Downloading m3u8 information
+[info] IRyiP_U7RuA: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\IRyiP_U7RuA.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\IRyiP_U7RuA.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\IRyiP_U7RuA.f399.mp4
+
+[download]   0.0% of    4.93MiB at  240.13KiB/s ETA 00:21
+[download]   0.1% of    4.93MiB at  562.26KiB/s ETA 00:08
+[download]   0.1% of    4.93MiB at    1.11MiB/s ETA 00:04
+[download]   0.3% of    4.93MiB at    2.02MiB/s ETA 00:02
+[download]   0.6% of    4.93MiB at    2.54MiB/s ETA 00:01
+[download]   1.2% of    4.93MiB at    3.36MiB/s ETA 00:01
+[download]   2.5% of    4.93MiB at    5.66MiB/s ETA 00:00
+[download]   5.1% of    4.93MiB at    8.22MiB/s ETA 00:00
+[download]  10.1% of    4.93MiB at    8.04MiB/s ETA 00:00
+[download]  20.3% of    4.93MiB at   11.59MiB/s ETA 00:00
+[download]  40.5% of    4.93MiB at    3.77MiB/s ETA 00:00
+[download]  81.1% of    4.93MiB at    4.78MiB/s ETA 00:00
+[download] 100.0% of    4.93MiB at    4.46MiB/s ETA 00:00
+[download] 100% of    4.93MiB in 00:00:01 at 2.60MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\IRyiP_U7RuA.f251.webm
+
+[download]   0.0% of   14.89MiB at  145.17KiB/s ETA 01:45
+[download]   0.0% of   14.89MiB at  378.62KiB/s ETA 00:40
+[download]   0.0% of   14.89MiB at  808.33KiB/s ETA 00:18
+[download]   0.1% of   14.89MiB at    1.49MiB/s ETA 00:09
+[download]   0.2% of   14.89MiB at    2.76MiB/s ETA 00:05
+[download]   0.4% of   14.89MiB at    4.89MiB/s ETA 00:03
+[download]   0.8% of   14.89MiB at    8.65MiB/s ETA 00:01
+[download]   1.7% of   14.89MiB at    7.37MiB/s ETA 00:01
+[download]   3.4% of   14.89MiB at    7.65MiB/s ETA 00:01
+[download]   6.7% of   14.89MiB at   11.74MiB/s ETA 00:01
+[download]  13.4% of   14.89MiB at   14.85MiB/s ETA 00:00
+[download]  26.9% of   14.89MiB at   16.19MiB/s ETA 00:00
+[download]  53.7% of   14.89MiB at    2.78MiB/s ETA 00:02
+[download]  66.1% of   14.89MiB at    3.31MiB/s ETA 00:01
+[download]  66.1% of   14.89MiB at  Unknown B/s ETA Unknown
+[download]  66.1% of   14.89MiB at  Unknown B/s ETA Unknown
+[download]  66.2% of   14.89MiB at    4.38MiB/s ETA 00:01  
+[download]  66.2% of   14.89MiB at    6.42MiB/s ETA 00:00
+[download]  66.3% of   14.89MiB at    9.52MiB/s ETA 00:00
+[download]  66.5% of   14.89MiB at   15.45MiB/s ETA 00:00
+[download]  67.0% of   14.89MiB at   24.48MiB/s ETA 00:00
+[download]  67.8% of   14.89MiB at  644.90KiB/s ETA 00:07
+[download]  69.5% of   14.89MiB at    1.15MiB/s ETA 00:03
+[download]  72.8% of   14.89MiB at    2.12MiB/s ETA 00:01
+[download]  79.5% of   14.89MiB at    3.72MiB/s ETA 00:00
+[download]  93.0% of   14.89MiB at    6.45MiB/s ETA 00:00
+[download] 100.0% of   14.89MiB at    5.37MiB/s ETA 00:00
+[download] 100% of   14.89MiB in 00:00:04 at 3.70MiB/s   
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\IRyiP_U7RuA.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\IRyiP_U7RuA.f251.webm (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\IRyiP_U7RuA.f399.mp4 (pass -k to keep)
+[exit 0] IRyiP_U7RuA
+=== [4/11] i9mRnbdDYxk  13:55:53 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=i9mRnbdDYxk
+[youtube] i9mRnbdDYxk: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] i9mRnbdDYxk: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] i9mRnbdDYxk: Downloading m3u8 information
+[info] i9mRnbdDYxk: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\i9mRnbdDYxk.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\i9mRnbdDYxk.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\i9mRnbdDYxk.f399.mp4
+
+[download]   0.0% of   10.67MiB at  729.19KiB/s ETA 00:15
+[download]   0.0% of   10.67MiB at    1.21MiB/s ETA 00:08
+[download]   0.1% of   10.67MiB at    2.10MiB/s ETA 00:05
+[download]   0.1% of   10.67MiB at    3.31MiB/s ETA 00:03
+[download]   0.3% of   10.67MiB at    5.23MiB/s ETA 00:02
+[download]   0.6% of   10.67MiB at    5.16MiB/s ETA 00:02
+[download]   1.2% of   10.67MiB at    5.86MiB/s ETA 00:01
+[download]   2.3% of   10.67MiB at    4.32MiB/s ETA 00:02
+[download]   4.7% of   10.67MiB at    5.68MiB/s ETA 00:01
+[download]   9.4% of   10.67MiB at    6.92MiB/s ETA 00:01
+[download]  18.7% of   10.67MiB at    8.82MiB/s ETA 00:00
+[download]  37.5% of   10.67MiB at   11.08MiB/s ETA 00:00
+[download]  75.0% of   10.67MiB at   13.80MiB/s ETA 00:00
+[download]  90.0% of   10.67MiB at   14.31MiB/s ETA 00:00
+[download]  90.0% of   10.67MiB at  192.26KiB/s ETA 00:05
+[download]  90.0% of   10.67MiB at  487.16KiB/s ETA 00:02
+[download]  90.1% of   10.67MiB at 1012.87KiB/s ETA 00:01
+[download]  90.2% of   10.67MiB at    1.92MiB/s ETA 00:00
+[download]  90.3% of   10.67MiB at    3.58MiB/s ETA 00:00
+[download]  90.6% of   10.67MiB at    6.61MiB/s ETA 00:00
+[download]  91.2% of   10.67MiB at   11.98MiB/s ETA 00:00
+[download]  92.4% of   10.67MiB at   21.24MiB/s ETA 00:00
+[download]  94.7% of   10.67MiB at    2.91MiB/s ETA 00:00
+[download]  99.4% of   10.67MiB at    4.87MiB/s ETA 00:00
+[download] 100.0% of   10.67MiB at    5.11MiB/s ETA 00:00
+[download] 100% of   10.67MiB in 00:00:02 at 4.28MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\i9mRnbdDYxk.f251.webm
+
+[download]   0.0% of   16.90MiB at  622.67KiB/s ETA 00:28
+[download]   0.0% of   16.90MiB at    1.17MiB/s ETA 00:14
+[download]   0.0% of   16.90MiB at    2.10MiB/s ETA 00:08
+[download]   0.1% of   16.90MiB at    3.40MiB/s ETA 00:04
+[download]   0.2% of   16.90MiB at    5.70MiB/s ETA 00:02
+[download]   0.4% of   16.90MiB at    8.64MiB/s ETA 00:01
+[download]   0.7% of   16.90MiB at   12.10MiB/s ETA 00:01
+[download]   1.5% of   16.90MiB at   15.64MiB/s ETA 00:01
+[download]   3.0% of   16.90MiB at   15.37MiB/s ETA 00:01
+[download]   5.9% of   16.90MiB at   14.98MiB/s ETA 00:01
+[download]  11.8% of   16.90MiB at   14.11MiB/s ETA 00:01
+[download]  23.7% of   16.90MiB at   18.61MiB/s ETA 00:00
+[download]  47.3% of   16.90MiB at   19.20MiB/s ETA 00:00
+[download]  59.1% of   16.90MiB at   17.57MiB/s ETA 00:00
+[download]  59.1% of   16.90MiB at   13.96KiB/s ETA 08:27
+[download]  59.1% of   16.90MiB at   41.26KiB/s ETA 02:51
+[download]  59.1% of   16.90MiB at   95.30KiB/s ETA 01:14
+[download]  59.2% of   16.90MiB at  202.02KiB/s ETA 00:34
+[download]  59.2% of   16.90MiB at   90.53KiB/s ETA 01:17
+[download]  59.4% of   16.90MiB at  110.16KiB/s ETA 01:03
+[download]  59.8% of   16.90MiB at  155.35KiB/s ETA 00:44
+[download]  60.5% of   16.90MiB at  229.37KiB/s ETA 00:29
+[download]  62.0% of   16.90MiB at  368.59KiB/s ETA 00:17
+[download]  65.0% of   16.90MiB at  601.17KiB/s ETA 00:10
+[download]  70.9% of   16.90MiB at 1003.75KiB/s ETA 00:05
+[download]  82.7% of   16.90MiB at    1.68MiB/s ETA 00:01
+[download] 100.0% of   16.90MiB at    2.59MiB/s ETA 00:00
+[download] 100% of   16.90MiB in 00:00:04 at 3.74MiB/s   
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\i9mRnbdDYxk.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\i9mRnbdDYxk.f399.mp4 (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\i9mRnbdDYxk.f251.webm (pass -k to keep)
+[exit 0] i9mRnbdDYxk
+=== [5/11] 3R7yba577uA  13:56:09 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=3R7yba577uA
+[youtube] 3R7yba577uA: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] 3R7yba577uA: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] 3R7yba577uA: Downloading m3u8 information
+[info] 3R7yba577uA: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\3R7yba577uA.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\3R7yba577uA.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\3R7yba577uA.f399.mp4
+
+[download]   0.0% of    8.03MiB at  Unknown B/s ETA Unknown
+[download]   0.0% of    8.03MiB at    1.78MiB/s ETA 00:04  
+[download]   0.1% of    8.03MiB at    3.25MiB/s ETA 00:02
+[download]   0.2% of    8.03MiB at    5.08MiB/s ETA 00:01
+[download]   0.4% of    8.03MiB at    4.39MiB/s ETA 00:01
+[download]   0.8% of    8.03MiB at    5.44MiB/s ETA 00:01
+[download]   1.5% of    8.03MiB at    5.82MiB/s ETA 00:01
+[download]   3.1% of    8.03MiB at    8.15MiB/s ETA 00:00
+[download]   6.2% of    8.03MiB at    8.88MiB/s ETA 00:00
+[download]  12.4% of    8.03MiB at    9.21MiB/s ETA 00:00
+[download]  24.9% of    8.03MiB at   10.36MiB/s ETA 00:00
+[download]  49.8% of    8.03MiB at   12.23MiB/s ETA 00:00
+[download]  99.7% of    8.03MiB at   14.53MiB/s ETA 00:00
+[download] 100.0% of    8.03MiB at   14.55MiB/s ETA 00:00
+[download] 100% of    8.03MiB in 00:00:01 at 8.01MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\3R7yba577uA.f251.webm
+
+[download]   0.0% of   18.01MiB at  Unknown B/s ETA Unknown
+[download]   0.0% of   18.01MiB at    2.35MiB/s ETA 00:07  
+[download]   0.0% of   18.01MiB at    4.31MiB/s ETA 00:04
+[download]   0.1% of   18.01MiB at    6.19MiB/s ETA 00:02
+[download]   0.2% of   18.01MiB at   10.40MiB/s ETA 00:01
+[download]   0.3% of   18.01MiB at   17.54MiB/s ETA 00:01
+[download]   0.7% of   18.01MiB at   29.64MiB/s ETA 00:00
+[download]   1.4% of   18.01MiB at   18.54MiB/s ETA 00:00
+[download]   2.8% of   18.01MiB at   16.56MiB/s ETA 00:01
+[download]   5.5% of   18.01MiB at   15.50MiB/s ETA 00:01
+[download]  11.1% of   18.01MiB at    6.58MiB/s ETA 00:02
+[download]  22.2% of   18.01MiB at    8.91MiB/s ETA 00:01
+[download]  44.4% of   18.01MiB at    7.87MiB/s ETA 00:01
+[download]  53.2% of   18.01MiB at    7.40MiB/s ETA 00:01
+[download]  53.2% of   18.01MiB at  Unknown B/s ETA Unknown
+[download]  53.2% of   18.01MiB at    2.34MiB/s ETA 00:03  
+[download]  53.2% of   18.01MiB at    3.74MiB/s ETA 00:02
+[download]  53.2% of   18.01MiB at    6.50MiB/s ETA 00:01
+[download]  53.3% of   18.01MiB at   10.21MiB/s ETA 00:00
+[download]  53.5% of   18.01MiB at   17.57MiB/s ETA 00:00
+[download]  53.9% of   18.01MiB at   15.55MiB/s ETA 00:00
+[download]  54.5% of   18.01MiB at   19.23MiB/s ETA 00:00
+[download]  55.9% of   18.01MiB at    2.44MiB/s ETA 00:03
+[download]  58.7% of   18.01MiB at    4.18MiB/s ETA 00:01
+[download]  64.3% of   18.01MiB at    6.48MiB/s ETA 00:00
+[download]  75.4% of   18.01MiB at   10.06MiB/s ETA 00:00
+[download]  97.6% of   18.01MiB at    6.71MiB/s ETA 00:00
+[download] 100.0% of   18.01MiB at    6.93MiB/s ETA 00:00
+[download] 100% of   18.01MiB in 00:00:02 at 6.51MiB/s   
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\3R7yba577uA.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\3R7yba577uA.f399.mp4 (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\3R7yba577uA.f251.webm (pass -k to keep)
+[exit 0] 3R7yba577uA
+=== [6/11] L4UV6b2Xc64  13:56:19 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=L4UV6b2Xc64
+[youtube] L4UV6b2Xc64: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] L4UV6b2Xc64: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] L4UV6b2Xc64: Downloading m3u8 information
+[info] L4UV6b2Xc64: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\L4UV6b2Xc64.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\L4UV6b2Xc64.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\L4UV6b2Xc64.f399.mp4
+
+[download]   0.0% of    6.62MiB at  468.22KiB/s ETA 00:14
+[download]   0.0% of    6.62MiB at    1.08MiB/s ETA 00:06
+[download]   0.1% of    6.62MiB at    2.22MiB/s ETA 00:02
+[download]   0.2% of    6.62MiB at    4.10MiB/s ETA 00:01
+[download]   0.5% of    6.62MiB at    5.51MiB/s ETA 00:01
+[download]   0.9% of    6.62MiB at    7.59MiB/s ETA 00:00
+[download]   1.9% of    6.62MiB at    9.55MiB/s ETA 00:00
+[download]   3.8% of    6.62MiB at   10.70MiB/s ETA 00:00
+[download]   7.5% of    6.62MiB at   13.86MiB/s ETA 00:00
+[download]  15.1% of    6.62MiB at   14.17MiB/s ETA 00:00
+[download]  30.2% of    6.62MiB at    7.42MiB/s ETA 00:00
+[download]  60.4% of    6.62MiB at    9.04MiB/s ETA 00:00
+[download] 100.0% of    6.62MiB at   11.06MiB/s ETA 00:00
+[download] 100% of    6.62MiB in 00:00:00 at 6.75MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\L4UV6b2Xc64.f251.webm
+
+[download]   0.0% of   14.08MiB at  834.69KiB/s ETA 00:17
+[download]   0.0% of   14.08MiB at    1.67MiB/s ETA 00:08
+[download]   0.0% of   14.08MiB at    3.25MiB/s ETA 00:04
+[download]   0.1% of   14.08MiB at    5.01MiB/s ETA 00:02
+[download]   0.2% of   14.08MiB at    8.67MiB/s ETA 00:01
+[download]   0.4% of   14.08MiB at   14.32MiB/s ETA 00:00
+[download]   0.9% of   14.08MiB at   23.72MiB/s ETA 00:00
+[download]   1.8% of   14.08MiB at   11.79MiB/s ETA 00:01
+[download]   3.5% of   14.08MiB at   18.63MiB/s ETA 00:00
+[download]   7.1% of   14.08MiB at   16.18MiB/s ETA 00:00
+[download]  14.2% of   14.08MiB at   15.78MiB/s ETA 00:00
+[download]  28.4% of   14.08MiB at   14.28MiB/s ETA 00:00
+[download]  56.8% of   14.08MiB at   15.30MiB/s ETA 00:00
+[download]  69.4% of   14.08MiB at   14.49MiB/s ETA 00:00
+[download]  69.4% of   14.08MiB at  Unknown B/s ETA Unknown
+[download]  69.4% of   14.08MiB at  Unknown B/s ETA Unknown
+[download]  69.4% of   14.08MiB at  Unknown B/s ETA Unknown
+[download]  69.5% of   14.08MiB at   11.69MiB/s ETA 00:00  
+[download]  69.6% of   14.08MiB at   18.02MiB/s ETA 00:00
+[download]  69.8% of   14.08MiB at   29.70MiB/s ETA 00:00
+[download]  70.3% of   14.08MiB at   29.79MiB/s ETA 00:00
+[download]  71.2% of   14.08MiB at   24.87MiB/s ETA 00:00
+[download]  72.9% of   14.08MiB at   29.45MiB/s ETA 00:00
+[download]  76.5% of   14.08MiB at   23.66MiB/s ETA 00:00
+[download]  83.6% of   14.08MiB at   24.56MiB/s ETA 00:00
+[download]  97.8% of   14.08MiB at   13.66MiB/s ETA 00:00
+[download] 100.0% of   14.08MiB at   13.52MiB/s ETA 00:00
+[download] 100% of   14.08MiB in 00:00:01 at 12.22MiB/s  
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\L4UV6b2Xc64.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\L4UV6b2Xc64.f399.mp4 (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\L4UV6b2Xc64.f251.webm (pass -k to keep)
+[exit 0] L4UV6b2Xc64
+=== [7/11] IMVjEsKX5UQ  13:56:28 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=IMVjEsKX5UQ
+[youtube] IMVjEsKX5UQ: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] IMVjEsKX5UQ: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] IMVjEsKX5UQ: Downloading m3u8 information
+[info] IMVjEsKX5UQ: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\IMVjEsKX5UQ.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\IMVjEsKX5UQ.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\IMVjEsKX5UQ.f399.mp4
+
+[download]   0.0% of   11.87MiB at  794.38KiB/s ETA 00:15
+[download]   0.0% of   11.87MiB at    1.30MiB/s ETA 00:09
+[download]   0.1% of   11.87MiB at    2.27MiB/s ETA 00:05
+[download]   0.1% of   11.87MiB at    3.65MiB/s ETA 00:03
+[download]   0.3% of   11.87MiB at    5.40MiB/s ETA 00:02
+[download]   0.5% of   11.87MiB at    5.92MiB/s ETA 00:02
+[download]   1.0% of   11.87MiB at    8.10MiB/s ETA 00:01
+[download]   2.1% of   11.87MiB at   10.78MiB/s ETA 00:01
+[download]   4.2% of   11.87MiB at   15.04MiB/s ETA 00:00
+[download]   8.4% of   11.87MiB at   19.42MiB/s ETA 00:00
+[download]  16.8% of   11.87MiB at   20.29MiB/s ETA 00:00
+[download]  33.7% of   11.87MiB at   14.94MiB/s ETA 00:00
+[download]  67.4% of   11.87MiB at   17.59MiB/s ETA 00:00
+[download]  84.2% of   11.87MiB at   18.18MiB/s ETA 00:00
+[download]  84.2% of   11.87MiB at  Unknown B/s ETA Unknown
+[download]  84.2% of   11.87MiB at   48.08KiB/s ETA 00:39  
+[download]  84.2% of   11.87MiB at  109.93KiB/s ETA 00:17
+[download]  84.3% of   11.87MiB at  231.45KiB/s ETA 00:08
+[download]  84.4% of   11.87MiB at  460.96KiB/s ETA 00:04
+[download]  84.7% of   11.87MiB at  896.68KiB/s ETA 00:02
+[download]  85.2% of   11.87MiB at    1.72MiB/s ETA 00:01
+[download]  86.3% of   11.87MiB at    3.37MiB/s ETA 00:00
+[download]  88.4% of   11.87MiB at    6.23MiB/s ETA 00:00
+[download]  92.6% of   11.87MiB at   12.07MiB/s ETA 00:00
+[download] 100.0% of   11.87MiB at    5.67MiB/s ETA 00:00
+[download] 100% of   11.87MiB in 00:00:01 at 11.58MiB/s  
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\IMVjEsKX5UQ.f251.webm
+
+[download]   0.0% of   13.77MiB at  871.09KiB/s ETA 00:16
+[download]   0.0% of   13.77MiB at    1.46MiB/s ETA 00:09
+[download]   0.0% of   13.77MiB at    2.53MiB/s ETA 00:05
+[download]   0.1% of   13.77MiB at    4.00MiB/s ETA 00:03
+[download]   0.2% of   13.77MiB at    6.33MiB/s ETA 00:02
+[download]   0.4% of   13.77MiB at   10.27MiB/s ETA 00:01
+[download]   0.9% of   13.77MiB at   16.93MiB/s ETA 00:00
+[download]   1.8% of   13.77MiB at   27.12MiB/s ETA 00:00
+[download]   3.6% of   13.77MiB at   26.05MiB/s ETA 00:00
+[download]   7.3% of   13.77MiB at   29.02MiB/s ETA 00:00
+[download]  14.5% of   13.77MiB at   25.12MiB/s ETA 00:00
+[download]  29.0% of   13.77MiB at   23.52MiB/s ETA 00:00
+[download]  58.1% of   13.77MiB at   25.31MiB/s ETA 00:00
+[download]  72.4% of   13.77MiB at   24.81MiB/s ETA 00:00
+[download]  72.4% of   13.77MiB at  576.77KiB/s ETA 00:06
+[download]  72.4% of   13.77MiB at  876.86KiB/s ETA 00:04
+[download]  72.4% of   13.77MiB at    1.41MiB/s ETA 00:02
+[download]  72.5% of   13.77MiB at    2.14MiB/s ETA 00:01
+[download]  72.6% of   13.77MiB at    3.46MiB/s ETA 00:01
+[download]  72.8% of   13.77MiB at    5.72MiB/s ETA 00:00
+[download]  73.3% of   13.77MiB at    9.81MiB/s ETA 00:00
+[download]  74.2% of   13.77MiB at   16.31MiB/s ETA 00:00
+[download]  76.0% of   13.77MiB at   24.77MiB/s ETA 00:00
+[download]  79.6% of   13.77MiB at   23.07MiB/s ETA 00:00
+[download]  86.9% of   13.77MiB at   26.05MiB/s ETA 00:00
+[download] 100.0% of   13.77MiB at   22.46MiB/s ETA 00:00
+[download] 100% of   13.77MiB in 00:00:00 at 19.88MiB/s  
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\IMVjEsKX5UQ.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\IMVjEsKX5UQ.f251.webm (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\IMVjEsKX5UQ.f399.mp4 (pass -k to keep)
+[exit 0] IMVjEsKX5UQ
+=== [8/11] 1--PzaHafAU  13:56:48 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=1--PzaHafAU
+[youtube] 1--PzaHafAU: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] 1--PzaHafAU: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] 1--PzaHafAU: Downloading m3u8 information
+[info] 1--PzaHafAU: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\1--PzaHafAU.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\1--PzaHafAU.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\1--PzaHafAU.f399.mp4
+
+[download]   0.0% of    5.48MiB at  587.93KiB/s ETA 00:09
+[download]   0.1% of    5.48MiB at 1022.34KiB/s ETA 00:05
+[download]   0.1% of    5.48MiB at    1.72MiB/s ETA 00:03
+[download]   0.3% of    5.48MiB at    2.74MiB/s ETA 00:02
+[download]   0.6% of    5.48MiB at    4.70MiB/s ETA 00:01
+[download]   1.1% of    5.48MiB at    8.25MiB/s ETA 00:00
+[download]   2.3% of    5.48MiB at    9.23MiB/s ETA 00:00
+[download]   4.5% of    5.48MiB at   12.16MiB/s ETA 00:00
+[download]   9.1% of    5.48MiB at   14.96MiB/s ETA 00:00
+[download]  18.2% of    5.48MiB at   15.05MiB/s ETA 00:00
+[download]  36.5% of    5.48MiB at   13.49MiB/s ETA 00:00
+[download]  73.0% of    5.48MiB at   12.53MiB/s ETA 00:00
+[download] 100.0% of    5.48MiB at   10.20MiB/s ETA 00:00
+[download] 100% of    5.48MiB in 00:00:00 at 5.92MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\1--PzaHafAU.f251.webm
+
+[download]   0.0% of   15.14MiB at  201.53KiB/s ETA 01:17
+[download]   0.0% of   15.14MiB at  484.42KiB/s ETA 00:32
+[download]   0.0% of   15.14MiB at 1014.10KiB/s ETA 00:15
+[download]   0.1% of   15.14MiB at    1.78MiB/s ETA 00:08
+[download]   0.2% of   15.14MiB at    3.07MiB/s ETA 00:04
+[download]   0.4% of   15.14MiB at    5.60MiB/s ETA 00:02
+[download]   0.8% of   15.14MiB at    9.77MiB/s ETA 00:01
+[download]   1.6% of   15.14MiB at   13.28MiB/s ETA 00:01
+[download]   3.3% of   15.14MiB at   12.78MiB/s ETA 00:01
+[download]   6.6% of   15.14MiB at   13.78MiB/s ETA 00:01
+[download]  13.2% of   15.14MiB at   14.31MiB/s ETA 00:00
+[download]  26.4% of   15.14MiB at    7.13MiB/s ETA 00:01
+[download]  52.8% of   15.14MiB at    6.70MiB/s ETA 00:01
+[download]  65.1% of   15.14MiB at    5.86MiB/s ETA 00:00
+[download]  65.1% of   15.14MiB at  Unknown B/s ETA Unknown
+[download]  65.2% of   15.14MiB at    1.86MiB/s ETA 00:02  
+[download]  65.2% of   15.14MiB at    2.71MiB/s ETA 00:01
+[download]  65.2% of   15.14MiB at    4.32MiB/s ETA 00:01
+[download]  65.3% of   15.14MiB at    7.03MiB/s ETA 00:00
+[download]  65.5% of   15.14MiB at   11.72MiB/s ETA 00:00
+[download]  66.0% of   15.14MiB at   16.19MiB/s ETA 00:00
+[download]  66.8% of   15.14MiB at   27.73MiB/s ETA 00:00
+[download]  68.4% of   15.14MiB at   21.49MiB/s ETA 00:00
+[download]  71.7% of   15.14MiB at   24.46MiB/s ETA 00:00
+[download]  78.3% of   15.14MiB at   25.39MiB/s ETA 00:00
+[download]  91.5% of   15.14MiB at    6.33MiB/s ETA 00:00
+[download] 100.0% of   15.14MiB at    7.65MiB/s ETA 00:00
+[download] 100% of   15.14MiB in 00:00:02 at 5.58MiB/s   
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\1--PzaHafAU.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\1--PzaHafAU.f399.mp4 (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\1--PzaHafAU.f251.webm (pass -k to keep)
+[exit 0] 1--PzaHafAU
+=== [9/11] yJCHNdQ8sLs  13:57:30 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=yJCHNdQ8sLs
+[youtube] yJCHNdQ8sLs: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] yJCHNdQ8sLs: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] yJCHNdQ8sLs: Downloading m3u8 information
+[info] yJCHNdQ8sLs: Downloading 1 format(s): 616+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\yJCHNdQ8sLs.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\yJCHNdQ8sLs.info.json
+[hlsnative] Downloading m3u8 manifest
+[hlsnative] Total fragments: 148
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\yJCHNdQ8sLs.f616.mp4
+
+[download] 100.0% of ~   712.00B at    314.10B/s ETA Unknown (frag 0/148)
+[download]   0.3% of ~ 205.81KiB at    314.10B/s ETA Unknown (frag 1/148)
+[download]   3.3% of ~  51.45KiB at    314.10B/s ETA Unknown (frag 1/148)
+[download]   2.9% of ~ 125.45KiB at    314.10B/s ETA Unknown (frag 1/148)
+[download]   2.8% of ~ 273.45KiB at    314.10B/s ETA Unknown (frag 1/148)
+[download]   2.8% of ~ 569.45KiB at    314.10B/s ETA Unknown (frag 1/148)
+[download]   2.7% of ~   1.13MiB at    314.10B/s ETA Unknown (frag 1/148)
+[download]   2.7% of ~   2.29MiB at    314.10B/s ETA Unknown (frag 1/148)
+[download]   2.7% of ~   4.60MiB at    314.10B/s ETA Unknown (frag 1/148)
+[download]   2.1% of ~   9.23MiB at   82.46KiB/s ETA Unknown (frag 1/148)
+[download]   0.7% of ~  28.90MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.0% of ~   9.65MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.0% of ~   9.70MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.1% of ~   9.79MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.1% of ~   9.99MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.2% of ~  10.37MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.3% of ~  11.14MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.5% of ~  12.69MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.8% of ~  15.77MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   2.2% of ~  21.94MiB at   82.46KiB/s ETA Unknown (frag 2/148)
+[download]   1.3% of ~  37.81MiB at   82.46KiB/s ETA Unknown (frag 3/148)
+[download]   2.7% of ~  17.80MiB at  240.59KiB/s ETA Unknown (frag 3/148)
+[download]   2.7% of ~  17.83MiB at  240.59KiB/s ETA Unknown (frag 3/148)
+[download]   2.7% of ~  17.91MiB at  240.59KiB/s ETA Unknown (frag 3/148)
+[download]   2.7% of ~  18.05MiB at  240.59KiB/s ETA Unknown (frag 3/148)
+[download]   2.8% of ~  18.34MiB at  240.59KiB/s ETA Unknown (frag 3/148)
+[download]   2.9% of ~  18.92MiB at  240.59KiB/s ETA Unknown (frag 3/148)
+[download]   2.9% of ~  20.07MiB at  240.59KiB/s ETA Unknown (frag 3/148)
+[download]   2.3% of ~  25.17MiB at  240.59KiB/s ETA Unknown (frag 4/148)
+[download]   3.4% of ~  17.19MiB at  369.56KiB/s ETA Unknown (frag 4/148)
+[download]   3.4% of ~  17.22MiB at  369.56KiB/s ETA Unknown (frag 4/148)
+[download]   3.4% of ~  17.27MiB at  369.56KiB/s ETA Unknown (frag 4/148)
+[download]   3.4% of ~  17.39MiB at  369.56KiB/s ETA Unknown (frag 4/148)
+[download]   3.5% of ~  17.62MiB at  369.56KiB/s ETA Unknown (frag 4/148)
+[download]   3.5% of ~  18.08MiB at  369.56KiB/s ETA Unknown (frag 4/148)
+[download]   3.1% of ~  20.20MiB at  369.56KiB/s ETA Unknown (frag 5/148)
+[download]   4.1% of ~  15.58MiB at  463.39KiB/s ETA Unknown (frag 5/148)
+[download]   4.1% of ~  15.60MiB at  463.39KiB/s ETA Unknown (frag 5/148)
+[download]   4.1% of ~  15.65MiB at  463.39KiB/s ETA Unknown (frag 5/148)
+[download]   4.1% of ~  15.74MiB at  463.39KiB/s ETA Unknown (frag 5/148)
+[download]   4.2% of ~  15.94MiB at  463.39KiB/s ETA Unknown (frag 5/148)
+[download]   4.2% of ~  16.32MiB at  463.39KiB/s ETA Unknown (frag 5/148)
+[download]   4.3% of ~  17.09MiB at  463.39KiB/s ETA Unknown (frag 5/148)
+[download]   3.6% of ~  20.50MiB at  532.32KiB/s ETA 00:29 (frag 6/148)  
+[download]   4.7% of ~  15.46MiB at  568.79KiB/s ETA 00:28 (frag 6/148)
+[download]   4.7% of ~  15.48MiB at  568.79KiB/s ETA 00:28 (frag 6/148)
+[download]   4.8% of ~  15.52MiB at  568.79KiB/s ETA 00:28 (frag 6/148)
+[download]   4.8% of ~  15.61MiB at  568.79KiB/s ETA 00:28 (frag 6/148)
+[download]   4.8% of ~  15.77MiB at  593.64KiB/s ETA 00:28 (frag 6/148)
+[download]   4.9% of ~  16.10MiB at  593.64KiB/s ETA 00:28 (frag 6/148)
+[download]   5.1% of ~  16.76MiB at  593.64KiB/s ETA 00:28 (frag 6/148)
+[download]   5.0% of ~  18.08MiB at  593.64KiB/s ETA 00:28 (frag 6/148)
+[download]   4.0% of ~  22.83MiB at  593.64KiB/s ETA 00:28 (frag 7/148)
+[download]   5.4% of ~  16.75MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   5.4% of ~  16.77MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   5.4% of ~  16.81MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   5.5% of ~  16.88MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   5.5% of ~  17.02MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   5.6% of ~  17.31MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   5.8% of ~  17.89MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   6.1% of ~  19.05MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   5.6% of ~  21.36MiB at  620.92KiB/s ETA 00:27 (frag 7/148)
+[download]   4.3% of ~  27.57MiB at  620.92KiB/s ETA 00:27 (frag 8/148)
+[download]   6.1% of ~  19.70MiB at  660.93KiB/s ETA 00:27 (frag 8/148)
+[download]   6.1% of ~  19.72MiB at  660.93KiB/s ETA 00:27 (frag 8/148)
+[download]   6.1% of ~  19.75MiB at  660.93KiB/s ETA 00:27 (frag 8/148)
+[download]   6.1% of ~  19.81MiB at  660.93KiB/s ETA 00:27 (frag 8/148)
+[download]   6.2% of ~  19.94MiB at  660.93KiB/s ETA 00:27 (frag 8/148)
+[download]   6.2% of ~  20.20MiB at  660.93KiB/s ETA 00:27 (frag 8/148)
+[download]   6.4% of ~  20.71MiB at  660.93KiB/s ETA 00:27 (frag 8/148)
+[download]   6.3% of ~  21.74MiB at  660.93KiB/s ETA 00:27 (frag 8/148)
+[download]   5.4% of ~  25.19MiB at  660.93KiB/s ETA 00:27 (frag 9/148)
+[download]   6.8% of ~  20.20MiB at  710.59KiB/s ETA 00:26 (frag 9/148)
+[download]   6.8% of ~  20.22MiB at  710.59KiB/s ETA 00:26 (frag 9/148)
+[download]   6.8% of ~  20.24MiB at  710.59KiB/s ETA 00:26 (frag 9/148)
+[download]   6.8% of ~  20.30MiB at  710.59KiB/s ETA 00:26 (frag 9/148)
+[download]   6.8% of ~  20.42MiB at  710.59KiB/s ETA 00:26 (frag 9/148)
+[download]   6.9% of ~  20.65MiB at  710.59KiB/s ETA 00:26 (frag 9/148)
+[download]   7.1% of ~  21.11MiB at  710.59KiB/s ETA 00:26 (frag 9/148)
+[download]   7.1% of ~  22.04MiB at  710.59KiB/s ETA 00:26 (frag 9/148)
+[download]   6.0% of ~  26.01MiB at  710.59KiB/s ETA 00:26 (frag 10/148)
+[download]   7.4% of ~  21.00MiB at  772.28KiB/s ETA 00:26 (frag 10/148)
+[download]   7.4% of ~  21.02MiB at  772.28KiB/s ETA 00:26 (frag 10/148)
+[download]   7.5% of ~  21.04MiB at  772.28KiB/s ETA 00:26 (frag 10/148)
+[download]   7.5% of ~  21.10MiB at  772.28KiB/s ETA 00:26 (frag 10/148)
+[download]   7.5% of ~  21.20MiB at  772.28KiB/s ETA 00:26 (frag 10/148)
+[download]   7.6% of ~  21.41MiB at  772.28KiB/s ETA 00:26 (frag 10/148)
+[download]   7.7% of ~  21.83MiB at  772.28KiB/s ETA 00:26 (frag 10/148)
+[download]   7.9% of ~  22.67MiB at  772.28KiB/s ETA 00:26 (frag 10/148)
+[download]   6.6% of ~  27.25MiB at  772.28KiB/s ETA 00:26 (frag 11/148)
+[download]   8.1% of ~  22.12MiB at  772.28KiB/s ETA 00:26 (frag 11/148)
+[download]   8.1% of ~  22.13MiB at  772.28KiB/s ETA 00:26 (frag 11/148)
+[download]   8.1% of ~  22.15MiB at  772.28KiB/s ETA 00:26 (frag 11/148)
+[download]   8.1% of ~  22.20MiB at  772.28KiB/s ETA 00:26 (frag 11/148)
+[download]   8.2% of ~  22.30MiB at  772.28KiB/s ETA 00:26 (frag 11/148)
+[download]   8.2% of ~  22.49MiB at  857.60KiB/s ETA 00:25 (frag 11/148)
+[download]   8.4% of ~  22.87MiB at  857.60KiB/s ETA 00:25 (frag 11/148)
+[download]   7.6% of ~  25.14MiB at  857.60KiB/s ETA 00:25 (frag 12/148)
+[download]   8.8% of ~  21.81MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   8.8% of ~  21.82MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   8.8% of ~  21.84MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   8.8% of ~  21.89MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   8.9% of ~  21.98MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   8.9% of ~  22.15MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   9.1% of ~  22.51MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   9.3% of ~  23.22MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   9.0% of ~  24.64MiB at  849.36KiB/s ETA 00:25 (frag 12/148)
+[download]   7.7% of ~  28.95MiB at  849.36KiB/s ETA 00:25 (frag 13/148)
+[download]   9.5% of ~  23.57MiB at  864.56KiB/s ETA 00:25 (frag 13/148)
+[download]   9.5% of ~  23.58MiB at  864.56KiB/s ETA 00:25 (frag 13/148)
+[download]   9.5% of ~  23.60MiB at  864.56KiB/s ETA 00:25 (frag 13/148)
+[download]   9.5% of ~  23.64MiB at  864.56KiB/s ETA 00:25 (frag 13/148)
+[download]   9.5% of ~  23.72MiB at  864.56KiB/s ETA 00:25 (frag 13/148)
+[download]   9.6% of ~  23.89MiB at  864.56KiB/s ETA 00:25 (frag 13/148)
+[download]   9.7% of ~  24.22MiB at  864.56KiB/s ETA 00:25 (frag 13/148)
+[download]   9.9% of ~  24.88MiB at  864.56KiB/s ETA 00:25 (frag 13/148)
+[download]   8.6% of ~  28.67MiB at  874.33KiB/s ETA 00:25 (frag 14/148)
+[download]  10.1% of ~  24.38MiB at  874.33KiB/s ETA 00:25 (frag 14/148)
+[download]  10.1% of ~  24.39MiB at  874.33KiB/s ETA 00:25 (frag 14/148)
+[download]  10.2% of ~  24.40MiB at  874.33KiB/s ETA 00:25 (frag 14/148)
+[download]  10.2% of ~  24.44MiB at  874.33KiB/s ETA 00:25 (frag 14/148)
+[download]  10.2% of ~  24.52MiB at  874.33KiB/s ETA 00:25 (frag 14/148)
+[download]  10.3% of ~  24.67MiB at  874.33KiB/s ETA 00:25 (frag 14/148)
+[download]  10.4% of ~  24.98MiB at  874.33KiB/s ETA 00:25 (frag 14/148)
+[download]  10.6% of ~  25.60MiB at  903.03KiB/s ETA 00:25 (frag 14/148)
+[download]  10.8% of ~  26.83MiB at  903.03KiB/s ETA 00:25 (frag 14/148)
+[download]   8.8% of ~  32.93MiB at  903.03KiB/s ETA 00:25 (frag 15/148)
+[download]  10.8% of ~  26.86MiB at 1015.50KiB/s ETA 00:25 (frag 15/148)
+[download]  10.8% of ~  26.87MiB at 1015.50KiB/s ETA 00:25 (frag 15/148)
+[download]  10.8% of ~  26.89MiB at 1015.50KiB/s ETA 00:25 (frag 15/148)
+[download]  10.8% of ~  26.92MiB at 1015.50KiB/s ETA 00:25 (frag 15/148)
+[download]  10.9% of ~  27.00MiB at 1015.50KiB/s ETA 00:25 (frag 15/148)
+[download]  10.9% of ~  27.14MiB at 1015.50KiB/s ETA 00:25 (frag 15/148)
+[download]  11.0% of ~  27.43MiB at 1015.50KiB/s ETA 00:25 (frag 15/148)
+[download]  10.9% of ~  28.01MiB at 1015.50KiB/s ETA 00:25 (frag 15/148)
+[download]  10.3% of ~  29.66MiB at 1015.50KiB/s ETA 00:25 (frag 16/148)
+[download]  11.5% of ~  26.60MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  11.5% of ~  26.61MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  11.5% of ~  26.62MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  11.5% of ~  26.66MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  11.5% of ~  26.72MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  11.6% of ~  26.86MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  11.7% of ~  27.13MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  11.9% of ~  27.68MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  11.7% of ~  28.76MiB at    1.07MiB/s ETA 00:24 (frag 16/148)
+[download]  10.5% of ~  31.79MiB at    1.07MiB/s ETA 00:24 (frag 17/148)
+[download]  12.2% of ~  27.57MiB at    1.15MiB/s ETA 00:23 (frag 17/148)
+[download]  12.2% of ~  27.58MiB at    1.15MiB/s ETA 00:23 (frag 17/148)
+[download]  12.2% of ~  27.60MiB at    1.15MiB/s ETA 00:23 (frag 17/148)
+[download]  12.2% of ~  27.63MiB at    1.15MiB/s ETA 00:23 (frag 17/148)
+[download]  12.2% of ~  27.69MiB at    1.15MiB/s ETA 00:23 (frag 17/148)
+[download]  12.3% of ~  27.82MiB at    1.15MiB/s ETA 00:23 (frag 17/148)
+[download]  12.4% of ~  28.08MiB at    1.15MiB/s ETA 00:23 (frag 17/148)
+[download]  12.5% of ~  28.59MiB at    1.15MiB/s ETA 00:23 (frag 17/148)
+[download]  11.5% of ~  31.04MiB at    1.15MiB/s ETA 00:23 (frag 18/148)
+[download]  12.8% of ~  27.76MiB at    1.15MiB/s ETA 00:23 (frag 18/148)
+[download]  12.8% of ~  27.77MiB at    1.15MiB/s ETA 00:23 (frag 18/148)
+[download]  12.9% of ~  27.79MiB at    1.15MiB/s ETA 00:23 (frag 18/148)
+[download]  12.9% of ~  27.82MiB at    1.15MiB/s ETA 00:23 (frag 18/148)
+[download]  12.9% of ~  27.88MiB at    1.15MiB/s ETA 00:23 (frag 18/148)
+[download]  12.9% of ~  28.00MiB at    1.15MiB/s ETA 00:23 (frag 18/148)
+[download]  13.1% of ~  28.24MiB at    1.23MiB/s ETA 00:23 (frag 18/148)
+[download]  13.3% of ~  28.73MiB at    1.23MiB/s ETA 00:23 (frag 18/148)
+[download]  13.2% of ~  29.70MiB at    1.23MiB/s ETA 00:23 (frag 18/148)
+[download]  11.8% of ~  33.42MiB at    1.23MiB/s ETA 00:23 (frag 19/148)
+[download]  13.5% of ~  29.06MiB at    1.15MiB/s ETA 00:23 (frag 19/148)
+[download]  13.5% of ~  29.07MiB at    1.05MiB/s ETA 00:24 (frag 19/148)
+[download]  13.5% of ~  29.08MiB at    1.05MiB/s ETA 00:24 (frag 19/148)
+[download]  13.5% of ~  29.11MiB at    1.05MiB/s ETA 00:24 (frag 19/148)
+[download]  13.6% of ~  29.17MiB at  964.99KiB/s ETA 00:25 (frag 19/148)
+[download]  13.6% of ~  29.29MiB at  914.72KiB/s ETA 00:26 (frag 19/148)
+[download]  13.7% of ~  29.52MiB at  866.05KiB/s ETA 00:27 (frag 19/148)
+[download]  13.9% of ~  29.98MiB at  797.21KiB/s ETA 00:28 (frag 19/148)
+[download]  14.3% of ~  30.91MiB at  733.15KiB/s ETA 00:30 (frag 19/148)
+[download]  13.6% of ~  32.76MiB at  733.15KiB/s ETA 00:30 (frag 19/148)
+[download]  12.1% of ~  36.88MiB at  733.15KiB/s ETA 00:30 (frag 20/148)
+[download]  14.2% of ~  31.40MiB at  595.60KiB/s ETA 00:37 (frag 20/148)
+[download]  14.2% of ~  31.41MiB at  595.60KiB/s ETA 00:37 (frag 20/148)
+[download]  14.2% of ~  31.42MiB at  595.60KiB/s ETA 00:37 (frag 20/148)
+[download]  14.2% of ~  31.45MiB at  595.60KiB/s ETA 00:37 (frag 20/148)
+[download]  14.2% of ~  31.50MiB at  595.60KiB/s ETA 00:37 (frag 20/148)
+[download]  14.3% of ~  31.61MiB at  595.60KiB/s ETA 00:37 (frag 20/148)
+[download]  14.4% of ~  31.83MiB at  595.60KiB/s ETA 00:37 (frag 20/148)
+[download]  14.6% of ~  32.27MiB at  595.60KiB/s ETA 00:37 (frag 20/148)
+[download]  14.4% of ~  33.16MiB at  547.05KiB/s ETA 00:40 (frag 20/148)
+[download]  13.3% of ~  36.10MiB at  547.05KiB/s ETA 00:40 (frag 21/148)
+[download]  14.9% of ~  32.21MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  14.9% of ~  32.22MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  14.9% of ~  32.23MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  14.9% of ~  32.26MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  14.9% of ~  32.31MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  15.0% of ~  32.42MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  15.1% of ~  32.63MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  15.2% of ~  33.05MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  15.2% of ~  33.89MiB at  508.92KiB/s ETA 00:42 (frag 21/148)
+[download]  13.9% of ~  37.14MiB at  531.43KiB/s ETA 00:44 (frag 22/148)
+[download]  15.5% of ~  33.17MiB at  531.43KiB/s ETA 00:44 (frag 22/148)
+[download]  15.5% of ~  33.18MiB at  531.43KiB/s ETA 00:44 (frag 22/148)
+[download]  15.6% of ~  33.19MiB at  531.43KiB/s ETA 00:44 (frag 22/148)
+[download]  15.6% of ~  33.21MiB at  545.15KiB/s ETA 00:44 (frag 22/148)
+[download]  15.6% of ~  33.26MiB at  545.15KiB/s ETA 00:44 (frag 22/148)
+[download]  15.6% of ~  33.36MiB at  545.15KiB/s ETA 00:44 (frag 22/148)
+[download]  15.7% of ~  33.57MiB at  545.15KiB/s ETA 00:44 (frag 22/148)
+[download]  15.9% of ~  33.97MiB at  580.73KiB/s ETA 00:44 (frag 22/148)
+[download]  16.3% of ~  34.77MiB at  580.73KiB/s ETA 00:44 (frag 22/148)
+[download]  16.3% of ~  36.38MiB at  580.73KiB/s ETA 00:44 (frag 22/148)
+[download]  13.8% of ~  43.06MiB at  580.73KiB/s ETA 00:44 (frag 23/148)
+[download]  16.2% of ~  36.52MiB at  620.82KiB/s ETA 00:44 (frag 23/148)
+[download]  16.2% of ~  36.53MiB at  620.82KiB/s ETA 00:44 (frag 23/148)
+[download]  16.2% of ~  36.54MiB at  620.82KiB/s ETA 00:44 (frag 23/148)
+[download]  16.2% of ~  36.57MiB at  620.82KiB/s ETA 00:44 (frag 23/148)
+[download]  16.3% of ~  36.61MiB at  620.82KiB/s ETA 00:44 (frag 23/148)
+[download]  16.3% of ~  36.71MiB at  620.82KiB/s ETA 00:44 (frag 23/148)
+[download]  16.4% of ~  36.90MiB at  620.82KiB/s ETA 00:44 (frag 23/148)
+[download]  16.6% of ~  37.29MiB at  620.82KiB/s ETA 00:44 (frag 23/148)
+[download]  16.4% of ~  38.06MiB at  679.43KiB/s ETA 00:44 (frag 23/148)
+[download]  15.4% of ~  40.65MiB at  679.43KiB/s ETA 00:44 (frag 24/148)
+[download]  16.9% of ~  37.05MiB at  728.71KiB/s ETA 00:43 (frag 24/148)
+[download]  16.9% of ~  37.05MiB at  728.71KiB/s ETA 00:43 (frag 24/148)
+[download]  16.9% of ~  37.06MiB at  728.71KiB/s ETA 00:43 (frag 24/148)
+[download]  16.9% of ~  37.09MiB at  728.71KiB/s ETA 00:43 (frag 24/148)
+[download]  16.9% of ~  37.13MiB at  728.71KiB/s ETA 00:43 (frag 24/148)
+[download]  17.0% of ~  37.22MiB at  728.71KiB/s ETA 00:43 (frag 24/148)
+[download]  17.1% of ~  37.41MiB at  728.71KiB/s ETA 00:43 (frag 24/148)
+[download]  17.2% of ~  37.78MiB at  728.71KiB/s ETA 00:43 (frag 24/148)
+[download]  17.5% of ~  38.52MiB at  801.94KiB/s ETA 00:42 (frag 24/148)
+[download]  15.8% of ~  42.75MiB at  801.94KiB/s ETA 00:42 (frag 25/148)
+[download]  17.6% of ~  38.36MiB at  857.20KiB/s ETA 00:41 (frag 25/148)
+[download]  17.6% of ~  38.37MiB at  857.20KiB/s ETA 00:41 (frag 25/148)
+[download]  17.6% of ~  38.38MiB at  857.20KiB/s ETA 00:41 (frag 25/148)
+[download]  17.6% of ~  38.40MiB at  857.20KiB/s ETA 00:41 (frag 25/148)
+[download]  17.6% of ~  38.44MiB at  857.20KiB/s ETA 00:41 (frag 25/148)
+[download]  17.6% of ~  38.53MiB at  857.20KiB/s ETA 00:41 (frag 25/148)
+[download]  17.7% of ~  38.71MiB at  857.20KiB/s ETA 00:41 (frag 25/148)
+[download]  17.7% of ~  39.07MiB at  857.20KiB/s ETA 00:41 (frag 25/148)
+[download]  17.1% of ~  40.31MiB at  857.20KiB/s ETA 00:41 (frag 26/148)
+[download]  18.2% of ~  37.88MiB at  908.49KiB/s ETA 00:40 (frag 26/148)
+[download]  18.2% of ~  37.89MiB at  908.49KiB/s ETA 00:40 (frag 26/148)
+[download]  18.3% of ~  37.90MiB at  908.49KiB/s ETA 00:40 (frag 26/148)
+[download]  18.3% of ~  37.92MiB at  908.49KiB/s ETA 00:40 (frag 26/148)
+[download]  18.3% of ~  37.96MiB at  908.49KiB/s ETA 00:40 (frag 26/148)
+[download]  18.3% of ~  38.05MiB at  908.49KiB/s ETA 00:40 (frag 26/148)
+[download]  18.4% of ~  38.22MiB at  951.96KiB/s ETA 00:39 (frag 26/148)
+[download]  18.6% of ~  38.56MiB at  951.96KiB/s ETA 00:39 (frag 26/148)
+[download]  18.3% of ~  39.25MiB at  951.96KiB/s ETA 00:39 (frag 26/148)
+[download]  17.5% of ~  41.04MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  18.9% of ~  38.05MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  18.9% of ~  38.06MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  18.9% of ~  38.07MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  18.9% of ~  38.09MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  19.0% of ~  38.13MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  19.0% of ~  38.21MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  19.1% of ~  38.38MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  19.2% of ~  38.71MiB at  992.39KiB/s ETA 00:38 (frag 27/148)
+[download]  18.4% of ~  40.31MiB at    1.03MiB/s ETA 00:37 (frag 28/148)
+[download]  19.6% of ~  37.83MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  19.6% of ~  37.83MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  19.6% of ~  37.84MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  19.6% of ~  37.86MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  19.6% of ~  37.90MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  19.7% of ~  37.98MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  19.8% of ~  38.14MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  19.9% of ~  38.46MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  19.7% of ~  39.10MiB at    1.07MiB/s ETA 00:36 (frag 28/148)
+[download]  18.9% of ~  40.85MiB at    1.07MiB/s ETA 00:36 (frag 29/148)
+[download]  20.3% of ~  38.03MiB at    1.07MiB/s ETA 00:36 (frag 29/148)
+[download]  20.3% of ~  38.03MiB at    1.07MiB/s ETA 00:36 (frag 29/148)
+[download]  20.3% of ~  38.04MiB at    1.07MiB/s ETA 00:36 (frag 29/148)
+[download]  20.3% of ~  38.06MiB at    1.07MiB/s ETA 00:36 (frag 29/148)
+[download]  20.3% of ~  38.10MiB at    1.07MiB/s ETA 00:36 (frag 29/148)
+[download]  20.4% of ~  38.18MiB at    1.13MiB/s ETA 00:35 (frag 29/148)
+[download]  20.4% of ~  38.33MiB at    1.13MiB/s ETA 00:35 (frag 29/148)
+[download]  20.5% of ~  38.64MiB at    1.13MiB/s ETA 00:35 (frag 29/148)
+[download]  19.7% of ~  40.22MiB at    1.13MiB/s ETA 00:35 (frag 30/148)
+[download]  20.9% of ~  37.86MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  21.0% of ~  37.87MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  21.0% of ~  37.88MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  21.0% of ~  37.90MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  21.0% of ~  37.93MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  21.0% of ~  38.01MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  21.1% of ~  38.16MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  21.3% of ~  38.46MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  21.2% of ~  39.05MiB at    1.19MiB/s ETA 00:33 (frag 30/148)
+[download]  20.1% of ~  41.24MiB at    1.25MiB/s ETA 00:32 (frag 31/148)
+[download]  21.6% of ~  38.32MiB at    1.27MiB/s ETA 00:31 (frag 31/148)
+[download]  21.6% of ~  38.32MiB at    1.27MiB/s ETA 00:31 (frag 31/148)
+[download]  21.6% of ~  38.33MiB at    1.27MiB/s ETA 00:31 (frag 31/148)
+[download]  21.6% of ~  38.35MiB at    1.27MiB/s ETA 00:31 (frag 31/148)
+[download]  21.7% of ~  38.38MiB at    1.27MiB/s ETA 00:31 (frag 31/148)
+[download]  21.7% of ~  38.46MiB at    1.27MiB/s ETA 00:31 (frag 31/148)
+[download]  21.8% of ~  38.60MiB at    1.27MiB/s ETA 00:31 (frag 31/148)
+[download]  21.8% of ~  38.89MiB at    1.27MiB/s ETA 00:31 (frag 31/148)
+[download]  21.1% of ~  40.22MiB at    1.27MiB/s ETA 00:31 (frag 32/148)
+[download]  22.3% of ~  38.08MiB at    1.29MiB/s ETA 00:30 (frag 32/148)
+[download]  22.3% of ~  38.08MiB at    1.29MiB/s ETA 00:30 (frag 32/148)
+[download]  22.3% of ~  38.09MiB at    1.29MiB/s ETA 00:30 (frag 32/148)
+[download]  22.3% of ~  38.11MiB at    1.29MiB/s ETA 00:30 (frag 32/148)
+[download]  22.3% of ~  38.15MiB at    1.29MiB/s ETA 00:30 (frag 32/148)
+[download]  22.4% of ~  38.22MiB at    1.29MiB/s ETA 00:30 (frag 32/148)
+[download]  22.5% of ~  38.36MiB at    1.29MiB/s ETA 00:30 (frag 32/148)
+[download]  22.3% of ~  38.64MiB at    1.29MiB/s ETA 00:30 (frag 32/148)
+[download]  22.0% of ~  39.29MiB at    1.29MiB/s ETA 00:30 (frag 33/148)
+[download]  23.0% of ~  37.54MiB at    1.23MiB/s ETA 00:29 (frag 33/148)
+[download]  23.0% of ~  37.55MiB at    1.23MiB/s ETA 00:29 (frag 33/148)
+[download]  23.0% of ~  37.56MiB at    1.23MiB/s ETA 00:29 (frag 33/148)
+[download]  23.0% of ~  37.57MiB at    1.23MiB/s ETA 00:29 (frag 33/148)
+[download]  23.0% of ~  37.61MiB at    1.23MiB/s ETA 00:29 (frag 33/148)
+[download]  23.1% of ~  37.68MiB at    1.23MiB/s ETA 00:29 (frag 33/148)
+[download]  23.1% of ~  37.81MiB at    1.23MiB/s ETA 00:29 (frag 33/148)
+[download]  23.1% of ~  38.08MiB at    1.23MiB/s ETA 00:29 (frag 33/148)
+[download]  22.6% of ~  38.91MiB at    1.23MiB/s ETA 00:29 (frag 34/148)
+[download]  23.7% of ~  37.13MiB at    1.21MiB/s ETA 00:29 (frag 34/148)
+[download]  23.7% of ~  37.14MiB at    1.21MiB/s ETA 00:29 (frag 34/148)
+[download]  23.7% of ~  37.15MiB at    1.21MiB/s ETA 00:29 (frag 34/148)
+[download]  23.7% of ~  37.16MiB at    1.21MiB/s ETA 00:29 (frag 34/148)
+[download]  23.7% of ~  37.20MiB at    1.21MiB/s ETA 00:29 (frag 34/148)
+[download]  23.7% of ~  37.26MiB at    1.17MiB/s ETA 00:28 (frag 34/148)
+[download]  23.8% of ~  37.39MiB at    1.17MiB/s ETA 00:28 (frag 34/148)
+[download]  23.8% of ~  37.66MiB at    1.17MiB/s ETA 00:28 (frag 34/148)
+[download]  23.2% of ~  38.68MiB at    1.15MiB/s ETA 00:28 (frag 35/148)
+[download]  24.3% of ~  36.86MiB at    1.12MiB/s ETA 00:28 (frag 35/148)
+[download]  24.3% of ~  36.86MiB at    1.12MiB/s ETA 00:28 (frag 35/148)
+[download]  24.3% of ~  36.87MiB at    1.12MiB/s ETA 00:28 (frag 35/148)
+[download]  24.3% of ~  36.88MiB at    1.12MiB/s ETA 00:28 (frag 35/148)
+[download]  24.4% of ~  36.92MiB at    1.12MiB/s ETA 00:28 (frag 35/148)
+[download]  24.4% of ~  36.98MiB at    1.12MiB/s ETA 00:28 (frag 35/148)
+[download]  24.5% of ~  37.11MiB at    1.12MiB/s ETA 00:28 (frag 35/148)
+[download]  24.4% of ~  37.37MiB at    1.12MiB/s ETA 00:28 (frag 35/148)
+[download]  24.0% of ~  37.97MiB at    1.12MiB/s ETA 00:28 (frag 36/148)
+[download]  25.0% of ~  36.40MiB at    1.08MiB/s ETA 00:28 (frag 36/148)
+[download]  25.0% of ~  36.41MiB at    1.08MiB/s ETA 00:28 (frag 36/148)
+[download]  25.0% of ~  36.41MiB at    1.08MiB/s ETA 00:28 (frag 36/148)
+[download]  25.0% of ~  36.43MiB at    1.08MiB/s ETA 00:28 (frag 36/148)
+[download]  25.0% of ~  36.46MiB at    1.08MiB/s ETA 00:28 (frag 36/148)
+[download]  25.1% of ~  36.52MiB at    1.08MiB/s ETA 00:28 (frag 36/148)
+[download]  25.2% of ~  36.65MiB at    1.08MiB/s ETA 00:28 (frag 36/148)
+[download]  25.3% of ~  36.90MiB at    1.08MiB/s ETA 00:28 (frag 36/148)
+[download]  24.4% of ~  38.21MiB at    1.08MiB/s ETA 00:28 (frag 37/148)
+[download]  25.7% of ~  36.32MiB at    1.05MiB/s ETA 00:28 (frag 37/148)
+[download]  25.7% of ~  36.33MiB at    1.05MiB/s ETA 00:28 (frag 37/148)
+[download]  25.7% of ~  36.34MiB at    1.05MiB/s ETA 00:28 (frag 37/148)
+[download]  25.7% of ~  36.35MiB at    1.05MiB/s ETA 00:28 (frag 37/148)
+[download]  25.7% of ~  36.38MiB at    1.05MiB/s ETA 00:28 (frag 37/148)
+[download]  25.8% of ~  36.44MiB at    1.05MiB/s ETA 00:28 (frag 37/148)
+[download]  25.8% of ~  36.56MiB at    1.05MiB/s ETA 00:28 (frag 37/148)
+[download]  25.8% of ~  36.81MiB at    1.05MiB/s ETA 00:28 (frag 37/148)
+[download]  25.2% of ~  37.76MiB at    1.05MiB/s ETA 00:28 (frag 38/148)
+[download]  26.4% of ~  36.09MiB at    1.03MiB/s ETA 00:28 (frag 38/148)
+[download]  26.4% of ~  36.10MiB at    1.03MiB/s ETA 00:28 (frag 38/148)
+[download]  26.4% of ~  36.10MiB at    1.03MiB/s ETA 00:28 (frag 38/148)
+[download]  26.4% of ~  36.12MiB at    1.03MiB/s ETA 00:28 (frag 38/148)
+[download]  26.4% of ~  36.15MiB at    1.03MiB/s ETA 00:28 (frag 38/148)
+[download]  26.4% of ~  36.21MiB at    1.03MiB/s ETA 00:28 (frag 38/148)
+[download]  26.5% of ~  36.33MiB at    1.03MiB/s ETA 00:28 (frag 38/148)
+[download]  26.5% of ~  36.56MiB at    1.03MiB/s ETA 00:28 (frag 38/148)
+[download]  25.9% of ~  37.40MiB at    1.03MiB/s ETA 00:28 (frag 39/148)
+[download]  27.0% of ~  35.83MiB at    1.03MiB/s ETA 00:28 (frag 39/148)
+[download]  27.0% of ~  35.83MiB at    1.03MiB/s ETA 00:28 (frag 39/148)
+[download]  27.0% of ~  35.84MiB at    1.03MiB/s ETA 00:28 (frag 39/148)
+[download]  27.0% of ~  35.85MiB at    1.03MiB/s ETA 00:28 (frag 39/148)
+[download]  27.1% of ~  35.88MiB at    1.03MiB/s ETA 00:27 (frag 39/148)
+[download]  27.1% of ~  35.94MiB at    1.03MiB/s ETA 00:27 (frag 39/148)
+[download]  27.2% of ~  36.05MiB at    1.03MiB/s ETA 00:27 (frag 39/148)
+[download]  27.3% of ~  36.29MiB at    1.03MiB/s ETA 00:27 (frag 39/148)
+[download]  26.4% of ~  37.43MiB at    1.03MiB/s ETA 00:27 (frag 40/148)
+[download]  27.7% of ~  35.73MiB at    1.03MiB/s ETA 00:27 (frag 40/148)
+[download]  27.7% of ~  35.74MiB at    1.03MiB/s ETA 00:27 (frag 40/148)
+[download]  27.7% of ~  35.74MiB at    1.03MiB/s ETA 00:27 (frag 40/148)
+[download]  27.7% of ~  35.76MiB at    1.03MiB/s ETA 00:27 (frag 40/148)
+[download]  27.7% of ~  35.79MiB at    1.03MiB/s ETA 00:27 (frag 40/148)
+[download]  27.8% of ~  35.84MiB at    1.03MiB/s ETA 00:27 (frag 40/148)
+[download]  27.8% of ~  35.96MiB at    1.03MiB/s ETA 00:27 (frag 40/148)
+[download]  27.4% of ~  36.42MiB at    1.05MiB/s ETA 00:27 (frag 41/148)
+[download]  28.4% of ~  35.22MiB at  984.39KiB/s ETA 00:28 (frag 41/148)
+[download]  28.4% of ~  35.22MiB at  984.39KiB/s ETA 00:28 (frag 41/148)
+[download]  28.4% of ~  35.23MiB at  984.39KiB/s ETA 00:28 (frag 41/148)
+[download]  28.4% of ~  35.24MiB at  984.39KiB/s ETA 00:28 (frag 41/148)
+[download]  28.4% of ~  35.27MiB at  984.39KiB/s ETA 00:28 (frag 41/148)
+[download]  28.5% of ~  35.33MiB at  984.39KiB/s ETA 00:28 (frag 41/148)
+[download]  28.6% of ~  35.44MiB at  984.39KiB/s ETA 00:28 (frag 41/148)
+[download]  28.6% of ~  35.66MiB at  984.39KiB/s ETA 00:28 (frag 41/148)
+[download]  27.8% of ~  36.58MiB at  984.39KiB/s ETA 00:28 (frag 42/148)
+[download]  29.1% of ~  35.07MiB at  957.39KiB/s ETA 00:28 (frag 42/148)
+[download]  29.1% of ~  35.07MiB at  957.39KiB/s ETA 00:28 (frag 42/148)
+[download]  29.1% of ~  35.08MiB at  957.39KiB/s ETA 00:28 (frag 42/148)
+[download]  29.1% of ~  35.09MiB at  957.39KiB/s ETA 00:28 (frag 42/148)
+[download]  29.1% of ~  35.12MiB at  957.39KiB/s ETA 00:28 (frag 42/148)
+[download]  29.1% of ~  35.17MiB at  957.39KiB/s ETA 00:28 (frag 42/148)
+[download]  29.2% of ~  35.28MiB at  957.39KiB/s ETA 00:28 (frag 42/148)
+[download]  29.3% of ~  35.49MiB at  957.39KiB/s ETA 00:28 (frag 42/148)
+[download]  28.5% of ~  36.50MiB at  957.39KiB/s ETA 00:28 (frag 43/148)
+[download]  29.7% of ~  34.97MiB at  950.76KiB/s ETA 00:28 (frag 43/148)
+[download]  29.7% of ~  34.97MiB at  950.76KiB/s ETA 00:28 (frag 43/148)
+[download]  29.7% of ~  34.98MiB at  950.76KiB/s ETA 00:28 (frag 43/148)
+[download]  29.8% of ~  34.99MiB at  950.76KiB/s ETA 00:28 (frag 43/148)
+[download]  29.8% of ~  35.02MiB at  950.76KiB/s ETA 00:28 (frag 43/148)
+[download]  29.8% of ~  35.07MiB at  950.76KiB/s ETA 00:28 (frag 43/148)
+[download]  29.9% of ~  35.18MiB at  950.76KiB/s ETA 00:28 (frag 43/148)
+[download]  30.0% of ~  35.39MiB at  950.76KiB/s ETA 00:28 (frag 43/148)
+[download]  29.1% of ~  36.53MiB at  950.76KiB/s ETA 00:28 (frag 44/148)
+[download]  30.4% of ~  34.96MiB at  950.76KiB/s ETA 00:28 (frag 44/148)
+[download]  30.4% of ~  34.96MiB at  966.90KiB/s ETA 00:27 (frag 44/148)
+[download]  30.4% of ~  34.96MiB at  966.90KiB/s ETA 00:27 (frag 44/148)
+[download]  30.4% of ~  34.98MiB at  966.90KiB/s ETA 00:27 (frag 44/148)
+[download]  30.5% of ~  35.00MiB at  966.90KiB/s ETA 00:27 (frag 44/148)
+[download]  30.5% of ~  35.05MiB at  966.90KiB/s ETA 00:27 (frag 44/148)
+[download]  30.6% of ~  35.16MiB at  966.90KiB/s ETA 00:27 (frag 44/148)
+[download]  30.5% of ~  35.36MiB at  966.90KiB/s ETA 00:27 (frag 44/148)
+[download]  30.0% of ~  35.91MiB at  966.90KiB/s ETA 00:27 (frag 45/148)
+[download]  31.1% of ~  34.66MiB at  988.50KiB/s ETA 00:27 (frag 45/148)
+[download]  31.1% of ~  34.67MiB at  988.50KiB/s ETA 00:27 (frag 45/148)
+[download]  31.1% of ~  34.67MiB at  988.50KiB/s ETA 00:27 (frag 45/148)
+[download]  31.1% of ~  34.69MiB at  988.50KiB/s ETA 00:27 (frag 45/148)
+[download]  31.1% of ~  34.71MiB at 1000.79KiB/s ETA 00:26 (frag 45/148)
+[download]  31.2% of ~  34.76MiB at 1000.79KiB/s ETA 00:26 (frag 45/148)
+[download]  31.2% of ~  34.86MiB at 1000.79KiB/s ETA 00:26 (frag 45/148)
+[download]  30.8% of ~  35.27MiB at 1000.79KiB/s ETA 00:26 (frag 46/148)
+[download]  31.8% of ~  34.22MiB at 1010.54KiB/s ETA 00:26 (frag 46/148)
+[download]  31.8% of ~  34.22MiB at 1010.54KiB/s ETA 00:26 (frag 46/148)
+[download]  31.8% of ~  34.23MiB at 1010.54KiB/s ETA 00:26 (frag 46/148)
+[download]  31.8% of ~  34.24MiB at 1010.54KiB/s ETA 00:26 (frag 46/148)
+[download]  31.8% of ~  34.27MiB at 1010.54KiB/s ETA 00:26 (frag 46/148)
+[download]  31.8% of ~  34.32MiB at 1010.54KiB/s ETA 00:26 (frag 46/148)
+[download]  31.9% of ~  34.41MiB at 1010.54KiB/s ETA 00:26 (frag 46/148)
+[download]  31.4% of ~  34.99MiB at 1010.54KiB/s ETA 00:26 (frag 47/148)
+[download]  32.4% of ~  33.89MiB at    1.00MiB/s ETA 00:26 (frag 47/148)
+[download]  32.4% of ~  33.89MiB at    1.00MiB/s ETA 00:26 (frag 47/148)
+[download]  32.4% of ~  33.90MiB at    1.00MiB/s ETA 00:26 (frag 47/148)
+[download]  32.5% of ~  33.91MiB at    1.00MiB/s ETA 00:26 (frag 47/148)
+[download]  32.5% of ~  33.93MiB at    1.00MiB/s ETA 00:26 (frag 47/148)
+[download]  32.5% of ~  33.98MiB at    1.00MiB/s ETA 00:26 (frag 47/148)
+[download]  32.6% of ~  34.08MiB at    1.00MiB/s ETA 00:26 (frag 47/148)
+[download]  32.8% of ~  34.27MiB at    1.00MiB/s ETA 00:26 (frag 47/148)
+[download]  31.7% of ~  35.41MiB at    1.00MiB/s ETA 00:26 (frag 48/148)
+[download]  33.1% of ~  33.94MiB at    1.00MiB/s ETA 00:26 (frag 48/148)
+[download]  33.1% of ~  33.94MiB at    1.00MiB/s ETA 00:26 (frag 48/148)
+[download]  33.1% of ~  33.95MiB at    1.00MiB/s ETA 00:26 (frag 48/148)
+[download]  33.1% of ~  33.96MiB at    1.00MiB/s ETA 00:26 (frag 48/148)
+[download]  33.2% of ~  33.99MiB at    1.00MiB/s ETA 00:26 (frag 48/148)
+[download]  33.2% of ~  34.03MiB at    1.00MiB/s ETA 00:26 (frag 48/148)
+[download]  33.3% of ~  34.13MiB at    1.00MiB/s ETA 00:26 (frag 48/148)
+[download]  33.3% of ~  34.32MiB at    1.04MiB/s ETA 00:25 (frag 48/148)
+[download]  32.6% of ~  35.11MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  33.8% of ~  33.83MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  33.8% of ~  33.84MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  33.8% of ~  33.84MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  33.8% of ~  33.85MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  33.8% of ~  33.88MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  33.9% of ~  33.92MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  34.0% of ~  34.02MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  34.1% of ~  34.20MiB at    1.04MiB/s ETA 00:25 (frag 49/148)
+[download]  34.0% of ~  34.57MiB at    1.09MiB/s ETA 00:24 (frag 49/148)
+[download]  32.8% of ~  35.82MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.5% of ~  34.15MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.5% of ~  34.15MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.5% of ~  34.15MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.5% of ~  34.17MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.5% of ~  34.19MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.6% of ~  34.23MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.6% of ~  34.32MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.8% of ~  34.51MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  34.5% of ~  34.87MiB at    1.09MiB/s ETA 00:24 (frag 50/148)
+[download]  33.7% of ~  35.76MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  35.1% of ~  34.28MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  35.1% of ~  34.28MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  35.1% of ~  34.29MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  35.2% of ~  34.30MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  35.2% of ~  34.32MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  35.2% of ~  34.37MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  35.3% of ~  34.45MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  35.2% of ~  34.63MiB at    1.09MiB/s ETA 00:24 (frag 51/148)
+[download]  34.7% of ~  35.07MiB at    1.09MiB/s ETA 00:24 (frag 52/148)
+[download]  35.8% of ~  34.02MiB at    1.11MiB/s ETA 00:23 (frag 52/148)
+[download]  35.8% of ~  34.02MiB at    1.11MiB/s ETA 00:23 (frag 52/148)
+[download]  35.8% of ~  34.03MiB at    1.11MiB/s ETA 00:23 (frag 52/148)
+[download]  35.8% of ~  34.04MiB at    1.11MiB/s ETA 00:23 (frag 52/148)
+[download]  35.9% of ~  34.06MiB at    1.11MiB/s ETA 00:23 (frag 52/148)
+[download]  35.9% of ~  34.11MiB at    1.11MiB/s ETA 00:23 (frag 52/148)
+[download]  36.0% of ~  34.19MiB at    1.11MiB/s ETA 00:23 (frag 52/148)
+[download]  35.9% of ~  34.37MiB at    1.11MiB/s ETA 00:23 (frag 52/148)
+[download]  35.3% of ~  34.94MiB at    1.11MiB/s ETA 00:23 (frag 53/148)
+[download]  36.5% of ~  33.84MiB at    1.14MiB/s ETA 00:23 (frag 53/148)
+[download]  36.5% of ~  33.84MiB at    1.14MiB/s ETA 00:23 (frag 53/148)
+[download]  36.5% of ~  33.85MiB at    1.14MiB/s ETA 00:23 (frag 53/148)
+[download]  36.5% of ~  33.86MiB at    1.14MiB/s ETA 00:23 (frag 53/148)
+[download]  36.5% of ~  33.88MiB at    1.14MiB/s ETA 00:23 (frag 53/148)
+[download]  36.6% of ~  33.92MiB at    1.14MiB/s ETA 00:23 (frag 53/148)
+[download]  36.7% of ~  34.01MiB at    1.14MiB/s ETA 00:23 (frag 53/148)
+[download]  36.5% of ~  34.18MiB at    1.14MiB/s ETA 00:23 (frag 53/148)
+[download]  36.1% of ~  34.52MiB at    1.15MiB/s ETA 00:22 (frag 54/148)
+[download]  37.2% of ~  33.56MiB at    1.17MiB/s ETA 00:22 (frag 54/148)
+[download]  37.2% of ~  33.56MiB at    1.17MiB/s ETA 00:22 (frag 54/148)
+[download]  37.2% of ~  33.57MiB at    1.17MiB/s ETA 00:22 (frag 54/148)
+[download]  37.2% of ~  33.58MiB at    1.17MiB/s ETA 00:22 (frag 54/148)
+[download]  37.2% of ~  33.60MiB at    1.17MiB/s ETA 00:22 (frag 54/148)
+[download]  37.3% of ~  33.64MiB at    1.17MiB/s ETA 00:22 (frag 54/148)
+[download]  37.3% of ~  33.73MiB at    1.17MiB/s ETA 00:22 (frag 54/148)
+[download]  37.3% of ~  33.89MiB at    1.17MiB/s ETA 00:22 (frag 54/148)
+[download]  36.7% of ~  34.46MiB at    1.17MiB/s ETA 00:22 (frag 55/148)
+[download]  37.8% of ~  33.40MiB at    1.19MiB/s ETA 00:21 (frag 55/148)
+[download]  37.8% of ~  33.41MiB at    1.19MiB/s ETA 00:21 (frag 55/148)
+[download]  37.8% of ~  33.41MiB at    1.19MiB/s ETA 00:21 (frag 55/148)
+[download]  37.9% of ~  33.42MiB at    1.19MiB/s ETA 00:21 (frag 55/148)
+[download]  37.9% of ~  33.44MiB at    1.19MiB/s ETA 00:21 (frag 55/148)
+[download]  37.9% of ~  33.48MiB at    1.19MiB/s ETA 00:21 (frag 55/148)
+[download]  38.0% of ~  33.57MiB at    1.19MiB/s ETA 00:21 (frag 55/148)
+[download]  37.5% of ~  33.94MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.5% of ~  33.08MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.5% of ~  33.09MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.5% of ~  33.09MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.5% of ~  33.10MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.6% of ~  33.12MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.6% of ~  33.16MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.7% of ~  33.24MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.6% of ~  33.40MiB at    1.19MiB/s ETA 00:21 (frag 56/148)
+[download]  38.1% of ~  33.84MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  39.2% of ~  32.88MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  39.2% of ~  32.89MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  39.2% of ~  32.89MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  39.2% of ~  32.90MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  39.2% of ~  32.92MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  39.3% of ~  32.96MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  39.4% of ~  33.04MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  39.3% of ~  33.20MiB at    1.24MiB/s ETA 00:21 (frag 57/148)
+[download]  38.7% of ~  33.74MiB at    1.24MiB/s ETA 00:21 (frag 58/148)
+[download]  39.9% of ~  32.75MiB at    1.28MiB/s ETA 00:20 (frag 58/148)
+[download]  39.9% of ~  32.75MiB at    1.28MiB/s ETA 00:20 (frag 58/148)
+[download]  39.9% of ~  32.76MiB at    1.28MiB/s ETA 00:20 (frag 58/148)
+[download]  39.9% of ~  32.77MiB at    1.28MiB/s ETA 00:20 (frag 58/148)
+[download]  39.9% of ~  32.79MiB at    1.28MiB/s ETA 00:20 (frag 58/148)
+[download]  40.0% of ~  32.83MiB at    1.28MiB/s ETA 00:20 (frag 58/148)
+[download]  40.0% of ~  32.90MiB at    1.28MiB/s ETA 00:20 (frag 58/148)
+[download]  39.6% of ~  33.23MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.5% of ~  32.44MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.5% of ~  32.44MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.6% of ~  32.45MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.6% of ~  32.45MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.6% of ~  32.47MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.6% of ~  32.51MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.7% of ~  32.59MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.6% of ~  32.74MiB at    1.28MiB/s ETA 00:20 (frag 59/148)
+[download]  40.1% of ~  33.21MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  41.2% of ~  32.29MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  41.2% of ~  32.29MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  41.2% of ~  32.29MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  41.2% of ~  32.30MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  41.3% of ~  32.32MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  41.3% of ~  32.36MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  41.4% of ~  32.44MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  41.5% of ~  32.59MiB at    1.33MiB/s ETA 00:19 (frag 60/148)
+[download]  40.6% of ~  33.33MiB at    1.33MiB/s ETA 00:19 (frag 61/148)
+[download]  41.9% of ~  32.28MiB at    1.37MiB/s ETA 00:19 (frag 61/148)
+[download]  41.9% of ~  32.28MiB at    1.37MiB/s ETA 00:19 (frag 61/148)
+[download]  41.9% of ~  32.28MiB at    1.37MiB/s ETA 00:19 (frag 61/148)
+[download]  41.9% of ~  32.29MiB at    1.37MiB/s ETA 00:19 (frag 61/148)
+[download]  41.9% of ~  32.31MiB at    1.37MiB/s ETA 00:19 (frag 61/148)
+[download]  42.0% of ~  32.35MiB at    1.37MiB/s ETA 00:19 (frag 61/148)
+[download]  42.1% of ~  32.42MiB at    1.37MiB/s ETA 00:19 (frag 61/148)
+[download]  42.1% of ~  32.57MiB at    1.37MiB/s ETA 00:19 (frag 61/148)
+[download]  41.3% of ~  33.16MiB at    1.37MiB/s ETA 00:19 (frag 62/148)
+[download]  42.6% of ~  32.20MiB at    1.42MiB/s ETA 00:18 (frag 62/148)
+[download]  42.6% of ~  32.20MiB at    1.42MiB/s ETA 00:18 (frag 62/148)
+[download]  42.6% of ~  32.20MiB at    1.42MiB/s ETA 00:18 (frag 62/148)
+[download]  42.6% of ~  32.21MiB at    1.42MiB/s ETA 00:18 (frag 62/148)
+[download]  42.6% of ~  32.23MiB at    1.42MiB/s ETA 00:18 (frag 62/148)
+[download]  42.7% of ~  32.27MiB at    1.42MiB/s ETA 00:18 (frag 62/148)
+[download]  42.8% of ~  32.34MiB at    1.42MiB/s ETA 00:18 (frag 62/148)
+[download]  42.7% of ~  32.49MiB at    1.42MiB/s ETA 00:18 (frag 62/148)
+[download]  42.1% of ~  32.98MiB at    1.42MiB/s ETA 00:18 (frag 63/148)
+[download]  43.2% of ~  32.08MiB at    1.45MiB/s ETA 00:17 (frag 63/148)
+[download]  43.2% of ~  32.08MiB at    1.45MiB/s ETA 00:17 (frag 63/148)
+[download]  43.3% of ~  32.09MiB at    1.45MiB/s ETA 00:17 (frag 63/148)
+[download]  43.3% of ~  32.10MiB at    1.45MiB/s ETA 00:17 (frag 63/148)
+[download]  43.3% of ~  32.12MiB at    1.45MiB/s ETA 00:17 (frag 63/148)
+[download]  43.3% of ~  32.15MiB at    1.45MiB/s ETA 00:17 (frag 63/148)
+[download]  43.4% of ~  32.22MiB at    1.45MiB/s ETA 00:17 (frag 63/148)
+[download]  43.3% of ~  32.37MiB at    1.45MiB/s ETA 00:17 (frag 63/148)
+[download]  42.8% of ~  32.69MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  43.9% of ~  31.89MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  43.9% of ~  31.89MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  43.9% of ~  31.89MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  43.9% of ~  31.90MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  44.0% of ~  31.92MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  44.0% of ~  31.96MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  44.1% of ~  32.03MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  44.3% of ~  32.17MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  44.0% of ~  32.45MiB at    1.45MiB/s ETA 00:17 (frag 64/148)
+[download]  43.0% of ~  33.21MiB at    1.45MiB/s ETA 00:17 (frag 65/148)
+[download]  44.6% of ~  32.06MiB at    1.45MiB/s ETA 00:17 (frag 65/148)
+[download]  44.6% of ~  32.06MiB at    1.45MiB/s ETA 00:17 (frag 65/148)
+[download]  44.6% of ~  32.06MiB at    1.45MiB/s ETA 00:17 (frag 65/148)
+[download]  44.6% of ~  32.07MiB at    1.45MiB/s ETA 00:17 (frag 65/148)
+[download]  44.6% of ~  32.09MiB at    1.45MiB/s ETA 00:17 (frag 65/148)
+[download]  44.7% of ~  32.13MiB at    1.47MiB/s ETA 00:16 (frag 65/148)
+[download]  44.8% of ~  32.20MiB at    1.47MiB/s ETA 00:16 (frag 65/148)
+[download]  44.8% of ~  32.34MiB at    1.47MiB/s ETA 00:16 (frag 65/148)
+[download]  44.0% of ~  32.89MiB at    1.47MiB/s ETA 00:16 (frag 66/148)
+[download]  45.3% of ~  31.99MiB at    1.47MiB/s ETA 00:16 (frag 66/148)
+[download]  45.3% of ~  31.99MiB at    1.47MiB/s ETA 00:16 (frag 66/148)
+[download]  45.3% of ~  31.99MiB at    1.47MiB/s ETA 00:16 (frag 66/148)
+[download]  45.3% of ~  32.00MiB at    1.47MiB/s ETA 00:16 (frag 66/148)
+[download]  45.3% of ~  32.02MiB at    1.50MiB/s ETA 00:16 (frag 66/148)
+[download]  45.4% of ~  32.05MiB at    1.50MiB/s ETA 00:16 (frag 66/148)
+[download]  45.5% of ~  32.12MiB at    1.50MiB/s ETA 00:16 (frag 66/148)
+[download]  45.5% of ~  32.26MiB at    1.50MiB/s ETA 00:16 (frag 66/148)
+[download]  44.7% of ~  32.83MiB at    1.50MiB/s ETA 00:16 (frag 67/148)
+[download]  45.9% of ~  31.93MiB at    1.50MiB/s ETA 00:16 (frag 67/148)
+[download]  46.0% of ~  31.94MiB at    1.50MiB/s ETA 00:16 (frag 67/148)
+[download]  46.0% of ~  31.94MiB at    1.50MiB/s ETA 00:16 (frag 67/148)
+[download]  46.0% of ~  31.95MiB at    1.50MiB/s ETA 00:16 (frag 67/148)
+[download]  46.0% of ~  31.97MiB at    1.50MiB/s ETA 00:16 (frag 67/148)
+[download]  46.0% of ~  32.00MiB at    1.50MiB/s ETA 00:16 (frag 67/148)
+[download]  46.1% of ~  32.07MiB at    1.54MiB/s ETA 00:15 (frag 67/148)
+[download]  46.3% of ~  32.20MiB at    1.54MiB/s ETA 00:15 (frag 67/148)
+[download]  45.9% of ~  32.48MiB at    1.54MiB/s ETA 00:15 (frag 67/148)
+[download]  45.2% of ~  33.02MiB at    1.54MiB/s ETA 00:15 (frag 68/148)
+[download]  46.6% of ~  32.01MiB at    1.54MiB/s ETA 00:15 (frag 68/148)
+[download]  46.6% of ~  32.01MiB at    1.54MiB/s ETA 00:15 (frag 68/148)
+[download]  46.6% of ~  32.01MiB at    1.54MiB/s ETA 00:15 (frag 68/148)
+[download]  46.6% of ~  32.02MiB at    1.54MiB/s ETA 00:15 (frag 68/148)
+[download]  46.7% of ~  32.04MiB at    1.54MiB/s ETA 00:15 (frag 68/148)
+[download]  46.7% of ~  32.07MiB at    1.54MiB/s ETA 00:15 (frag 68/148)
+[download]  46.8% of ~  32.14MiB at    1.58MiB/s ETA 00:14 (frag 68/148)
+[download]  47.0% of ~  32.27MiB at    1.58MiB/s ETA 00:14 (frag 68/148)
+[download]  46.7% of ~  32.54MiB at    1.58MiB/s ETA 00:14 (frag 68/148)
+[download]  45.8% of ~  33.24MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  47.3% of ~  32.16MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  47.3% of ~  32.16MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  47.3% of ~  32.16MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  47.3% of ~  32.17MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  47.3% of ~  32.19MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  47.4% of ~  32.22MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  47.5% of ~  32.29MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  47.6% of ~  32.42MiB at    1.58MiB/s ETA 00:14 (frag 69/148)
+[download]  46.7% of ~  33.04MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  48.0% of ~  32.14MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  48.0% of ~  32.14MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  48.0% of ~  32.14MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  48.0% of ~  32.15MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  48.0% of ~  32.17MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  48.1% of ~  32.20MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  48.2% of ~  32.27MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  48.1% of ~  32.40MiB at    1.66MiB/s ETA 00:14 (frag 70/148)
+[download]  47.4% of ~  32.88MiB at    1.66MiB/s ETA 00:14 (frag 71/148)
+[download]  48.7% of ~  32.06MiB at    1.72MiB/s ETA 00:13 (frag 71/148)
+[download]  48.7% of ~  32.06MiB at    1.72MiB/s ETA 00:13 (frag 71/148)
+[download]  48.7% of ~  32.07MiB at    1.72MiB/s ETA 00:13 (frag 71/148)
+[download]  48.7% of ~  32.07MiB at    1.72MiB/s ETA 00:13 (frag 71/148)
+[download]  48.7% of ~  32.09MiB at    1.72MiB/s ETA 00:13 (frag 71/148)
+[download]  48.7% of ~  32.12MiB at    1.72MiB/s ETA 00:13 (frag 71/148)
+[download]  48.8% of ~  32.19MiB at    1.72MiB/s ETA 00:13 (frag 71/148)
+[download]  48.8% of ~  32.31MiB at    1.72MiB/s ETA 00:13 (frag 71/148)
+[download]  48.1% of ~  32.75MiB at    1.72MiB/s ETA 00:13 (frag 72/148)
+[download]  49.3% of ~  31.96MiB at    1.72MiB/s ETA 00:13 (frag 72/148)
+[download]  49.3% of ~  31.96MiB at    1.72MiB/s ETA 00:13 (frag 72/148)
+[download]  49.3% of ~  31.97MiB at    1.76MiB/s ETA 00:13 (frag 72/148)
+[download]  49.3% of ~  31.97MiB at    1.76MiB/s ETA 00:13 (frag 72/148)
+[download]  49.4% of ~  31.99MiB at    1.76MiB/s ETA 00:13 (frag 72/148)
+[download]  49.4% of ~  32.02MiB at    1.76MiB/s ETA 00:13 (frag 72/148)
+[download]  49.5% of ~  32.08MiB at    1.76MiB/s ETA 00:13 (frag 72/148)
+[download]  49.7% of ~  32.21MiB at    1.76MiB/s ETA 00:13 (frag 72/148)
+[download]  48.6% of ~  32.96MiB at    1.76MiB/s ETA 00:13 (frag 73/148)
+[download]  50.0% of ~  32.02MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  50.0% of ~  32.02MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  50.0% of ~  32.03MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  50.0% of ~  32.03MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  50.0% of ~  32.05MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  50.1% of ~  32.08MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  50.2% of ~  32.14MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  50.4% of ~  32.27MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  50.6% of ~  32.52MiB at    1.73MiB/s ETA 00:13 (frag 73/148)
+[download]  48.7% of ~  33.76MiB at    1.73MiB/s ETA 00:13 (frag 74/148)
+[download]  50.7% of ~  32.45MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  50.7% of ~  32.45MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  50.7% of ~  32.46MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  50.7% of ~  32.46MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  50.7% of ~  32.48MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  50.8% of ~  32.51MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  50.9% of ~  32.57MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  51.1% of ~  32.69MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  51.2% of ~  32.94MiB at    1.75MiB/s ETA 00:12 (frag 74/148)
+[download]  49.5% of ~  34.10MiB at    1.75MiB/s ETA 00:12 (frag 75/148)
+[download]  51.4% of ~  32.83MiB at    1.80MiB/s ETA 00:12 (frag 75/148)
+[download]  51.4% of ~  32.84MiB at    1.80MiB/s ETA 00:12 (frag 75/148)
+[download]  51.4% of ~  32.84MiB at    1.80MiB/s ETA 00:12 (frag 75/148)
+[download]  51.4% of ~  32.85MiB at    1.80MiB/s ETA 00:12 (frag 75/148)
+[download]  51.4% of ~  32.86MiB at    1.80MiB/s ETA 00:12 (frag 75/148)
+[download]  51.4% of ~  32.89MiB at    1.80MiB/s ETA 00:12 (frag 75/148)
+[download]  51.5% of ~  32.95MiB at    1.80MiB/s ETA 00:12 (frag 75/148)
+[download]  51.6% of ~  33.08MiB at    1.80MiB/s ETA 00:12 (frag 75/148)
+[download]  50.7% of ~  33.68MiB at    1.80MiB/s ETA 00:12 (frag 76/148)
+[download]  52.0% of ~  32.83MiB at    1.80MiB/s ETA 00:12 (frag 76/148)
+[download]  52.0% of ~  32.83MiB at    1.80MiB/s ETA 00:12 (frag 76/148)
+[download]  52.0% of ~  32.83MiB at    1.80MiB/s ETA 00:12 (frag 76/148)
+[download]  52.1% of ~  32.84MiB at    1.80MiB/s ETA 00:12 (frag 76/148)
+[download]  52.1% of ~  32.85MiB at    1.80MiB/s ETA 00:12 (frag 76/148)
+[download]  52.1% of ~  32.88MiB at    1.80MiB/s ETA 00:12 (frag 76/148)
+[download]  52.1% of ~  32.94MiB at    1.80MiB/s ETA 00:12 (frag 76/148)
+[download]  51.7% of ~  33.20MiB at    1.80MiB/s ETA 00:12 (frag 77/148)
+[download]  52.7% of ~  32.59MiB at    1.85MiB/s ETA 00:11 (frag 77/148)
+[download]  52.7% of ~  32.59MiB at    1.85MiB/s ETA 00:11 (frag 77/148)
+[download]  52.7% of ~  32.60MiB at    1.85MiB/s ETA 00:11 (frag 77/148)
+[download]  52.7% of ~  32.60MiB at    1.85MiB/s ETA 00:11 (frag 77/148)
+[download]  52.8% of ~  32.62MiB at    1.85MiB/s ETA 00:11 (frag 77/148)
+[download]  52.8% of ~  32.65MiB at    1.85MiB/s ETA 00:11 (frag 77/148)
+[download]  52.9% of ~  32.71MiB at    1.85MiB/s ETA 00:11 (frag 77/148)
+[download]  52.3% of ~  33.06MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  53.4% of ~  32.41MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  53.4% of ~  32.41MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  53.4% of ~  32.41MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  53.4% of ~  32.42MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  53.4% of ~  32.44MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  53.5% of ~  32.47MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  53.6% of ~  32.52MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  53.6% of ~  32.64MiB at    1.85MiB/s ETA 00:11 (frag 78/148)
+[download]  52.8% of ~  33.14MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.1% of ~  32.37MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.1% of ~  32.37MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.1% of ~  32.37MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.1% of ~  32.38MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.1% of ~  32.39MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.2% of ~  32.42MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.2% of ~  32.48MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.4% of ~  32.60MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  54.2% of ~  32.83MiB at    1.91MiB/s ETA 00:11 (frag 79/148)
+[download]  53.2% of ~  33.42MiB at    1.91MiB/s ETA 00:11 (frag 80/148)
+[download]  54.7% of ~  32.49MiB at    1.97MiB/s ETA 00:10 (frag 80/148)
+[download]  54.7% of ~  32.49MiB at    1.97MiB/s ETA 00:10 (frag 80/148)
+[download]  54.7% of ~  32.49MiB at    1.97MiB/s ETA 00:10 (frag 80/148)
+[download]  54.8% of ~  32.50MiB at    1.97MiB/s ETA 00:10 (frag 80/148)
+[download]  54.8% of ~  32.51MiB at    1.97MiB/s ETA 00:10 (frag 80/148)
+[download]  54.8% of ~  32.54MiB at    1.97MiB/s ETA 00:10 (frag 80/148)
+[download]  54.9% of ~  32.60MiB at    1.97MiB/s ETA 00:10 (frag 80/148)
+[download]  55.0% of ~  32.71MiB at    1.97MiB/s ETA 00:10 (frag 80/148)
+[download]  54.1% of ~  33.30MiB at    1.97MiB/s ETA 00:10 (frag 81/148)
+[download]  55.4% of ~  32.49MiB at    1.94MiB/s ETA 00:10 (frag 81/148)
+[download]  55.4% of ~  32.50MiB at    1.94MiB/s ETA 00:10 (frag 81/148)
+[download]  55.4% of ~  32.50MiB at    1.94MiB/s ETA 00:10 (frag 81/148)
+[download]  55.4% of ~  32.51MiB at    1.94MiB/s ETA 00:10 (frag 81/148)
+[download]  55.5% of ~  32.52MiB at    1.94MiB/s ETA 00:10 (frag 81/148)
+[download]  55.5% of ~  32.55MiB at    1.94MiB/s ETA 00:10 (frag 81/148)
+[download]  55.6% of ~  32.61MiB at    1.94MiB/s ETA 00:10 (frag 81/148)
+[download]  55.6% of ~  32.72MiB at    1.94MiB/s ETA 00:10 (frag 81/148)
+[download]  54.9% of ~  33.13MiB at    1.94MiB/s ETA 00:10 (frag 82/148)
+[download]  56.1% of ~  32.42MiB at    1.94MiB/s ETA 00:10 (frag 82/148)
+[download]  56.1% of ~  32.42MiB at    1.93MiB/s ETA 00:10 (frag 82/148)
+[download]  56.1% of ~  32.42MiB at    1.93MiB/s ETA 00:10 (frag 82/148)
+[download]  56.1% of ~  32.43MiB at    1.93MiB/s ETA 00:10 (frag 82/148)
+[download]  56.1% of ~  32.44MiB at    1.93MiB/s ETA 00:10 (frag 82/148)
+[download]  56.2% of ~  32.47MiB at    1.93MiB/s ETA 00:10 (frag 82/148)
+[download]  56.3% of ~  32.53MiB at    1.93MiB/s ETA 00:10 (frag 82/148)
+[download]  56.2% of ~  32.64MiB at    1.93MiB/s ETA 00:10 (frag 82/148)
+[download]  55.6% of ~  32.97MiB at    1.93MiB/s ETA 00:10 (frag 83/148)
+[download]  56.8% of ~  32.30MiB at    1.91MiB/s ETA 00:09 (frag 83/148)
+[download]  56.8% of ~  32.31MiB at    1.91MiB/s ETA 00:09 (frag 83/148)
+[download]  56.8% of ~  32.31MiB at    1.91MiB/s ETA 00:09 (frag 83/148)
+[download]  56.8% of ~  32.32MiB at    1.91MiB/s ETA 00:09 (frag 83/148)
+[download]  56.8% of ~  32.33MiB at    1.91MiB/s ETA 00:09 (frag 83/148)
+[download]  56.9% of ~  32.36MiB at    1.91MiB/s ETA 00:09 (frag 83/148)
+[download]  56.9% of ~  32.41MiB at    1.91MiB/s ETA 00:09 (frag 83/148)
+[download]  56.8% of ~  32.52MiB at    1.91MiB/s ETA 00:09 (frag 83/148)
+[download]  56.3% of ~  32.82MiB at    1.91MiB/s ETA 00:09 (frag 84/148)
+[download]  57.4% of ~  32.18MiB at    1.91MiB/s ETA 00:09 (frag 84/148)
+[download]  57.4% of ~  32.18MiB at    1.89MiB/s ETA 00:09 (frag 84/148)
+[download]  57.4% of ~  32.18MiB at    1.89MiB/s ETA 00:09 (frag 84/148)
+[download]  57.5% of ~  32.19MiB at    1.89MiB/s ETA 00:09 (frag 84/148)
+[download]  57.5% of ~  32.20MiB at    1.89MiB/s ETA 00:09 (frag 84/148)
+[download]  57.5% of ~  32.23MiB at    1.89MiB/s ETA 00:09 (frag 84/148)
+[download]  57.6% of ~  32.29MiB at    1.89MiB/s ETA 00:09 (frag 84/148)
+[download]  57.8% of ~  32.39MiB at    1.89MiB/s ETA 00:09 (frag 84/148)
+[download]  57.5% of ~  32.61MiB at    1.89MiB/s ETA 00:09 (frag 84/148)
+[download]  56.6% of ~  33.10MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  58.1% of ~  32.26MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  58.1% of ~  32.26MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  58.1% of ~  32.27MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  58.1% of ~  32.27MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  58.2% of ~  32.29MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  58.2% of ~  32.31MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  58.3% of ~  32.37MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  58.5% of ~  32.47MiB at    1.89MiB/s ETA 00:09 (frag 85/148)
+[download]  57.4% of ~  33.10MiB at    1.89MiB/s ETA 00:09 (frag 86/148)
+[download]  58.8% of ~  32.31MiB at    1.88MiB/s ETA 00:09 (frag 86/148)
+[download]  58.8% of ~  32.31MiB at    1.88MiB/s ETA 00:09 (frag 86/148)
+[download]  58.8% of ~  32.31MiB at    1.88MiB/s ETA 00:09 (frag 86/148)
+[download]  58.8% of ~  32.32MiB at    1.88MiB/s ETA 00:09 (frag 86/148)
+[download]  58.8% of ~  32.33MiB at    1.88MiB/s ETA 00:09 (frag 86/148)
+[download]  58.9% of ~  32.36MiB at    1.88MiB/s ETA 00:09 (frag 86/148)
+[download]  59.0% of ~  32.41MiB at    1.88MiB/s ETA 00:09 (frag 86/148)
+[download]  58.8% of ~  32.52MiB at    1.88MiB/s ETA 00:09 (frag 86/148)
+[download]  58.4% of ~  32.78MiB at    1.88MiB/s ETA 00:09 (frag 87/148)
+[download]  59.5% of ~  32.18MiB at    1.87MiB/s ETA 00:09 (frag 87/148)
+[download]  59.5% of ~  32.18MiB at    1.87MiB/s ETA 00:09 (frag 87/148)
+[download]  59.5% of ~  32.18MiB at    1.87MiB/s ETA 00:09 (frag 87/148)
+[download]  59.5% of ~  32.19MiB at    1.87MiB/s ETA 00:09 (frag 87/148)
+[download]  59.5% of ~  32.20MiB at    1.87MiB/s ETA 00:09 (frag 87/148)
+[download]  59.6% of ~  32.23MiB at    1.87MiB/s ETA 00:09 (frag 87/148)
+[download]  59.7% of ~  32.28MiB at    1.87MiB/s ETA 00:09 (frag 87/148)
+[download]  59.6% of ~  32.38MiB at    1.87MiB/s ETA 00:09 (frag 87/148)
+[download]  59.0% of ~  32.73MiB at    1.87MiB/s ETA 00:09 (frag 88/148)
+[download]  60.1% of ~  32.09MiB at    1.87MiB/s ETA 00:08 (frag 88/148)
+[download]  60.1% of ~  32.09MiB at    1.87MiB/s ETA 00:08 (frag 88/148)
+[download]  60.1% of ~  32.09MiB at    1.87MiB/s ETA 00:08 (frag 88/148)
+[download]  60.2% of ~  32.10MiB at    1.87MiB/s ETA 00:08 (frag 88/148)
+[download]  60.2% of ~  32.11MiB at    1.87MiB/s ETA 00:08 (frag 88/148)
+[download]  60.2% of ~  32.14MiB at    1.87MiB/s ETA 00:08 (frag 88/148)
+[download]  60.3% of ~  32.19MiB at    1.87MiB/s ETA 00:08 (frag 88/148)
+[download]  60.3% of ~  32.29MiB at    1.87MiB/s ETA 00:08 (frag 88/148)
+[download]  59.6% of ~  32.64MiB at    1.87MiB/s ETA 00:08 (frag 89/148)
+[download]  60.8% of ~  32.00MiB at    1.88MiB/s ETA 00:08 (frag 89/148)
+[download]  60.8% of ~  32.01MiB at    1.88MiB/s ETA 00:08 (frag 89/148)
+[download]  60.8% of ~  32.01MiB at    1.88MiB/s ETA 00:08 (frag 89/148)
+[download]  60.8% of ~  32.01MiB at    1.88MiB/s ETA 00:08 (frag 89/148)
+[download]  60.9% of ~  32.03MiB at    1.88MiB/s ETA 00:08 (frag 89/148)
+[download]  60.9% of ~  32.05MiB at    1.88MiB/s ETA 00:08 (frag 89/148)
+[download]  61.0% of ~  32.10MiB at    1.88MiB/s ETA 00:08 (frag 89/148)
+[download]  60.9% of ~  32.21MiB at    1.88MiB/s ETA 00:08 (frag 89/148)
+[download]  60.3% of ~  32.53MiB at    1.88MiB/s ETA 00:08 (frag 90/148)
+[download]  61.5% of ~  31.91MiB at    2.02MiB/s ETA 00:08 (frag 90/148)
+[download]  61.5% of ~  31.91MiB at    2.02MiB/s ETA 00:08 (frag 90/148)
+[download]  61.5% of ~  31.91MiB at    2.02MiB/s ETA 00:08 (frag 90/148)
+[download]  61.5% of ~  31.92MiB at    2.02MiB/s ETA 00:08 (frag 90/148)
+[download]  61.5% of ~  31.93MiB at    2.02MiB/s ETA 00:08 (frag 90/148)
+[download]  61.6% of ~  31.96MiB at    2.02MiB/s ETA 00:08 (frag 90/148)
+[download]  61.7% of ~  32.01MiB at    2.02MiB/s ETA 00:08 (frag 90/148)
+[download]  61.6% of ~  32.11MiB at    2.02MiB/s ETA 00:08 (frag 90/148)
+[download]  61.0% of ~  32.47MiB at    2.02MiB/s ETA 00:08 (frag 91/148)
+[download]  62.2% of ~  31.84MiB at    2.12MiB/s ETA 00:07 (frag 91/148)
+[download]  62.2% of ~  31.84MiB at    2.12MiB/s ETA 00:07 (frag 91/148)
+[download]  62.2% of ~  31.84MiB at    2.12MiB/s ETA 00:07 (frag 91/148)
+[download]  62.2% of ~  31.85MiB at    2.12MiB/s ETA 00:07 (frag 91/148)
+[download]  62.2% of ~  31.86MiB at    2.12MiB/s ETA 00:07 (frag 91/148)
+[download]  62.3% of ~  31.89MiB at    2.12MiB/s ETA 00:07 (frag 91/148)
+[download]  62.4% of ~  31.94MiB at    2.12MiB/s ETA 00:07 (frag 91/148)
+[download]  62.3% of ~  32.04MiB at    2.12MiB/s ETA 00:07 (frag 91/148)
+[download]  61.7% of ~  32.36MiB at    2.12MiB/s ETA 00:07 (frag 92/148)
+[download]  62.8% of ~  31.75MiB at    2.08MiB/s ETA 00:07 (frag 92/148)
+[download]  62.8% of ~  31.75MiB at    2.08MiB/s ETA 00:07 (frag 92/148)
+[download]  62.9% of ~  31.76MiB at    2.08MiB/s ETA 00:07 (frag 92/148)
+[download]  62.9% of ~  31.76MiB at    2.08MiB/s ETA 00:07 (frag 92/148)
+[download]  62.9% of ~  31.77MiB at    2.08MiB/s ETA 00:07 (frag 92/148)
+[download]  62.9% of ~  31.80MiB at    2.08MiB/s ETA 00:07 (frag 92/148)
+[download]  63.0% of ~  31.85MiB at    2.08MiB/s ETA 00:07 (frag 92/148)
+[download]  63.0% of ~  31.95MiB at    2.08MiB/s ETA 00:07 (frag 92/148)
+[download]  62.3% of ~  32.33MiB at    2.08MiB/s ETA 00:07 (frag 93/148)
+[download]  63.5% of ~  31.70MiB at    2.08MiB/s ETA 00:07 (frag 93/148)
+[download]  63.5% of ~  31.70MiB at    2.04MiB/s ETA 00:07 (frag 93/148)
+[download]  63.5% of ~  31.71MiB at    2.04MiB/s ETA 00:07 (frag 93/148)
+[download]  63.5% of ~  31.71MiB at    2.04MiB/s ETA 00:07 (frag 93/148)
+[download]  63.6% of ~  31.72MiB at    2.04MiB/s ETA 00:07 (frag 93/148)
+[download]  63.6% of ~  31.75MiB at    2.04MiB/s ETA 00:07 (frag 93/148)
+[download]  63.7% of ~  31.80MiB at    2.04MiB/s ETA 00:07 (frag 93/148)
+[download]  63.7% of ~  31.90MiB at    2.04MiB/s ETA 00:07 (frag 93/148)
+[download]  62.9% of ~  32.29MiB at    2.04MiB/s ETA 00:07 (frag 94/148)
+[download]  64.2% of ~  31.66MiB at    2.01MiB/s ETA 00:07 (frag 94/148)
+[download]  64.2% of ~  31.66MiB at    2.01MiB/s ETA 00:07 (frag 94/148)
+[download]  64.2% of ~  31.66MiB at    2.01MiB/s ETA 00:07 (frag 94/148)
+[download]  64.2% of ~  31.67MiB at    2.01MiB/s ETA 00:07 (frag 94/148)
+[download]  64.2% of ~  31.68MiB at    2.01MiB/s ETA 00:07 (frag 94/148)
+[download]  64.3% of ~  31.71MiB at    2.01MiB/s ETA 00:07 (frag 94/148)
+[download]  64.4% of ~  31.75MiB at    2.01MiB/s ETA 00:07 (frag 94/148)
+[download]  64.3% of ~  31.85MiB at    2.01MiB/s ETA 00:07 (frag 94/148)
+[download]  63.7% of ~  32.20MiB at    2.01MiB/s ETA 00:07 (frag 95/148)
+[download]  64.9% of ~  31.59MiB at    1.98MiB/s ETA 00:07 (frag 95/148)
+[download]  64.9% of ~  31.60MiB at    1.98MiB/s ETA 00:07 (frag 95/148)
+[download]  64.9% of ~  31.60MiB at    1.98MiB/s ETA 00:07 (frag 95/148)
+[download]  64.9% of ~  31.60MiB at    1.98MiB/s ETA 00:07 (frag 95/148)
+[download]  64.9% of ~  31.62MiB at    1.98MiB/s ETA 00:07 (frag 95/148)
+[download]  65.0% of ~  31.64MiB at    1.98MiB/s ETA 00:07 (frag 95/148)
+[download]  65.1% of ~  31.69MiB at    1.98MiB/s ETA 00:07 (frag 95/148)
+[download]  64.9% of ~  31.79MiB at    1.98MiB/s ETA 00:07 (frag 95/148)
+[download]  64.4% of ~  32.05MiB at    1.98MiB/s ETA 00:07 (frag 96/148)
+[download]  65.5% of ~  31.49MiB at    1.92MiB/s ETA 00:07 (frag 96/148)
+[download]  65.5% of ~  31.49MiB at    1.92MiB/s ETA 00:07 (frag 96/148)
+[download]  65.6% of ~  31.50MiB at    1.85MiB/s ETA 00:07 (frag 96/148)
+[download]  65.6% of ~  31.50MiB at    1.85MiB/s ETA 00:07 (frag 96/148)
+[download]  65.6% of ~  31.52MiB at    1.85MiB/s ETA 00:07 (frag 96/148)
+[download]  65.6% of ~  31.54MiB at    1.85MiB/s ETA 00:07 (frag 96/148)
+[download]  65.7% of ~  31.59MiB at    1.85MiB/s ETA 00:07 (frag 96/148)
+[download]  65.6% of ~  31.68MiB at    1.85MiB/s ETA 00:07 (frag 96/148)
+[download]  65.1% of ~  31.92MiB at    1.88MiB/s ETA 00:06 (frag 97/148)
+[download]  66.2% of ~  31.38MiB at    1.88MiB/s ETA 00:06 (frag 97/148)
+[download]  66.2% of ~  31.38MiB at    1.88MiB/s ETA 00:06 (frag 97/148)
+[download]  66.2% of ~  31.39MiB at    1.88MiB/s ETA 00:06 (frag 97/148)
+[download]  66.2% of ~  31.39MiB at    1.88MiB/s ETA 00:06 (frag 97/148)
+[download]  66.3% of ~  31.40MiB at    1.88MiB/s ETA 00:06 (frag 97/148)
+[download]  66.3% of ~  31.43MiB at    1.88MiB/s ETA 00:06 (frag 97/148)
+[download]  66.4% of ~  31.47MiB at    1.88MiB/s ETA 00:06 (frag 97/148)
+[download]  65.9% of ~  31.71MiB at    1.88MiB/s ETA 00:06 (frag 98/148)
+[download]  66.9% of ~  31.23MiB at    1.90MiB/s ETA 00:06 (frag 98/148)
+[download]  66.9% of ~  31.23MiB at    1.90MiB/s ETA 00:06 (frag 98/148)
+[download]  66.9% of ~  31.23MiB at    1.90MiB/s ETA 00:06 (frag 98/148)
+[download]  66.9% of ~  31.24MiB at    1.90MiB/s ETA 00:06 (frag 98/148)
+[download]  66.9% of ~  31.25MiB at    1.90MiB/s ETA 00:06 (frag 98/148)
+[download]  67.0% of ~  31.27MiB at    1.90MiB/s ETA 00:06 (frag 98/148)
+[download]  67.1% of ~  31.32MiB at    1.90MiB/s ETA 00:06 (frag 98/148)
+[download]  66.9% of ~  31.41MiB at    1.90MiB/s ETA 00:06 (frag 98/148)
+[download]  66.5% of ~  31.60MiB at    1.90MiB/s ETA 00:06 (frag 99/148)
+[download]  67.6% of ~  31.10MiB at    1.92MiB/s ETA 00:06 (frag 99/148)
+[download]  67.6% of ~  31.10MiB at    1.92MiB/s ETA 00:06 (frag 99/148)
+[download]  67.6% of ~  31.10MiB at    1.92MiB/s ETA 00:06 (frag 99/148)
+[download]  67.6% of ~  31.11MiB at    1.92MiB/s ETA 00:06 (frag 99/148)
+[download]  67.6% of ~  31.12MiB at    1.92MiB/s ETA 00:06 (frag 99/148)
+[download]  67.7% of ~  31.15MiB at    1.92MiB/s ETA 00:06 (frag 99/148)
+[download]  67.8% of ~  31.19MiB at    1.92MiB/s ETA 00:06 (frag 99/148)
+[download]  67.7% of ~  31.28MiB at    1.92MiB/s ETA 00:06 (frag 99/148)
+[download]  67.0% of ~  31.63MiB at    1.92MiB/s ETA 00:06 (frag 100/148)
+[download]  68.2% of ~  31.06MiB at    1.93MiB/s ETA 00:06 (frag 100/148)
+[download]  68.2% of ~  31.06MiB at    1.93MiB/s ETA 00:06 (frag 100/148)
+[download]  68.3% of ~  31.06MiB at    1.93MiB/s ETA 00:06 (frag 100/148)
+[download]  68.3% of ~  31.07MiB at    1.93MiB/s ETA 00:06 (frag 100/148)
+[download]  68.3% of ~  31.08MiB at    1.93MiB/s ETA 00:06 (frag 100/148)
+[download]  68.3% of ~  31.10MiB at    1.93MiB/s ETA 00:06 (frag 100/148)
+[download]  68.4% of ~  31.15MiB at    1.93MiB/s ETA 00:06 (frag 100/148)
+[download]  68.3% of ~  31.24MiB at    1.93MiB/s ETA 00:06 (frag 100/148)
+[download]  67.8% of ~  31.50MiB at    1.93MiB/s ETA 00:06 (frag 101/148)
+[download]  68.9% of ~  30.97MiB at    1.93MiB/s ETA 00:06 (frag 101/148)
+[download]  68.9% of ~  30.98MiB at    1.95MiB/s ETA 00:06 (frag 101/148)
+[download]  68.9% of ~  30.98MiB at    1.95MiB/s ETA 00:06 (frag 101/148)
+[download]  68.9% of ~  30.98MiB at    1.95MiB/s ETA 00:06 (frag 101/148)
+[download]  69.0% of ~  30.99MiB at    1.95MiB/s ETA 00:06 (frag 101/148)
+[download]  69.0% of ~  31.02MiB at    1.95MiB/s ETA 00:06 (frag 101/148)
+[download]  69.1% of ~  31.06MiB at    1.95MiB/s ETA 00:06 (frag 101/148)
+[download]  69.1% of ~  31.15MiB at    1.95MiB/s ETA 00:06 (frag 101/148)
+[download]  68.4% of ~  31.48MiB at    1.95MiB/s ETA 00:06 (frag 102/148)
+[download]  69.6% of ~  30.92MiB at    1.95MiB/s ETA 00:06 (frag 102/148)
+[download]  69.6% of ~  30.92MiB at    1.95MiB/s ETA 00:06 (frag 102/148)
+[download]  69.6% of ~  30.93MiB at    1.95MiB/s ETA 00:06 (frag 102/148)
+[download]  69.6% of ~  30.93MiB at    1.95MiB/s ETA 00:06 (frag 102/148)
+[download]  69.6% of ~  30.94MiB at    1.97MiB/s ETA 00:06 (frag 102/148)
+[download]  69.7% of ~  30.97MiB at    1.97MiB/s ETA 00:06 (frag 102/148)
+[download]  69.8% of ~  31.01MiB at    1.97MiB/s ETA 00:06 (frag 102/148)
+[download]  70.0% of ~  31.10MiB at    1.97MiB/s ETA 00:06 (frag 102/148)
+[download]  68.8% of ~  31.62MiB at    1.97MiB/s ETA 00:06 (frag 103/148)
+[download]  70.3% of ~  30.97MiB at    1.99MiB/s ETA 00:05 (frag 103/148)
+[download]  70.3% of ~  30.97MiB at    1.99MiB/s ETA 00:05 (frag 103/148)
+[download]  70.3% of ~  30.98MiB at    1.99MiB/s ETA 00:05 (frag 103/148)
+[download]  70.3% of ~  30.98MiB at    1.99MiB/s ETA 00:05 (frag 103/148)
+[download]  70.3% of ~  30.99MiB at    1.99MiB/s ETA 00:05 (frag 103/148)
+[download]  70.4% of ~  31.01MiB at    1.99MiB/s ETA 00:05 (frag 103/148)
+[download]  70.5% of ~  31.06MiB at    1.99MiB/s ETA 00:05 (frag 103/148)
+[download]  70.5% of ~  31.15MiB at    1.99MiB/s ETA 00:05 (frag 103/148)
+[download]  69.7% of ~  31.52MiB at    1.99MiB/s ETA 00:05 (frag 104/148)
+[download]  70.9% of ~  30.95MiB at    1.99MiB/s ETA 00:05 (frag 104/148)
+[download]  71.0% of ~  30.95MiB at    1.99MiB/s ETA 00:05 (frag 104/148)
+[download]  71.0% of ~  30.95MiB at    2.02MiB/s ETA 00:05 (frag 104/148)
+[download]  71.0% of ~  30.96MiB at    2.02MiB/s ETA 00:05 (frag 104/148)
+[download]  71.0% of ~  30.97MiB at    2.02MiB/s ETA 00:05 (frag 104/148)
+[download]  71.0% of ~  30.99MiB at    2.02MiB/s ETA 00:05 (frag 104/148)
+[download]  71.1% of ~  31.03MiB at    2.02MiB/s ETA 00:05 (frag 104/148)
+[download]  71.0% of ~  31.12MiB at    2.02MiB/s ETA 00:05 (frag 104/148)
+[download]  70.5% of ~  31.33MiB at    2.02MiB/s ETA 00:05 (frag 105/148)
+[download]  71.6% of ~  30.85MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  71.6% of ~  30.85MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  71.6% of ~  30.85MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  71.6% of ~  30.86MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  71.7% of ~  30.87MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  71.7% of ~  30.89MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  71.8% of ~  30.93MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  72.0% of ~  31.02MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  71.7% of ~  31.19MiB at    1.90MiB/s ETA 00:05 (frag 105/148)
+[download]  70.8% of ~  31.57MiB at    1.90MiB/s ETA 00:05 (frag 106/148)
+[download]  72.3% of ~  30.92MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  72.3% of ~  30.92MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  72.3% of ~  30.92MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  72.3% of ~  30.93MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  72.3% of ~  30.94MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  72.4% of ~  30.96MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  72.5% of ~  31.00MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  72.7% of ~  31.09MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  72.4% of ~  31.26MiB at    1.84MiB/s ETA 00:05 (frag 106/148)
+[download]  71.4% of ~  31.68MiB at    1.84MiB/s ETA 00:05 (frag 107/148)
+[download]  73.0% of ~  31.01MiB at    1.84MiB/s ETA 00:05 (frag 107/148)
+[download]  73.0% of ~  31.01MiB at    1.81MiB/s ETA 00:05 (frag 107/148)
+[download]  73.0% of ~  31.01MiB at    1.81MiB/s ETA 00:05 (frag 107/148)
+[download]  73.0% of ~  31.02MiB at    1.81MiB/s ETA 00:05 (frag 107/148)
+[download]  73.0% of ~  31.03MiB at    1.81MiB/s ETA 00:05 (frag 107/148)
+[download]  73.1% of ~  31.05MiB at    1.81MiB/s ETA 00:05 (frag 107/148)
+[download]  73.2% of ~  31.09MiB at    1.81MiB/s ETA 00:05 (frag 107/148)
+[download]  73.2% of ~  31.18MiB at    1.81MiB/s ETA 00:05 (frag 107/148)
+[download]  72.4% of ~  31.51MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  73.7% of ~  30.97MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  73.7% of ~  30.98MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  73.7% of ~  30.98MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  73.7% of ~  30.98MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  73.7% of ~  30.99MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  73.7% of ~  31.02MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  73.8% of ~  31.06MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  74.1% of ~  31.14MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  73.7% of ~  31.31MiB at    1.81MiB/s ETA 00:05 (frag 108/148)
+[download]  72.8% of ~  31.73MiB at    1.81MiB/s ETA 00:05 (frag 109/148)
+[download]  74.3% of ~  31.07MiB at    1.81MiB/s ETA 00:05 (frag 109/148)
+[download]  74.3% of ~  31.07MiB at    1.82MiB/s ETA 00:05 (frag 109/148)
+[download]  74.3% of ~  31.07MiB at    1.82MiB/s ETA 00:05 (frag 109/148)
+[download]  74.3% of ~  31.07MiB at    1.82MiB/s ETA 00:05 (frag 109/148)
+[download]  74.4% of ~  31.08MiB at    1.82MiB/s ETA 00:05 (frag 109/148)
+[download]  74.4% of ~  31.11MiB at    1.82MiB/s ETA 00:05 (frag 109/148)
+[download]  74.5% of ~  31.15MiB at    1.82MiB/s ETA 00:05 (frag 109/148)
+[download]  74.6% of ~  31.23MiB at    1.82MiB/s ETA 00:05 (frag 109/148)
+[download]  73.7% of ~  31.64MiB at    1.82MiB/s ETA 00:05 (frag 110/148)
+[download]  75.0% of ~  31.07MiB at    1.84MiB/s ETA 00:05 (frag 110/148)
+[download]  75.0% of ~  31.07MiB at    1.84MiB/s ETA 00:05 (frag 110/148)
+[download]  75.0% of ~  31.07MiB at    1.84MiB/s ETA 00:05 (frag 110/148)
+[download]  75.0% of ~  31.08MiB at    1.84MiB/s ETA 00:05 (frag 110/148)
+[download]  75.1% of ~  31.09MiB at    1.84MiB/s ETA 00:05 (frag 110/148)
+[download]  75.1% of ~  31.11MiB at    1.84MiB/s ETA 00:05 (frag 110/148)
+[download]  75.1% of ~  31.15MiB at    1.84MiB/s ETA 00:05 (frag 110/148)
+[download]  74.7% of ~  31.30MiB at    1.84MiB/s ETA 00:05 (frag 111/148)
+[download]  75.7% of ~  30.91MiB at    1.86MiB/s ETA 00:05 (frag 111/148)
+[download]  75.7% of ~  30.91MiB at    1.86MiB/s ETA 00:05 (frag 111/148)
+[download]  75.7% of ~  30.91MiB at    1.86MiB/s ETA 00:05 (frag 111/148)
+[download]  75.7% of ~  30.91MiB at    1.86MiB/s ETA 00:05 (frag 111/148)
+[download]  75.7% of ~  30.92MiB at    1.86MiB/s ETA 00:05 (frag 111/148)
+[download]  75.8% of ~  30.95MiB at    1.86MiB/s ETA 00:05 (frag 111/148)
+[download]  75.8% of ~  30.99MiB at    1.86MiB/s ETA 00:05 (frag 111/148)
+[download]  75.4% of ~  31.16MiB at    1.86MiB/s ETA 00:05 (frag 112/148)
+[download]  76.4% of ~  30.76MiB at    1.86MiB/s ETA 00:05 (frag 112/148)
+[download]  76.4% of ~  30.76MiB at    1.86MiB/s ETA 00:05 (frag 112/148)
+[download]  76.4% of ~  30.76MiB at    1.86MiB/s ETA 00:05 (frag 112/148)
+[download]  76.4% of ~  30.77MiB at    1.87MiB/s ETA 00:04 (frag 112/148)
+[download]  76.4% of ~  30.78MiB at    1.87MiB/s ETA 00:04 (frag 112/148)
+[download]  76.5% of ~  30.80MiB at    1.87MiB/s ETA 00:04 (frag 112/148)
+[download]  76.6% of ~  30.84MiB at    1.87MiB/s ETA 00:04 (frag 112/148)
+[download]  76.4% of ~  30.92MiB at    1.87MiB/s ETA 00:04 (frag 112/148)
+[download]  75.9% of ~  31.15MiB at    1.87MiB/s ETA 00:04 (frag 113/148)
+[download]  77.0% of ~  30.68MiB at    1.87MiB/s ETA 00:04 (frag 113/148)
+[download]  77.0% of ~  30.68MiB at    1.87MiB/s ETA 00:04 (frag 113/148)
+[download]  77.0% of ~  30.69MiB at    1.88MiB/s ETA 00:04 (frag 113/148)
+[download]  77.1% of ~  30.69MiB at    1.88MiB/s ETA 00:04 (frag 113/148)
+[download]  77.1% of ~  30.70MiB at    1.88MiB/s ETA 00:04 (frag 113/148)
+[download]  77.1% of ~  30.72MiB at    1.88MiB/s ETA 00:04 (frag 113/148)
+[download]  77.2% of ~  30.76MiB at    1.88MiB/s ETA 00:04 (frag 113/148)
+[download]  77.2% of ~  30.84MiB at    1.88MiB/s ETA 00:04 (frag 113/148)
+[download]  76.4% of ~  31.17MiB at    1.88MiB/s ETA 00:04 (frag 114/148)
+[download]  77.7% of ~  30.66MiB at    1.89MiB/s ETA 00:04 (frag 114/148)
+[download]  77.7% of ~  30.66MiB at    1.89MiB/s ETA 00:04 (frag 114/148)
+[download]  77.7% of ~  30.66MiB at    1.89MiB/s ETA 00:04 (frag 114/148)
+[download]  77.7% of ~  30.66MiB at    1.89MiB/s ETA 00:04 (frag 114/148)
+[download]  77.8% of ~  30.67MiB at    1.89MiB/s ETA 00:04 (frag 114/148)
+[download]  77.8% of ~  30.69MiB at    1.89MiB/s ETA 00:04 (frag 114/148)
+[download]  77.9% of ~  30.73MiB at    1.89MiB/s ETA 00:04 (frag 114/148)
+[download]  78.0% of ~  30.81MiB at    1.89MiB/s ETA 00:04 (frag 114/148)
+[download]  77.0% of ~  31.20MiB at    1.89MiB/s ETA 00:04 (frag 115/148)
+[download]  78.4% of ~  30.66MiB at    1.77MiB/s ETA 00:04 (frag 115/148)
+[download]  78.4% of ~  30.66MiB at    1.77MiB/s ETA 00:04 (frag 115/148)
+[download]  78.4% of ~  30.66MiB at    1.77MiB/s ETA 00:04 (frag 115/148)
+[download]  78.4% of ~  30.67MiB at    1.77MiB/s ETA 00:04 (frag 115/148)
+[download]  78.4% of ~  30.68MiB at    1.77MiB/s ETA 00:04 (frag 115/148)
+[download]  78.5% of ~  30.70MiB at    1.77MiB/s ETA 00:04 (frag 115/148)
+[download]  78.6% of ~  30.74MiB at    1.77MiB/s ETA 00:04 (frag 115/148)
+[download]  78.7% of ~  30.82MiB at    1.77MiB/s ETA 00:04 (frag 115/148)
+[download]  77.7% of ~  31.21MiB at    1.77MiB/s ETA 00:04 (frag 116/148)
+[download]  79.1% of ~  30.67MiB at    1.70MiB/s ETA 00:04 (frag 116/148)
+[download]  79.1% of ~  30.67MiB at    1.70MiB/s ETA 00:04 (frag 116/148)
+[download]  79.1% of ~  30.67MiB at    1.70MiB/s ETA 00:04 (frag 116/148)
+[download]  79.1% of ~  30.68MiB at    1.70MiB/s ETA 00:04 (frag 116/148)
+[download]  79.1% of ~  30.69MiB at    1.70MiB/s ETA 00:04 (frag 116/148)
+[download]  79.2% of ~  30.71MiB at    1.70MiB/s ETA 00:04 (frag 116/148)
+[download]  79.3% of ~  30.75MiB at    1.70MiB/s ETA 00:04 (frag 116/148)
+[download]  79.2% of ~  30.83MiB at    1.70MiB/s ETA 00:04 (frag 116/148)
+[download]  78.5% of ~  31.11MiB at    1.70MiB/s ETA 00:04 (frag 117/148)
+[download]  79.7% of ~  30.63MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  79.7% of ~  30.63MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  79.7% of ~  30.63MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  79.8% of ~  30.64MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  79.8% of ~  30.65MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  79.8% of ~  30.67MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  79.9% of ~  30.71MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  80.1% of ~  30.79MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  79.9% of ~  30.94MiB at    1.71MiB/s ETA 00:04 (frag 117/148)
+[download]  78.7% of ~  31.42MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  80.4% of ~  30.77MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  80.4% of ~  30.77MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  80.4% of ~  30.77MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  80.4% of ~  30.77MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  80.5% of ~  30.78MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  80.5% of ~  30.80MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  80.6% of ~  30.84MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  80.6% of ~  30.92MiB at    1.74MiB/s ETA 00:04 (frag 118/148)
+[download]  79.8% of ~  31.22MiB at    1.76MiB/s ETA 00:04 (frag 119/148)
+[download]  81.1% of ~  30.73MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  81.1% of ~  30.74MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  81.1% of ~  30.74MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  81.1% of ~  30.74MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  81.1% of ~  30.75MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  81.2% of ~  30.77MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  81.3% of ~  30.81MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  81.5% of ~  30.89MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  81.3% of ~  31.04MiB at    1.74MiB/s ETA 00:04 (frag 119/148)
+[download]  80.1% of ~  31.54MiB at    1.74MiB/s ETA 00:04 (frag 120/148)
+[download]  81.8% of ~  30.88MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  81.8% of ~  30.88MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  81.8% of ~  30.88MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  81.8% of ~  30.89MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  81.8% of ~  30.90MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  81.9% of ~  30.92MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  82.0% of ~  30.95MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  82.2% of ~  31.03MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  81.8% of ~  31.18MiB at    1.75MiB/s ETA 00:04 (frag 120/148)
+[download]  80.9% of ~  31.53MiB at    1.75MiB/s ETA 00:04 (frag 121/148)
+[download]  82.4% of ~  30.95MiB at    1.75MiB/s ETA 00:04 (frag 121/148)
+[download]  82.4% of ~  30.95MiB at    1.75MiB/s ETA 00:04 (frag 121/148)
+[download]  82.4% of ~  30.95MiB at    1.75MiB/s ETA 00:04 (frag 121/148)
+[download]  82.5% of ~  30.96MiB at    1.75MiB/s ETA 00:04 (frag 121/148)
+[download]  82.5% of ~  30.96MiB at    1.75MiB/s ETA 00:04 (frag 121/148)
+[download]  82.5% of ~  30.98MiB at    1.78MiB/s ETA 00:04 (frag 121/148)
+[download]  82.6% of ~  31.02MiB at    1.78MiB/s ETA 00:04 (frag 121/148)
+[download]  82.8% of ~  31.10MiB at    1.78MiB/s ETA 00:04 (frag 121/148)
+[download]  82.9% of ~  31.25MiB at    1.78MiB/s ETA 00:04 (frag 121/148)
+[download]  81.2% of ~  31.89MiB at    1.78MiB/s ETA 00:04 (frag 122/148)
+[download]  83.1% of ~  31.16MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  83.1% of ~  31.16MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  83.1% of ~  31.17MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  83.1% of ~  31.17MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  83.2% of ~  31.18MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  83.2% of ~  31.20MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  83.3% of ~  31.24MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  83.5% of ~  31.31MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  83.3% of ~  31.46MiB at    1.74MiB/s ETA 00:03 (frag 122/148)
+[download]  82.2% of ~  31.88MiB at    1.74MiB/s ETA 00:03 (frag 123/148)
+[download]  83.8% of ~  31.27MiB at    1.74MiB/s ETA 00:03 (frag 123/148)
+[download]  83.8% of ~  31.27MiB at    1.74MiB/s ETA 00:03 (frag 123/148)
+[download]  83.8% of ~  31.27MiB at    1.74MiB/s ETA 00:03 (frag 123/148)
+[download]  83.8% of ~  31.27MiB at    1.73MiB/s ETA 00:03 (frag 123/148)
+[download]  83.8% of ~  31.28MiB at    1.73MiB/s ETA 00:03 (frag 123/148)
+[download]  83.9% of ~  31.30MiB at    1.73MiB/s ETA 00:03 (frag 123/148)
+[download]  84.0% of ~  31.34MiB at    1.73MiB/s ETA 00:03 (frag 123/148)
+[download]  84.2% of ~  31.41MiB at    1.73MiB/s ETA 00:03 (frag 123/148)
+[download]  84.0% of ~  31.56MiB at    1.73MiB/s ETA 00:03 (frag 123/148)
+[download]  82.8% of ~  32.02MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.5% of ~  31.39MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.5% of ~  31.39MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.5% of ~  31.39MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.5% of ~  31.40MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.5% of ~  31.41MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.6% of ~  31.42MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.7% of ~  31.46MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.9% of ~  31.54MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  84.5% of ~  31.68MiB at    1.73MiB/s ETA 00:03 (frag 124/148)
+[download]  83.6% of ~  32.01MiB at    1.73MiB/s ETA 00:03 (frag 125/148)
+[download]  85.1% of ~  31.45MiB at    1.74MiB/s ETA 00:03 (frag 125/148)
+[download]  85.1% of ~  31.45MiB at    1.74MiB/s ETA 00:03 (frag 125/148)
+[download]  85.1% of ~  31.45MiB at    1.74MiB/s ETA 00:03 (frag 125/148)
+[download]  85.2% of ~  31.46MiB at    1.74MiB/s ETA 00:03 (frag 125/148)
+[download]  85.2% of ~  31.47MiB at    1.74MiB/s ETA 00:03 (frag 125/148)
+[download]  85.2% of ~  31.48MiB at    1.74MiB/s ETA 00:03 (frag 125/148)
+[download]  85.3% of ~  31.52MiB at    1.74MiB/s ETA 00:03 (frag 125/148)
+[download]  85.4% of ~  31.59MiB at    1.74MiB/s ETA 00:03 (frag 125/148)
+[download]  84.5% of ~  31.91MiB at    1.74MiB/s ETA 00:03 (frag 126/148)
+[download]  85.8% of ~  31.43MiB at    1.74MiB/s ETA 00:03 (frag 126/148)
+[download]  85.8% of ~  31.43MiB at    1.74MiB/s ETA 00:03 (frag 126/148)
+[download]  85.8% of ~  31.43MiB at    1.74MiB/s ETA 00:03 (frag 126/148)
+[download]  85.8% of ~  31.44MiB at    1.74MiB/s ETA 00:03 (frag 126/148)
+[download]  85.9% of ~  31.44MiB at    1.75MiB/s ETA 00:03 (frag 126/148)
+[download]  85.9% of ~  31.46MiB at    1.75MiB/s ETA 00:03 (frag 126/148)
+[download]  86.0% of ~  31.50MiB at    1.75MiB/s ETA 00:03 (frag 126/148)
+[download]  85.9% of ~  31.57MiB at    1.75MiB/s ETA 00:03 (frag 126/148)
+[download]  85.3% of ~  31.82MiB at    1.75MiB/s ETA 00:03 (frag 127/148)
+[download]  86.5% of ~  31.37MiB at    1.75MiB/s ETA 00:03 (frag 127/148)
+[download]  86.5% of ~  31.38MiB at    1.75MiB/s ETA 00:03 (frag 127/148)
+[download]  86.5% of ~  31.38MiB at    1.75MiB/s ETA 00:03 (frag 127/148)
+[download]  86.5% of ~  31.38MiB at    1.75MiB/s ETA 00:03 (frag 127/148)
+[download]  86.5% of ~  31.39MiB at    1.75MiB/s ETA 00:03 (frag 127/148)
+[download]  86.6% of ~  31.41MiB at    1.77MiB/s ETA 00:03 (frag 127/148)
+[download]  86.7% of ~  31.45MiB at    1.77MiB/s ETA 00:03 (frag 127/148)
+[download]  86.9% of ~  31.52MiB at    1.77MiB/s ETA 00:03 (frag 127/148)
+[download]  86.8% of ~  31.66MiB at    1.77MiB/s ETA 00:03 (frag 127/148)
+[download]  85.4% of ~  32.18MiB at    1.77MiB/s ETA 00:03 (frag 128/148)
+[download]  87.2% of ~  31.53MiB at    1.77MiB/s ETA 00:03 (frag 128/148)
+[download]  87.2% of ~  31.53MiB at    1.77MiB/s ETA 00:03 (frag 128/148)
+[download]  87.2% of ~  31.53MiB at    1.77MiB/s ETA 00:03 (frag 128/148)
+[download]  87.2% of ~  31.54MiB at    1.80MiB/s ETA 00:03 (frag 128/148)
+[download]  87.2% of ~  31.55MiB at    1.80MiB/s ETA 00:03 (frag 128/148)
+[download]  87.3% of ~  31.57MiB at    1.80MiB/s ETA 00:03 (frag 128/148)
+[download]  87.4% of ~  31.60MiB at    1.80MiB/s ETA 00:03 (frag 128/148)
+[download]  87.6% of ~  31.67MiB at    1.80MiB/s ETA 00:03 (frag 128/148)
+[download]  87.8% of ~  31.82MiB at    1.80MiB/s ETA 00:03 (frag 128/148)
+[download]  85.8% of ~  32.56MiB at    1.80MiB/s ETA 00:03 (frag 129/148)
+[download]  87.8% of ~  31.80MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  87.8% of ~  31.80MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  87.9% of ~  31.80MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  87.9% of ~  31.81MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  87.9% of ~  31.82MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  87.9% of ~  31.84MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  88.0% of ~  31.87MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  88.2% of ~  31.94MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  88.0% of ~  32.08MiB at    1.83MiB/s ETA 00:03 (frag 129/148)
+[download]  86.9% of ~  32.51MiB at    1.83MiB/s ETA 00:03 (frag 130/148)
+[download]  88.5% of ~  31.91MiB at    1.83MiB/s ETA 00:03 (frag 130/148)
+[download]  88.5% of ~  31.91MiB at    1.83MiB/s ETA 00:03 (frag 130/148)
+[download]  88.5% of ~  31.91MiB at    1.83MiB/s ETA 00:03 (frag 130/148)
+[download]  88.5% of ~  31.92MiB at    1.83MiB/s ETA 00:03 (frag 130/148)
+[download]  88.6% of ~  31.93MiB at    1.83MiB/s ETA 00:03 (frag 130/148)
+[download]  88.6% of ~  31.95MiB at    1.83MiB/s ETA 00:03 (frag 130/148)
+[download]  88.7% of ~  31.98MiB at    1.83MiB/s ETA 00:03 (frag 130/148)
+[download]  88.7% of ~  32.05MiB at    1.87MiB/s ETA 00:03 (frag 130/148)
+[download]  87.9% of ~  32.34MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  89.2% of ~  31.88MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  89.2% of ~  31.88MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  89.2% of ~  31.89MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  89.2% of ~  31.89MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  89.2% of ~  31.90MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  89.3% of ~  31.92MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  89.4% of ~  31.95MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  89.5% of ~  32.02MiB at    1.87MiB/s ETA 00:03 (frag 131/148)
+[download]  88.5% of ~  32.37MiB at    1.87MiB/s ETA 00:03 (frag 132/148)
+[download]  89.9% of ~  31.88MiB at    1.90MiB/s ETA 00:02 (frag 132/148)
+[download]  89.9% of ~  31.89MiB at    1.90MiB/s ETA 00:02 (frag 132/148)
+[download]  89.9% of ~  31.89MiB at    1.90MiB/s ETA 00:02 (frag 132/148)
+[download]  89.9% of ~  31.89MiB at    1.90MiB/s ETA 00:02 (frag 132/148)
+[download]  89.9% of ~  31.90MiB at    1.90MiB/s ETA 00:02 (frag 132/148)
+[download]  90.0% of ~  31.92MiB at    1.90MiB/s ETA 00:02 (frag 132/148)
+[download]  90.1% of ~  31.95MiB at    1.90MiB/s ETA 00:02 (frag 132/148)
+[download]  90.1% of ~  32.02MiB at    1.90MiB/s ETA 00:02 (frag 132/148)
+[download]  89.2% of ~  32.36MiB at    1.90MiB/s ETA 00:02 (frag 133/148)
+[download]  90.5% of ~  31.88MiB at    1.90MiB/s ETA 00:02 (frag 133/148)
+[download]  90.5% of ~  31.88MiB at    1.90MiB/s ETA 00:02 (frag 133/148)
+[download]  90.6% of ~  31.88MiB at    1.90MiB/s ETA 00:02 (frag 133/148)
+[download]  90.6% of ~  31.89MiB at    1.90MiB/s ETA 00:02 (frag 133/148)
+[download]  90.6% of ~  31.90MiB at    1.90MiB/s ETA 00:02 (frag 133/148)
+[download]  90.6% of ~  31.92MiB at    1.90MiB/s ETA 00:02 (frag 133/148)
+[download]  90.7% of ~  31.95MiB at    1.90MiB/s ETA 00:02 (frag 133/148)
+[download]  90.9% of ~  32.02MiB at    1.94MiB/s ETA 00:02 (frag 133/148)
+[download]  90.6% of ~  32.16MiB at    1.94MiB/s ETA 00:02 (frag 133/148)
+[download]  89.7% of ~  32.45MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  91.2% of ~  31.93MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  91.2% of ~  31.93MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  91.2% of ~  31.93MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  91.2% of ~  31.94MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  91.3% of ~  31.94MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  91.3% of ~  31.96MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  91.4% of ~  32.00MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  91.3% of ~  32.06MiB at    1.94MiB/s ETA 00:02 (frag 134/148)
+[download]  90.7% of ~  32.27MiB at    1.94MiB/s ETA 00:02 (frag 135/148)
+[download]  91.9% of ~  31.86MiB at    1.96MiB/s ETA 00:02 (frag 135/148)
+[download]  91.9% of ~  31.86MiB at    1.96MiB/s ETA 00:02 (frag 135/148)
+[download]  91.9% of ~  31.86MiB at    1.96MiB/s ETA 00:02 (frag 135/148)
+[download]  91.9% of ~  31.87MiB at    1.96MiB/s ETA 00:02 (frag 135/148)
+[download]  91.9% of ~  31.88MiB at    1.96MiB/s ETA 00:02 (frag 135/148)
+[download]  92.0% of ~  31.89MiB at    1.96MiB/s ETA 00:02 (frag 135/148)
+[download]  92.1% of ~  31.93MiB at    1.96MiB/s ETA 00:02 (frag 135/148)
+[download]  92.0% of ~  32.00MiB at    1.96MiB/s ETA 00:02 (frag 135/148)
+[download]  91.4% of ~  32.18MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  92.6% of ~  31.79MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  92.6% of ~  31.79MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  92.6% of ~  31.79MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  92.6% of ~  31.80MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  92.6% of ~  31.80MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  92.7% of ~  31.82MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  92.8% of ~  31.85MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  93.0% of ~  31.92MiB at    1.96MiB/s ETA 00:02 (frag 136/148)
+[download]  92.6% of ~  32.06MiB at    2.01MiB/s ETA 00:02 (frag 136/148)
+[download]  91.7% of ~  32.38MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  93.2% of ~  31.85MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  93.2% of ~  31.85MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  93.3% of ~  31.86MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  93.3% of ~  31.86MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  93.3% of ~  31.87MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  93.3% of ~  31.89MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  93.4% of ~  31.92MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  93.5% of ~  31.99MiB at    2.01MiB/s ETA 00:02 (frag 137/148)
+[download]  92.6% of ~  32.28MiB at    2.01MiB/s ETA 00:02 (frag 138/148)
+[download]  93.9% of ~  31.83MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  93.9% of ~  31.84MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  93.9% of ~  31.84MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  93.9% of ~  31.84MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  94.0% of ~  31.85MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  94.0% of ~  31.87MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  94.1% of ~  31.90MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  94.3% of ~  31.97MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  93.9% of ~  32.10MiB at    2.05MiB/s ETA 00:02 (frag 138/148)
+[download]  93.1% of ~  32.38MiB at    2.05MiB/s ETA 00:02 (frag 139/148)
+[download]  94.6% of ~  31.88MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  94.6% of ~  31.88MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  94.6% of ~  31.88MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  94.6% of ~  31.88MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  94.6% of ~  31.89MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  94.7% of ~  31.91MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  94.8% of ~  31.94MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  95.0% of ~  32.01MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  94.8% of ~  32.14MiB at    2.07MiB/s ETA 00:02 (frag 139/148)
+[download]  93.6% of ~  32.55MiB at    2.07MiB/s ETA 00:02 (frag 140/148)
+[download]  95.3% of ~  31.98MiB at    2.07MiB/s ETA 00:02 (frag 140/148)
+[download]  95.3% of ~  31.98MiB at    2.11MiB/s ETA 00:01 (frag 140/148)
+[download]  95.3% of ~  31.99MiB at    2.11MiB/s ETA 00:01 (frag 140/148)
+[download]  95.3% of ~  31.99MiB at    2.11MiB/s ETA 00:01 (frag 140/148)
+[download]  95.3% of ~  32.00MiB at    2.11MiB/s ETA 00:01 (frag 140/148)
+[download]  95.4% of ~  32.01MiB at    2.11MiB/s ETA 00:01 (frag 140/148)
+[download]  95.5% of ~  32.05MiB at    2.11MiB/s ETA 00:01 (frag 140/148)
+[download]  95.7% of ~  32.11MiB at    2.11MiB/s ETA 00:01 (frag 140/148)
+[download]  95.9% of ~  32.24MiB at    2.11MiB/s ETA 00:01 (frag 140/148)
+[download]  93.9% of ~  32.96MiB at    2.11MiB/s ETA 00:01 (frag 141/148)
+[download]  95.9% of ~  32.24MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  96.0% of ~  32.25MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  96.0% of ~  32.25MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  96.0% of ~  32.25MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  96.0% of ~  32.26MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  96.0% of ~  32.28MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  96.1% of ~  32.31MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  96.3% of ~  32.37MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  96.3% of ~  32.50MiB at    2.16MiB/s ETA 00:01 (frag 141/148)
+[download]  94.9% of ~  32.98MiB at    2.16MiB/s ETA 00:01 (frag 142/148)
+[download]  96.6% of ~  32.38MiB at    2.22MiB/s ETA 00:01 (frag 142/148)
+[download]  96.6% of ~  32.39MiB at    2.22MiB/s ETA 00:01 (frag 142/148)
+[download]  96.6% of ~  32.39MiB at    2.22MiB/s ETA 00:01 (frag 142/148)
+[download]  96.6% of ~  32.39MiB at    2.22MiB/s ETA 00:01 (frag 142/148)
+[download]  96.7% of ~  32.40MiB at    2.22MiB/s ETA 00:01 (frag 142/148)
+[download]  96.7% of ~  32.42MiB at    2.22MiB/s ETA 00:01 (frag 142/148)
+[download]  96.8% of ~  32.45MiB at    2.22MiB/s ETA 00:01 (frag 142/148)
+[download]  96.8% of ~  32.51MiB at    2.22MiB/s ETA 00:01 (frag 142/148)
+[download]  96.0% of ~  32.79MiB at    2.22MiB/s ETA 00:01 (frag 143/148)
+[download]  97.3% of ~  32.36MiB at    2.22MiB/s ETA 00:01 (frag 143/148)
+[download]  97.3% of ~  32.36MiB at    2.22MiB/s ETA 00:01 (frag 143/148)
+[download]  97.3% of ~  32.36MiB at    2.27MiB/s ETA 00:01 (frag 143/148)
+[download]  97.3% of ~  32.37MiB at    2.27MiB/s ETA 00:01 (frag 143/148)
+[download]  97.3% of ~  32.38MiB at    2.27MiB/s ETA 00:01 (frag 143/148)
+[download]  97.4% of ~  32.39MiB at    2.27MiB/s ETA 00:01 (frag 143/148)
+[download]  97.5% of ~  32.43MiB at    2.27MiB/s ETA 00:01 (frag 143/148)
+[download]  97.6% of ~  32.49MiB at    2.27MiB/s ETA 00:01 (frag 143/148)
+[download]  96.6% of ~  32.84MiB at    2.27MiB/s ETA 00:01 (frag 144/148)
+[download]  98.0% of ~  32.38MiB at    2.27MiB/s ETA 00:01 (frag 144/148)
+[download]  98.0% of ~  32.38MiB at    2.27MiB/s ETA 00:01 (frag 144/148)
+[download]  98.0% of ~  32.38MiB at    2.27MiB/s ETA 00:01 (frag 144/148)
+[download]  98.0% of ~  32.38MiB at    2.27MiB/s ETA 00:01 (frag 144/148)
+[download]  98.0% of ~  32.39MiB at    2.31MiB/s ETA 00:01 (frag 144/148)
+[download]  98.1% of ~  32.41MiB at    2.31MiB/s ETA 00:01 (frag 144/148)
+[download]  98.2% of ~  32.44MiB at    2.31MiB/s ETA 00:01 (frag 144/148)
+[download]  98.4% of ~  32.50MiB at    2.31MiB/s ETA 00:01 (frag 144/148)
+[download]  97.2% of ~  32.88MiB at    2.31MiB/s ETA 00:01 (frag 145/148)
+[download]  98.7% of ~  32.41MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  98.7% of ~  32.41MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  98.7% of ~  32.41MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  98.7% of ~  32.41MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  98.7% of ~  32.42MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  98.7% of ~  32.44MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  98.8% of ~  32.47MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  99.0% of ~  32.53MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  98.7% of ~  32.66MiB at    2.30MiB/s ETA 00:01 (frag 145/148)
+[download]  97.9% of ~  32.93MiB at    2.30MiB/s ETA 00:01 (frag 146/148)
+[download]  99.3% of ~  32.45MiB at    2.36MiB/s ETA 00:01 (frag 146/148)
+[download]  99.3% of ~  32.45MiB at    2.36MiB/s ETA 00:01 (frag 146/148)
+[download]  99.3% of ~  32.45MiB at    2.36MiB/s ETA 00:01 (frag 146/148)
+[download]  99.3% of ~  32.46MiB at    2.36MiB/s ETA 00:01 (frag 146/148)
+[download]  99.4% of ~  32.46MiB at    2.36MiB/s ETA 00:01 (frag 146/148)
+[download]  99.4% of ~  32.48MiB at    2.36MiB/s ETA 00:01 (frag 146/148)
+[download]  99.5% of ~  32.51MiB at    2.36MiB/s ETA 00:01 (frag 146/148)
+[download]  99.7% of ~  32.57MiB at    2.36MiB/s ETA 00:01 (frag 146/148)
+[download]  98.6% of ~  32.95MiB at    2.36MiB/s ETA 00:01 (frag 147/148)
+[download] 100.0% of ~  32.48MiB at    2.36MiB/s ETA 00:01 (frag 147/148)
+[download] 100.0% of ~  32.48MiB at    2.36MiB/s ETA 00:01 (frag 147/148)
+[download] 100.0% of ~  32.48MiB at    2.36MiB/s ETA 00:01 (frag 147/148)
+[download] 100.0% of ~  32.49MiB at    2.43MiB/s ETA 00:01 (frag 147/148)
+[download] 100.0% of ~  32.51MiB at    2.43MiB/s ETA 00:01 (frag 147/148)
+[download] 100.0% of ~  32.54MiB at    2.43MiB/s ETA 00:01 (frag 147/148)
+[download] 100.0% of ~  32.60MiB at    2.43MiB/s ETA 00:01 (frag 147/148)
+[download] 100.0% of ~  32.69MiB at    2.43MiB/s ETA 00:01 (frag 147/148)
+[download]  99.3% of ~  32.91MiB at    2.43MiB/s ETA 00:01 (frag 148/148)
+[download] 100.0% of ~  32.69MiB at    2.43MiB/s ETA 00:01 (frag 148/148)
+[download] 100.0% of ~  32.70MiB at    2.43MiB/s ETA 00:01 (frag 148/148)
+[download] 100.0% of ~  32.70MiB at    2.43MiB/s ETA 00:01 (frag 148/148)
+[download] 100.0% of ~  32.71MiB at    2.43MiB/s ETA 00:01 (frag 148/148)
+[download] 100.0% of ~  32.72MiB at    2.43MiB/s ETA 00:01 (frag 148/148)
+[download] 100.0% of ~  32.76MiB at    2.43MiB/s ETA 00:01 (frag 148/148)
+[download] 100.0% of ~  32.82MiB at    2.43MiB/s ETA 00:01 (frag 148/148)
+[download] 100.0% of ~  32.85MiB at    2.50MiB/s ETA 00:00 (frag 148/148)
+[download] 100.0% of ~  32.85MiB at    2.50MiB/s ETA 00:00 (frag 149/148)
+[download] 100% of   32.85MiB in 00:00:23 at 1.41MiB/s                   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\yJCHNdQ8sLs.f251.webm
+
+[download]   0.0% of   15.06MiB at  927.74KiB/s ETA 00:16
+[download]   0.0% of   15.06MiB at    1.58MiB/s ETA 00:09
+[download]   0.0% of   15.06MiB at    2.34MiB/s ETA 00:06
+[download]   0.1% of   15.06MiB at    3.72MiB/s ETA 00:04
+[download]   0.2% of   15.06MiB at    4.30MiB/s ETA 00:03
+[download]   0.4% of   15.06MiB at    3.03MiB/s ETA 00:04
+[download]   0.8% of   15.06MiB at    2.78MiB/s ETA 00:05
+[download]   1.7% of   15.06MiB at    2.61MiB/s ETA 00:05
+[download]   3.3% of   15.06MiB at    1.92MiB/s ETA 00:07
+[download]   6.6% of   15.06MiB at    2.16MiB/s ETA 00:06
+[download]  13.3% of   15.06MiB at    2.75MiB/s ETA 00:04
+[download]  26.6% of   15.06MiB at    3.85MiB/s ETA 00:02
+[download]  53.1% of   15.06MiB at    5.67MiB/s ETA 00:01
+[download]  65.9% of   15.06MiB at    6.38MiB/s ETA 00:00
+[download]  66.0% of   15.06MiB at  Unknown B/s ETA Unknown
+[download]  66.0% of   15.06MiB at    2.42MiB/s ETA 00:02  
+[download]  66.0% of   15.06MiB at    3.19MiB/s ETA 00:01
+[download]  66.0% of   15.06MiB at    4.75MiB/s ETA 00:01
+[download]  66.1% of   15.06MiB at    7.39MiB/s ETA 00:00
+[download]  66.4% of   15.06MiB at    7.12MiB/s ETA 00:00
+[download]  66.8% of   15.06MiB at    1.45MiB/s ETA 00:03
+[download]  67.6% of   15.06MiB at    2.32MiB/s ETA 00:02
+[download]  69.3% of   15.06MiB at    4.53MiB/s ETA 00:01
+[download]  72.6% of   15.06MiB at    7.89MiB/s ETA 00:00
+[download]  79.2% of   15.06MiB at   11.17MiB/s ETA 00:00
+[download]  92.5% of   15.06MiB at   14.56MiB/s ETA 00:00
+[download] 100.0% of   15.06MiB at   16.04MiB/s ETA 00:00
+[download] 100% of   15.06MiB in 00:00:02 at 5.34MiB/s   
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\yJCHNdQ8sLs.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\yJCHNdQ8sLs.f616.mp4 (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\yJCHNdQ8sLs.f251.webm (pass -k to keep)
+[exit 0] yJCHNdQ8sLs
+=== [10/11] uavLRbbfM94  13:58:25 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=uavLRbbfM94
+[youtube] uavLRbbfM94: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] uavLRbbfM94: Downloading initial data API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] uavLRbbfM94: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] uavLRbbfM94: Downloading m3u8 information
+[info] uavLRbbfM94: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\uavLRbbfM94.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\uavLRbbfM94.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\uavLRbbfM94.f399.mp4
+
+[download]   0.0% of   11.03MiB at  182.20KiB/s ETA 01:04
+[download]   0.0% of   11.03MiB at  423.78KiB/s ETA 00:26
+[download]   0.1% of   11.03MiB at  852.90KiB/s ETA 00:13
+[download]   0.1% of   11.03MiB at    1.50MiB/s ETA 00:07
+[download]   0.3% of   11.03MiB at    2.73MiB/s ETA 00:04
+[download]   0.6% of   11.03MiB at    4.90MiB/s ETA 00:02
+[download]   1.1% of   11.03MiB at    6.48MiB/s ETA 00:01
+[download]   2.3% of   11.03MiB at    8.87MiB/s ETA 00:01
+[download]   4.5% of   11.03MiB at   12.79MiB/s ETA 00:00
+[download]   9.1% of   11.03MiB at   14.62MiB/s ETA 00:00
+[download]  18.1% of   11.03MiB at   14.97MiB/s ETA 00:00
+[download]  36.3% of   11.03MiB at    8.28MiB/s ETA 00:00
+[download]  72.5% of   11.03MiB at    8.95MiB/s ETA 00:00
+[download]  87.1% of   11.03MiB at   10.22MiB/s ETA 00:00
+[download]  87.1% of   11.03MiB at  Unknown B/s ETA Unknown
+[download]  87.1% of   11.03MiB at    1.72MiB/s ETA 00:00  
+[download]  87.2% of   11.03MiB at    2.94MiB/s ETA 00:00
+[download]  87.2% of   11.03MiB at    4.91MiB/s ETA 00:00
+[download]  87.4% of   11.03MiB at    7.87MiB/s ETA 00:00
+[download]  87.7% of   11.03MiB at   13.36MiB/s ETA 00:00
+[download]  88.2% of   11.03MiB at   23.10MiB/s ETA 00:00
+[download]  89.4% of   11.03MiB at   26.10MiB/s ETA 00:00
+[download]  91.6% of   11.03MiB at    2.63MiB/s ETA 00:00
+[download]  96.2% of   11.03MiB at    4.11MiB/s ETA 00:00
+[download] 100.0% of   11.03MiB at    5.15MiB/s ETA 00:00
+[download] 100% of   11.03MiB in 00:00:02 at 3.98MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\uavLRbbfM94.f251.webm
+
+[download]   0.0% of   17.29MiB at  303.50KiB/s ETA 00:58
+[download]   0.0% of   17.29MiB at  630.56KiB/s ETA 00:28
+[download]   0.0% of   17.29MiB at    1.22MiB/s ETA 00:14
+[download]   0.1% of   17.29MiB at    2.00MiB/s ETA 00:08
+[download]   0.2% of   17.29MiB at    3.45MiB/s ETA 00:05
+[download]   0.4% of   17.29MiB at    5.82MiB/s ETA 00:02
+[download]   0.7% of   17.29MiB at   10.26MiB/s ETA 00:01
+[download]   1.4% of   17.29MiB at   16.55MiB/s ETA 00:01
+[download]   2.9% of   17.29MiB at   15.88MiB/s ETA 00:01
+[download]   5.8% of   17.29MiB at   14.98MiB/s ETA 00:01
+[download]  11.6% of   17.29MiB at   14.95MiB/s ETA 00:01
+[download]  23.1% of   17.29MiB at   13.61MiB/s ETA 00:00
+[download]  46.3% of   17.29MiB at   12.53MiB/s ETA 00:00
+[download]  55.8% of   17.29MiB at   10.57MiB/s ETA 00:00
+[download]  55.8% of   17.29MiB at  Unknown B/s ETA Unknown
+[download]  55.8% of   17.29MiB at    2.84MiB/s ETA 00:02  
+[download]  55.8% of   17.29MiB at    4.45MiB/s ETA 00:01
+[download]  55.8% of   17.29MiB at    7.24MiB/s ETA 00:01
+[download]  55.9% of   17.29MiB at   12.15MiB/s ETA 00:00
+[download]  56.1% of   17.29MiB at   20.59MiB/s ETA 00:00
+[download]  56.5% of   17.29MiB at   13.42MiB/s ETA 00:00
+[download]  57.2% of   17.29MiB at    7.84MiB/s ETA 00:00
+[download]  58.6% of   17.29MiB at    2.00MiB/s ETA 00:03
+[download]  61.5% of   17.29MiB at    3.53MiB/s ETA 00:01
+[download]  67.3% of   17.29MiB at    5.69MiB/s ETA 00:00
+[download]  78.9% of   17.29MiB at    9.16MiB/s ETA 00:00
+[download] 100.0% of   17.29MiB at    6.85MiB/s ETA 00:00
+[download] 100% of   17.29MiB in 00:00:02 at 7.84MiB/s   
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\uavLRbbfM94.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\uavLRbbfM94.f251.webm (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\uavLRbbfM94.f399.mp4 (pass -k to keep)
+[exit 0] uavLRbbfM94
+=== [11/11] 6tihP50zlcE  13:59:04 ===
+[youtube] Extracting URL: https://www.youtube.com/watch?v=6tihP50zlcE
+[youtube] 6tihP50zlcE: Downloading webpage
+[youtube] Sleeping 0.4 seconds ...
+[youtube] 6tihP50zlcE: Downloading visionos player API JSON
+[youtube] Sleeping 0.4 seconds ...
+[youtube] 6tihP50zlcE: Downloading m3u8 information
+[info] 6tihP50zlcE: Downloading 1 format(s): 399+251
+[info] Downloading video thumbnail 41 ...
+[info] Writing video thumbnail 41 to: C:\Users\jibra\Desktop\1\KAI\videos\6tihP50zlcE.webp
+[info] Writing video metadata as JSON to: C:\Users\jibra\Desktop\1\KAI\videos\6tihP50zlcE.info.json
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\6tihP50zlcE.f399.mp4
+
+[download]   0.0% of   34.63MiB at  462.79KiB/s ETA 01:17
+[download]   0.0% of   34.63MiB at  842.40KiB/s ETA 00:42
+[download]   0.0% of   34.63MiB at    1.52MiB/s ETA 00:22
+[download]   0.0% of   34.63MiB at  635.03KiB/s ETA 00:55
+[download]   0.1% of   34.63MiB at    1.17MiB/s ETA 00:29
+[download]   0.2% of   34.63MiB at    2.08MiB/s ETA 00:16
+[download]   0.4% of   34.63MiB at    3.16MiB/s ETA 00:10
+[download]   0.7% of   34.63MiB at    5.25MiB/s ETA 00:06
+[download]   1.4% of   34.63MiB at    7.27MiB/s ETA 00:04
+[download]   2.9% of   34.63MiB at    9.30MiB/s ETA 00:03
+[download]   5.8% of   34.63MiB at   10.08MiB/s ETA 00:03
+[download]  11.5% of   34.63MiB at   12.32MiB/s ETA 00:02
+[download]  23.1% of   34.63MiB at   13.87MiB/s ETA 00:01
+[download]  27.5% of   34.63MiB at   12.49MiB/s ETA 00:02
+[download]  27.5% of   34.63MiB at  Unknown B/s ETA Unknown
+[download]  27.5% of   34.63MiB at    2.58MiB/s ETA 00:09  
+[download]  27.5% of   34.63MiB at    4.57MiB/s ETA 00:05
+[download]  27.6% of   34.63MiB at    7.84MiB/s ETA 00:03
+[download]  27.6% of   34.63MiB at   13.18MiB/s ETA 00:01
+[download]  27.7% of   34.63MiB at   22.89MiB/s ETA 00:01
+[download]  27.9% of   34.63MiB at   34.78MiB/s ETA 00:00
+[download]  28.2% of   34.63MiB at   36.86MiB/s ETA 00:00
+[download]  29.0% of   34.63MiB at   29.49MiB/s ETA 00:00
+[download]  30.4% of   34.63MiB at   28.36MiB/s ETA 00:00
+[download]  33.3% of   34.63MiB at   28.35MiB/s ETA 00:00
+[download]  39.1% of   34.63MiB at   24.01MiB/s ETA 00:00
+[download]  50.6% of   34.63MiB at   20.92MiB/s ETA 00:00
+[download]  55.4% of   34.63MiB at   18.39MiB/s ETA 00:00
+[download]  55.4% of   34.63MiB at  Unknown B/s ETA Unknown
+[download]  55.4% of   34.63MiB at    2.00MiB/s ETA 00:07  
+[download]  55.4% of   34.63MiB at    2.67MiB/s ETA 00:05
+[download]  55.4% of   34.63MiB at    4.02MiB/s ETA 00:03
+[download]  55.5% of   34.63MiB at    3.02MiB/s ETA 00:05
+[download]  55.6% of   34.63MiB at    4.28MiB/s ETA 00:03
+[download]  55.7% of   34.63MiB at    7.67MiB/s ETA 00:02
+[download]  56.1% of   34.63MiB at   13.23MiB/s ETA 00:01
+[download]  56.8% of   34.63MiB at   22.23MiB/s ETA 00:00
+[download]  58.3% of   34.63MiB at    9.96MiB/s ETA 00:01
+[download]  61.2% of   34.63MiB at   12.97MiB/s ETA 00:01
+[download]  66.9% of   34.63MiB at   14.74MiB/s ETA 00:00
+[download]  78.5% of   34.63MiB at   15.74MiB/s ETA 00:00
+[download]  83.1% of   34.63MiB at   13.53MiB/s ETA 00:00
+[download]  83.1% of   34.63MiB at  Unknown B/s ETA Unknown
+[download]  83.1% of   34.63MiB at    2.08MiB/s ETA 00:02  
+[download]  83.1% of   34.63MiB at    2.94MiB/s ETA 00:02
+[download]  83.1% of   34.63MiB at    4.43MiB/s ETA 00:01
+[download]  83.1% of   34.63MiB at    7.01MiB/s ETA 00:00
+[download]  83.2% of   34.63MiB at    9.33MiB/s ETA 00:00
+[download]  83.4% of   34.63MiB at   15.69MiB/s ETA 00:00
+[download]  83.8% of   34.63MiB at   20.28MiB/s ETA 00:00
+[download]  84.5% of   34.63MiB at   34.41MiB/s ETA 00:00
+[download]  85.9% of   34.63MiB at   21.96MiB/s ETA 00:00
+[download]  88.8% of   34.63MiB at    3.97MiB/s ETA 00:00
+[download]  94.6% of   34.63MiB at    6.43MiB/s ETA 00:00
+[download] 100.0% of   34.63MiB at    7.59MiB/s ETA 00:00
+[download] 100% of   34.63MiB in 00:00:07 at 4.92MiB/s   
+[download] Destination: C:\Users\jibra\Desktop\1\KAI\videos\6tihP50zlcE.f251.webm
+
+[download]   0.0% of   20.46MiB at  240.33KiB/s ETA 01:27
+[download]   0.0% of   20.46MiB at   30.92KiB/s ETA 11:17
+[download]   0.0% of   20.46MiB at   71.03KiB/s ETA 04:54
+[download]   0.1% of   20.46MiB at  150.14KiB/s ETA 02:19
+[download]   0.1% of   20.46MiB at  306.78KiB/s ETA 01:08
+[download]   0.3% of   20.46MiB at  616.97KiB/s ETA 00:33
+[download]   0.6% of   20.46MiB at    1.14MiB/s ETA 00:17
+[download]   1.2% of   20.46MiB at    2.25MiB/s ETA 00:08
+[download]   2.4% of   20.46MiB at    4.41MiB/s ETA 00:04
+[download]   4.9% of   20.46MiB at    6.77MiB/s ETA 00:02
+[download]   9.8% of   20.46MiB at   12.85MiB/s ETA 00:01
+[download]  19.5% of   20.46MiB at   17.07MiB/s ETA 00:00
+[download]  39.1% of   20.46MiB at   12.56MiB/s ETA 00:00
+[download]  48.8% of   20.46MiB at   14.21MiB/s ETA 00:00
+[download]  48.8% of   20.46MiB at  Unknown B/s ETA Unknown
+[download]  48.9% of   20.46MiB at  Unknown B/s ETA Unknown
+[download]  48.9% of   20.46MiB at    4.47MiB/s ETA 00:02  
+[download]  48.9% of   20.46MiB at    4.20MiB/s ETA 00:02
+[download]  49.0% of   20.46MiB at    5.49MiB/s ETA 00:01
+[download]  49.1% of   20.46MiB at    9.25MiB/s ETA 00:01
+[download]  49.4% of   20.46MiB at    6.14MiB/s ETA 00:01
+[download]  50.1% of   20.46MiB at    8.88MiB/s ETA 00:01
+[download]  51.3% of   20.46MiB at   13.91MiB/s ETA 00:00
+[download]  53.7% of   20.46MiB at    5.80MiB/s ETA 00:01
+[download]  58.6% of   20.46MiB at    9.50MiB/s ETA 00:00
+[download]  68.4% of   20.46MiB at    7.84MiB/s ETA 00:00
+[download]  87.9% of   20.46MiB at    5.80MiB/s ETA 00:00
+[download]  96.6% of   20.46MiB at    6.77MiB/s ETA 00:00
+[download]  96.6% of   20.46MiB at  Unknown B/s ETA Unknown
+[download]  96.6% of   20.46MiB at    1.52MiB/s ETA 00:00  
+[download]  96.6% of   20.46MiB at    2.47MiB/s ETA 00:00
+[download]  96.7% of   20.46MiB at    3.98MiB/s ETA 00:00
+[download]  96.7% of   20.46MiB at    5.29MiB/s ETA 00:00
+[download]  96.9% of   20.46MiB at    8.34MiB/s ETA 00:00
+[download]  97.2% of   20.46MiB at    6.13MiB/s ETA 00:00
+[download]  97.8% of   20.46MiB at   11.10MiB/s ETA 00:00
+[download]  99.0% of   20.46MiB at   14.99MiB/s ETA 00:00
+[download] 100.0% of   20.46MiB at   19.53MiB/s ETA 00:00
+[download] 100% of   20.46MiB in 00:00:02 at 7.93MiB/s   
+[Merger] Merging formats into "C:\Users\jibra\Desktop\1\KAI\videos\6tihP50zlcE.mp4"
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\6tihP50zlcE.f399.mp4 (pass -k to keep)
+Deleting original file C:\Users\jibra\Desktop\1\KAI\videos\6tihP50zlcE.f251.webm (pass -k to keep)
+[exit 0] 6tihP50zlcE
+DONE 2026-10-19T13:59:49.7178332+05:00

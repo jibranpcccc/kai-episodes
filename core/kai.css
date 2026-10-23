@@ -1,0 +1,180 @@
+/* ============================================================
+   KAI EXPLAINS — VISUAL DESIGN SYSTEM  ("whiteboard-on-black")
+   Reverse-engineered from @kaiexplainsYT, 11 top videos @ 2fps
+   Canvas 1920x1080. All sizes are px at 1080p.
+   ============================================================ */
+
+@font-face{font-family:"KaiMono";src:url("fonts/JetBrainsMono-Regular.ttf");font-weight:400;font-display:block}
+@font-face{font-family:"KaiMono";src:url("fonts/JetBrainsMono-Medium.ttf");font-weight:500;font-display:block}
+@font-face{font-family:"KaiMono";src:url("fonts/JetBrainsMono-Bold.ttf");font-weight:700;font-display:block}
+@font-face{font-family:"KaiMono";src:url("fonts/JetBrainsMono-ExtraBold.ttf");font-weight:800;font-display:block}
+@font-face{font-family:"KaiDisplay";src:url("fonts/Anton-Regular.ttf");font-weight:400;font-display:block}
+@font-face{font-family:"KaiBlack";src:url("fonts/ArchivoBlack-Regular.ttf");font-weight:400;font-display:block}
+
+:root{
+  /* ---- CANVAS -------------------------------------------------- */
+  --black:      #0D1110;   /* measured: not pure black, green-tinted charcoal */
+  --white:      #F6F6F4;   /* ink, never #FFFFFF */
+  --gray:       #A8ABA7;   /* secondary label */
+  --dim:        #6E7270;   /* tertiary label / captions / watermark */
+  --hair:       #3C4241;   /* hairline borders, chips */
+
+  /* ---- BRAND ACCENTS (measured from 149 thumbnails) ------------ */
+  --yellow:     #F8CF33;   /* primary highlight, tape, "the point" */
+  --red:        #E12A27;   /* cost, warning, CTA, "wrong" */
+  --blue:       #045EEF;   /* selection, product, "correct" */
+  --azure:      #2294D6;   /* in-video chart blue (softer than --blue) */
+  --lime:       #AFED14;   /* rare: only for one hero stat */
+  --cream:      #E8E5DA;   /* note cards / assumption slips */
+
+  /* ---- TYPE ---------------------------------------------------- */
+  --mono: "KaiMono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --display: "KaiDisplay", "KaiBlack", Impact, sans-serif;
+
+  /* ---- GRID ---------------------------------------------------- */
+  --pad-x: 170px;      /* outer safe margin */
+  --pad-y: 200px;
+  --gap: 30px;
+  --stroke: 3px;       /* all box borders */
+  --radius: 8px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+.stage{
+  position:relative;width:1920px;height:1080px;overflow:hidden;
+  background:var(--black);color:var(--white);
+  font-family:var(--mono);font-weight:500;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- THE ALL-CAPS TECHNICAL LABEL (foundation of the look) ---------- */
+.lbl{
+  font-family:var(--mono);font-weight:700;
+  text-transform:uppercase;letter-spacing:.20em;
+  font-size:19px;line-height:1;color:var(--dim);
+}
+.lbl--sm{font-size:15px;letter-spacing:.22em}
+.lbl--bright{color:var(--white)}
+.lbl--gray{color:var(--gray)}
+
+/* ---------- CHIP / PILL ---------- */
+.chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:11px 26px;border:1.5px solid var(--hair);border-radius:999px;
+  font-family:var(--mono);font-weight:700;font-size:19px;
+  letter-spacing:.20em;text-transform:uppercase;color:var(--gray);
+  background:transparent;white-space:nowrap;
+}
+.chip--blue{background:var(--blue);border-color:var(--blue);color:#fff}
+.chip--white{border-color:var(--white);color:var(--white)}
+.chip--red{background:var(--red);border-color:var(--red);color:#fff}
+.chip--ghost{border-style:dashed;color:var(--dim)}
+
+/* ---------- YELLOW TAPE LABEL (rotated sticker) ---------- */
+.tape{
+  display:inline-block;background:var(--yellow);color:#120F06;
+  font-family:var(--mono);font-weight:800;font-size:27px;
+  letter-spacing:.10em;text-transform:uppercase;
+  padding:12px 26px;transform:rotate(-6deg);
+  box-shadow:0 10px 22px rgba(0,0,0,.55);
+}
+.tape--red{background:var(--red);color:#fff}
+.tape--flat{box-shadow:none}
+
+/* ---------- PRICE TAG (hangs off an object) ---------- */
+.price{
+  display:inline-block;background:var(--red);color:#150404;
+  font-family:var(--mono);font-weight:800;font-size:26px;letter-spacing:.04em;
+  padding:8px 16px;
+}
+
+/* ---------- COMPARISON ROW (the signature chart) ---------- */
+.row{
+  position:relative;display:flex;align-items:center;
+  height:84px;padding:0 30px;border:var(--stroke) solid var(--white);
+  border-radius:var(--radius);background:var(--black);
+  box-shadow:0 6px 0 -2px rgba(246,246,244,.13);
+}
+.row__rank{font-family:var(--mono);font-weight:800;font-size:34px;color:var(--dim);width:92px;flex:none}
+.row__name{font-family:var(--mono);font-weight:800;font-size:34px;letter-spacing:.06em;text-transform:uppercase;flex:1}
+.row__val{font-family:var(--mono);font-weight:800;font-size:38px;letter-spacing:.02em}
+.row--sel{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),0 8px 26px rgba(4,94,239,.25)}
+/* yellow crop-marks on the selected row */
+.row--sel::before,.row--sel::after,
+.row--sel .cm::before,.row--sel .cm::after{
+  content:"";position:absolute;width:16px;height:16px;border:4px solid var(--yellow);
+}
+.row--sel::before{left:-10px;top:-10px;border-right:0;border-bottom:0}
+.row--sel::after{right:-10px;top:-10px;border-left:0;border-bottom:0}
+.row--sel .cm::before{left:-10px;bottom:-10px;border-right:0;border-top:0}
+.row--sel .cm::after{right:-10px;bottom:-10px;border-left:0;border-top:0}
+
+/* ---------- HERO STAT NUMBER ---------- */
+.stat{display:flex;align-items:baseline;gap:18px}
+.stat__num{
+  font-family:var(--sans);font-weight:800;font-size:84px;line-height:.9;
+  letter-spacing:-.02em;color:var(--azure);
+}
+.stat__num--white{color:var(--white)}
+.stat__num--yellow{color:var(--yellow)}
+.stat__num--red{color:var(--red)}
+.stat__unit{font-family:var(--mono);font-weight:500;font-size:38px;color:var(--dim)}
+
+/* ---------- GAUGE (tok/s speedometer) ---------- */
+.gauge{position:relative;width:470px;height:290px}
+
+/* ---------- VRAM / CONTEXT GRID ---------- */
+.vgrid{display:grid;gap:3px}
+.vgrid i{display:block;width:100%;aspect-ratio:1/1;border:1px solid #24302D;background:transparent}
+.vgrid i.on{background:var(--azure);border-color:var(--azure)}
+.vgrid i.warm{background:var(--yellow);border-color:var(--yellow)}
+.vgrid i.hot{background:var(--red);border-color:var(--red)}
+
+/* ---------- PRODUCT CARD (cut-out on black) ---------- */
+.prod{display:flex;flex-direction:column;align-items:center;gap:10px}
+.prod__frame{
+  width:190px;height:150px;border:var(--stroke) solid var(--white);border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;background:#151A19;
+}
+.prod__frame img{max-width:86%;max-height:86%;object-fit:contain;filter:contrast(1.05)}
+.prod__cap{font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+/* ---------- CREAM NOTE CARD ---------- */
+.note{
+  background:var(--cream);color:#12100A;padding:34px 38px;
+  transform:rotate(-4deg);box-shadow:0 14px 30px rgba(0,0,0,.5);
+  font-family:var(--mono);font-weight:700;font-size:26px;
+  letter-spacing:.10em;text-transform:uppercase;
+}
+
+/* ---------- FLOW NODE ---------- */
+.node{
+  display:inline-flex;align-items:center;justify-content:center;text-align:center;
+  min-height:74px;padding:12px 22px;border:var(--stroke) solid var(--white);
+  border-radius:var(--radius);font-family:var(--mono);font-weight:700;
+  font-size:20px;letter-spacing:.12em;text-transform:uppercase;line-height:1.3;
+}
+.node--sel{border-color:var(--blue);box-shadow:0 0 0 3px rgba(4,94,239,.35);background:rgba(4,94,239,.08)}
+.node--ghost{border-style:dashed;border-color:var(--dim);color:var(--dim)}
+.arrow{color:var(--dim);font-size:30px;padding:0 6px}
+
+/* ---------- BAR CHART ---------- */
+.bar{display:flex;align-items:center;gap:18px;height:54px}
+.bar__lab{width:190px;font-family:var(--mono);font-weight:700;font-size:18px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray)}
+.bar__track{flex:1;height:34px;background:#151A19;position:relative}
+.bar__fill{height:100%;background:var(--azure)}
+.bar__val{width:120px;text-align:right;font-family:var(--mono);font-weight:800;font-size:26px}
+
+/* ---------- WATERMARK (every single frame) ---------- */
+.wm{
+  position:absolute;right:26px;bottom:22px;
+  font-family:var(--mono);font-weight:500;font-size:16px;
+  letter-spacing:.02em;color:#5D625F;
+}
+
+/* ---------- COLOR WIPE TRANSITION (7 staggered bands) ---------- */
+.wipe{position:absolute;inset:0;display:flex;flex-direction:column;pointer-events:none}
+.wipe span{flex:1;background:var(--yellow)}
+.wipe span:nth-child(even){background:#E5BE2C}

@@ -1,0 +1,118 @@
+/* ============================================================
+   KAI PLAYER — shared runtime chrome for every episode
+   (stage, scene system, HUD, start overlay, colour wipe)
+   Requires core/kai.css for tokens + components.
+   ============================================================ */
+
+html,body{height:100%;margin:0;background:#000;overflow:auto;font-family:var(--sans)}
+#wrap{position:relative;width:1280px;height:720px;margin:0 auto;overflow:hidden;background:#000}
+#stage{width:1920px;height:1080px;position:absolute;left:0;top:0;transform:scale(0.666667);transform-origin:0 0;background:var(--black);overflow:hidden;color:var(--white);font-family:var(--mono)}
+
+/* ---------- scenes ---------- */
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden}
+.scene.active{opacity:1;visibility:visible}
+[data-in]{opacity:0;transform:translateY(12px) scale(.975);
+          transition:opacity .34s ease,transform .34s cubic-bezier(.2,.8,.2,1)}
+[data-in].on{opacity:1;transform:none}
+.grow{width:0;transition:width .95s cubic-bezier(.25,.8,.25,1)}
+.grow.on{width:var(--w)}
+
+/* ---------- type utilities ---------- */
+.big{font-family:var(--sans);font-weight:800;letter-spacing:-.035em;line-height:.9}
+.mono{font-family:var(--mono);font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.dim{color:var(--dim)} .gray{color:var(--gray)}
+.red{color:var(--red)} .yel{color:var(--yellow)} .az{color:var(--azure)} .wt{color:var(--white)}
+.cap{font-family:var(--mono);font-size:19px;font-weight:700;letter-spacing:.22em;
+     color:var(--dim);text-transform:uppercase}
+
+/* ---------- HUD ---------- */
+#hud{position:absolute;left:0;right:0;bottom:0;height:3px;background:#1B2422;z-index:60}
+#bar{height:100%;width:0;background:var(--yellow);box-shadow:0 0 12px rgba(248,207,51,.5)}
+#tc{position:absolute;right:26px;bottom:20px;font-family:var(--mono);font-size:15px;
+    color:#4C514E;letter-spacing:.1em;z-index:60}
+#cue{position:absolute;left:26px;bottom:20px;font-family:var(--mono);font-size:13px;
+     color:#3E4340;letter-spacing:.18em;z-index:60}
+
+/* ---------- start / replay overlay ---------- */
+#start{position:absolute;inset:0;z-index:90;background:var(--black);display:flex;
+       flex-direction:column;align-items:center;justify-content:center;gap:26px;
+       cursor:pointer;transition:opacity .35s}
+#start.hide{opacity:0;pointer-events:none}
+#start .k{font-family:var(--mono);font-size:14px;letter-spacing:.26em;color:var(--dim);text-transform:uppercase}
+#start .t{font-family:var(--sans);font-weight:800;font-size:64px;letter-spacing:-.03em;text-align:center}
+#start .s{font-family:var(--mono);font-size:15px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
+#play{width:126px;height:126px;border-radius:50%;border:3px solid var(--white);
+      display:grid;place-items:center;transition:transform .2s,background .2s}
+#start:hover #play{transform:scale(1.06);background:rgba(246,246,244,.06)}
+#play svg{margin-left:7px}
+#start .meta{font-family:var(--mono);font-size:13px;color:var(--dim);letter-spacing:.14em}
+
+/* ---------- colour wipe ---------- */
+#wipe{position:absolute;inset:0;display:flex;flex-direction:column;z-index:70;
+      transform:translateX(-103%);pointer-events:none}
+#wipe span{flex:1;background:var(--yellow)}
+#wipe span:nth-child(even){background:#E5BE2C}
+#wipe.blue span{background:var(--blue)}
+#wipe.blue span:nth-child(even){background:#0348B8}
+#wipe.go{animation:swipe .62s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes swipe{0%{transform:translateX(-103%)}46%{transform:translateX(0)}100%{transform:translateX(103%)}}
+
+/* bigger box on big screens - fixed numbers only, no calc division */
+@media (min-width:1600px) and (min-height:940px){
+  body:not(.render) #wrap{width:1600px;height:900px}
+  body:not(.render) #wrap #stage{transform:scale(0.833333)}
+}
+
+/* ---------- deterministic render mode (?t=SECONDS) ---------- */
+body.render{overflow:hidden;background:#000}
+body.render #wrap{width:1920px;height:1080px;margin:0}
+body.render #stage{transform:none}
+body.render #hud,body.render #tc,body.render #cue,body.render #start{display:none!important}
+body.render [data-in],body.render .grow,body.render #wipe{transition:none!important;animation:none!important}
+
+
+/* ---------- review controls: play / stop / speed ---------- */
+#ctl{
+  position:fixed; right:16px; bottom:16px; z-index:400;
+  display:flex; align-items:center; gap:6px;
+  padding:7px 9px; border-radius:11px;
+  background:rgba(12,12,11,.86); border:1px solid #3A352E;
+  font-family:var(--mono, ui-monospace, monospace);
+  opacity:.38; transition:opacity .18s ease;
+}
+#ctl:hover{opacity:1}
+#ctl button{
+  min-width:36px; height:32px; padding:0 9px;
+  background:transparent; color:#EDEAE3;
+  border:1px solid #4A443A; border-radius:7px;
+  font-family:inherit; font-size:13px; letter-spacing:.04em;
+  cursor:pointer; transition:background .12s, color .12s, border-color .12s;
+}
+#ctl button:hover{background:#242019; border-color:#6A6154}
+#ctl button.on{background:#F5D547; color:#14120F; border-color:#F5D547; font-weight:700}
+#ctl .sep{width:1px; height:20px; background:#3A352E; margin:0 3px}
+body.render #ctl{display:none}
+@media print{#ctl{display:none}}
+
+
+/* ---------- draw-on artwork: shapes sketch themselves in ---------- */
+.art path, .art rect, .art circle, .art line, .art polyline{
+  stroke-dasharray:100; stroke-dashoffset:100;
+}
+.on .art path, .on .art rect, .on .art circle, .on .art line, .on .art polyline{
+  animation:draw .85s cubic-bezier(.42,0,.24,1) forwards;
+}
+@keyframes draw{ to{ stroke-dashoffset:0 } }
+/* filled shapes have no stroke, so dash never hides them */
+.art .fl, .art .fy, .art .fg{ stroke-dasharray:none; stroke-dashoffset:0 }
+
+/* render mode: freeze every ambient animation so frames are deterministic */
+/* render mode: ambient motion is PAUSED and its phase driven by --anim-delay,
+   so frame N always shows the same state for the same timestamp */
+body.render .spin, body.render .float, body.render .pulse, body.render .pulse2{
+  animation:none!important;   /* driven from renderAt(t) for determinism */
+}
+body.render .art path, body.render .art rect, body.render .art circle,
+body.render .art line, body.render .art polyline{ animation:none!important }
+body.render .art path, body.render .art rect, body.render .art circle,
+body.render .art line, body.render .art polyline{ stroke-dashoffset:0!important }

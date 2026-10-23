@@ -1,0 +1,522 @@
+{
+ "name": "BYTE-07",
+ "kicker": "Byte Forensics",
+ "title": "Prefill: Why Long Context Feels Broken",
+ "subtitle": "the wait before the first word",
+ "scenes": [
+  {
+   "type": "hook",
+   "art": "laptop",
+   "head": "two numbers, one of them is invisible",
+   "vo": "Okay, so you paste a long document into a local model and nothing happens for twenty seconds. The model is not broken, and your card is not too slow. You are watching a number that almost nobody measures, called prefill, and it decides how the whole thing feels. Token generation is how fast words come out. Prefill is how long you wait before the first one.",
+   "a": {
+    "v": "4,625",
+    "u": "t/s",
+    "c": "lime",
+    "lab": "prefill \u00b7 short prompt"
+   },
+   "b": {
+    "v": "461",
+    "u": "t/s",
+    "c": "red",
+    "lab": "prefill \u00b7 128K"
+   },
+   "tape": "the wait is the product",
+   "cues": {
+    "h": "Okay, so",
+    "a": "called prefill",
+    "b": "how long you wait",
+    "t": "the wait"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "rtx 5090 prefill \u00b7 glimmer",
+   "vo": "On a five-oh-ninety, Muse Glimmer processes a four K prompt at four thousand six hundred and twenty-five tokens a second. At sixteen K it is four thousand three hundred and seventy-three. At sixty-four K it is three thousand six hundred and six. At one twenty-eight K, two thousand eight hundred and six. At two hundred fifty-six K, one thousand eight hundred and seventy-four. Long context costs you, but it degrades gracefully.",
+   "items": [
+    [
+     "Glimmer \u00b7 4K",
+     "100",
+     "4,625",
+     "lime"
+    ],
+    [
+     "Glimmer \u00b7 64K",
+     "78",
+     "3,606",
+     "lime"
+    ],
+    [
+     "Glimmer \u00b7 128K",
+     "61",
+     "2,807",
+     "yellow"
+    ],
+    [
+     "Glimmer \u00b7 256K",
+     "41",
+     "1,874",
+     "orange"
+    ]
+   ],
+   "cues": {
+    "h": "On a five-oh-ninety",
+    "0": "four thousand six hundred",
+    "1": "three thousand six hundred and six",
+    "2": "two thousand eight hundred",
+    "3": "one thousand eight hundred and seventy-four"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "same card \u00b7 qwen 3.8",
+   "vo": "The same card running Qwen three point eight starts at three thousand seven hundred and forty-nine at four K. At sixteen K it is eighteen hundred and twenty-five. At sixty-four K it is seven hundred and seventeen. And at one twenty-eight K it is four hundred and sixty-one tokens a second. That is the number that makes a long context chat feel broken.",
+   "items": [
+    [
+     "Qwen \u00b7 4K",
+     "81",
+     "3,749",
+     "cyan"
+    ],
+    [
+     "Qwen \u00b7 16K",
+     "39",
+     "1,826",
+     "cyan"
+    ],
+    [
+     "Qwen \u00b7 64K",
+     "15",
+     "718",
+     "red"
+    ],
+    [
+     "Qwen \u00b7 128K",
+     "10",
+     "461",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "same card running",
+    "0": "three thousand seven hundred",
+    "1": "eighteen hundred and twenty-five",
+    "2": "seven hundred and seventeen",
+    "3": "four hundred and sixty-one"
+   }
+  },
+  {
+   "type": "table",
+   "head": "what that means in seconds",
+   "vo": "Turn it into time. A hundred thousand token prompt at forty-six hundred tokens a second is about twenty-two seconds of waiting. The same prompt at four hundred and sixty-one tokens a second is three and a half minutes, before the model writes a single word. That is the whole difference between an assistant and a loading screen.",
+   "items": [
+    [
+     "100K @ 4,625",
+     "22 s",
+     "wait",
+     "good"
+    ],
+    [
+     "100K @ 1,874",
+     "53 s",
+     "wait",
+     "hot"
+    ],
+    [
+     "100K @ 461",
+     "217 s",
+     "wait",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "Turn it into time",
+    "0": "twenty-two seconds",
+    "1": "three and a half minutes",
+    "2": "loading screen"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "why prefill collapses",
+   "vo": "Prefill is one big matrix multiplication over the whole prompt, so it scales with prompt length and it is memory bandwidth bound. The longer the prompt, the more of the model's attention you have to compute before you can emit the first token. Generation, by contrast, is one token at a time and barely cares how long the prompt was.",
+   "items": [
+    [
+     "Prefill",
+     "one pass over the whole prompt",
+     "hot"
+    ],
+    [
+     "Generation",
+     "one token at a time",
+     "good"
+    ],
+    [
+     "Both",
+     "bounded by memory bandwidth",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "Prefill is one",
+    "0": "the whole prompt",
+    "1": "one token at a time",
+    "2": "memory bandwidth"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "two honest notes",
+   "vo": "Two notes. These are single GPU measurements with full offload, so a machine that splits a model across cards will see different prefill behaviour. And a cached prompt is nearly free on the second run, so the wait you feel is usually the first time only.",
+   "items": [
+    "Single GPU, full offload only",
+    "Prompt caching removes most repeat cost"
+   ],
+   "tape": "first time only",
+   "cues": {
+    "h": "Two notes",
+    "0": "single GPU measurements",
+    "1": "cached prompt",
+    "t": "first time"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "rtx 3090 prefill",
+   "vo": "On a three thousand ninety the numbers are lower but the shape is identical. Glimmer prefills a four K prompt at fourteen hundred and seventy-seven tokens a second. Sixty-four K is eleven hundred. One twenty-eight K is eight hundred and fifty-three. Two hundred fifty-six K is five hundred and eighty-four. Even the old card degrades gracefully on the better optimised model.",
+   "items": [
+    [
+     "Glimmer \u00b7 4K",
+     "100",
+     "1,477",
+     "lime"
+    ],
+    [
+     "Glimmer \u00b7 64K",
+     "74",
+     "1,098",
+     "lime"
+    ],
+    [
+     "Glimmer \u00b7 128K",
+     "58",
+     "853",
+     "yellow"
+    ],
+    [
+     "Glimmer \u00b7 256K",
+     "40",
+     "584",
+     "orange"
+    ]
+   ],
+   "cues": {
+    "h": "On a three thousand ninety",
+    "0": "fourteen hundred and seventy-seven",
+    "1": "eleven hundred",
+    "2": "eight hundred and fifty-three",
+    "3": "five hundred and eighty-four"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "qwen 3.8 on the same 3090",
+   "vo": "Qwen three point eight on the same card starts at thirteen hundred and eight at four K, which is close enough to Glimmer that you would not notice. By sixty-four K it is seven hundred and seventeen, and that is where the two diverge. Same card, same engine, one model holds its prefill and the other halves it.",
+   "items": [
+    [
+     "Qwen \u00b7 4K",
+     "89",
+     "1,308",
+     "cyan"
+    ],
+    [
+     "Qwen \u00b7 64K",
+     "49",
+     "767",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "Qwen three point eight on the same card",
+    "0": "thirteen hundred and eight",
+    "1": "seven hundred and seventeen"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "prompt caching changes everything",
+   "vo": "There is one honest escape hatch. If you send the same long document repeatedly, a cached prompt is nearly free on the second pass, because the prefill work is already done. So the twenty seconds you feel is a first-time cost, not a per-message cost. Agents that re-read the same codebase over and over are exactly the case where caching turns an unusable wait into a normal one.",
+   "items": [
+    [
+     "First pass",
+     "full prefill cost",
+     "hot"
+    ],
+    [
+     "Cached prompt",
+     "nearly free",
+     "good"
+    ],
+    [
+     "Agent loops",
+     "where caching saves you",
+     "good"
+    ]
+   ],
+   "cues": {
+    "h": "one honest escape hatch",
+    "0": "a cached prompt",
+    "1": "nearly free",
+    "2": "Agent loops"
+   }
+  },
+  {
+   "type": "table",
+   "head": "time to first token at 100k",
+   "vo": "Put the three machines side by side at a hundred thousand token prompt. Twenty-two seconds on a five-oh-ninety running Glimmer. Fifty-four seconds on a three thousand ninety. Two hundred and seventeen seconds on the same five-oh-ninety running Qwen three point eight. Same document, same question, a wait that ranges from tolerable to abandoned.",
+   "items": [
+    [
+     "5090 \u00b7 Glimmer",
+     "22 s",
+     "22 s",
+     "good"
+    ],
+    [
+     "3090 \u00b7 Glimmer",
+     "54 s",
+     "54 s",
+     "hot"
+    ],
+    [
+     "5090 \u00b7 Qwen 3.8",
+     "217 s",
+     "217 s",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "side by side",
+    "0": "twenty-two seconds",
+    "1": "fifty-four seconds",
+    "2": "two hundred and seventeen seconds"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "how to measure it yourself",
+   "vo": "Measurement is easy and almost nobody does it. Send the longest prompt you realistically use, and time from pressing enter to the first character appearing. That single number predicts whether the tool feels fast, better than any tokens per second figure on a leaderboard. Write it down for two machines and the purchase decision makes itself.",
+   "items": [
+    [
+     "Paste your real longest prompt",
+     "not a benchmark prompt",
+     "good"
+    ],
+    [
+     "Time to first character",
+     "the number you feel",
+     "good"
+    ],
+    [
+     "Do it on both machines",
+     "then decide",
+     "good"
+    ]
+   ],
+   "cues": {
+    "h": "Measurement is easy",
+    "0": "the longest prompt",
+    "1": "first character",
+    "2": "both machines"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "generation vs prefill on one axis",
+   "vo": "Put generation and prefill on the same axis and the point becomes obvious. On a five-oh-ninety with Glimmer at four K, prefill is four thousand six hundred and twenty-five and generation is eighty-three. Prefill is fifty-five times faster because it processes the whole prompt in one pass. But at one twenty-eight K, prefill has fallen to twenty-eight hundred while generation has only fallen to seventy-five. Prefill degrades faster than generation does.",
+   "items": [
+    [
+     "prefill \u00b7 4K",
+     "100",
+     "4,625",
+     "cyan"
+    ],
+    [
+     "prefill \u00b7 128K",
+     "61",
+     "2,807",
+     "cyan"
+    ],
+    [
+     "generation \u00b7 4K",
+     "2",
+     "83",
+     "lime"
+    ],
+    [
+     "generation \u00b7 128K",
+     "2",
+     "76",
+     "lime"
+    ]
+   ],
+   "cues": {
+    "h": "on the same axis",
+    "0": "four thousand six hundred and twenty-five",
+    "1": "twenty-eight hundred",
+    "2": "eighty-three",
+    "3": "seventy-five"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "why benchmarks hide it",
+   "vo": "Benchmarks hide prefill for a boring reason. Tokens per second is one number and it is easy to publish, while time to first token depends on the prompt you personally paste, so it does not fit in a table. The result is that every comparison you have ever read is about the number you feel second, and almost none of them are about the number you feel first.",
+   "items": [
+    [
+     "Tokens per second",
+     "easy to publish, easy to compare",
+     "good"
+    ],
+    [
+     "Time to first token",
+     "depends on your prompt, rarely published",
+     "hot"
+    ],
+    [
+     "So everyone measures",
+     "the wrong half",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "Benchmarks hide prefill",
+    "0": "Tokens per second",
+    "1": "Time to first token",
+    "2": "the wrong half"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "what to expect on your own machine",
+   "vo": "On a three thousand ninety, expect prefill around fourteen hundred at short prompts, eleven hundred at sixty-four K, and eight hundred and fifty at one twenty-eight K. If you are seeing far below that, you are either spilling out of VRAM or you are not using the offload path you think you are. Those are the two things worth checking before you blame the model.",
+   "items": [
+    [
+     "3090 \u00b7 4K",
+     "100",
+     "1,477",
+     "lime"
+    ],
+    [
+     "3090 \u00b7 64K",
+     "74",
+     "1,098",
+     "yellow"
+    ],
+    [
+     "3090 \u00b7 128K",
+     "58",
+     "853",
+     "orange"
+    ]
+   ],
+   "cues": {
+    "h": "On a three thousand ninety, expect",
+    "0": "fourteen hundred",
+    "1": "eleven hundred",
+    "2": "eight hundred and fifty"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "caching in practice",
+   "vo": "In practice, prompt caching is the single highest leverage setting for long context work. If your tool supports it, keep the stable part of the prompt first and the changing part last, because a cache hit requires the prefix to match exactly. Move one word at the top and you pay the full prefill again. That one habit turns a three minute wait into a two second one.",
+   "items": [
+    [
+     "Stable prefix first",
+     "so the cache hits",
+     "good"
+    ],
+    [
+     "Changing content last",
+     "so the prefix still matches",
+     "good"
+    ],
+    [
+     "Edit the top",
+     "and you pay full price again",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "prompt caching",
+    "0": "stable part of the prompt",
+    "1": "changing part last",
+    "2": "full prefill again"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "the bottom line",
+   "vo": "The bottom line is that prefill is the half of performance nobody publishes, and it is the half you feel first. Every time you paste a document, you are watching a benchmark run in real time. Learn what your machine does at your prompt length, and the hardware conversation gets a lot shorter, because you will already know the answer before anyone posts a table.",
+   "items": [
+    "Prefill is the invisible half",
+    "Time to first token is what you feel"
+   ],
+   "tape": "the half nobody publishes",
+   "cues": {
+    "h": "The bottom line",
+    "0": "nobody publishes",
+    "1": "feel first",
+    "t": "nobody publishes"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the one sentence version",
+   "vo": "One sentence. Prefill decides how long you stare at the cursor, generation decides how fast the words arrive, and almost every comparison you have ever read only measures the second one. At a hundred thousand tokens the same card can take twenty-two seconds or two hundred and seventeen depending on the model, and that gap is the entire difference between a tool you use and a tool you stop opening.",
+   "items": [
+    [
+     "Prefill",
+     "the wait you feel first",
+     "hot"
+    ],
+    [
+     "Generation",
+     "the speed you notice second",
+     "good"
+    ],
+    [
+     "100K prompt",
+     "22 s or 217 s",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "One sentence",
+    "0": "the cursor",
+    "1": "the words arrive",
+    "2": "twenty-two seconds"
+   }
+  },
+  {
+   "type": "close",
+   "art": "laptop",
+   "head": "close",
+   "vo": "So when you compare hardware, do not only compare tokens per second. Compare the time to first token at the prompt length you actually paste. That is the number you feel, and it is the number almost nobody publishes.",
+   "line": "Measure time to first token.",
+   "chips": [
+    "PREFILL",
+    "FIRST TOKEN",
+    "CONTEXT"
+   ],
+   "cues": {
+    "h": "when you compare",
+    "l": "Measure time to first token",
+    "0": "tokens per second",
+    "1": "first token",
+    "w": "almost nobody publishes"
+   }
+  }
+ ],
+ "rate": "-14%"
+}

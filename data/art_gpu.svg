@@ -1,0 +1,20 @@
+<svg viewBox="0 0 480 190" class="art">
+  <rect x="14" y="18" width="452" height="140" rx="18" fill="rgba(255,255,255,.025)" stroke="rgba(237,234,227,.85)" stroke-width="2"/>
+  <rect x="34" y="34" width="168" height="108" rx="12" fill="rgba(0,0,0,.35)" stroke="rgba(237,234,227,.45)" stroke-width="1.5"/>
+  <g class="spin">
+    <circle cx="118" cy="88" r="44" fill="none" stroke="rgba(237,234,227,.55)" stroke-width="1.5"/>
+    <path d="M118 48a40 40 0 0 1 0 80" fill="none" stroke="rgba(237,234,227,.30)" stroke-width="6"/>
+    <path d="M118 128a40 40 0 0 1 0-80" fill="none" stroke="rgba(237,234,227,.30)" stroke-width="6"/>
+    <circle cx="118" cy="88" r="8" fill="rgba(245,213,71,.9)"/>
+  </g>
+  <text x="230" y="72" fill="#B4E33D" font-family="var(--mono)" font-weight="800" font-size="34" letter-spacing="1">24 GB</text>
+  <text x="230" y="96" fill="rgba(237,234,227,.45)" font-family="var(--mono)" font-size="14" letter-spacing="3">VRAM</text>
+  <rect x="230" y="112" width="196" height="20" rx="10" fill="rgba(255,255,255,.06)" stroke="rgba(237,234,227,.28)" stroke-width="1"/>
+  <rect x="232" y="114" width="132" height="16" rx="8" fill="rgba(245,213,71,.9)"/>
+  <rect x="436" y="60" width="20" height="58" rx="4" fill="rgba(0,0,0,.4)" stroke="rgba(237,234,227,.4)" stroke-width="1.5"/>
+  <rect x="40" y="158" width="120" height="12" rx="3" fill="rgba(245,213,71,.55)"/>
+  <rect x="60" y="158" width="8" height="12" fill="rgba(0,0,0,.6)"/>
+  <rect x="84" y="158" width="8" height="12" fill="rgba(0,0,0,.6)"/>
+  <rect x="108" y="158" width="8" height="12" fill="rgba(0,0,0,.6)"/>
+  <rect x="132" y="158" width="8" height="12" fill="rgba(0,0,0,.6)"/>
+</svg>

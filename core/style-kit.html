@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>KAI — Style Kit (component gallery)</title>
+<link rel="stylesheet" href="kai.css">
+<style>
+  body{background:#050807;margin:0;padding:40px 0 120px;font-family:var(--sans)}
+  .head{max-width:1180px;margin:0 auto 30px;padding:0 20px;color:#F6F6F4}
+  .head h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:0 0 8px}
+  .head p{font-family:var(--mono);font-size:13px;color:#6E7270;margin:0}
+  .label{max-width:1180px;margin:38px auto 8px;padding:0 20px;font-family:var(--mono);
+         font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#F8CF33}
+  .frame{width:960px;margin:0 auto;border:1px solid #24302D;border-radius:6px;overflow:hidden}
+  .frame .stage{zoom:.5}
+  .pad{padding:70px 80px;display:flex;flex-direction:column;gap:26px}
+  .r{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .col{display:flex;flex-direction:column;gap:14px}
+</style></head>
+<body>
+
+<div class="head">
+  <h1>KAI — Style Kit</h1>
+  <p>Every component from the design system, rendered at 1920×1080 and shown at 50%. Built from core/kai.css.</p>
+</div>
+
+<!-- 1 · PALETTE + TYPE -->
+<div class="label">01 · Palette &amp; type</div>
+<div class="frame"><div class="stage">
+  <div class="pad">
+    <div class="lbl">The label system — uppercase mono, tracking +0.20em, 19px</div>
+    <div class="r">
+      <span class="chip">4-BIT · 128K CONTEXT</span>
+      <span class="chip chip--white">WRITING ✓</span>
+      <span class="chip chip--blue">REQUIRED</span>
+      <span class="chip chip--red">OUT OF STOCK</span>
+      <span class="chip chip--ghost">NO DATA</span>
+    </div>
+    <div class="r" style="gap:40px;margin-top:10px">
+      <div class="stat"><span class="stat__num">70</span><span class="stat__unit">tok/s</span></div>
+      <div class="stat"><span class="stat__num stat__num--white">1,227</span><span class="stat__unit">tokens</span></div>
+      <div class="stat"><span class="stat__num stat__num--yellow">585,000</span><span class="stat__unit">views</span></div>
+      <div class="stat"><span class="stat__num stat__num--red">0</span><span class="stat__unit">API calls</span></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- 2 · RANKED ROWS -->
+<div class="label">02 · Ranked comparison rows</div>
+<div class="frame"><div class="stage">
+  <div class="pad">
+    <div class="col" style="gap:22px;width:999px">
+      <div class="row row--sel">
+        <span class="cm"></span><span class="row__rank">#1</span>
+        <span class="row__name">4× V620 SERVER</span><span class="row__val" style="color:var(--azure)">60–70</span>
+      </div>
+      <div class="row"><span class="row__rank">#2</span><span class="row__name">STRIX HALO</span><span class="row__val">47–54</span></div>
+      <div class="row"><span class="row__rank">#3</span><span class="row__name">MAC STUDIO</span><span class="row__val">40</span></div>
+      <div class="row"><span class="row__rank">#4</span><span class="row__name">DGX SPARK</span><span class="row__val">27</span></div>
+      <div class="row"><span class="row__rank">#5</span><span class="row__name">RTX SPARK</span><span class="row__val">?</span></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- 3 · STICKERS + NOTE -->
+<div class="label">03 · Tape labels, price tags, note card</div>
+<div class="frame"><div class="stage">
+  <div class="pad">
+    <div class="r" style="gap:60px">
+      <span class="tape">RAW OUTPUT</span>
+      <span class="tape tape--red">REQUIRED 64 GB</span>
+      <span class="price">$3,300</span>
+      <span class="price">$429</span>
+    </div>
+    <div class="note" style="width:420px">MY ASSUMPTION</div>
+  </div>
+</div></div>
+
+<!-- 4 · GAUGE + GRID -->
+<div class="label">04 · Gauge &amp; VRAM grid</div>
+<div class="frame"><div class="stage">
+  <div class="pad" style="flex-direction:row;gap:100px;align-items:center">
+    <div style="position:relative;width:470px;height:300px">
+      <svg width="470" height="300" viewBox="0 0 470 300" fill="none">
+        <line x1="4" y1="235" x2="35" y2="235" stroke="#F6F6F4" stroke-width="4"/>
+        <line x1="435" y1="235" x2="466" y2="235" stroke="#F6F6F4" stroke-width="4"/>
+        <path d="M35,235 A200,200 0 0 1 435,235" stroke="#F6F6F4" stroke-width="4"/>
+        <path d="M289.6,46.6 A200,200 0 0 1 389.1,107.5" stroke="#2294D6" stroke-width="18"/>
+        <line x1="235" y1="235" x2="341.7" y2="105.5" stroke="#F6F6F4" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="235" cy="235" r="15" fill="#0D1110" stroke="#F6F6F4" stroke-width="5"/>
+        <circle cx="341.7" cy="105.5" r="7.5" fill="#F6F6F4"/>
+      </svg>
+    </div>
+    <div>
+      <div class="vgrid" style="grid-template-columns:repeat(14,26px);width:max-content">
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="warm"></i><i></i>
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="warm"></i><i></i>
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="warm"></i><i class="warm"></i><i class="warm"></i><i></i>
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="warm"></i><i class="warm"></i><i class="warm"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i>
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="warm"></i><i class="warm"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="lbl lbl--sm" style="margin-top:14px">128 GB · 4-BIT · 128K CONTEXT</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- 5 · FLOW + BARS -->
+<div class="label">05 · Process flow &amp; bar comparison</div>
+<div class="frame"><div class="stage">
+  <div class="pad">
+    <div class="r">
+      <span class="node">1&nbsp; SET UP</span><span class="arrow">→</span>
+      <span class="node">2&nbsp; LOAD MODEL</span><span class="arrow">→</span>
+      <span class="node node--sel">3&nbsp; OPEN AGENT</span><span class="arrow">→</span>
+      <span class="node node--ghost">4&nbsp; CODING SESSION</span>
+    </div>
+    <div class="col" style="width:900px;margin-top:20px">
+      <div class="bar"><span class="bar__lab">MAXLINE</span><div class="bar__track"><div class="bar__fill" style="width:9%;background:var(--red)"></div></div><span class="bar__val">113</span></div>
+      <div class="bar"><span class="bar__lab">100K CONTEXT</span><div class="bar__track"><div class="bar__fill" style="width:92%"></div></div><span class="bar__val">1,227</span></div>
+      <div class="bar"><span class="bar__lab">16 GB CARD</span><div class="bar__track"><div class="bar__fill" style="width:64%;background:var(--yellow)"></div></div><span class="bar__val">860</span></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- 6 · WIPE -->
+<div class="label">06 · Colour wipe transition (7 staggered bands)</div>
+<div class="frame"><div class="stage">
+  <div class="wipe">
+    <span style="transform:translateX(-6%)"></span><span style="transform:translateX(-3%)"></span>
+    <span style="transform:translateX(0)"></span><span style="transform:translateX(3%)"></span>
+    <span style="transform:translateX(6%)"></span><span style="transform:translateX(9%)"></span>
+    <span style="transform:translateX(12%)"></span>
+  </div>
+  <div class="wm">&lt;kaiexplainsyt&gt;</div>
+</div></div>
+
+<div class="head" style="margin-top:50px">
+  <p>Canvas #0D1110 · ink #F6F6F4 · yellow #F8CF33 · red #E12A27 · blue #045EEF · azure #2294D6 · cream #E8E5DA</p>
+</div>
+
+</body></html>

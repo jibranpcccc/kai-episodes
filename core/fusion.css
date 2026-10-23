@@ -1,0 +1,689 @@
+/* ============================================================
+   FUSION — Byte Forensics design system
+   KAI's measured ground + restraint, RepoChad's gold + motion.
+   Canvas 1920x1080. All sizes in px at 1080p.
+   ============================================================ */
+
+@font-face{font-family:"FuseMono";src:url("fonts/JetBrainsMono-Regular.ttf") format("truetype");font-weight:400;font-display:block}
+@font-face{font-family:"FuseMono";src:url("fonts/JetBrainsMono-Bold.ttf") format("truetype");font-weight:700;font-display:block}
+@font-face{font-family:"FuseMono";src:url("fonts/JetBrainsMono-ExtraBold.ttf") format("truetype");font-weight:800;font-display:block}
+@font-face{font-family:"FuseDisplay";src:url("fonts/Anton-Regular.ttf") format("truetype");font-weight:400;font-display:block}
+@font-face{font-family:"FuseBlack";src:url("fonts/ArchivoBlack-Regular.ttf") format("truetype");font-weight:400;font-display:block}
+
+/* ------------------------------------------------------------
+   1. TOKENS
+   ------------------------------------------------------------ */
+:root{
+  /* ground ------------------------------------------------------------ */
+  --ground:      #0D1110;
+  --panel:       #121917;
+  --panel-2:     #0A0E0D;
+  --ink:         #F6F6F4;
+  --dim:         #6E7270;
+  --dimmer:      #4C514E;
+  --hair:        #3C4241;
+  --hair-soft:   #222A28;
+
+  /* accents ----------------------------------------------------------- */
+  --gold:        #F5C531;
+  --gold-hot:    #FFD75E;
+  --gold-deep:   #A87C0C;
+  --red:         #E12A27;
+  --red-hot:     #FF5A55;
+  --cyan:        #38D9E8;
+  --violet:      #2A1B4D;
+  --lime:        #AFED14;
+  --cream:       #E8E5DA;
+
+  /* type -------------------------------------------------------------- */
+  --mono:    "FuseMono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --display: "FuseDisplay", "FuseBlack", Impact, sans-serif;
+  --hero:    "FuseBlack", "Arial Black", Impact, sans-serif;
+
+  /* grid -------------------------------------------------------------- */
+  --pad-x:   170px;
+  --pad-y:   132px;
+  --foot:     92px;
+  --stroke:  3px;
+  --radius:  10px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;font-family:var(--mono)}
+
+/* ------------------------------------------------------------
+   2. STAGE + GROUND
+   ------------------------------------------------------------ */
+.stage{
+  position:relative;width:1920px;height:1080px;overflow:hidden;
+  background:var(--ground);color:var(--ink);
+  font-family:var(--mono);font-weight:500;
+  -webkit-font-smoothing:antialiased;
+  isolation:isolate;
+}
+
+/* RepoChad's purple stage glow + a cold rim + a fine grid, BEHIND the content */
+.stage::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(246,246,244,.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246,246,244,.024) 1px, transparent 1px),
+    radial-gradient(105% 78% at 16% 2%,  rgba(42,27,77,.55) 0%, rgba(13,17,16,0) 56%),
+    radial-gradient(85% 70% at 92% 98%, rgba(56,217,232,.10) 0%, rgba(13,17,16,0) 60%),
+    radial-gradient(70% 60% at 50% 50%,  rgba(13,17,16,0) 55%, rgba(0,0,0,.42) 100%);
+  background-size:96px 96px, 96px 96px, auto, auto, auto;
+}
+/* vignette only, over the content */
+.stage::after{
+  content:"";position:absolute;inset:0;z-index:60;pointer-events:none;
+  box-shadow:inset 0 0 190px rgba(0,0,0,.42);
+}
+
+/* ------------------------------------------------------------
+   3. TYPE PRIMITIVES
+   ------------------------------------------------------------ */
+.lbl{
+  font-family:var(--mono);font-weight:700;text-transform:uppercase;
+  letter-spacing:.22em;font-size:19px;line-height:1;color:var(--dim);
+}
+.lbl--bright{color:var(--ink)}
+.lbl--gold{color:var(--gold)}
+.lbl--red{color:var(--red)}
+.lbl--cyan{color:var(--cyan)}
+.lbl--sm{font-size:15px;letter-spacing:.24em}
+.lbl--xs{font-size:13px;letter-spacing:.28em}
+
+.display{
+  font-family:var(--display);font-weight:400;text-transform:uppercase;
+  letter-spacing:.005em;line-height:.90;color:var(--ink);
+}
+.display--gold{color:var(--gold)}
+.display--out{
+  color:transparent;-webkit-text-stroke:2px var(--ink);
+}
+
+.hero{
+  font-family:var(--hero);font-weight:400;letter-spacing:-.035em;
+  line-height:.86;color:var(--gold);
+}
+.hero--ink{color:var(--ink)}
+.hero--red{color:var(--red)}
+.hero--cyan{color:var(--cyan)}
+.hero--lime{color:var(--lime)}
+
+.unit{
+  font-family:var(--mono);font-weight:700;font-size:26px;letter-spacing:.10em;
+  color:var(--dim);text-transform:uppercase;
+}
+
+.num{
+  font-family:var(--hero);font-weight:400;letter-spacing:-.02em;line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.num--gold{color:var(--gold)}
+.num--ink {color:var(--ink)}
+.num--red {color:var(--red)}
+.num--cyan{color:var(--cyan)}
+.num--dim {color:var(--dim)}
+
+.src{
+  position:absolute;left:var(--pad-x);bottom:64px;
+  font-family:var(--mono);font-weight:500;font-size:14px;
+  letter-spacing:.14em;color:var(--dimmer);text-transform:uppercase;
+}
+.src b{color:var(--dim);font-weight:700}
+
+/* ------------------------------------------------------------
+   4. COMPONENTS
+   ------------------------------------------------------------ */
+
+/* --- kicker: gold tick + label, top-left of every scene ------ */
+.kicker{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--mono);font-weight:700;font-size:17px;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--dim);
+}
+.kicker i{
+  display:block;width:34px;height:3px;background:var(--gold);flex:none;
+  box-shadow:0 0 14px rgba(245,197,49,.55);
+}
+
+/* --- chip / pill (RepoChad badge) ---------------------------- */
+.chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 22px;border:1.5px solid var(--hair);border-radius:999px;
+  font-family:var(--mono);font-weight:700;font-size:17px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gray,#B8B2A6);
+  background:rgba(18,25,23,.75);white-space:nowrap;
+}
+.chip--gold {border-color:var(--gold);color:var(--gold);background:rgba(245,197,49,.10)}
+.chip--red  {border-color:var(--red);color:var(--red);background:rgba(225,42,39,.10)}
+.chip--cyan {border-color:var(--cyan);color:var(--cyan);background:rgba(56,217,232,.10)}
+.chip--ink  {border-color:var(--ink);color:var(--ink)}
+.chip--ghost{border-style:dashed;border-color:var(--dimmer);color:var(--dimmer)}
+.chip__dot{width:9px;height:9px;border-radius:50%;background:currentColor;flex:none}
+
+/* --- yellow tape label (KAI) --------------------------------- */
+.tape{
+  display:inline-block;background:var(--gold);color:#120F06;
+  font-family:var(--mono);font-weight:800;font-size:21px;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:8px 20px;transform:rotate(-5deg);
+  box-shadow:0 14px 30px rgba(0,0,0,.6);
+}
+.tape--red{background:var(--red);color:#fff}
+.tape--cyan{background:var(--cyan);color:#062026}
+
+/* --- outlined stamp (RepoChad "NO CLOUD") -------------------- */
+.sticker{
+  display:inline-block;border:3px solid var(--red);color:var(--red);
+  font-family:var(--mono);font-weight:800;font-size:22px;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:9px 20px;transform:rotate(6deg);
+  box-shadow:0 0 0 1px rgba(225,42,39,.25), 0 10px 24px rgba(0,0,0,.5);
+}
+.sticker--gold{border-color:var(--gold);color:var(--gold)}
+
+/* --- dashed baseline with a right-hand label ------------------ */
+.baseline{
+  position:relative;height:0;border-top:2px dashed var(--dimmer);
+  margin:26px 0 22px;
+}
+.baseline span{
+  position:absolute;right:0;top:10px;
+  font-family:var(--mono);font-weight:700;font-size:15px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
+}
+
+/* --- ranked comparison row (KAI) ------------------------------ */
+.row{
+  position:relative;display:flex;align-items:center;gap:26px;
+  min-height:96px;padding:0 34px;
+  border:var(--stroke) solid var(--hair);border-radius:var(--radius);
+  background:linear-gradient(180deg, rgba(18,25,23,.9), rgba(10,14,13,.9));
+}
+.row__rank{
+  font-family:var(--hero);font-size:30px;color:var(--dimmer);
+  width:66px;flex:none;letter-spacing:-.02em;
+}
+.row__name{
+  font-family:var(--mono);font-weight:800;font-size:27px;letter-spacing:.06em;line-height:1.08;
+  text-transform:uppercase;color:var(--ink);flex:1;
+}
+/* The value is allowed to give way. A fixed, unshrinkable value is what
+   pushed the right-hand label out of the card and over the art column.
+   The name keeps its automatic minimum size, so a long name wraps at the
+   space and never breaks a word. */
+.row__val{
+  font-family:var(--hero);font-size:42px;letter-spacing:-.02em;
+  flex:0 1 auto;min-width:0;overflow-wrap:break-word;line-height:1.02;
+}
+.row__sub{
+  font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim);width:210px;flex:none;text-align:right;
+}
+.row--gold{border-color:var(--gold);box-shadow:0 0 0 1px rgba(245,197,49,.35),0 10px 30px rgba(245,197,49,.10)}
+.row--gold .row__val{color:var(--gold)}
+.row--red{border-color:var(--red);box-shadow:0 0 0 1px rgba(225,42,39,.35),0 10px 30px rgba(225,42,39,.12)}
+.row--red .row__val{color:var(--red)}
+.row--red .row__name{color:var(--red-hot)}
+/* yellow crop marks on the highlighted row */
+.row--mark::before,.row--mark::after{
+  content:"";position:absolute;width:16px;height:16px;border:4px solid var(--gold);
+}
+.row--mark::before{left:-9px;top:-9px;border-right:0;border-bottom:0}
+.row--mark::after{right:-9px;bottom:-9px;border-left:0;border-top:0}
+
+/* --- bar chart (KAI) ------------------------------------------ */
+.bars{display:flex;flex-direction:column;gap:20px}
+.bar{display:flex;align-items:center;gap:26px;height:74px}
+.bar__lab{
+  width:210px;flex:none;
+  font-family:var(--mono);font-weight:700;font-size:19px;
+  letter-spacing:.16em;text-transform:uppercase;color:#B8B2A6;
+}
+.bar__track{
+  flex:1;height:46px;border-radius:5px;position:relative;overflow:hidden;
+  background:rgba(246,246,244,.045);
+  box-shadow:inset 0 0 0 1px var(--hair-soft);
+}
+.bar__fill{
+  position:absolute;left:0;top:0;bottom:0;width:0;
+  background:linear-gradient(90deg,var(--gold-deep) 0%,var(--gold) 55%,var(--gold-hot) 100%);
+  box-shadow:0 0 22px rgba(245,197,49,.35);
+}
+.bar__fill--cyan{background:linear-gradient(90deg,#0E6C77 0%,var(--cyan) 60%,#9BF1FA 100%);
+                 box-shadow:0 0 22px rgba(56,217,232,.30)}
+.bar__fill--red{background:linear-gradient(90deg,#7A1512 0%,var(--red) 60%,var(--red-hot) 100%);
+                box-shadow:0 0 22px rgba(225,42,39,.30)}
+.bar__val{
+  width:190px;flex:none;text-align:right;
+  font-family:var(--hero);font-size:37px;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.bar__val small{
+  font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:.14em;
+  color:var(--dim);margin-left:6px;
+}
+
+/* --- bar chart axis (the scale, and where the card ends) -------- */
+/* A bar list with no baseline is a list of numbers. The axis sits under the
+   tracks, on the same horizontal scale as the bars, and carries one line:
+   where the hardware ends. The margins match the bar row exactly
+   (210px label + 26px gap, 190px value + 26px gap), so the tick and the
+   bars share one scale. */
+.bars__axis{
+  position:relative;height:46px;margin:2px 216px 0 236px;
+}
+.bars__axisbase{
+  position:absolute;left:0;right:0;bottom:8px;height:1px;
+  background:var(--hair-soft);
+}
+.bars__axistick{position:absolute;bottom:8px;top:0;width:0}
+.bars__axistick i{
+  position:absolute;left:-1px;top:22px;bottom:-8px;width:2px;
+  background:var(--red);opacity:.85;
+}
+.bars__axistick span{
+  position:absolute;left:0;bottom:20px;transform:translateX(-50%);
+  font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--red);white-space:nowrap;
+}
+
+/* --- time rail: proportional wait bars (scene 4) -------------- */
+.rail{display:flex;flex-direction:column;gap:34px}
+.railrow{display:flex;align-items:center;gap:28px}
+.railrow__lab{
+  width:250px;flex:none;
+  font-family:var(--mono);font-weight:700;font-size:19px;
+  letter-spacing:.14em;text-transform:uppercase;color:#B8B2A6;
+}
+.railrow__track{flex:1;height:64px;border-radius:6px;position:relative;overflow:hidden;
+                background:rgba(246,246,244,.045);box-shadow:inset 0 0 0 1px var(--hair-soft)}
+.railrow__fill{position:absolute;left:0;top:0;bottom:0;width:0;
+                background:linear-gradient(90deg,#5E4A08 0%,var(--gold) 100%);
+                box-shadow:0 0 24px rgba(245,197,49,.28)}
+.railrow__fill--red{background:linear-gradient(90deg,#5C1210 0%,var(--red) 100%);
+                     box-shadow:0 0 24px rgba(225,42,39,.28)}
+.railrow__val{width:230px;flex:none;text-align:right;
+              font-family:var(--hero);font-size:44px;letter-spacing:-.02em;color:var(--gold)}
+.railrow__val--red{color:var(--red)}
+
+/* --- node chain (RepoChad "a fixed chain") -------------------- */
+.chain{display:flex;align-items:center;gap:0}
+.chain__node{
+  flex:1;min-height:152px;padding:20px 14px;
+  border:var(--stroke) solid var(--hair);border-radius:var(--radius);
+  background:linear-gradient(180deg,rgba(18,25,23,.92),rgba(10,14,13,.92));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.chain__node b{
+  font-family:var(--mono);font-weight:800;font-size:25px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink);text-align:center;
+}
+.chain__node span{
+  font-family:var(--mono);font-weight:500;font-size:15px;letter-spacing:.10em;
+  color:var(--dim);text-align:center;line-height:1.45;
+}
+.chain__node--gold{border-color:var(--gold);box-shadow:0 0 0 1px rgba(245,197,49,.35),0 12px 34px rgba(245,197,49,.10)}
+.chain__node--gold b{color:var(--gold)}
+.chain__arrow{
+  flex:none;width:46px;text-align:center;
+  font-family:var(--mono);font-weight:700;font-size:30px;color:var(--gold);
+}
+
+/* --- cream note card (KAI) ----------------------------------- */
+.note{
+  background:var(--cream);color:#12100A;
+  padding:36px 48px;transform:rotate(-3.5deg);
+  box-shadow:0 26px 60px rgba(0,0,0,.62);
+  font-family:var(--mono);font-weight:700;font-size:24px;
+  letter-spacing:.06em;text-transform:uppercase;line-height:1.35;
+}
+.note b{color:#8A1410}
+.note__head{
+  font-family:var(--mono);font-weight:800;font-size:15px;letter-spacing:.22em;
+  color:#6A6559;border-bottom:2px solid rgba(18,16,10,.18);
+  padding-bottom:10px;margin-bottom:16px;
+}
+.note li{list-style:none;padding-left:26px;position:relative;margin-top:14px}
+.note li::before{content:"\2014";position:absolute;left:0;color:#8A1410}
+
+/* --- two-column compare (scene 5) ---------------------------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.compare__col{
+  border:var(--stroke) solid var(--hair);border-radius:var(--radius);
+  padding:32px 34px;background:linear-gradient(180deg,rgba(18,25,23,.9),rgba(10,14,13,.9));
+  min-height:232px;
+}
+.compare__col--hot{border-color:var(--red);box-shadow:0 0 0 1px rgba(225,42,39,.3),0 14px 40px rgba(225,42,39,.10)}
+.compare__col--good{border-color:var(--cyan);box-shadow:0 0 0 1px rgba(56,217,232,.3),0 14px 40px rgba(56,217,232,.08)}
+.compare__title{
+  font-family:var(--mono);font-weight:800;font-size:30px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);margin-bottom:8px;
+}
+.compare__col--hot .compare__title{color:var(--red)}
+.compare__col--good .compare__title{color:var(--cyan)}
+.compare__body{font-family:var(--mono);font-weight:500;font-size:20px;line-height:1.6;color:#B8B2A6}
+.compare__body b{color:var(--ink);font-weight:700}
+
+/* --- art panel ------------------------------------------------ */
+.artpanel{
+  position:relative;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;width:100%;
+  flex:1 1 0%;height:auto;
+  min-height:0;min-width:0;overflow:hidden;
+}
+.artpanel__in{width:100%;height:100%;min-height:0;min-width:0;
+              display:flex;align-items:center;justify-content:center}
+.artpanel svg{width:100%;height:100%;max-width:100%;max-height:100%;overflow:visible}
+.artpanel .tag{
+  position:absolute;font-family:var(--mono);font-weight:700;font-size:14px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+}
+
+/* --- blinking cursor (scene 1) ------------------------------- */
+.cursor{
+  display:inline-block;width:14px;height:34px;background:var(--gold);
+  vertical-align:-6px;box-shadow:0 0 18px rgba(245,197,49,.7);
+}
+
+/* --- red X cross-out (RepoChad) ------------------------------ */
+.crossout{position:relative;display:inline-block}
+.crossout::before,.crossout::after{
+  content:"";position:absolute;left:50%;top:50%;width:130%;height:5px;
+  background:var(--red);border-radius:3px;
+  box-shadow:0 0 18px rgba(225,42,39,.6);
+}
+.crossout::before{transform:translate(-50%,-50%) rotate(24deg)}
+.crossout::after {transform:translate(-50%,-50%) rotate(-24deg)}
+
+/* ------------------------------------------------------------
+   5. SCENES
+   ------------------------------------------------------------ */
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;z-index:1;overflow:hidden}
+.scene.on{opacity:1;visibility:visible}
+.scene__inner{
+  position:absolute;inset:0;
+  padding:var(--pad-y) var(--pad-x) var(--foot);
+  display:flex;flex-direction:column;gap:38px;
+}
+
+/* ---- per-layout scaffolds (six windows, six compositions) --------
+   min-height:0 / min-width:0 everywhere in the chain, otherwise a flex or
+   grid item refuses to shrink below its content and pushes the next band
+   off the bottom of the canvas.
+   The art rows STRETCH, so the drawing fills the height it is given
+   instead of collapsing to the height of its neighbour. */
+.scene__inner>*{min-height:0;min-width:0}
+.hook__body,.bars__body,.rows__body,.rail__body,.chain__body,.note__body,
+.strip__row,.nodes__body{min-height:0}
+.hook__left,.hook__art,.bars__left,.bars__art,.rows__art,.rows__top,.rows__list,
+.rail__art,.rail__top,.rail__rails,.chain__art,.chain__top,.chain__nodes,
+.note__art,.note__left,.strip__head,.strip__cell,.nodes__head,.nodes__art{min-height:0;min-width:0}
+.artpanel,.artpanel__in{min-height:0;min-width:0}
+.artpanel svg{width:100%;height:100%;max-width:100%;max-height:100%}
+
+.hook__body{display:grid;grid-template-columns:1.04fr .96fr;gap:70px;flex:1;align-items:stretch}
+.hook__left{display:flex;flex-direction:column;gap:34px;justify-content:center}
+.hook__chips{display:grid;grid-template-columns:repeat(3,auto);gap:14px 24px;
+             justify-content:start;align-items:center;flex:none}
+.hook__stats{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
+.hook__art{height:100%;display:flex;flex-direction:column}
+
+.bars__body{display:grid;grid-template-columns:1.2fr .8fr;gap:68px;flex:1;align-items:stretch}
+.bars__left{display:flex;flex-direction:column;gap:28px;justify-content:center}
+.bars__art{height:100%;display:flex;flex-direction:column}
+
+.rows__body{display:flex;flex-direction:column;gap:30px;flex:1;justify-content:center}
+.rows__top{display:grid;grid-template-columns:1fr .74fr;gap:64px;align-items:stretch}
+.rows__list{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.rows__art{height:100%;display:flex;flex-direction:column}
+
+.rail__body{display:flex;flex-direction:column;gap:40px;flex:1;justify-content:center}
+.rail__top{display:grid;grid-template-columns:1.32fr .68fr;gap:64px;align-items:stretch}
+.rail__rails{display:flex;flex-direction:column;gap:34px;justify-content:center}
+.rail__art{height:100%;display:flex;flex-direction:column}
+
+.chain__body{display:flex;flex-direction:column;gap:46px;flex:1;justify-content:center}
+.chain__top{display:grid;grid-template-columns:1.38fr .62fr;gap:60px;align-items:stretch}
+.chain__nodes{width:100%}
+.chain__art{height:100%;display:flex;flex-direction:column}
+
+.note__body{display:grid;grid-template-columns:1.28fr .72fr;gap:84px;flex:1;align-items:stretch}
+.note__left{display:flex;flex-direction:column;gap:16px;align-items:flex-start;justify-content:center}
+.note__art{height:100%;display:flex;flex-direction:column;justify-content:center}
+
+/* ---- gallery: one asset per window, art flipped side to side -------- */
+.gal{display:grid;grid-template-columns:.86fr 1.14fr;gap:76px;flex:1;align-items:center}
+.gal--flip{grid-template-columns:1.14fr .86fr}
+.gal__text{display:flex;flex-direction:column;gap:22px;justify-content:center;min-width:0}
+.gal__name{
+  font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:78px;line-height:.92;letter-spacing:.005em;color:var(--ink);
+}
+.gal__blurb{
+  font-family:var(--mono);font-weight:500;font-size:23px;line-height:1.55;
+  color:#B8B2A6;max-width:640px;
+}
+.gal__art{height:100%;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.gal__meta{
+  font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--dimmer);
+}
+
+/* ---- strip: three assets in a row, one caption each --------------- */
+.strip{
+  display:flex;flex-direction:column;gap:38px;flex:1;
+}
+.strip__head{
+  display:flex;flex-direction:column;gap:20px;flex:none;
+}
+.strip__head .display{max-width:1520px}
+.strip__row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:48px;
+  flex:1;align-items:stretch;
+}
+.strip__cell{
+  display:flex;flex-direction:column;min-height:0;min-width:0;
+}
+.strip__cap{
+  font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--dim);line-height:1;
+  text-align:center;width:100%;margin-top:12px;
+}
+
+/* ---- nodes: a node chain with the drawing beside it ---------------- */
+.nodes{
+  display:flex;flex-direction:column;gap:38px;flex:1;
+}
+.nodes__head{
+  display:flex;flex-direction:column;gap:20px;flex:none;
+}
+.nodes__head .display{max-width:1520px}
+.nodes__body{
+  display:grid;grid-template-columns:1.38fr .62fr;gap:60px;
+  flex:1;align-items:stretch;
+}
+.nodes__body>.chain{align-self:center;width:100%}
+.nodes__art{
+  height:100%;min-width:0;display:flex;flex-direction:column;
+}
+
+/* ---- title card ------------------------------------------------- */
+.titlecard{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:26px;text-align:center;
+}
+.titlecard__art{
+  width:min(1080px,100%);height:400px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.titlecard__art svg{width:100%;height:100%;max-width:100%;max-height:100%}
+.titlecard__in{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:26px;text-align:center;max-width:1700px;
+}
+.titlecard .display{font-size:118px;max-width:1500px}
+.titlecard .lbl--gray{font-size:24px}
+
+/* ---- global progress rail (opt-in) ------------------------------ */
+#gprog{
+  position:absolute;left:0;bottom:0;height:2px;width:0;z-index:65;
+  background:linear-gradient(90deg,var(--gold),var(--gold-hot));
+  box-shadow:0 0 12px rgba(245,197,49,.6);
+}
+
+.stack{display:flex;flex-direction:column;gap:30px}
+.stack--tight{gap:20px}
+.rowflex{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+
+/* ------------------------------------------------------------
+   6. CHROME  (injected by fusion.js)
+   ------------------------------------------------------------ */
+#hud{position:absolute;left:0;right:0;bottom:0;height:3px;background:#161D1B;z-index:70}
+#bar{height:100%;width:0;background:var(--gold);box-shadow:0 0 14px rgba(245,197,49,.55)}
+#tc{position:absolute;right:26px;bottom:20px;font-family:var(--mono);font-size:15px;
+    color:#4C514E;letter-spacing:.1em;z-index:70;font-variant-numeric:tabular-nums}
+#cue{position:absolute;left:26px;bottom:20px;font-family:var(--mono);font-size:13px;
+     color:#3E4340;letter-spacing:.18em;z-index:70;text-transform:uppercase}
+#wm{position:absolute;right:26px;bottom:52px;font-family:var(--mono);font-size:13px;
+    letter-spacing:.16em;color:#3E4340;z-index:70;text-transform:uppercase}
+
+/* dip-to-black between scenes */
+#dip{position:absolute;inset:0;background:#000;opacity:0;z-index:80;pointer-events:none}
+
+/* start overlay */
+#start{
+  position:absolute;inset:0;z-index:90;background:rgba(13,17,16,.97);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+  cursor:pointer;transition:opacity .35s;
+}
+#start.hide{opacity:0;pointer-events:none}
+#start .k{font-family:var(--mono);font-size:14px;letter-spacing:.30em;color:var(--dim);text-transform:uppercase}
+#start .t{font-family:var(--hero);font-size:70px;letter-spacing:-.035em;text-align:center;line-height:.92;
+          max-width:1400px}
+#start .s{font-family:var(--mono);font-size:16px;letter-spacing:.24em;color:var(--dim);text-transform:uppercase}
+#start .meta{font-family:var(--mono);font-size:13px;color:var(--dimmer);letter-spacing:.16em;margin-top:10px}
+#play{width:128px;height:128px;border-radius:50%;border:3px solid var(--gold);
+      display:grid;place-items:center;transition:transform .2s,background .2s;margin:8px 0}
+#start:hover #play{transform:scale(1.06);background:rgba(245,197,49,.10)}
+#play svg{margin-left:8px}
+
+/* review controls */
+#ctl{
+  position:fixed;right:16px;bottom:16px;z-index:400;
+  display:flex;align-items:center;gap:6px;padding:7px 9px;border-radius:11px;
+  background:rgba(12,12,11,.86);border:1px solid #3A352E;
+  font-family:var(--mono, ui-monospace, monospace);
+  opacity:.34;transition:opacity .18s ease;
+}
+#ctl:hover{opacity:1}
+#ctl button{
+  min-width:36px;height:32px;padding:0 9px;background:transparent;color:#EDEAE3;
+  border:1px solid #4A443A;border-radius:7px;font-family:inherit;font-size:13px;
+  letter-spacing:.04em;cursor:pointer;transition:background .12s,color .12s,border-color .12s;
+}
+#ctl button:hover{background:#242019;border-color:#6A6154}
+#ctl button.on{background:var(--gold);color:#14120F;border-color:var(--gold);font-weight:700}
+#ctl .sep{width:1px;height:20px;background:#3A352E;margin:0 3px}
+
+/* ------------------------------------------------------------
+   7. FILL THE FRAME  (added after the EP09 look review)
+   ------------------------------------------------------------
+   Every body band is `flex:1` and took about 630 px of a 1080 px
+   frame, but the content inside it kept its intrinsic size and was
+   CENTRED in the band. Short content therefore floated in the
+   middle of the frame with hundreds of empty pixels above AND
+   below it -- 314 px of dead zone in the nodes layout, 273 px in
+   the chain layout, 238 px in the bars layout.
+
+   Two rules fix it:
+     1. the content GROWS into the band it was given, and
+     2. what is left over sits under the content, not split around
+        it, so the frame reads as one composition.
+
+   Nothing here changes the palette, the type or the diagram style.
+   */
+
+/* -- nodes layout: an ordered step list that fills the column ---- */
+.nodes__body>.chain{
+  align-self:stretch;width:100%;
+  flex-direction:column;align-items:stretch;gap:0;
+}
+.nodes__body>.chain .chain__node--step{
+  flex:1 1 auto;min-height:78px;width:100%;
+  flex-direction:row;align-items:center;justify-content:flex-start;
+  gap:30px;padding:16px 32px;
+}
+.nodes__body>.chain .chain__node--step b{
+  text-align:left;font-size:30px;line-height:1.1;letter-spacing:.11em;
+}
+.nodes__body>.chain .chain__node--step span{
+  text-align:left;font-size:18px;letter-spacing:.08em;
+}
+.nodes__body>.chain .chain__num{
+  flex:none;width:64px;height:64px;border-radius:50%;
+  border:var(--stroke) solid var(--gold);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:800;font-size:25px;letter-spacing:.04em;
+}
+.nodes__body>.chain .chain__node--gold .chain__num{
+  box-shadow:0 0 0 1px rgba(245,197,49,.35),0 0 26px rgba(245,197,49,.22);
+}
+.nodes__body>.chain .chain__lab{
+  display:flex;flex-direction:column;gap:7px;min-width:0;
+}
+.nodes__body>.chain .chain__arrow{
+  align-self:center;width:auto;flex:none;
+  height:22px;line-height:22px;font-size:24px;color:var(--gold);
+}
+/* the art column of the nodes layout takes the wider share: the drawings
+   are wide, and a narrow column only ever letterboxes them */
+.nodes__body{grid-template-columns:1.12fr .88fr}
+
+/* -- chain layout: the top row grows, the tiles get bigger ---------
+   The chain layout can carry five tiles in one row (window 11), so the
+   tile type is sized to fit five of them and the tiles are allowed to
+   shrink below their min-content width rather than pushing the row out
+   of its card. */
+.chain__top{flex:1 1 auto}
+.chain__node{min-height:200px;padding:26px 12px;min-width:0}
+.chain__node b{font-size:26px}
+.chain__node span{font-size:17px}
+.chain__arrow{font-size:34px;width:40px}
+
+/* -- bars layout: the bars get the height of the band --------------- */
+.bars__left{justify-content:flex-start}
+.bars{flex:1 1 auto;justify-content:space-evenly}
+.bar{height:96px}
+.bar__track{height:62px}
+.bar__val{font-size:44px;width:220px}
+.bar__lab{font-size:21px;width:230px}
+
+/* -- strip layout: the cards sit under the headline ----------------
+   The strip block is content-height, so the drawings and their captions
+   sit together under the header and the leftover space is ONE band at the
+   bottom of the frame instead of a hole in the middle of it. */
+.strip{flex:none}
+.strip__row{flex:none}
+.strip__cell{justify-content:flex-start}
+.strip__row .artpanel{flex:none;height:auto}
+.strip__cap{font-size:15px;letter-spacing:.2em;margin-top:16px}
+
+/* -- gallery: the block starts under the header -------------------- */
+.gal{flex:none}
+.gal__text{justify-content:flex-start;padding-top:26px}
+.gal__art{justify-content:flex-start}
+
+/* -- rows / rail: the list starts under the headline ---------------- */
+.rows__list,.rail__rails{justify-content:flex-start}
+.note__left{justify-content:flex-start}
+
+/* ------------------------------------------------------------
+   8. DETERMINISTIC RENDER MODE  (?t=SECONDS)
+   ------------------------------------------------------------ */
+body.render{overflow:hidden;background:#000}
+body.render .stage{transform:none!important}
+body.render #hud,body.render #tc,body.render #cue,body.render #start,
+body.render #wm,body.render #ctl{display:none!important}

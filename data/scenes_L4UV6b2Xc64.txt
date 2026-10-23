@@ -1,0 +1,67 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\jibra\Desktop\1\KAI\videos\L4UV6b2Xc64.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomav01iso2mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:15:25.52, start: 0.000000, bitrate: 188 kb/s
+  Stream #0:0[0x1](und): Video: av1 (libdav1d) (Main) (av01 / 0x31307661), yuv420p(tv, bt709), 1920x1080, 57 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : ISO Media file produced by Google Inc.
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Audio: opus (Opus / 0x7375704F), 48000 Hz, stereo, fltp, 124 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+Stream mapping:
+  Stream #0:0 -> #0:0 (av1 (libdav1d) -> wrapped_avframe (native))
+Press [q] to stop, [?] for help
+[Parsed_showinfo_1 @ 0000014dfb013a80] config in time_base: 1/15360, frame_rate: 30/1
+[Parsed_showinfo_1 @ 0000014dfb013a80] config out time_base: 0/0, frame_rate: 0/0
+[Parsed_showinfo_1 @ 0000014dfb013a80] n:   0 pts:9116160 pts_time:593.5   duration:    512 duration_time:0.0333333 fmt:yuv420p cl:unspecified sar:1/1 s:1920x1080 i:P iskey:1 type:I checksum:C1CA2356 plane_checksum:[59FF95FE 00AABA67 CFF8D2D3] mean:[33 128 127] stdev:[15.7 0.1 0.1]
+[Parsed_showinfo_1 @ 0000014dfb013a80] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomav01iso2mp41
+    encoder         : Lavf62.3.100
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p(tv, bt709, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      handler_name    : ISO Media file produced by Google Inc.
+      vendor_id       : [0][0][0][0]
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=22.8x elapsed=0:00:26.05    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=22.3x elapsed=0:00:26.56    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=21.9x elapsed=0:00:27.08    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=21.5x elapsed=0:00:27.59    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=21.1x elapsed=0:00:28.10    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=20.7x elapsed=0:00:28.63    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=20.4x elapsed=0:00:29.14    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=  20x elapsed=0:00:29.65    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=19.7x elapsed=0:00:30.16    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=19.3x elapsed=0:00:30.69    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=  19x elapsed=0:00:31.21    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=18.7x elapsed=0:00:31.72    
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:09:53.53 bitrate=N/A speed=18.4x elapsed=0:00:32.23    
+[Parsed_showinfo_1 @ 0000014dfb013a80] n:   1 pts:11479552 pts_time:747.366667 duration:    512 duration_time:0.0333333 fmt:yuv420p cl:unspecified sar:1/1 s:1920x1080 i:P iskey:1 type:I checksum:94CFADAB plane_checksum:[59F5F841 6A1049B9 C3106BA2] mean:[53 119 130] stdev:[57.7 23.3 7.7]
+[Parsed_showinfo_1 @ 0000014dfb013a80] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=    2 fps=0.1 q=-0.0 size=N/A time=00:12:27.40 bitrate=N/A speed=22.8x elapsed=0:00:32.75    
+frame=    2 fps=0.1 q=-0.0 size=N/A time=00:12:27.40 bitrate=N/A speed=22.5x elapsed=0:00:33.26    
+frame=    2 fps=0.1 q=-0.0 size=N/A time=00:12:27.40 bitrate=N/A speed=22.1x elapsed=0:00:33.78    
+frame=    2 fps=0.1 q=-0.0 size=N/A time=00:12:27.40 bitrate=N/A speed=21.8x elapsed=0:00:34.30    
+frame=    2 fps=0.1 q=-0.0 size=N/A time=00:12:27.40 bitrate=N/A speed=21.5x elapsed=0:00:34.81    
+[Parsed_showinfo_1 @ 0000014dfb013a80] n:   2 pts:12314112 pts_time:801.7   duration:    512 duration_time:0.0333333 fmt:yuv420p cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:P checksum:43B95569 plane_checksum:[E558662C 29C34AA2 55C0A48C] mean:[38 128 128] stdev:[10.1 1.6 5.8]
+[Parsed_showinfo_1 @ 0000014dfb013a80] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=22.7x elapsed=0:00:35.32    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=22.4x elapsed=0:00:35.85    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=  22x elapsed=0:00:36.36    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=21.7x elapsed=0:00:36.87    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=21.4x elapsed=0:00:37.39    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=21.2x elapsed=0:00:37.90    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=20.9x elapsed=0:00:38.41    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=20.6x elapsed=0:00:38.93    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=20.3x elapsed=0:00:39.45    
+frame=    3 fps=0.1 q=-0.0 size=N/A time=00:13:21.73 bitrate=N/A speed=20.1x elapsed=0:00:39.96    
+[out#0/null @ 0000014dfb07bc80] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    3 fps=0.1 q=-0.0 Lsize=N/A time=00:13:21.73 bitrate=N/A speed=19.9x elapsed=0:00:40.20    

@@ -1,0 +1,481 @@
+{
+ "name": "BYTE-06",
+ "kicker": "Byte Forensics",
+ "title": "The Newer Model Is 2.4\u00d7 Slower",
+ "subtitle": "qwen 3.6 vs 3.8 at long context",
+ "scenes": [
+  {
+   "type": "hook",
+   "art": "chip",
+   "head": "same card \u00b7 same context \u00b7 two generations",
+   "vo": "Okay, so this should not happen. The newer model is slower. Not by a little, by two point four times at sixty-four K context, on the same card, with the same engine. Qwen three point six, the previous generation, generates sixty-three point six tokens a second. Qwen three point eight does twenty-six point two. The old one wins, and it is not close.",
+   "a": {
+    "v": "63.66",
+    "u": "",
+    "c": "lime",
+    "lab": "qwen 3.6 \u00b7 older"
+   },
+   "b": {
+    "v": "26.22",
+    "u": "",
+    "c": "red",
+    "lab": "qwen 3.8 \u00b7 newer"
+   },
+   "tape": "the older one is faster",
+   "cues": {
+    "h": "Okay, so",
+    "a": "sixty-three point six",
+    "b": "twenty-six point two",
+    "t": "The old one wins"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "rtx 5090 \u00b7 64k context",
+   "vo": "Here it is on a five-oh-ninety at sixty-four K context. Three point six is doing sixty-three point six six tokens a second. Three point eight is doing twenty-six point two two. Same GPU, same quantization family, same llama dot cpp build. The only variable is the model.",
+   "items": [
+    [
+     "Qwen 3.6 \u00b7 64K",
+     "100",
+     "63.66",
+     "lime"
+    ],
+    [
+     "Qwen 3.8 \u00b7 64K",
+     "41",
+     "26.22",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "Here it is",
+    "0": "sixty-three point six six",
+    "1": "twenty-six point two two"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "and it holds at every length",
+   "vo": "At four K the two models are almost identical. Seventy-five point five seven against seventy-four point eight three. That is noise. At sixty-four K the gap opens. At one twenty-eight K, three point six is at fifty-four point five eight and three point eight is at twenty-two point seven nine. The regression is a long context regression, not a general one.",
+   "items": [
+    [
+     "3.6 \u00b7 4K",
+     "100",
+     "75.57",
+     "lime"
+    ],
+    [
+     "3.8 \u00b7 4K",
+     "99",
+     "74.83",
+     "dim"
+    ],
+    [
+     "3.6 \u00b7 128K",
+     "72",
+     "54.58",
+     "lime"
+    ],
+    [
+     "3.8 \u00b7 128K",
+     "30",
+     "22.79",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "At four K",
+    "0": "seventy-five point five seven",
+    "1": "seventy-four point eight three",
+    "2": "fifty-four point five eight",
+    "3": "twenty-two point seven nine"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "prefill regressed too",
+   "vo": "Prefill regressed with it. At one twenty-eight K on the five-oh-ninety, three point six processes the prompt at eleven hundred and eighty tokens a second. Three point eight does four hundred and sixty-one. So not only does the newer model write slower, it takes longer to start writing.",
+   "items": [
+    [
+     "3.6 \u00b7 prefill 128K",
+     "100",
+     "1,180",
+     "lime"
+    ],
+    [
+     "3.8 \u00b7 prefill 128K",
+     "39",
+     "461",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "Prefill regressed",
+    "0": "eleven hundred and eighty",
+    "1": "four hundred and sixty-one"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "before you downgrade",
+   "vo": "Three caveats, because this is where a video like this becomes misleading. Speed is not quality, and three point eight may well be the better model at the task you actually have. These numbers are hardware measurements only. And the two versions were not tested at identical quantization levels, so treat the ratio as directional, not exact.",
+   "items": [
+    "Speed is not quality",
+    "Hardware measurements only",
+    "Quantization levels differ: ratio is directional"
+   ],
+   "tape": "read the caveats",
+   "cues": {
+    "h": "Three caveats",
+    "0": "Speed is not quality",
+    "1": "hardware measurements only",
+    "2": "directional",
+    "t": "read the caveats"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "what this actually means",
+   "vo": "What it means is simple. Newer is not automatically faster, and the parameter count does not tell you either. The only number that predicts how the thing will feel is the measured tokens per second at the context length you actually use. Everything else is marketing.",
+   "items": [
+    [
+     "Newer",
+     "not automatically faster",
+     "hot"
+    ],
+    [
+     "Parameter count",
+     "predicts nothing here",
+     "hot"
+    ],
+    [
+     "Measured t/s at your context",
+     "the only honest number",
+     "good"
+    ]
+   ],
+   "cues": {
+    "h": "What it means",
+    "0": "Newer is not",
+    "1": "parameter count",
+    "2": "measured tokens per second"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "prefill at short context is fine",
+   "vo": "At short context the two generations are indistinguishable. Prefill at four K is thirty-eight hundred and seventy-three for three point six against thirty-seven hundred and forty-nine for three point eight. That is a three percent difference, well inside noise. So the regression is not that three point eight is a slower model. It is that three point eight is a slower model specifically when the context gets long.",
+   "items": [
+    [
+     "3.6 \u00b7 prefill 4K",
+     "100",
+     "3,874",
+     "lime"
+    ],
+    [
+     "3.8 \u00b7 prefill 4K",
+     "97",
+     "3,750",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "At short context",
+    "0": "thirty-eight hundred and seventy-three",
+    "1": "thirty-seven hundred and forty-nine"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "the regression has a shape",
+   "vo": "Follow the shape. At four K the gap is one percent. At sixty-four K it is two point four times. At one twenty-eight K it is two point four times again. So whatever changed between the versions costs you almost nothing on short prompts and a great deal on long ones. That is the signature of an attention or cache change, not a general slowdown.",
+   "items": [
+    [
+     "4K \u00b7 3.6 vs 3.8",
+     "99",
+     "~1%",
+     "dim"
+    ],
+    [
+     "64K \u00b7 3.6 vs 3.8",
+     "41",
+     "2.4x",
+     "red"
+    ],
+    [
+     "128K \u00b7 3.6 vs 3.8",
+     "42",
+     "2.4x",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "Follow the shape",
+    "0": "one percent",
+    "1": "two point four times",
+    "2": "two point four times again"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "why this matters more than it looks",
+   "vo": "This matters because the entire pitch of long context is that you can hand a model a large codebase or a long document. If the newer model is two point four times slower exactly in that regime, then the feature you paid for is the feature that got worse. Benchmarks that only test short prompts would never catch it, which is why almost nobody noticed.",
+   "items": [
+    [
+     "Long context is the selling point",
+     "the regime that regressed",
+     "hot"
+    ],
+    [
+     "Short prompt benchmarks",
+     "would never catch it",
+     "hot"
+    ],
+    [
+     "Nobody noticed",
+     "because nobody measured",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "This matters because",
+    "0": "large codebase",
+    "1": "short prompts",
+    "2": "nobody noticed"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "how to check before you switch",
+   "vo": "Before you switch models, do this. Run both at the context length you actually use, with the same quantization, on the same machine. Time the first token and the tokens per second after it. Ten minutes of work tells you more than any leaderboard, because leaderboards almost never publish tokens per second at long context on consumer hardware.",
+   "items": [
+    [
+     "Same context",
+     "the length you actually use",
+     "good"
+    ],
+    [
+     "Same quantization",
+     "otherwise the ratio is meaningless",
+     "good"
+    ],
+    [
+     "Time first token",
+     "and tokens per second",
+     "good"
+    ]
+   ],
+   "cues": {
+    "h": "Before you switch",
+    "0": "the context length",
+    "1": "same quantization",
+    "2": "first token"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "the other side of the ledger",
+   "vo": "And be fair to three point eight. It may be better at reasoning, at code, at following instructions, and none of that is measured here. A model that is two point four times slower and noticeably smarter can still be the right purchase. Speed is a cost, not a verdict. The point is that you should know the cost before you pay it, not after.",
+   "items": [
+    "Quality is not measured here",
+    "Faster is not automatically better"
+   ],
+   "tape": "speed is a cost",
+   "cues": {
+    "h": "be fair to three point eight",
+    "0": "reasoning",
+    "1": "not a verdict",
+    "t": "speed is a cost"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "the 5090 at every length",
+   "vo": "Here is three point eight across the whole range on a five-oh-ninety, so you can see where it stops being fine. Seventy-four point eight three at four K. Fifty-two point two three at sixteen K. Thirty-eight at thirty-two K. Twenty-eight point nine six at sixty-four K. Twenty-six point two two at one twenty-eight K. And twenty-two point seven nine at two hundred fifty-six K. The fall is steep and then it flattens.",
+   "items": [
+    [
+     "4K",
+     "100",
+     "74.83",
+     "lime"
+    ],
+    [
+     "16K",
+     "70",
+     "52.23",
+     "cyan"
+    ],
+    [
+     "32K",
+     "51",
+     "38.02",
+     "yellow"
+    ],
+    [
+     "64K",
+     "39",
+     "28.96",
+     "orange"
+    ],
+    [
+     "256K",
+     "30",
+     "22.79",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "across the whole range",
+    "0": "seventy-four point eight three",
+    "1": "fifty-two point two three",
+    "2": "thirty-eight at thirty-two",
+    "3": "twenty-eight point nine six",
+    "4": "twenty-two point seven nine"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "how to read a benchmark like this",
+   "vo": "Three questions turn a benchmark into something useful. What context length was tested. What quantization was used. And what hardware, because a result on a five-oh-ninety tells you nothing about a three thousand ninety at long context. A table that does not answer all three is decoration. The two articles behind this video answer all three, which is why the numbers are worth quoting at all.",
+   "items": [
+    [
+     "Context length",
+     "was it short or long",
+     "good"
+    ],
+    [
+     "Quantization",
+     "same recipe or not",
+     "good"
+    ],
+    [
+     "Hardware",
+     "which card, exactly",
+     "good"
+    ]
+   ],
+   "cues": {
+    "h": "Three questions",
+    "0": "What context length",
+    "1": "What quantization",
+    "2": "what hardware"
+   }
+  },
+  {
+   "type": "bars",
+   "head": "the prefill picture in one chart",
+   "vo": "And prefill, same card, same context. Three point six processes a one twenty-eight K prompt at eleven hundred and eighty. Three point eight does four hundred and sixty-one. So the newer model is not just slower to write, it is slower to start, and the start is what you notice first because you are staring at a cursor.",
+   "items": [
+    [
+     "3.6 \u00b7 128K prefill",
+     "100",
+     "1,180",
+     "lime"
+    ],
+    [
+     "3.8 \u00b7 128K prefill",
+     "39",
+     "461",
+     "red"
+    ]
+   ],
+   "cues": {
+    "h": "And prefill",
+    "0": "eleven hundred and eighty",
+    "1": "four hundred and sixty-one"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "what to do if you already run 3.8",
+   "vo": "If you already run three point eight, do not panic and do not downgrade blindly. Measure your own context length first. If you live under sixteen K, the regression barely touches you, because the two models are within a few percent there. If you work at sixty-four K or beyond, it is worth benchmarking three point six on your actual tasks, because the speed difference is large enough to change how the tool feels.",
+   "items": [
+    [
+     "Under 16K",
+     "barely affects you",
+     "good"
+    ],
+    [
+     "64K and beyond",
+     "benchmark both",
+     "hot"
+    ],
+    [
+     "Do not downgrade blind",
+     "quality may still win",
+     "dim"
+    ]
+   ],
+   "cues": {
+    "h": "If you already run three point eight",
+    "0": "under sixteen K",
+    "1": "sixty-four K",
+    "2": "downgrade blindly"
+   }
+  },
+  {
+   "type": "caveat",
+   "head": "the bottom line",
+   "vo": "The bottom line: a newer version number is not a performance guarantee, and a model release note will never tell you that long context got slower. The only defence is measurement on your own machine, at your own context length, with your own prompts. That is ten minutes of work, and it is the difference between choosing a model and being sold one.",
+   "items": [
+    "Version numbers are not performance",
+    "Measure at your context, on your machine"
+   ],
+   "tape": "measure, then choose",
+   "cues": {
+    "h": "The bottom line",
+    "0": "not a performance guarantee",
+    "1": "your own machine",
+    "t": "measure, then choose"
+   }
+  },
+  {
+   "type": "rows",
+   "head": "the one sentence version",
+   "vo": "One sentence. At sixty-four K context on the same card, the previous generation model generates two point four times more tokens per second than the newer one, and it prefills two point six times faster, while the two are within one percent of each other at four K. That is not a rounding error and it is not a bad review. It is a measured regression that only shows up when you test at the context length that matters.",
+   "items": [
+    [
+     "At 4K",
+     "within 1 percent",
+     "good"
+    ],
+    [
+     "At 64K",
+     "2.4x slower",
+     "hot"
+    ],
+    [
+     "At 128K",
+     "2.4x slower",
+     "hot"
+    ]
+   ],
+   "cues": {
+    "h": "One sentence",
+    "0": "within one percent",
+    "1": "two point four times",
+    "2": "two point six times"
+   }
+  },
+  {
+   "type": "close",
+   "art": "chip",
+   "head": "close",
+   "vo": "So before you upgrade a model, run it at the context you actually use and measure the tokens per second yourself. It takes ten minutes, and it will save you from a downgrade you did not see coming. That is the forensic part.",
+   "line": "Measure before you upgrade.",
+   "chips": [
+    "CONTEXT",
+    "TOKENS",
+    "VERSION"
+   ],
+   "cues": {
+    "h": "before you upgrade",
+    "l": "Measure before",
+    "0": "context",
+    "1": "tokens per second",
+    "w": "forensic part"
+   }
+  }
+ ],
+ "rate": "-16%"
+}

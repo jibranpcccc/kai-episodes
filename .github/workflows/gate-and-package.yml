@@ -1,0 +1,77 @@
+name: Byte Forensics Quality Gate & Package
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: "Episode to validate and package (default: BYTE-VRAM)"
+        required: false
+        default: "BYTE-VRAM"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-and-package:
+    name: 30-Check Quality Gate & Package
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install System Dependencies (FFmpeg & Fonts)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-inter fonts-noto-color-emoji
+          ffmpeg -version | head -1
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip -q
+          pip install playwright numpy pillow edge-tts -q
+          python -m playwright install --with-deps chromium
+
+      - name: Run 30-Check Quality Gate on BYTE-VRAM
+        run: |
+          python -u scripts/check.py --only BYTE-VRAM
+
+      - name: Upload BYTE-VRAM Verified Package (HTML + SRT + Chapters + QA)
+        uses: actions/upload-artifact@v4
+        with:
+          name: byte-vram-verified-package
+          path: |
+            episodes/BYTE-VRAM.html
+            episodes/BYTE-VRAM.srt
+            episodes/BYTE-VRAM-chapters.txt
+            episodes/BYTE-VRAM-scenes.txt
+            BYTE-VRAM-QA.md
+            BYTE-VRAM-SOURCES.md
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload BYTE-LORA Verified Package (HTML + SRT + Chapters + QA)
+        uses: actions/upload-artifact@v4
+        with:
+          name: byte-lora-verified-package
+          path: |
+            episodes/BYTE-LORA-FINAL.html
+            episodes/BYTE-LORA-FINAL.srt
+            episodes/BYTE-LORA-FINAL-chapters.txt
+            BYTE-LORA-QA.md
+            BYTE-LORA-SOURCES.md
+            BYTE-LORA-CHANGELOG.md
+          if-no-files-found: ignore
+          retention-days: 30
