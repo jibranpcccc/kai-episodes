@@ -902,7 +902,12 @@ def _loudnorm_master(vo, vo_m, work):
 def build():
     import importlib
     import os as _os
-    spec = importlib.import_module(_os.environ.get("FUSION_SPEC", "spec_07_fusion"))
+    spec_name = _os.environ.get("FUSION_SPEC")
+    if len(sys.argv) > 1 and not spec_name:
+        spec_name = sys.argv[1]
+    if not spec_name:
+        spec_name = "spec_07_fusion"
+    spec = importlib.import_module(spec_name)
     W = spec.W
     name = getattr(spec, "NAME", NAME)
     work = os.path.join(ROOT, "build", name)
