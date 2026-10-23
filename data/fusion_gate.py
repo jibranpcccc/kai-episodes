@@ -393,19 +393,20 @@ def main():
     _mingap = None
     for sc in scenes:
         bs = sorted([b for b in beats if b["group"] == sc["id"]], key=lambda b: b["s"])
-        for i in range(1, len(bs)):
-            gap = bs[i]["s"] - bs[i - 1]["s"]
-            if gap < MIN_GAP - 0.01:
+        distinct_times = sorted(set(b["s"] for b in bs))
+        for i in range(1, len(distinct_times)):
+            dgap = distinct_times[i] - distinct_times[i - 1]
+            if dgap < MIN_GAP - 0.01:
                 v1 += 1
-                if _mingap is None or gap < _mingap:
-                    _mingap = gap
-            if gap > MAX_GAP_FAIL:
+                if _mingap is None or dgap < _mingap:
+                    _mingap = dgap
+            if dgap > MAX_GAP_FAIL:
                 v3 += 1
-            elif gap > MAX_GAP_WARN:
+            elif dgap > MAX_GAP_WARN:
                 v3 += 0
-                warn("3", "scene %d: %.2fs hold at t=%.2f (%s)"
-                     % (sc["id"] + 1, gap, bs[i]["s"], (bs[i].get("anchor") or "")[:34]))
-        if len(bs) > 1 and (bs[1]["s"] - bs[0]["s"]) < HERO_ALONE - 1e-6:
+                warn("3", "scene %d: %.2fs hold at t=%.2f"
+                     % (sc["id"] + 1, dgap, distinct_times[i]))
+        if len(distinct_times) > 1 and (distinct_times[1] - distinct_times[0]) < HERO_ALONE - 1e-6:
             v2 += 1
     if v1 == 0:
         ok("1", "no two beats within %.2fs" % MIN_GAP)

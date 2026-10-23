@@ -241,29 +241,48 @@ def schedule(beats, wtext, ws):
             gi = 0
         bb["_off"] = gi
         gi += 1
-    times = [bb["_t0"] for bb in beats]
+    # Group-based scheduling: sub-beats belonging to the same arrival group
+    # share the group's arrival time, rather than cascading sequentially and
+    # causing multi-second delays for subsequent cards.
     notes = []
     if late is not None:
         notes.append(("LATE OPEN", None, round(late, 2),
                       "first arrival pulled %.2fs back to the window's first word" % late))
-    # HERO ALONE first, then the minimum gap. The other order looks correct and
-    # silently breaks the gap for the beat AFTER the hero, because that beat
-    # was already measured against the hero's old time.
-    if len(times) > 1 and times[1] - times[0] < HERO_ALONE - 1e-6:
-        times[1] = times[0] + HERO_ALONE
-    for i in range(1, len(times)):
-        if times[i] - times[i - 1] < MIN_GAP - 1e-6:
-            times[i] = times[i - 1] + MIN_GAP + 0.004
-    for i in range(1, len(times)):
-        gap = times[i] - times[i - 1]
+
+    # Identify distinct arrival groups
+    group_indices = []
+    for i, b in enumerate(beats):
+        if b["_off"] == 0:
+            group_indices.append(i)
+
+    group_times = [beats[gi]["_t0"] for gi in group_indices]
+
+    # Enforce HERO ALONE between group 0 and group 1 only if group 1 is not word 1
+    if len(group_times) > 1 and group_times[1] - group_times[0] < HERO_ALONE - 1e-6:
+        group_times[1] = group_times[0] + HERO_ALONE
+
+    # Enforce MIN_GAP between DISTINCT GROUPS
+    for k in range(1, len(group_times)):
+        if group_times[k] - group_times[k - 1] < MIN_GAP - 1e-6:
+            group_times[k] = group_times[k - 1] + MIN_GAP + 0.004
+
+    # Enforce MAX_GAP_FAIL between distinct groups
+    for k in range(1, len(group_times)):
+        gap = group_times[k] - group_times[k - 1]
         if gap > MAX_GAP_FAIL:
-            # pull the later beat earlier so the screen never goes quiet.
-            # landing early is RepoChad's own behaviour: the headline arrives
-            # before the sentence finishes.
             pull = min(gap - MAX_GAP_FAIL, TEASE_BOUND)
-            times[i] -= pull
-            notes.append(("LONG HOLD", beats[i].get("at"), round(gap, 2),
+            group_times[k] -= pull
+            notes.append(("LONG HOLD", beats[group_indices[k]].get("at"), round(gap, 2),
                           "pulled %.2fs" % pull))
+
+    # Distribute group times to all member beats
+    times = [0.0] * len(beats)
+    for k, gi in enumerate(group_indices):
+        next_gi = group_indices[k + 1] if k + 1 < len(group_indices) else len(beats)
+        gt = group_times[k]
+        for idx in range(gi, next_gi):
+            times[idx] = round(gt, 3)
+
     for i, b in enumerate(beats):
         g = i - b["_off"]                       # first member of its group
         b["_nudge"] = round(times[g] - beats[g]["_t0"], 3)

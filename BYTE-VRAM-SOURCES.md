@@ -1,10 +1,9 @@
-# BYTE FORENSICS — EPISODE SPECIFICATION & MATHEMATICAL PROOFS
-## EPISODE: WHY A MODEL FILE FITTING YOUR DRIVE CAN STILL FILL YOUR GPU (BYTE-VRAM)
+# BYTE FORENSICS — EPISODE 09 SPECIFICATION & MATHEMATICAL PROOFS
+## EPISODE 09: 27B IN A 6.19 GB FILE · THE DOWNLOAD PARADOX (BYTE-VRAM)
 
 **Channel**: Byte Forensics (@ByteForensics)  
 **Format**: FUSION Interactive Vector Presentation Engine  
-**Runtime**: 721.1 seconds (12 minutes 01 second)  
-**Script Word Count**: 1,963 words (100% verbatim coverage across 264 SRT cues)  
+**Runtime**: 66.9 seconds pilot (5 scenes, 185 words, 65 beats)  
 **Master Audio**: Google Gemini / Edge Studio Baritone (`en-US-AndrewNeural` +4%), Loudness: -14.1 LUFS (EBU R128), True Peak: -1.7 dBFS  
 
 ---

@@ -259,61 +259,77 @@ def caveat_mark():
 
 
 def vram_stack():
-    """Diagram showing why weight file size on disk is different from runtime GPU memory."""
+    """Diagram illustrating why passive file size differs from sustained runtime VRAM."""
     b = []
-    # --- NVMe / Disk block (Passive storage)
-    b.append('<rect x="50" y="20" width="380" height="110" rx="10" fill="rgba(246,246,244,.03)" '
+    # --- 1. NVMe Passive Storage Block (y: 12 to 92)
+    b.append('<rect x="25" y="12" width="410" height="80" rx="8" fill="rgba(246,246,244,.03)" '
              'stroke="%s" stroke-width="2"/>' % INK)
-    b.append('<text x="70" y="48" font-family="FuseMono, monospace" font-size="13" font-weight="700" '
+    b.append('<text x="45" y="34" font-family="FuseMono, monospace" font-size="11" font-weight="700" '
              'fill="%s" letter-spacing="2">PASSIVE DISK STORAGE (NVME SSD)</text>' % GREY)
-    b.append('<rect x="70" y="62" width="340" height="48" rx="6" fill="rgba(56,217,232,.12)" '
+    b.append('<rect x="45" y="44" width="370" height="36" rx="5" fill="rgba(56,217,232,.10)" '
              'stroke="%s" stroke-width="1.5"/>' % CYAN)
-    b.append('<text x="240" y="92" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="17" font-weight="800" fill="%s" letter-spacing="1">DOWNLOADED WEIGHTS: ~6.2 GB</text>' % CYAN)
+    b.append('<text x="60" y="67" font-family="FuseMono, monospace" font-size="13" font-weight="800" '
+             'fill="%s">PUBLISHED WEIGHTS FILE</text>' % CYAN)
+    b.append('<text x="400" y="67" text-anchor="end" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
+             'fill="%s">6.19 GB</text>' % CYAN)
 
-    # --- Loading arrow
-    b.append('<path d="M240 138 L240 178" stroke="%s" stroke-width="2" stroke-dasharray="4 4"/>' % GOLD)
-    b.append('<polygon points="234,176 240,188 246,176" fill="%s"/>' % GOLD)
-    b.append('<text x="240" y="162" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="11" font-weight="700" fill="%s" letter-spacing="1">LOADED INTO VRAM</text>' % GOLD)
+    # --- Transfer arrow (y: 92 to 128)
+    b.append('<path d="M230 96 L230 122" stroke="%s" stroke-width="2" stroke-dasharray="4 3"/>' % GOLD)
+    b.append('<polygon points="225,120 230,130 235,120" fill="%s"/>' % GOLD)
 
-    # --- Active GPU VRAM Allocation block
-    b.append('<rect x="50" y="194" width="380" height="230" rx="10" fill="rgba(246,246,244,.03)" '
+    # --- 2. Active GPU VRAM Allocation Container (y: 134 to 442)
+    b.append('<rect x="25" y="134" width="410" height="310" rx="8" fill="rgba(246,246,244,.03)" '
              'stroke="%s" stroke-width="2"/>' % INK)
-    b.append('<text x="70" y="220" font-family="FuseMono, monospace" font-size="13" font-weight="700" '
-             'fill="%s" letter-spacing="2">ACTIVE RUNTIME VRAM ALLOCATION</text>' % GOLD)
+    b.append('<text x="45" y="158" font-family="FuseMono, monospace" font-size="11" font-weight="700" '
+             'fill="%s" letter-spacing="2">GPU VRAM: WORKLOAD EXPANSION</text>' % GOLD)
 
-    # Layer 1: Model weights
-    b.append('<rect x="70" y="232" width="340" height="40" rx="4" fill="rgba(56,217,232,.18)" '
-             'stroke="%s" stroke-width="1.5"/>' % CYAN)
-    b.append('<text x="86" y="257" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
-             'fill="%s">BASE WEIGHTS (FILE)</text>' % CYAN)
-    b.append('<text x="394" y="257" text-anchor="end" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
-             'fill="%s">~6.2 GB</text>' % CYAN)
+    # State A: Single Initial Answer
+    b.append('<text x="45" y="184" font-family="FuseMono, monospace" font-size="11" font-weight="700" '
+             'fill="%s" letter-spacing="1">STATE A: SHORT INITIAL PROMPT</text>' % GREY)
+    b.append('<rect x="45" y="194" width="370" height="40" rx="4" fill="rgba(246,246,244,.04)" '
+             'stroke="%s" stroke-width="1.2"/>' % HAIR)
+    b.append('<rect x="47" y="196" width="225" height="36" rx="3" fill="rgba(56,217,232,.22)"/>')
+    b.append('<text x="58" y="219" font-family="FuseMono, monospace" font-size="11" font-weight="800" '
+             'fill="%s">WEIGHTS 6.19 GB</text>' % CYAN)
+    b.append('<rect x="275" y="196" width="60" height="36" rx="3" fill="rgba(245,197,49,.22)"/>')
+    b.append('<text x="305" y="219" text-anchor="middle" font-family="FuseMono, monospace" font-size="10" font-weight="800" '
+             'fill="%s">+BUFFERS</text>' % GOLD)
+    b.append('<text x="403" y="219" text-anchor="end" font-family="FuseMono, monospace" font-size="12" font-weight="800" '
+             'fill="%s">~7.4 GB</text>' % INK)
 
-    # Layer 2: KV Cache
-    b.append('<rect x="70" y="278" width="340" height="40" rx="4" fill="rgba(245,197,49,.18)" '
-             'stroke="%s" stroke-width="1.5"/>' % GOLD)
-    b.append('<text x="86" y="303" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
-             'fill="%s">+ KV CACHE (CONTEXT BUFFER)</text>' % GOLD)
-    b.append('<text x="394" y="303" text-anchor="end" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
-             'fill="%s">GROWS O(L)</text>' % GOLD)
-
-    # Layer 3: CUDA & OS overhead
-    b.append('<rect x="70" y="324" width="340" height="40" rx="4" fill="rgba(225,42,39,.18)" '
+    # State B: Sustained Afternoon Workload
+    b.append('<text x="45" y="258" font-family="FuseMono, monospace" font-size="11" font-weight="700" '
+             'fill="%s" letter-spacing="1">STATE B: SUSTAINED AFTERNOON WORKLOAD</text>' % GOLD)
+    b.append('<rect x="45" y="268" width="370" height="52" rx="4" fill="rgba(225,42,39,.08)" '
              'stroke="%s" stroke-width="1.5"/>' % RED)
-    b.append('<text x="86" y="349" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
-             'fill="%s">+ CUDA KERNELS &amp; BUFFERS</text>' % RED)
-    b.append('<text x="394" y="349" text-anchor="end" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
-             'fill="%s">~1.5 GB</text>' % RED)
+    b.append('<rect x="47" y="270" width="215" height="48" rx="3" fill="rgba(56,217,232,.22)"/>')
+    b.append('<text x="58" y="299" font-family="FuseMono, monospace" font-size="11" font-weight="800" '
+             'fill="%s">WEIGHTS 6.19 GB</text>' % CYAN)
+    b.append('<rect x="264" y="270" width="55" height="48" rx="3" fill="rgba(245,197,49,.22)"/>')
+    b.append('<text x="291" y="299" text-anchor="middle" font-family="FuseMono, monospace" font-size="10" font-weight="800" '
+             'fill="%s">BUFFERS</text>' % GOLD)
+    b.append('<rect x="321" y="270" width="92" height="48" rx="3" fill="rgba(225,42,39,.35)"/>')
+    b.append('<text x="367" y="292" text-anchor="middle" font-family="FuseMono, monospace" font-size="10" font-weight="800" '
+             'fill="%s">+KV CACHE</text>' % RED)
+    b.append('<text x="367" y="308" text-anchor="middle" font-family="FuseMono, monospace" font-size="9" font-weight="700" '
+             'fill="%s">O(L) GROWTH</text>' % INK)
 
-    # Summary pill
-    b.append('<rect x="70" y="372" width="340" height="28" rx="4" fill="rgba(225,42,39,.25)" '
-             'stroke="%s" stroke-width="1"/>' % RED)
-    b.append('<text x="240" y="391" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="12" font-weight="800" fill="%s" letter-spacing="1">TOTAL VRAM ALLOCATION &gt; 8.0 GB (OOM RISK)</text>' % RED)
+    # 8GB VRAM Threshold line
+    b.append('<line x1="365" y1="172" x2="365" y2="335" stroke="%s" stroke-width="1.8" stroke-dasharray="4 3"/>' % RED)
+    b.append('<text x="365" y="165" text-anchor="middle" font-family="FuseMono, monospace" font-size="10" font-weight="800" '
+             'fill="%s">8.0 GB LIMIT</text>' % RED)
 
-    return _svg("40 10 400 424", "".join(b), "vram_stack")
+    # Bottom summary box
+    b.append('<rect x="45" y="338" width="370" height="92" rx="6" fill="rgba(225,42,39,.10)" '
+             'stroke="%s" stroke-width="1.5"/>' % RED)
+    b.append('<text x="230" y="362" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="12" font-weight="800" fill="%s" letter-spacing="1">REALITY: SINGLE PROMPT != WORKLOAD</text>' % RED)
+    b.append('<text x="230" y="384" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="11" font-weight="600" fill="%s">Context expansion pushes memory beyond 8 GB</text>' % INK)
+    b.append('<text x="230" y="404" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="10" font-weight="700" fill="%s" letter-spacing="1">TRIGGERS SYSTEM RAM OFFLOAD OR CRASH</text>' % GOLD)
+
+    return _svg("20 0 420 456", "".join(b), "vram_stack")
 
 
 ART = {

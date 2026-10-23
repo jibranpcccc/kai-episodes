@@ -3,9 +3,9 @@
 BYTE FORENSICS -- EPISODE 09: VRAM TIERS & MODEL SELECTION (FIRST 1-MINUTE PREVIEW)
 ===================================================================================
 Script word-for-word matching the first 1 minute:
-- Window 01 (hook): 27B in 6GB vs 9B in 6GB on an 8GB GPU (exact published download sizes)
+- Window 01 (hook): 27B in 6.19 GB vs 9B in 5.68 GB on an 8GB GPU (exact published download sizes)
 - Window 02 (rows): Launching is not working (naive heuristic vs reality gap)
-- Window 03 (note): Drive fit != GPU execution (VRAM runtime allocation breakdown stack)
+- Window 03 (note): Drive fit != GPU execution (2-state VRAM runtime allocation breakdown)
 - Window 04 (strip): The Four Memory Tiers under a microscope (8GB, 12GB, 16GB, 24GB distinct)
 - Window 05 (chain): The Three Ground Rules (no imaginary TPS, extreme quant loss, VRAM != bandwidth)
 """
@@ -29,11 +29,11 @@ W = [
         "layout": "hook",
         "vo": "A twenty-seven-billion-parameter AI model can now come in a file barely larger than six gigabytes. And a nine-billion-parameter model can take almost the same amount of space. So if your graphics card has eight gigabytes of video memory, which one should you download?",
         "kicker": "THE LOCAL AI VRAM PARADOX",
-        "title": "27B IN 6GB · THE DOWNLOAD PARADOX",
+        "title": "27B IN A 6.19 GB FILE · THE DOWNLOAD PARADOX",
         "art": "gpu",
-        "art_caption": "HARDWARE CAPACITY VS WEIGHT SIZE",
+        "art_caption": "HARDWARE VRAM BASELINE: 8GB",
         "header_at": "A twenty-seven-billion-parameter AI model",
-        "art_at": "A twenty-seven-billion-parameter AI model",
+        "art_at": "eight gigabytes of video memory",
         "stats": [
             {
                 "v": "27B",
@@ -152,18 +152,18 @@ W = [
                 "at": "eight"
             },
             {
-                "label": "12GB · MID-RANGE SWEET SPOT",
+                "label": "12GB · MID SWEET SPOT",
                 "key": "vram_module",
                 "at": "twelve"
             },
             {
                 "label": "16GB · EXPERIMENT TIER",
-                "key": "dual_slot",
+                "key": "gpu",
                 "at": "sixteen"
             },
             {
                 "label": "24GB · WORKHORSE TIER",
-                "key": "gpu",
+                "key": "superchip",
                 "at": "twenty-four"
             }
         ],
@@ -209,15 +209,15 @@ W = [
                 "at": "token-per-second scores"
             },
             {
-                "title": "EMPIRICAL METHOD",
+                "title": "DOCUMENTED ARCHITECTURE",
                 "cls": "good",
-                "body": "Documented weights, exact quantizations, and verified memory footprints.",
+                "body": "Published file sizes, exact quantizations, and documented memory requirements.",
                 "at": "pretending that every GPU"
             }
         ],
         "closing": {
             "c": "gold",
-            "t": "OBSERVED HARDWARE REALITY OVER SPEC SHEETS",
+            "t": "MEASURED SPECIFICATIONS OVER NAIVE ASSUMPTIONS",
             "at": "same way"
         },
         "source": "audit protocol · published files & documented memory footprints",
