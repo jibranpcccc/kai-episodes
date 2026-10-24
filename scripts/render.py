@@ -27,6 +27,7 @@ WORK = ROOT / "out" / "_frames"
 
 FPS = int(os.environ.get("FPS", "30"))
 ONLY = (os.environ.get("ONLY") or "").strip()
+RES = (os.environ.get("RES") or "1440p").lower()
 
 W, H = 1920, 1080
 
@@ -82,9 +83,30 @@ def render_one(page, html_path: Path) -> Path:
         "-i", str(frames_dir / "f%05d.jpg"),
     ]
     if has_audio:
-        cmd += ["-i", str(vo), "-c:a", "aac", "-b:a", "192k", "-shortest"]
+        cmd += ["-i", str(vo)]
+
+    # 1440p High-Fidelity Lanczos Scaling & Bitrate Target
+    if RES == "1440p":
+        vf_scale = "scale=2560:1440:flags=lanczos,unsharp=5:5:0.3:5:5:0.0"
+        bitrate_opts = ["-b:v", "14M", "-maxrate", "18M", "-bufsize", "28M"]
+    else:
+        vf_scale = "null"
+        bitrate_opts = []
+
+    if has_audio:
+        filter_complex = f"[0:v]{vf_scale}[vout];[1:a]apad=whole_dur={total:.3f}[aout]"
+        cmd += [
+            "-filter_complex", filter_complex,
+            "-map", "[vout]", "-map", "[aout]",
+            "-c:a", "aac", "-b:a", "384k",
+        ]
+    else:
+        if vf_scale != "null":
+            cmd += ["-vf", vf_scale]
+
     cmd += [
-        "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+        "-c:v", "libx264", "-preset", "medium", "-crf", "16",
+        *bitrate_opts,
         "-pix_fmt", "yuv420p", "-movflags", "+faststart",
         str(mp4),
     ]

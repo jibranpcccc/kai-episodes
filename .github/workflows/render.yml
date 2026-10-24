@@ -10,6 +10,10 @@ on:
         description: "Specific episode to render (e.g. BYTE-VRAM, BYTE-LORA-FINAL, or 'all')"
         required: false
         default: "BYTE-VRAM"
+      res:
+        description: "Target render resolution (1440p or 1080p)"
+        required: false
+        default: "1440p"
       fps:
         description: "frames per second"
         default: "30"
@@ -80,6 +84,7 @@ jobs:
       - name: Render ${{ matrix.episode }}
         env:
           FPS: ${{ github.event.inputs.fps || '30' }}
+          RES: ${{ github.event.inputs.res || '1440p' }}
           ONLY: ${{ matrix.episode }}
         run: python -u scripts/render.py
 

@@ -450,7 +450,7 @@ html,body{height:100%;background:#000;font-family:var(--mono)}
 .chain__nodes{width:100%}
 .chain__art{height:100%;display:flex;flex-direction:column}
 
-.note__body{display:grid;grid-template-columns:1.28fr .72fr;gap:84px;flex:1;align-items:stretch}
+.note__body{display:grid;grid-template-columns:1.08fr 0.92fr;gap:56px;flex:1;align-items:stretch}
 .note__left{display:flex;flex-direction:column;gap:16px;align-items:flex-start;justify-content:center}
 .note__art{height:100%;display:flex;flex-direction:column;justify-content:center}
 

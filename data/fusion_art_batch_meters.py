@@ -122,11 +122,11 @@ def tok_speed_dial():
     b.append('<circle cx="%d" cy="%d" r="32" fill="%s" stroke="%s" stroke-width="2.5"/>'
              % (CX, CY, BG, GOLD))
     b.append('<text x="%d" y="%d" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="22" font-weight="800" fill="%s" letter-spacing="1">142</text>'
-             % (CX, CY + 8, GOLD))
+             'font-size="20" font-weight="800" fill="%s" letter-spacing="1">T/S</text>'
+             % (CX, CY + 7, GOLD))
     # --- the unit, in the gap
     b.append('<text x="%d" y="236" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="15" font-weight="700" fill="%s" letter-spacing="3">TOKENS/S</text>'
+             'font-size="13" font-weight="700" fill="%s" letter-spacing="2">THROUGHPUT</text>'
              % (CX, GREY))
     return _svg("38 38 264 229", "".join(b), "tok_speed_dial")
 
@@ -191,6 +191,6 @@ def timer_flat():
     b.append('<text x="%d" y="208" font-family="FuseMono, monospace" font-size="13" '
              'font-weight="700" fill="%s" letter-spacing="3">ELAPSED</text>' % (X0, FAINT))
     b.append('<text x="%d" y="208" text-anchor="end" font-family="FuseMono, monospace" '
-             'font-size="15" font-weight="800" fill="%s" letter-spacing="2">00:20</text>'
+             'font-size="15" font-weight="800" fill="%s" letter-spacing="2">--:--</text>'
              % (X1, INK))
     return _svg("26 72 428 152", "".join(b), "timer_flat")

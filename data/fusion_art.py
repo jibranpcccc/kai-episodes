@@ -258,90 +258,190 @@ def caveat_mark():
 
 
 
+def gpu_tier(cap="8 GB", col=GOLD):
+    """A GPU board with prominent tier capacity badge."""
+    import math
+    b = []
+    b.append('<rect x="26" y="26" width="428" height="228" rx="12" fill="rgba(246,246,244,.02)" '
+             'stroke="%s" stroke-width="3"/>' % INK)
+    b.append('<rect x="44" y="44" width="392" height="176" rx="8" fill="none" '
+             'stroke="%s" stroke-width="1.5"/>' % HAIR)
+    for idx, cx in enumerate((120, 360)):
+        b.append('<circle cx="%d" cy="132" r="58" fill="rgba(0,0,0,.35)"/>' % cx)
+        b.append('<circle cx="%d" cy="132" r="58" fill="none" stroke="%s" stroke-width="2.5"/>'
+                 % (cx, INK))
+        b.append('<g data-amb="spin" data-amb-speed="0.26" data-amb-k="%d">' % (idx * 3))
+        for k in range(7):
+            a = k * (2 * math.pi / 7)
+            p1 = (cx + 15 * math.cos(a), 132 + 15 * math.sin(a))
+            p2 = (cx + 48 * math.cos(a + 0.44), 132 + 48 * math.sin(a + 0.44))
+            mx, my = (p1[0] + p2[0]) / 2.0, (p1[1] + p2[1]) / 2.0
+            dx, dy = p2[0] - p1[0], p2[1] - p1[1]
+            ln = math.hypot(dx, dy) or 1.0
+            ctrl = (mx - dy / ln * 9, my + dx / ln * 9)
+            b.append('<path d="M%.1f %.1f Q%.1f %.1f %.1f %.1f" fill="none" stroke="%s" '
+                     'stroke-width="8" stroke-linecap="round" opacity=".85"/>'
+                     % (p1[0], p1[1], ctrl[0], ctrl[1], p2[0], p2[1], INK))
+        b.append('<circle cx="%d" cy="132" r="10" fill="%s"/>' % (cx, col))
+        b.append('<circle cx="%d" cy="132" r="4" fill="#0D1110"/>' % cx)
+        b.append('</g>')
+    # Center capacity badge (prominent, mobile-first legible)
+    b.append('<rect x="195" y="104" width="90" height="56" rx="8" fill="rgba(13,17,16,.94)" '
+             'stroke="%s" stroke-width="2.5"/>' % col)
+    b.append('<text x="240" y="142" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="26" font-weight="900" fill="%s" letter-spacing="1">%s</text>' % (col, cap))
+    # PCIe connector
+    b.append('<rect x="100" y="254" width="280" height="18" rx="2" fill="%s" opacity=".9"/>' % col)
+    b.append('<rect x="196" y="254" width="22" height="18" fill="#0D1110"/>')
+    b.append('<rect x="292" y="254" width="22" height="18" fill="#0D1110"/>')
+    return _svg("14 14 452 270", "".join(b), "gpu_" + cap.replace(" ", "").lower())
+
+
+def gpu_8gb(): return gpu_tier("8GB", CYAN)
+def gpu_12gb(): return gpu_tier("12GB", GOLD)
+def gpu_16gb(): return gpu_tier("16GB", CYAN)
+def gpu_24gb(): return gpu_tier("24GB", GOLD)
+
+
 def vram_stack():
     """Diagram illustrating why passive file size differs from sustained runtime VRAM."""
     b = []
-    # --- 1. NVMe Passive Storage Block (y: 12 to 92)
-    b.append('<rect x="25" y="12" width="410" height="80" rx="8" fill="rgba(246,246,244,.03)" '
-             'stroke="%s" stroke-width="2"/>' % INK)
-    b.append('<text x="45" y="34" font-family="FuseMono, monospace" font-size="11" font-weight="700" '
-             'fill="%s" letter-spacing="2">PASSIVE DISK STORAGE (NVME SSD)</text>' % GREY)
-    b.append('<rect x="45" y="44" width="370" height="36" rx="5" fill="rgba(56,217,232,.10)" '
+    # ViewBox: 0 0 460 496
+    GREEN = "#00F59B"
+    
+    # =========================================================================
+    # 1. TOP: NVMe PASSIVE DISK STORAGE (M.2 2280 FORM FACTOR)
+    # =========================================================================
+    # Outer NVMe PCB Card
+    b.append('<rect x="20" y="12" width="420" height="96" rx="10" fill="rgba(18, 24, 38, 0.96)" '
+             'stroke="%s" stroke-width="1.8"/>' % HAIR)
+    
+    # Gold M.2 contact pins
+    for i in range(5):
+        b.append('<rect x="%d" y="12" width="5" height="10" rx="1" fill="%s" opacity="0.85"/>' % (34 + i * 8, GOLD))
+    b.append('<rect x="76" y="12" width="8" height="14" fill="rgba(18, 24, 38, 0.96)"/>') # M.2 key notch
+    for i in range(4):
+        b.append('<rect x="%d" y="12" width="5" height="10" rx="1" fill="%s" opacity="0.85"/>' % (86 + i * 8, GOLD))
+
+    # Header row with generous 50px+ gap between label and badge
+    b.append('<text x="130" y="27" font-family="FuseMono, monospace" font-size="9.5" font-weight="700" '
+             'fill="%s" letter-spacing="1.2">NVME SSD · PASSIVE STORAGE</text>' % GREY)
+    b.append('<rect x="338" y="17" width="88" height="18" rx="9" fill="rgba(56,217,232,0.12)" stroke="%s" stroke-width="1"/>' % CYAN)
+    b.append('<text x="382" y="29" text-anchor="middle" font-family="FuseMono, monospace" font-size="8.5" font-weight="800" '
+             'fill="%s" letter-spacing="0.5">0%% GPU VRAM</text>' % CYAN)
+
+    # Weights file container inside NVMe
+    b.append('<rect x="34" y="42" width="392" height="52" rx="6" fill="rgba(56,217,232,0.08)" '
              'stroke="%s" stroke-width="1.5"/>' % CYAN)
-    b.append('<text x="60" y="67" font-family="FuseMono, monospace" font-size="13" font-weight="800" '
-             'fill="%s">PUBLISHED WEIGHTS FILE</text>' % CYAN)
-    b.append('<text x="400" y="67" text-anchor="end" font-family="FuseMono, monospace" font-size="14" font-weight="800" '
-             'fill="%s">6.19 GB</text>' % CYAN)
+    # File icon / NAND flash indicator
+    b.append('<rect x="46" y="50" width="34" height="36" rx="4" fill="rgba(56,217,232,0.18)" stroke="%s" stroke-width="1"/>' % CYAN)
+    b.append('<text x="63" y="73" text-anchor="middle" font-family="FuseMono, monospace" font-size="11" font-weight="800" fill="%s">SSD</text>' % CYAN)
+    
+    # Title & Quant detail
+    b.append('<text x="90" y="62" font-family="FuseMono, monospace" font-size="12" font-weight="800" fill="%s">PUBLISHED WEIGHTS FILE</text>' % CYAN)
+    b.append('<text x="90" y="80" font-family="FuseMono, monospace" font-size="9.5" font-weight="600" fill="%s">Qwen3.8-27B · Unsloth UD-IQ1_S</text>' % INK)
+    
+    # 6.19 GB Badge
+    b.append('<rect x="328" y="50" width="86" height="36" rx="6" fill="rgba(56,217,232,0.22)" stroke="%s" stroke-width="1.2"/>' % CYAN)
+    b.append('<text x="371" y="73" text-anchor="middle" font-family="FuseMono, monospace" font-size="14" font-weight="800" fill="%s">6.19 GB</text>' % CYAN)
 
-    # --- Transfer arrow (y: 92 to 128)
-    b.append('<path d="M230 96 L230 122" stroke="%s" stroke-width="2" stroke-dasharray="4 3"/>' % GOLD)
-    b.append('<polygon points="225,120 230,130 235,120" fill="%s"/>' % GOLD)
+    # =========================================================================
+    # 2. DATA TRANSFER BUS
+    # =========================================================================
+    b.append('<path d="M230 108 L230 132" stroke="%s" stroke-width="1.8" stroke-dasharray="4 3"/>' % GOLD)
+    b.append('<polygon points="225,130 230,139 235,130" fill="%s"/>' % GOLD)
+    b.append('<rect x="140" y="112" width="180" height="20" rx="10" fill="#0B0D13" stroke="%s" stroke-width="1.2"/>' % GOLD)
+    b.append('<text x="230" y="126" text-anchor="middle" font-family="FuseMono, monospace" font-size="9" font-weight="800" '
+             'fill="%s" letter-spacing="1">HOST-TO-DEVICE VRAM LOAD</text>' % GOLD)
 
-    # --- 2. Active GPU VRAM Allocation Container (y: 134 to 442)
-    b.append('<rect x="25" y="134" width="410" height="310" rx="8" fill="rgba(246,246,244,.03)" '
-             'stroke="%s" stroke-width="2"/>' % INK)
-    b.append('<text x="45" y="158" font-family="FuseMono, monospace" font-size="11" font-weight="700" '
-             'fill="%s" letter-spacing="2">GPU VRAM: WORKLOAD EXPANSION</text>' % GOLD)
+    # =========================================================================
+    # 3. GPU ACTIVE VRAM EXECUTION CONTAINER
+    # =========================================================================
+    b.append('<rect x="20" y="142" width="420" height="240" rx="10" fill="rgba(18, 24, 38, 0.96)" '
+             'stroke="%s" stroke-width="2"/>' % GOLD)
+    
+    # Header Row
+    b.append('<text x="36" y="168" font-family="FuseMono, monospace" font-size="11" font-weight="800" '
+             'fill="%s" letter-spacing="1.5">GPU RUNTIME MEMORY ALLOCATION</text>' % GOLD)
+    b.append('<rect x="308" y="155" width="118" height="20" rx="4" fill="rgba(245,197,49,0.15)" stroke="%s" stroke-width="1"/>' % GOLD)
+    b.append('<text x="367" y="169" text-anchor="middle" font-family="FuseMono, monospace" font-size="9.5" font-weight="800" '
+             'fill="%s" letter-spacing="0.5">8.0 GB VRAM CARD</text>' % GOLD)
 
-    # State A: Single Initial Answer
-    b.append('<text x="45" y="184" font-family="FuseMono, monospace" font-size="11" font-weight="700" '
-             'fill="%s" letter-spacing="1">STATE A: SHORT INITIAL PROMPT</text>' % GREY)
-    b.append('<rect x="45" y="194" width="370" height="40" rx="4" fill="rgba(246,246,244,.04)" '
-             'stroke="%s" stroke-width="1.2"/>' % HAIR)
-    b.append('<rect x="47" y="196" width="225" height="36" rx="3" fill="rgba(56,217,232,.22)"/>')
-    b.append('<text x="58" y="219" font-family="FuseMono, monospace" font-size="11" font-weight="800" '
-             'fill="%s">WEIGHTS 6.19 GB</text>' % CYAN)
-    b.append('<rect x="275" y="196" width="60" height="36" rx="3" fill="rgba(245,197,49,.22)"/>')
-    b.append('<text x="305" y="219" text-anchor="middle" font-family="FuseMono, monospace" font-size="10" font-weight="800" '
-             'fill="%s">+BUFFERS</text>' % GOLD)
-    b.append('<text x="403" y="219" text-anchor="end" font-family="FuseMono, monospace" font-size="12" font-weight="800" '
-             'fill="%s">~7.4 GB</text>' % INK)
+    # --- Scenario A: Single Initial Prompt
+    b.append('<text x="36" y="194" font-family="FuseMono, monospace" font-size="9.5" font-weight="700" '
+             'fill="%s" letter-spacing="1">SCENARIO A: SHORT INITIAL PROMPT</text>' % GREY)
+    
+    # Bar Container A (width 388)
+    b.append('<rect x="36" y="202" width="388" height="34" rx="5" fill="rgba(246,246,244,0.03)" stroke="%s" stroke-width="1"/>' % HAIR)
+    # Weights block (270px)
+    b.append('<rect x="38" y="204" width="270" height="30" rx="4" fill="rgba(56,217,232,0.22)" stroke="%s" stroke-width="1"/>' % CYAN)
+    b.append('<text x="48" y="223" font-family="FuseMono, monospace" font-size="11" font-weight="800" fill="%s">WEIGHTS: 6.19 GB</text>' % CYAN)
+    # Runtime context block (62px)
+    b.append('<rect x="312" y="204" width="62" height="30" rx="3" fill="rgba(245,197,49,0.22)" stroke="%s" stroke-width="1"/>' % GOLD)
+    b.append('<text x="343" y="223" text-anchor="middle" font-family="FuseMono, monospace" font-size="9" font-weight="800" fill="%s">+RUNTIME</text>' % GOLD)
+    # Headroom block (48px)
+    b.append('<rect x="378" y="204" width="44" height="30" rx="3" fill="rgba(0,245,155,0.08)" stroke="%s" stroke-width="1" stroke-dasharray="3 2"/>' % GREEN)
+    b.append('<text x="400" y="223" text-anchor="middle" font-family="FuseMono, monospace" font-size="8.5" font-weight="800" fill="%s">FREE</text>' % GREEN)
 
-    # State B: Sustained Afternoon Workload
-    b.append('<text x="45" y="258" font-family="FuseMono, monospace" font-size="11" font-weight="700" '
-             'fill="%s" letter-spacing="1">STATE B: SUSTAINED AFTERNOON WORKLOAD</text>' % GOLD)
-    b.append('<rect x="45" y="268" width="370" height="52" rx="4" fill="rgba(225,42,39,.08)" '
-             'stroke="%s" stroke-width="1.5"/>' % RED)
-    b.append('<rect x="47" y="270" width="215" height="48" rx="3" fill="rgba(56,217,232,.22)"/>')
-    b.append('<text x="58" y="299" font-family="FuseMono, monospace" font-size="11" font-weight="800" '
-             'fill="%s">WEIGHTS 6.19 GB</text>' % CYAN)
-    b.append('<rect x="264" y="270" width="55" height="48" rx="3" fill="rgba(245,197,49,.22)"/>')
-    b.append('<text x="291" y="299" text-anchor="middle" font-family="FuseMono, monospace" font-size="10" font-weight="800" '
-             'fill="%s">BUFFERS</text>' % GOLD)
-    b.append('<rect x="321" y="270" width="92" height="48" rx="3" fill="rgba(225,42,39,.35)"/>')
-    b.append('<text x="367" y="292" text-anchor="middle" font-family="FuseMono, monospace" font-size="10" font-weight="800" '
-             'fill="%s">+KV CACHE</text>' % RED)
-    b.append('<text x="367" y="308" text-anchor="middle" font-family="FuseMono, monospace" font-size="9" font-weight="700" '
-             'fill="%s">O(L) GROWTH</text>' % INK)
+    # --- Scenario B: Sustained Workload
+    b.append('<text x="36" y="254" font-family="FuseMono, monospace" font-size="9.5" font-weight="700" '
+             'fill="%s" letter-spacing="1">SCENARIO B: DEEP CONTEXT & AFTERNOON WORKLOAD</text>' % GOLD)
+    
+    # Bar Container B (width 388)
+    b.append('<rect x="36" y="262" width="388" height="38" rx="5" fill="rgba(245,197,49,0.06)" stroke="%s" stroke-width="1.2"/>' % GOLD)
+    # Weights block
+    b.append('<rect x="38" y="264" width="270" height="34" rx="4" fill="rgba(56,217,232,0.22)" stroke="%s" stroke-width="1"/>' % CYAN)
+    b.append('<text x="48" y="285" font-family="FuseMono, monospace" font-size="11" font-weight="800" fill="%s">WEIGHTS: 6.19 GB</text>' % CYAN)
+    # Buffers block
+    b.append('<rect x="312" y="264" width="46" height="34" rx="3" fill="rgba(245,197,49,0.22)" stroke="%s" stroke-width="1"/>' % GOLD)
+    b.append('<text x="335" y="285" text-anchor="middle" font-family="FuseMono, monospace" font-size="9" font-weight="800" fill="%s">+CTX</text>' % GOLD)
+    # Dynamic KV Cache block (fills right up to the 8GB edge)
+    b.append('<rect x="362" y="264" width="60" height="34" rx="3" fill="rgba(255,59,48,0.28)" stroke="%s" stroke-width="1.5"/>' % RED)
+    b.append('<text x="392" y="278" text-anchor="middle" font-family="FuseMono, monospace" font-size="8.5" font-weight="800" fill="%s">+KV CACHE</text>' % INK)
+    b.append('<text x="392" y="291" text-anchor="middle" font-family="FuseMono, monospace" font-size="7.5" font-weight="700" fill="%s">O(L) LINEAR</text>' % RED)
 
-    # 8GB VRAM Threshold line
-    b.append('<line x1="365" y1="172" x2="365" y2="335" stroke="%s" stroke-width="1.8" stroke-dasharray="4 3"/>' % RED)
-    b.append('<text x="365" y="165" text-anchor="middle" font-family="FuseMono, monospace" font-size="10" font-weight="800" '
-             'fill="%s">8.0 GB LIMIT</text>' % RED)
+    # Scale indicators
+    b.append('<line x1="38" y1="312" x2="422" y2="312" stroke="%s" stroke-width="1" stroke-dasharray="2 3"/>' % HAIR)
+    b.append('<text x="38" y="324" font-family="FuseMono, monospace" font-size="8.5" font-weight="700" fill="%s">0.0 GB</text>' % GREY)
+    b.append('<text x="230" y="324" text-anchor="middle" font-family="FuseMono, monospace" font-size="8.5" font-weight="700" fill="%s">4.0 GB</text>' % GREY)
+    b.append('<text x="422" y="324" text-anchor="end" font-family="FuseMono, monospace" font-size="8.5" font-weight="800" fill="%s">8.0 GB LIMIT</text>' % GOLD)
 
-    # Bottom summary box
-    b.append('<rect x="45" y="338" width="370" height="92" rx="6" fill="rgba(225,42,39,.10)" '
-             'stroke="%s" stroke-width="1.5"/>' % RED)
-    b.append('<text x="230" y="362" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="12" font-weight="800" fill="%s" letter-spacing="1">REALITY: SINGLE PROMPT != WORKLOAD</text>' % RED)
-    b.append('<text x="230" y="384" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="11" font-weight="600" fill="%s">Context expansion pushes memory beyond 8 GB</text>' % INK)
-    b.append('<text x="230" y="404" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="10" font-weight="700" fill="%s" letter-spacing="1">TRIGGERS SYSTEM RAM OFFLOAD OR CRASH</text>' % GOLD)
+    # Status callout badge inside GPU container
+    b.append('<rect x="36" y="334" width="388" height="36" rx="5" fill="rgba(255,59,48,0.10)" stroke="%s" stroke-width="1.2"/>' % RED)
+    b.append('<circle cx="52" cy="352" r="4" fill="%s"/>' % RED)
+    b.append('<text x="64" y="348" font-family="FuseMono, monospace" font-size="9" font-weight="800" fill="%s">WORKLOAD EXPANSION EXHAUSTS 8GB HEADROOM</text>' % RED)
+    b.append('<text x="64" y="361" font-family="FuseMono, monospace" font-size="8" font-weight="600" fill="%s">Triggers system RAM offloading, severe slowdown, or launch abort</text>' % INK)
 
-    return _svg("20 0 420 456", "".join(b), "vram_stack")
+    # =========================================================================
+    # 4. BOTTOM ARCHITECTURAL TAKEAWAY CARD
+    # =========================================================================
+    b.append('<rect x="20" y="392" width="420" height="92" rx="8" fill="rgba(18, 24, 38, 0.96)" '
+             'stroke="%s" stroke-width="1.5"/>' % HAIR)
+    b.append('<text x="230" y="416" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="11" font-weight="800" fill="%s" letter-spacing="1.5">ILLUSTRATIVE RUNTIME PROGRESSION</text>' % GOLD)
+    b.append('<text x="230" y="438" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="10" font-weight="600" fill="%s">Active memory expands beyond base file size as conversation deepens</text>' % INK)
+    b.append('<text x="230" y="456" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="9" font-weight="700" fill="%s" letter-spacing="0.5">ALLOCATION VARIES BY RUNTIME, CONTEXT DEPTH & OS OVERHEAD</text>' % GREY)
+    b.append('<text x="230" y="472" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="8.5" font-weight="600" fill="%s">Disk fit is passive · GPU execution requires active dynamic memory</text>' % FAINT)
+
+    return _svg("0 0 460 496", "".join(b), "vram_stack")
 
 
 ART = {
     "laptop":  laptop_wait,
     "gpu":     gpu_card,
+    "gpu_8gb": gpu_8gb,
+    "gpu_12gb": gpu_12gb,
+    "gpu_16gb": gpu_16gb,
+    "gpu_24gb": gpu_24gb,
     "collapse": collapse_curve,
     "clock":   stopwatch,
     "meter":   bandwidth_meter,
     "caveat":  caveat_mark,
     "vram_stack": vram_stack,
 }
-
 
 # ==================================================================== LIBRARY
 # Every drawing in a fusion_art_batch_*.py is merged into ART here, so the
