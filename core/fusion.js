@@ -553,6 +553,7 @@
     F.__t = t;
     renderState(t);
     startEl.classList.add('hide');
+    startEl.style.display = 'none';
   };
 
   var q = new URLSearchParams(location.search);

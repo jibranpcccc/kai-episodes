@@ -241,48 +241,29 @@ def schedule(beats, wtext, ws):
             gi = 0
         bb["_off"] = gi
         gi += 1
-    # Group-based scheduling: sub-beats belonging to the same arrival group
-    # share the group's arrival time, rather than cascading sequentially and
-    # causing multi-second delays for subsequent cards.
+    times = [bb["_t0"] for bb in beats]
     notes = []
     if late is not None:
         notes.append(("LATE OPEN", None, round(late, 2),
                       "first arrival pulled %.2fs back to the window's first word" % late))
-
-    # Identify distinct arrival groups
-    group_indices = []
-    for i, b in enumerate(beats):
-        if b["_off"] == 0:
-            group_indices.append(i)
-
-    group_times = [beats[gi]["_t0"] for gi in group_indices]
-
-    # Enforce HERO ALONE between group 0 and group 1 only if group 1 is not word 1
-    if len(group_times) > 1 and group_times[1] - group_times[0] < HERO_ALONE - 1e-6:
-        group_times[1] = group_times[0] + HERO_ALONE
-
-    # Enforce MIN_GAP between DISTINCT GROUPS
-    for k in range(1, len(group_times)):
-        if group_times[k] - group_times[k - 1] < MIN_GAP - 1e-6:
-            group_times[k] = group_times[k - 1] + MIN_GAP + 0.004
-
-    # Enforce MAX_GAP_FAIL between distinct groups
-    for k in range(1, len(group_times)):
-        gap = group_times[k] - group_times[k - 1]
+    # HERO ALONE first, then the minimum gap. The other order looks correct and
+    # silently breaks the gap for the beat AFTER the hero, because that beat
+    # was already measured against the hero's old time.
+    if len(times) > 1 and times[1] - times[0] < HERO_ALONE - 1e-6:
+        times[1] = times[0] + HERO_ALONE
+    for i in range(1, len(times)):
+        if times[i] - times[i - 1] < MIN_GAP - 1e-6:
+            times[i] = times[i - 1] + MIN_GAP + 0.004
+    for i in range(1, len(times)):
+        gap = times[i] - times[i - 1]
         if gap > MAX_GAP_FAIL:
+            # pull the later beat earlier so the screen never goes quiet.
+            # landing early is RepoChad's own behaviour: the headline arrives
+            # before the sentence finishes.
             pull = min(gap - MAX_GAP_FAIL, TEASE_BOUND)
-            group_times[k] -= pull
-            notes.append(("LONG HOLD", beats[group_indices[k]].get("at"), round(gap, 2),
+            times[i] -= pull
+            notes.append(("LONG HOLD", beats[i].get("at"), round(gap, 2),
                           "pulled %.2fs" % pull))
-
-    # Distribute group times to all member beats
-    times = [0.0] * len(beats)
-    for k, gi in enumerate(group_indices):
-        next_gi = group_indices[k + 1] if k + 1 < len(group_indices) else len(beats)
-        gt = group_times[k]
-        for idx in range(gi, next_gi):
-            times[idx] = round(gt, 3)
-
     for i, b in enumerate(beats):
         g = i - b["_off"]                       # first member of its group
         b["_nudge"] = round(times[g] - beats[g]["_t0"], 3)
@@ -359,7 +340,7 @@ def header(win, at):
          '<div class="display" style="font-size:88px;max-width:1400px;margin-top:8px">%s</div>'
          '<div class="lbl lbl--gray" style="font-size:21px;margin-top:16px">%s</div>'
          % (win.data["kicker"], win.data["title"], win.data.get("sub", "")))
-    win.beat(eid, "rise", at, dur=460, ease="rise")
+    win.beat(eid, "rise", at, dur=320, ease="rise")
     return '<div id="%s" data-fx="1" class="stack stack--tight">%s</div>' % (eid, h)
 
 
@@ -373,9 +354,9 @@ def artpanel(win, at, name, caption, show_caption=True):
     outer, inner, svgid, cap = win.nid(), win.nid(), win.nid(), win.nid()
     svg = ART[name]()
     svg = svg.replace("<svg ", '<svg id="%s" data-fx="1" ' % svgid, 1)
-    win.beat(outer, "rise", at, dur=520, ease="rise")
-    win.beat(svgid, "draw", at, dur=1400, ease="draw", sdur=900)
-    win.beat(inner, "push", at, dur=1400, ease="push", **{"from": 0.962, "to": 1.0})
+    win.beat(outer, "rise", at, dur=380, ease="rise")
+    win.beat(svgid, "draw", at, dur=720, ease="draw", sdur=480)
+    win.beat(inner, "push", at, dur=720, ease="push", **{"from": 0.962, "to": 1.0})
     caphtml = ""
     if show_caption:
         win.beat(cap, "rise", at, dur=340, ease="rise")
@@ -388,18 +369,28 @@ def artpanel(win, at, name, caption, show_caption=True):
 
 def source(win, at, text):
     eid = win.nid()
-    win.beat(eid, "rise", at, dur=340, ease="rise")
+    win.beat(eid, "rise", at, dur=240, ease="rise")
     return '<div id="%s" data-fx="1" class="src">%s</div>' % (eid, text)
 
 
 def closing_chip(win, at, c, t):
     eid = win.nid()
-    win.beat(eid, "pop", at, dur=420, ease="pop")
+    win.beat(eid, "pop", at, dur=300, ease="pop")
     return ('<div id="%s" data-fx="1" class="rowflex" style="gap:16px">'
             '<div class="chip chip--%s">%s</div></div>' % (eid, c, t))
 
 
 # ------------------------------------------------------------------ hooks
+def _stat_val_size(v):
+    n = len(str(v).strip())
+    if n <= 3:
+        return 112
+    if n <= 5:
+        return 82
+    if n <= 7:
+        return 66
+    return 52
+
 def r_hook(w, win):
     h = header(win, w["header_at"])
     a = artpanel(win, w["art_at"], w["art"], w["art_caption"])
@@ -407,20 +398,20 @@ def r_hook(w, win):
     for c in w["chips"]:
         eid = win.nid()
         chips += '<div id="%s" data-fx="1" class="chip chip--%s">%s</div>' % (eid, c["c"], c["t"])
-        win.beat(eid, "card", c["at"], dur=420, ease="card")
+        win.beat(eid, "card", c["at"], dur=300, ease="card")
     stats = ""
     for s in w["stats"]:
         eid = win.nid()
         stats += ('<div id="%s" data-fx="1" class="stack" style="gap:2px">'
-                  '<span class="num num--%s" style="font-size:124px">%s</span>'
+                  '<span class="num num--%s" style="font-size:%dpx">%s</span>'
                   '<div class="lbl lbl--sm"><span style="color:var(--dim)">%s</span>'
                   ' &middot; %s</div></div>'
-                  % (eid, s["c"], s["v"], s["u"], s["lab"]))
-        win.beat(eid, "slam", s["at"], dur=460, ease="slam")
+                  % (eid, s["c"], _stat_val_size(s["v"]), s["v"], s["u"], s["lab"]))
+        win.beat(eid, "slam", s["at"], dur=340, ease="slam")
     tape = ""
     if w.get("tape"):
         tid = win.nid()
-        win.beat(tid, "sticker", w["tape_at"], dur=420, ease="sticker")
+        win.beat(tid, "sticker", w["tape_at"], dur=300, ease="sticker")
         tape = '<div id="%s" data-fx="1" class="tape">%s</div>' % (tid, w["tape"])
     # A hook is a window like any other: it carries its source too.
     src = ""
@@ -462,11 +453,11 @@ def r_bars(w, win):
                  '<div id="%s" class="bar__val">'
                  '<span data-num>%s</span>%s</div></div>'
                  % (rid, b["lab"], b["cls"], vid, b["val"], unithtml))
-        win.beat(rid, "edge", b["at"], dur=380, ease="edge",
-               fill=dict(sel="#%s .bar__fill" % rid, w=pct), fdur=650, fd=0.18)
-        win.beat(vid, "count", b["at"], dur=340, ease="rise",
+        win.beat(rid, "edge", b["at"], dur=300, ease="edge",
+               fill=dict(sel="#%s .bar__fill" % rid, w=pct), fdur=340, fd=0.08)
+        win.beat(vid, "count", b["at"], dur=300, ease="rise",
                count=dict(sel="#%s [data-num]" % vid, to=_num(b["val"]), dec=0),
-               cdur=650) if _num(b["val"]) is not None else None
+               cdur=340) if _num(b["val"]) is not None else None
     # A bar list with no scale is a list of numbers. The axis gives the bars a
     # baseline and puts the hardware boundary ON the chart, so the viewer can
     # see which rows the card can hold and which rows only describe a
@@ -480,7 +471,7 @@ def r_bars(w, win):
                 '<div class="bars__axistick" style="left:%.2f%%"><i></i>'
                 '<span>%s</span></div></div>'
                 % (aid, float(mk["pct"]), mk["lab"]))
-        win.beat(aid, "rise", w.get("mark_at") or w["header_at"], dur=340, ease="rise")
+        win.beat(aid, "rise", w.get("mark_at") or w["header_at"], dur=260, ease="rise")
     mid = ""
     if w.get("mid"):
         mid = closing_chip(win, w["mid"]["at"], w["mid"]["c"], w["mid"]["t"])
@@ -534,11 +525,11 @@ def r_rows(w, win):
                  '<span class="row__sub">%s</span></div>'
                  % (rid, cls, r["rank"], r["name"], vid,
                     _row_val_size(r["val"]), r["val"], r["sub"]))
-        win.beat(rid, "wipein", r["at"], dur=460, ease="wipe")
+        win.beat(rid, "wipein", r["at"], dur=320, ease="wipe")
         nv = _num(r["val"])
         if nv is not None:
-            win.beat(vid, "count", r["at"], dur=340, ease="rise",
-                     count=dict(sel="#%s [data-num]" % vid, to=nv, dec=0), cdur=650)
+            win.beat(vid, "count", r["at"], dur=300, ease="rise",
+                     count=dict(sel="#%s [data-num]" % vid, to=nv, dec=0), cdur=340)
     ch = ""
     if w.get("closing"):
         ch = closing_chip(win, w["closing"]["at"], w["closing"]["c"], w["closing"]["t"])
@@ -575,11 +566,11 @@ def r_rail(w, win):
                   '<span id="%s" class="railrow__val%s">%s</span></div>'
                   % (rid, r["lab"], r["cls"], vid,
                      " railrow__val--red" if r["cls"] == "red" else "", disp))
-        win.beat(rid, "edge", r["at"], dur=380, ease="edge",
-               fill=dict(sel="#%s .railrow__fill" % rid, w=r["pct"]), fdur=650, fd=0.18)
+        win.beat(rid, "edge", r["at"], dur=300, ease="edge",
+               fill=dict(sel="#%s .railrow__fill" % rid, w=r["pct"]), fdur=340, fd=0.08)
         if nv is not None:
-            win.beat(vid, "count", r["at"], dur=340, ease="rise",
-                     count=dict(sel="#%s [data-num]" % vid, to=nv, dec=0), cdur=650)
+            win.beat(vid, "count", r["at"], dur=300, ease="rise",
+                     count=dict(sel="#%s [data-num]" % vid, to=nv, dec=0), cdur=340)
     ch = ""
     if w.get("closing"):
         ch = closing_chip(win, w["closing"]["at"], w["closing"]["c"], w["closing"]["t"])
@@ -614,11 +605,11 @@ def r_chain(w, win):
         nodes += ('<div id="%s" data-fx="1" class="chain__node%s">'
                   '<b>%s</b><span>%s</span></div>'
                   % (nid, " chain__node--gold" if last else "", n["t"], n["s"]))
-        win.beat(nid, "pop", n["at"], dur=420, ease="pop")
+        win.beat(nid, "pop", n["at"], dur=300, ease="pop")
         if not last:
             aid = win.nid()
             nodes += ('<div id="%s" data-fx="1" class="chain__arrow">&rarr;</div>' % aid)
-            win.beat(aid, "wipein", ats[i + 1], dur=240, ease="wipe")
+            win.beat(aid, "wipein", ats[i + 1], dur=200, ease="wipe")
     cols = ""
     for c in w["compare"]:
         cid = win.nid()
@@ -626,7 +617,7 @@ def r_chain(w, win):
                  '<div class="compare__title">%s</div>'
                  '<div class="compare__body">%s</div></div>'
                  % (cid, c["cls"], c["title"], c["body"]))
-        win.beat(cid, "wipein", c["at"], dur=460, ease="wipe")
+        win.beat(cid, "wipein", c["at"], dur=320, ease="wipe")
     sat = w.get("source_at") or (w["closing"]["at"] if w.get("closing")
                                  else w["compare"][-1]["at"])
     src = source(win, sat, w["source"])
@@ -649,15 +640,15 @@ def r_note(w, win):
         iid = win.nid()
         it["at"] = it.get("at") or _sent_phrase(w["vo"], it.get("sent", 1))
         items += '<li id="%s" data-fx="1">%s</li>' % (iid, it["t"])
-        win.beat(iid, "nudge", it["at"], dur=340, ease="nudge")
+        win.beat(iid, "nudge", it["at"], dur=240, ease="nudge")
     eid = win.nid()
-    win.beat(eid, "slam", w["header_at"], dur=520, ease="slam")
+    win.beat(eid, "slam", w["header_at"], dur=360, ease="slam")
     card = ('<div id="%s" data-fx="1" class="note">'
             '<div class="note__head">%s</div><ul>%s</ul></div>' % (eid, w["note_head"], items))
     tape = ""
     if w.get("tape"):
         tid = win.nid()
-        win.beat(tid, "sticker", w["tape_at"], dur=420, ease="sticker")
+        win.beat(tid, "sticker", w["tape_at"], dur=300, ease="sticker")
         tape = '<div id="%s" data-fx="1" class="tape">%s</div>' % (tid, w["tape"])
     src = ""
     if w.get("source"):
@@ -673,7 +664,7 @@ def r_gallery(w, win):
     flip = (w.get("side") == "left")
     kk = win.nid()
     win.parts.append('<div id="%s" data-fx="1" class="kicker"><i></i>%s</div>' % (kk, w["kicker"]))
-    win.beat(kk, "rise", w["header_at"], dur=340, ease="rise")
+    win.beat(kk, "rise", w["header_at"], dur=260, ease="rise")
     a = artpanel(win, w["art_at"], w["art"], w["art_caption"])
     name = win.nid()
     blurb = win.nid()
@@ -712,7 +703,7 @@ def r_title(w, win):
     tape = ""
     if w.get("tape"):
         tid = win.nid()
-        win.beat(tid, "sticker", w["tape_at"], dur=420, ease="sticker")
+        win.beat(tid, "sticker", w["tape_at"], dur=300, ease="sticker")
         tape = '<div id="%s" data-fx="1" class="tape">%s</div>' % (tid, w["tape"])
     ch = ""
     if w.get("closing"):
@@ -725,7 +716,7 @@ def r_title(w, win):
                      '<div class="lbl lbl--gray">%s</div>'
                      '%s%s</div></div>'
                      % (svg, eid, w["kicker"], w["title"], w.get("sub", ""), ch, tape))
-    win.beat(svgid, "draw", w["head_at"], dur=2000, ease="draw", sdur=1200)
+    win.beat(svgid, "draw", w["head_at"], dur=880, ease="draw", sdur=600)
     win.beat(eid, "slam", w["head_at"], dur=620, ease="slam")
     inner = "".join(win.parts)
     src = ""
@@ -741,16 +732,16 @@ def r_strip(w, win):
     scale than a hero window would give them."""
     kk = win.nid()
     win.parts.append('<div id="%s" data-fx="1" class="kicker"><i></i>%s</div>' % (kk, w["kicker"]))
-    win.beat(kk, "rise", w["header_at"], dur=340, ease="rise")
+    win.beat(kk, "rise", w["header_at"], dur=260, ease="rise")
     ttl = win.nid()
     win.parts.append('<div id="%s" data-fx="1" class="display" style="font-size:64px">%s</div>'
                      % (ttl, w["title"]))
-    win.beat(ttl, "slam", w["header_at"], dur=460, ease="slam")
+    win.beat(ttl, "slam", w["header_at"], dur=360, ease="slam")
     cells = []
     for it in w["items"]:
         a = artpanel(win, it["at"], it["key"], it["label"], show_caption=False)
         cap = win.nid()
-        win.beat(cap, "rise", it["at"], dur=340, ease="rise")
+        win.beat(cap, "rise", it["at"], dur=260, ease="rise")
         cells.append('<div class="strip__cell">%s'
                      '<div id="%s" data-fx="1" class="strip__cap">%s</div></div>'
                      % (a, cap, it["label"]))
@@ -771,11 +762,11 @@ def r_nodes(w, win):
     """A horizontal node chain, with a supporting drawing beside it."""
     kk = win.nid()
     win.parts.append('<div id="%s" data-fx="1" class="kicker"><i></i>%s</div>' % (kk, w["kicker"]))
-    win.beat(kk, "rise", w["header_at"], dur=340, ease="rise")
+    win.beat(kk, "rise", w["header_at"], dur=260, ease="rise")
     ttl = win.nid()
     win.parts.append('<div id="%s" data-fx="1" class="display" style="font-size:58px">%s</div>'
                      % (ttl, w["title"]))
-    win.beat(ttl, "slam", w["header_at"], dur=460, ease="slam")
+    win.beat(ttl, "slam", w["header_at"], dur=360, ease="slam")
     nodes = ""
     chain = w["chain"]
     # The connector between two nodes arrives with the node it points AT, so
@@ -797,11 +788,11 @@ def r_nodes(w, win):
                   '<div class="chain__lab"><b>%s</b><span>%s</span></div></div>'
                   % (nid, " chain__node--gold" if last else "", i + 1,
                      n["t"], n["s"]))
-        win.beat(nid, "pop", n["at"], dur=420, ease="pop")
+        win.beat(nid, "pop", n["at"], dur=300, ease="pop")
         if not last:
             aid = win.nid()
             nodes += ('<div id="%s" data-fx="1" class="chain__arrow">&darr;</div>' % aid)
-            win.beat(aid, "wipein", ats[i + 1], dur=240, ease="wipe")
+            win.beat(aid, "wipein", ats[i + 1], dur=200, ease="wipe")
     a = artpanel(win, w["art_at"], w["art"], w["art_caption"])
     src = ""
     if w.get("source"):
@@ -902,12 +893,10 @@ def _loudnorm_master(vo, vo_m, work):
 def build():
     import importlib
     import os as _os
-    spec_name = _os.environ.get("FUSION_SPEC")
-    if len(sys.argv) > 1 and not spec_name:
-        spec_name = sys.argv[1]
-    if not spec_name:
-        spec_name = "spec_07_fusion"
-    spec = importlib.import_module(spec_name)
+    global VOICE, RATE
+    spec = importlib.import_module(_os.environ.get("FUSION_SPEC", "spec_07_fusion"))
+    if hasattr(spec, "VOICE"): VOICE = spec.VOICE
+    if hasattr(spec, "RATE"): RATE = spec.RATE
     W = spec.W
     name = getattr(spec, "NAME", NAME)
     work = os.path.join(ROOT, "build", name)

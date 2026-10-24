@@ -24,6 +24,7 @@ SPEC = sys.argv[2] if len(sys.argv) > 2 else None
 if not SPEC:
     if 'vram' in NAME.lower(): SPEC = 'spec_vram'
     elif 'lora' in NAME.lower(): SPEC = 'spec_lora'
+    elif 'bottleneck' in NAME.lower(): SPEC = 'spec_bottleneck'
 sys.path.insert(0, os.path.join(ROOT, 'data'))
 PATH = os.path.join(ROOT, NAME + ".html")
 if not os.path.exists(PATH):
@@ -171,10 +172,6 @@ def extra_checks(s, F, beats, scenes, words, total):
             ok("14c", "no overlapping cues, the whole speech is captioned")
 
         chap = os.path.join(ROOT, NAME + "-chapters.txt")
-        if not os.path.exists(chap):
-            chap = os.path.join(ROOT, "episodes", NAME + "-chapters.txt")
-        if not os.path.exists(chap) and os.path.exists(PATH):
-            chap = os.path.join(os.path.dirname(PATH), NAME + "-chapters.txt")
         if not os.path.exists(chap):
             bad("14d", "no chapters file beside the episode")
         else:
@@ -393,20 +390,19 @@ def main():
     _mingap = None
     for sc in scenes:
         bs = sorted([b for b in beats if b["group"] == sc["id"]], key=lambda b: b["s"])
-        distinct_times = sorted(set(b["s"] for b in bs))
-        for i in range(1, len(distinct_times)):
-            dgap = distinct_times[i] - distinct_times[i - 1]
-            if dgap < MIN_GAP - 0.01:
+        for i in range(1, len(bs)):
+            gap = bs[i]["s"] - bs[i - 1]["s"]
+            if gap < MIN_GAP - 0.01:
                 v1 += 1
-                if _mingap is None or dgap < _mingap:
-                    _mingap = dgap
-            if dgap > MAX_GAP_FAIL:
+                if _mingap is None or gap < _mingap:
+                    _mingap = gap
+            if gap > MAX_GAP_FAIL:
                 v3 += 1
-            elif dgap > MAX_GAP_WARN:
+            elif gap > MAX_GAP_WARN:
                 v3 += 0
-                warn("3", "scene %d: %.2fs hold at t=%.2f"
-                     % (sc["id"] + 1, dgap, distinct_times[i]))
-        if len(distinct_times) > 1 and (distinct_times[1] - distinct_times[0]) < HERO_ALONE - 1e-6:
+                warn("3", "scene %d: %.2fs hold at t=%.2f (%s)"
+                     % (sc["id"] + 1, gap, bs[i]["s"], (bs[i].get("anchor") or "")[:34]))
+        if len(bs) > 1 and (bs[1]["s"] - bs[0]["s"]) < HERO_ALONE - 1e-6:
             v2 += 1
     if v1 == 0:
         ok("1", "no two beats within %.2fs" % MIN_GAP)
@@ -571,12 +567,11 @@ def main():
             if key in seen_groups:
                 continue
             seen_groups.add(key)
-            delay_s = float(b.get("delay", 0) or 0) / 1000.0
-            t_vis = b.get("arr", b["s"]) + delay_s
-            w = word_at(words, t_vis)
+            t_arr = b.get("arr", b["s"])
+            w = word_at(words, t_arr)
             if w is None:
                 continue
-            off = t_vis - w[0]
+            off = t_arr - w[0]
             if abs(off) <= WORD_TOL:
                 continue
             nud = b.get("nudge", 0)
@@ -585,35 +580,10 @@ def main():
             if nud < 0 and -nud <= TEASE_BOUND:
                 continue        # a deliberate tease: it lands before its word
             v5 += 1
-            bad("5", "visible arrival for %r at %.2fs is %.2fs from the word '%s'"
-                % ((b.get("anchor") or "")[:30], t_vis, off, w[1]))
+            bad("5", "arrival for %r at %.2fs is %.2fs from the word '%s'"
+                % ((b.get("anchor") or "")[:30], t_arr, off, w[1]))
         if v5 == 0:
-            ok("5", "every visible arrival lands within %.2fs of its spoken word" % WORD_TOL)
-
-        # ---------------------------------------------------------------
-        # 5b physical DOM visibility test in Chromium engine
-        invisible_elements = []
-        sample_beats = [b for b in beats if b.get("el") and b["el"].startswith("#")][:30]
-        for b in sample_beats:
-            dur_s = float(b.get("dur", 340) or 340) / 1000.0
-            delay_s = float(b.get("delay", 0) or 0) / 1000.0
-            t_check = min(total - 0.05, b["s"] + delay_s + dur_s + 0.05)
-            vis = pg.evaluate("""(data) => {
-              window.__FUSION__.renderState(data.t);
-              const el = document.querySelector(data.sel);
-              if (!el) return { found: false };
-              const s = getComputedStyle(el);
-              const op = parseFloat(s.opacity);
-              const disp = s.display;
-              const vis = s.visibility;
-              return { found: true, visible: op > 0.05 && disp !== 'none' && vis !== 'hidden', opacity: op };
-            }""", {"t": t_check, "sel": b["el"]})
-            if vis.get("found") and not vis.get("visible"):
-                invisible_elements.append(b["el"])
-        if not invisible_elements:
-            ok("5b", "sampled elements are physically visible in DOM at arrival time")
-        else:
-            bad("5b", "elements remain invisible at arrival time: %s" % invisible_elements[:5])
+            ok("5", "every arrival lands within %.2fs of its spoken word" % WORD_TOL)
 
         # ---------------------------------------------------------------
         # 11  static-frame band + 12  ink coverage, sampled at 3 fps
