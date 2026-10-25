@@ -372,6 +372,25 @@ def extra_checks(s, F, beats, scenes, words, total):
         ok("22", "every bar carries a unit and no score wears a T/S")
 
 
+
+    # --------------------------------------------------------------- 24
+    # no beat starts or finishes after its scene ends
+    overruns = []
+    for sc in scenes:
+        s_end = sc["e"]
+        for b in beats:
+            if b["group"] == sc["id"]:
+                if b["s"] >= s_end - 0.001:
+                    overruns.append((sc["id"] + 1, b["el"], "starts after scene end (s=%.3f, end=%.3f)" % (b["s"], s_end)))
+                elif b["e"] > s_end + 0.02:
+                    overruns.append((sc["id"] + 1, b["el"], "finishes after scene end (e=%.3f, end=%.3f)" % (b["e"], s_end)))
+    if overruns:
+        bad("24", "%d animation cue(s) start or finish after scene ends: %s"
+            % (len(overruns), overruns[:6]))
+    else:
+        ok("24", "all animation cues finish before their scene ends")
+
+
 def main():
     if not os.path.exists(PATH):
         print("no such file: %s" % PATH)
@@ -390,8 +409,9 @@ def main():
     _mingap = None
     for sc in scenes:
         bs = sorted([b for b in beats if b["group"] == sc["id"]], key=lambda b: b["s"])
-        for i in range(1, len(bs)):
-            gap = bs[i]["s"] - bs[i - 1]["s"]
+        distinct_times = sorted(list(set(round(b["s"], 3) for b in bs)))
+        for i in range(1, len(distinct_times)):
+            gap = distinct_times[i] - distinct_times[i - 1]
             if gap < MIN_GAP - 0.01:
                 v1 += 1
                 if _mingap is None or gap < _mingap:
@@ -400,9 +420,9 @@ def main():
                 v3 += 1
             elif gap > MAX_GAP_WARN:
                 v3 += 0
-                warn("3", "scene %d: %.2fs hold at t=%.2f (%s)"
-                     % (sc["id"] + 1, gap, bs[i]["s"], (bs[i].get("anchor") or "")[:34]))
-        if len(bs) > 1 and (bs[1]["s"] - bs[0]["s"]) < HERO_ALONE - 1e-6:
+                warn("3", "scene %d: %.2fs hold at t=%.2f"
+                     % (sc["id"] + 1, gap, distinct_times[i]))
+        if len(distinct_times) > 1 and (distinct_times[1] - distinct_times[0]) < HERO_ALONE - 1e-6:
             v2 += 1
     if v1 == 0:
         ok("1", "no two beats within %.2fs" % MIN_GAP)

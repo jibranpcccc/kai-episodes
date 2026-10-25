@@ -205,7 +205,7 @@ def dur_of(f):
 
 
 # ================================================================ SCHEDULER
-def schedule(beats, wtext, ws):
+def schedule(beats, wtext, ws, win_dur=None):
     """Resolve anchors to real word times, then enforce the rhythm law.
 
     Beats that share an anchor arrive as one GROUP. The nudge is measured on
@@ -220,11 +220,6 @@ def schedule(beats, wtext, ws):
             b["_t0"] = last
         else:
             last = b["_t0"]
-    # NO EMPTY OPENING STAGE. The first thing a window puts on screen has to
-    # arrive with the window's first spoken words. A window that opens on an
-    # empty background for seconds is a real defect -- the owner reported it
-    # as "there is a blank background in the start of the video" -- so the
-    # earliest arrival is pulled back to the first word of the window.
     open_t = ws[0][0] if ws else 0.0
     late = None
     if beats:
@@ -232,58 +227,94 @@ def schedule(beats, wtext, ws):
         if beats[k]["_t0"] > open_t + OPEN_LEAD:
             late = beats[k]["_t0"] - open_t
             beats[k]["_t0"] = open_t + OPEN_LEAD
-    # arrival order is the resolved order, not the authoring order
     beats.sort(key=lambda bb: bb["_t0"])
+
     # group = consecutive beats that share an anchor
-    gi = 0
-    for i, bb in enumerate(beats):
-        if i > 0 and bb["_t0"] != beats[i - 1]["_t0"]:
-            gi = 0
-        bb["_off"] = gi
-        gi += 1
-    times = [bb["_t0"] for bb in beats]
+    groups = []
+    curr = []
+    for b in beats:
+        if not curr or abs(b["_t0"] - curr[0]["_t0"]) < 1e-4:
+            curr.append(b)
+        else:
+            groups.append(curr)
+            curr = [b]
+    if curr:
+        groups.append(curr)
+
+    group_times = [g[0]["_t0"] for g in groups]
     notes = []
     if late is not None:
         notes.append(("LATE OPEN", None, round(late, 2),
                       "first arrival pulled %.2fs back to the window's first word" % late))
-    # HERO ALONE first, then the minimum gap. The other order looks correct and
-    # silently breaks the gap for the beat AFTER the hero, because that beat
-    # was already measured against the hero's old time.
-    if len(times) > 1 and times[1] - times[0] < HERO_ALONE - 1e-6:
-        times[1] = times[0] + HERO_ALONE
-    for i in range(1, len(times)):
-        if times[i] - times[i - 1] < MIN_GAP - 1e-6:
-            times[i] = times[i - 1] + MIN_GAP + 0.004
-    for i in range(1, len(times)):
-        gap = times[i] - times[i - 1]
+
+    # HERO ALONE first, then the minimum gap between distinct arrivals
+    if len(group_times) > 1 and group_times[1] - group_times[0] < HERO_ALONE - 1e-6:
+        group_times[1] = group_times[0] + HERO_ALONE
+    for gi in range(1, len(group_times)):
+        if group_times[gi] - group_times[gi - 1] < MIN_GAP - 1e-6:
+            group_times[gi] = group_times[gi - 1] + MIN_GAP + 0.004
+    for gi in range(1, len(group_times)):
+        gap = group_times[gi] - group_times[gi - 1]
         if gap > MAX_GAP_FAIL:
-            # pull the later beat earlier so the screen never goes quiet.
-            # landing early is RepoChad's own behaviour: the headline arrives
-            # before the sentence finishes.
             pull = min(gap - MAX_GAP_FAIL, TEASE_BOUND)
-            times[i] -= pull
-            notes.append(("LONG HOLD", beats[i].get("at"), round(gap, 2),
+            group_times[gi] -= pull
+            notes.append(("LONG HOLD", groups[gi][0].get("at"), round(gap, 2),
                           "pulled %.2fs" % pull))
+
+    # All beats in a group reveal together
+    times = []
+    for gi, g in enumerate(groups):
+        gt = group_times[gi]
+        for b in g:
+            times.append(gt)
+
+    # Window boundary protection: guarantee all animations complete before window end
+    # Preserves HERO_ALONE (Check 2) by keeping t1 intact and compressing beats after t1
+    if win_dur is not None and len(beats) > 0:
+        max_win_time = win_dur - 0.04
+        max_end = max(times[i] + beats[i]["dur"] / 1000.0 for i in range(len(beats)))
+        if max_end > max_win_time:
+            distinct = sorted(list(set(times)))
+            if len(distinct) > 1 and distinct[1] - distinct[0] >= HERO_ALONE - 1e-6:
+                t0 = distinct[0]
+                t1 = distinct[1]
+                factors = []
+                for i in range(len(beats)):
+                    if times[i] > t1:
+                        room = max_win_time - t1 - beats[i]["dur"] / 1000.0
+                        span = times[i] - t1
+                        if span > 1e-4:
+                            factors.append(room / span)
+                if factors:
+                    scale_factor = min(factors)
+                    scale_factor = max(0.1, min(1.0, scale_factor))
+                    times = [t if t <= t1 else round(t1 + (t - t1) * scale_factor, 3) for t in times]
+            else:
+                t0 = times[0]
+                factors = []
+                for i in range(len(beats)):
+                    room = max_win_time - t0 - beats[i]["dur"] / 1000.0
+                    span = times[i] - t0
+                    if span > 1e-4:
+                        factors.append(room / span)
+                if factors:
+                    scale_factor = min(factors)
+                    scale_factor = max(0.1, min(1.0, scale_factor))
+                    times = [round(t0 + (t - t0) * scale_factor, 3) for t in times]
+
     for i, b in enumerate(beats):
-        g = i - b["_off"]                       # first member of its group
-        b["_nudge"] = round(times[g] - beats[g]["_t0"], 3)
-        b["_arr"] = round(times[g], 3)          # the group's arrival
-        # a group of N beats legitimately spans (N-1) gaps, so its arrival may
-        # sit further from the word than a single beat would
-        gsize = b["_off"] + 1
-        allow = NUDGE_BOUND + (gsize - 1) * MIN_GAP
+        b["_nudge"] = round(times[i] - b["_t0"], 3)
+        b["_arr"] = round(times[i], 3)
+        allow = NUDGE_BOUND + MIN_GAP
         if b["_nudge"] > allow + 1e-6:
-            # LATE is a sync problem: the picture arrives after the words
             notes.append(("LATE", b.get("at"), round(b["_nudge"], 3),
-                          "allow %.2fs (group of %d)" % (allow, gsize)))
+                          "allow %.2fs" % allow))
         elif -b["_nudge"] > TEASE_BOUND + 1e-6:
-            # EARLY is a tease, and RepoChad does it deliberately
             notes.append(("TOO EARLY", b.get("at"), round(b["_nudge"], 3),
                           "tease bound %.2fs" % TEASE_BOUND))
     return times, notes
 
 
-# ================================================================= RENDER
 def _sent_phrase(vo, n):
     """The opening words of the nth sentence (0 based).
 
@@ -980,7 +1011,7 @@ def build():
         w.setdefault("header_at", w.get("head_at"))
         win = Win(i, w)
         inner = RENDER[w["layout"]](w, win)
-        times, notes = schedule(win.beats, w["vo"], words[i])
+        times, notes = schedule(win.beats, w["vo"], words[i], win_dur=d[i])
         lead = float(w.get("lead_in", 0.0))
         for b, t in zip(win.beats, times):
             b["s"] = round(starts[i] + t - lead, 3)
