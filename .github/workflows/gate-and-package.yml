@@ -59,6 +59,12 @@ jobs:
           echo "Running Quality Gate on $EP..."
           python -u data/fusion_gate.py "$EP"
 
+      - name: Run Deep Episode Semantic & Fact-Check Auditor
+        run: |
+          EP="${{ steps.ep.outputs.selected_episode }}"
+          echo "Running Deep Episode Auditor on $EP..."
+          python -u data/deep_episode_auditor.py "$EP"
+
       - name: Upload Verified Episode Artifacts
         uses: actions/upload-artifact@v4
         with:
