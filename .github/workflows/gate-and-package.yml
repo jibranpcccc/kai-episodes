@@ -32,11 +32,9 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install System Dependencies (FFmpeg & Fonts)
+      - name: Verify FFmpeg
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg fonts-inter fonts-noto-color-emoji
-          ffmpeg -version | head -1
+          ffmpeg -version | head -1 || sudo apt-get install -y ffmpeg
 
       - name: Install Python Dependencies
         run: |
