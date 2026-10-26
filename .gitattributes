@@ -1,0 +1,10 @@
+# Force Unix LF line endings for all text assets to ensure identical SHA-256 hashes across Linux CI and Windows
+* text=auto eol=lf
+*.html text eol=lf
+*.srt text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf

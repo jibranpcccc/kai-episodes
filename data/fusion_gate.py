@@ -650,6 +650,9 @@ def main():
             return best
 
         v5_errs = []
+        within_tol = 0
+        early_teases = 0
+        max_lead = 0.0
         for b in beats:
             anc = b.get("anchor")
             if not anc:
@@ -661,18 +664,36 @@ def main():
                 continue
             off = t_arr - pt
             if abs(off) <= WORD_TOL:
+                within_tol += 1
                 continue
             nud = b.get("nudge", 0)
             if abs(nud) <= NUDGE_BOUND:
+                within_tol += 1
                 continue
             if nud < 0 and -nud <= TEASE_BOUND:
-                continue        # intentional early tease
+                early_teases += 1
+                lead = -off
+                if lead > max_lead:
+                    max_lead = lead
+                continue        # intentional early visual reveal
             v5_errs.append("arrival for %s (%r) at %.2fs is %.2fs from phrase at %.2fs"
                            % (b.get("el"), anc[:25], t_arr, off, pt))
         if not v5_errs:
-            ok("5", "every arrival lands within %.2fs of its spoken anchor phrase (%d cues checked)" % (WORD_TOL, len(beats)))
+            ok("5", "%d cues strictly within ±%.2fs; %d intentional early reveals (max lead %.2fs) confirmed (total %d cues verified)"
+               % (within_tol, WORD_TOL, early_teases, max_lead, len(beats)))
         else:
             bad("5", "%d cue(s) miss spoken anchor phrase: %s" % (len(v5_errs), v5_errs[:4]))
+
+        # ---------------------------------------------------------------
+        # Run extra static, caption, spec, and chapter checks before heavy screenshot sampling
+        extra_checks(s, F, beats, scenes, words, total)
+        if any(code in ('0', '14e') for code, _ in FAILS):
+            b.close()
+            print("\n%d passed   %d warnings   %d failed" % (len(PASSES), len(WARNS), len(FAILS)))
+            print("\nFAILED")
+            for n, m in FAILS:
+                print("   [%s] %s" % (n, m))
+            return 1
 
         # ---------------------------------------------------------------
         # 11  static-frame band + 12  ink coverage, sampled at 3 fps
@@ -830,9 +851,6 @@ def main():
                         % (tp, TRUE_PEAK_MAX))
         else:
             bad("8", "could not measure loudness")
-
-    # ---------------------------------------------------------------
-    extra_checks(s, F, beats, scenes, words, total)
 
     # ---------------------------------------------------------------
     print("\n%d passed   %d warnings   %d failed" % (len(PASSES), len(WARNS), len(FAILS)))
