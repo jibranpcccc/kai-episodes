@@ -12,6 +12,9 @@ Tests:
   5. Negative: Stale SVG semantic artifact (router IP) rejected (SVG_SEMANTICS, code 1).
   6. Functional: 1440p frame rasterization fills 2560x1440 canvas without letterbox borders.
   7. Functional: Hard failure on invalid/corrupted MP4 verification (ffprobe probe rejects).
+  8. Negative: Deliberately late animation cue without valid nudge rejected (Check 5, code 1).
+  9. Negative: Invalid authored timing adjustment / mismatched nudge rejected (Check 5, code 1).
+  10. Negative: Incorrect phrase anchor missing from scene narration rejected (Check 5, code 1).
 
 Usage:
     python tests/test_quality_gates_rejection.py
@@ -167,29 +170,96 @@ def run_all_tests():
         cmd5 = [SYS_PY, os.path.join(ROOT, "data", "deep_episode_auditor.py"), test_ep_name]
         assert_rejection("5. Stale SVG artifact in deep_episode_auditor", cmd5, "SVG_SEMANTICS")
 
+        # ---------------------------------------------------------------------
+        # TEST 8: Deliberately Late Cue without Valid Adjustment (Check 5 Loophole Test)
+        # ---------------------------------------------------------------------
+        print("\n--- Test 8: Deliberately Late Cue Rejected (Check 5 Loophole Fix) ---")
+        io.open(spec_file, "w", encoding="utf-8").write(base_spec)
+        F_late = json.loads(m_f.group(1))
+        for b in F_late['beats']:
+            if b.get('el') == '#w0_02':
+                # Shift arrival 2.0 seconds late after spoken phrase (measured off ~ +2.0s)
+                b['s'] = 4.20
+                b['arr'] = 4.20
+                b['nudge'] = 0.0
+                break
+        bad_late_html = base_html.replace(m_f.group(1), json.dumps(F_late, separators=(',', ':')))
+        io.open(root_html, "w", encoding="utf-8").write(bad_late_html)
+        io.open(epis_html, "w", encoding="utf-8").write(bad_late_html)
+
+        cmd8 = [SYS_PY, os.path.join(ROOT, "data", "fusion_gate.py"), test_ep_name]
+        assert_rejection("8. Deliberately late cue in fusion_gate", cmd8, "miss spoken anchor phrase")
+
+        # ---------------------------------------------------------------------
+        # TEST 9: Invalid Timing Nudge / Mismatched Authored Offset (Check 5)
+        # ---------------------------------------------------------------------
+        print("\n--- Test 9: Invalid Timing Nudge Mismatch Rejected (Check 5) ---")
+        F_nud = json.loads(m_f.group(1))
+        for b in F_nud['beats']:
+            if b.get('el') == '#w0_02':
+                # Anchor arrives at ~2.157s; set arr=1.00s (off=-1.157s), but set nudge=-0.10s (mismatch=1.057s > 0.25s)
+                b['s'] = 1.00
+                b['arr'] = 1.00
+                b['nudge'] = -0.10
+                break
+        bad_nud_html = base_html.replace(m_f.group(1), json.dumps(F_nud, separators=(',', ':')))
+        io.open(root_html, "w", encoding="utf-8").write(bad_nud_html)
+        io.open(epis_html, "w", encoding="utf-8").write(bad_nud_html)
+
+        cmd9 = [SYS_PY, os.path.join(ROOT, "data", "fusion_gate.py"), test_ep_name]
+        assert_rejection("9. Mismatched nudge in fusion_gate", cmd9, "miss spoken anchor phrase")
+
+        # ---------------------------------------------------------------------
+        # TEST 10: Incorrect Phrase Anchor Missing From Narration (Check 5)
+        # ---------------------------------------------------------------------
+        print("\n--- Test 10: Incorrect Anchor Phrase Rejected (Check 5) ---")
+        F_anc = json.loads(m_f.group(1))
+        for b in F_anc['beats']:
+            if b.get('el') == '#w0_02':
+                b['anchor'] = "quantum cryogenic superconductor"
+                break
+        bad_anc_html = base_html.replace(m_f.group(1), json.dumps(F_anc, separators=(',', ':')))
+        io.open(root_html, "w", encoding="utf-8").write(bad_anc_html)
+        io.open(epis_html, "w", encoding="utf-8").write(bad_anc_html)
+
+        cmd10 = [SYS_PY, os.path.join(ROOT, "data", "fusion_gate.py"), test_ep_name]
+        assert_rejection("10. Missing anchor phrase in fusion_gate", cmd10, "miss spoken anchor phrase")
+
     finally:
         cleanup()
 
     # -------------------------------------------------------------------------
-    # TEST 6: 1440p Browser Viewport & Zero-Letterbox Raster Test (Requirement A)
+    # TEST 6: 1440p Frame Rasterization & Full Stage Coverage (Requirement A)
     # -------------------------------------------------------------------------
     print("\n--- Test 6: 1440p Frame Rasterization & Full Stage Coverage ---")
     try:
         from playwright.sync_api import sync_playwright
         from PIL import Image
 
-        with sync_playwright() as p:
-            try:
-                b = p.chromium.launch(args=["--force-device-scale-factor=1"])
-            except Exception:
-                b = p.chromium.launch(channel="chrome", args=["--force-device-scale-factor=1"])
-            
-            # CSS Viewport: 1920x1080, device_scale_factor=4/3 -> Raster screenshot: 2560x1440
+        with sync_playwright() as pw:
+            b = pw.chromium.launch()
+            # 1920x1080 CSS viewport with device_scale_factor = 4/3 -> 2560x1440 raster
             pg = b.new_page(viewport={"width": 1920, "height": 1080}, device_scale_factor=4 / 3)
-            pg.goto(Path(canonical_html).resolve().as_uri() + "?t=0")
+            pg.goto("file:///" + canonical_html.replace("\\", "/") + "?t=0")
             pg.wait_for_function("!!((window.EPISODE || window.FUSION) && window.renderAt)", timeout=60000)
             pg.evaluate("document.body.classList.add('render')")
             pg.evaluate("window.renderAt(2.0)")
+
+            stage_info = pg.evaluate('''() => {
+                const stage = document.querySelector('#stage') || document.querySelector('.stage') || document.body;
+                const rect = stage.getBoundingClientRect();
+                const cs = window.getComputedStyle(stage);
+                return {
+                    id: stage.id,
+                    className: stage.className,
+                    left: rect.left,
+                    top: rect.top,
+                    width: rect.width,
+                    height: rect.height,
+                    bgColor: cs.backgroundColor
+                };
+            }''')
+
             shot_file = os.path.join(ROOT, "temp_audit_frame.png")
             pg.screenshot(path=shot_file, type="png")
             b.close()
@@ -197,22 +267,28 @@ def run_all_tests():
         with Image.open(shot_file) as im:
             w, h = im.size
             aspect = w / h
-            corners = [
-                im.getpixel((5, 5)),
-                im.getpixel((2554, 5)),
-                im.getpixel((5, 1434)),
-                im.getpixel((2554, 1434))
-            ]
+            c_tl = im.getpixel((0, 0))
+            c_tr = im.getpixel((w - 1, 0))
+            c_bl = im.getpixel((0, h - 1))
+            c_br = im.getpixel((w - 1, h - 1))
+            corners = [c_tl, c_tr, c_bl, c_br]
 
         if os.path.exists(shot_file):
             os.remove(shot_file)
 
-        if w == 2560 and h == 1440 and abs(aspect - 16 / 9) < 0.001:
-            PASSED_TESTS.append(("6. 1440p Zero-Letterbox Rasterization", f"Exact {w}x{h} (16:9), stage fills full raster canvas"))
-            print(f"  [PASS] 6. 1440p Zero-Letterbox Rasterization: {w}x{h} (16:9), corners={corners}")
+        stage_anchored = (
+            stage_info.get("left") == 0 and stage_info.get("top") == 0 and
+            stage_info.get("width") == 1920 and stage_info.get("height") == 1080
+        )
+        dim_ok = (w == 2560 and h == 1440 and abs(aspect - 16 / 9) < 0.001)
+        corners_ok = all(isinstance(c, tuple) and all(v < 60 for v in c[:3]) for c in corners)
+
+        if dim_ok and stage_anchored and corners_ok:
+            PASSED_TESTS.append(("6. 1440p Zero-Letterbox Rasterization", f"Exact {w}x{h} (16:9), stage fills full raster canvas, all corners match dark obsidian stage ({corners})"))
+            print(f"  [PASS] 6. 1440p Zero-Letterbox Rasterization: {w}x{h} (16:9), DOM stage 1920x1080 fully occupying 2560x1440 canvas, corners={corners}")
         else:
-            FAILED_TESTS.append(("6. 1440p Zero-Letterbox Rasterization", f"Invalid dimensions: {w}x{h}, aspect={aspect:.4f}"))
-            print(f"  [FAIL] 6. 1440p Zero-Letterbox Rasterization: {w}x{h}")
+            FAILED_TESTS.append(("6. 1440p Zero-Letterbox Rasterization", f"Stage fill failure: dim_ok={dim_ok}, stage_anchored={stage_anchored}, corners_ok={corners_ok}, corners={corners}"))
+            print(f"  [FAIL] 6. 1440p Zero-Letterbox Rasterization: {w}x{h}, stage_anchored={stage_anchored}, corners={corners}")
     except Exception as e:
         FAILED_TESTS.append(("6. 1440p Zero-Letterbox Rasterization", f"Exception: {e}"))
         print(f"  [FAIL] 6. 1440p Zero-Letterbox Rasterization: {e}")

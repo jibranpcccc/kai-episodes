@@ -339,14 +339,27 @@ else:
     record_pass("TAIL_FREEZE", "All scene tail holds <= 4.0s (No frozen static screens)")
 
 # 3. Card visibility duration ceiling (>= 1.0s after reveal completes before scene cut)
+content_ids = set()
+for sc_markup in scene_html:
+    for m in re.finditer(r'<(\w+)([^>]*\bid="(w\d+_\d+)"[^>]*)>', sc_markup):
+        tag, attrs, rid = m.group(1), m.group(2), m.group(3)
+        cm = re.search(r'class="([^"]*)"', attrs)
+        cls_str = cm.group(1) if cm else ""
+        if (
+            "row--" in cls_str or "chip--" in cls_str or "bar" in cls_str or
+            "railrow" in cls_str or "chain__node" in cls_str or tag == "li" or
+            any(k in cls_str for k in ("card", "compare__col", "col", "cell", "kpi", "diag", "verdict"))
+        ):
+            content_ids.add("#" + rid)
+
 short_cards = []
 for win_idx in range(len(scenes)):
     sc = scenes[win_idx]
     sc_beats = [b for b in beats if b.get("group") == win_idx]
     for b in sc_beats:
         el = b.get("el") or ""
-        # Inspect content elements (nodes, bars, cards, compare cols)
-        if any(x in el for x in ('06', '07', '08', '09', '10', '11', '12')):
+        # Inspect content elements (role-based: cards, nodes, bars, chips, rows, compare cols)
+        if el in content_ids:
             vis = sc["e"] - b["e"]
             if vis < 0.99:
                 short_cards.append((win_idx + 1, b["el"], vis))

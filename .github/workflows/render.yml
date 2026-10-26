@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       episode:
-        description: "Specific episode to render (e.g. BYTE-VRAM, BYTE-LORA-FINAL, or 'all')"
+        description: "Specific episode to render (e.g. BYTE-VRAM, BYTE-DUAL-GPU, or 'all')"
         required: false
-        default: "BYTE-VRAM"
+        default: "BYTE-DUAL-GPU"
       res:
         description: "Target render resolution (1440p or 1080p)"
         required: false
@@ -35,10 +35,19 @@ jobs:
       episodes: ${{ steps.ls.outputs.list }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - id: ls
+        env:
+          INPUT_EPISODE: ${{ github.event.inputs.episode }}
         run: |
-          if [ -n "${{ github.event.inputs.episode }}" ] && [ "${{ github.event.inputs.episode }}" != "all" ]; then
-            LIST="[\"${{ github.event.inputs.episode }}\"]"
+          EP="${INPUT_EPISODE:-BYTE-DUAL-GPU}"
+          if [ "$EP" != "all" ]; then
+            if ! echo "$EP" | grep -Eq '^[A-Za-z0-9_-]+$'; then
+              echo "::error::Invalid episode input format: $EP"
+              exit 1
+            fi
+            LIST="[\"$EP\"]"
           else
             LIST=$(ls episodes/*.html 2>/dev/null | xargs -r -n1 basename \
                    | sed 's/\.html$//' | jq -R -s -c 'split("\n")|map(select(length>0))')
@@ -60,6 +69,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install ffmpeg
         run: |
@@ -86,7 +97,13 @@ jobs:
           FPS: ${{ github.event.inputs.fps || '30' }}
           RES: ${{ github.event.inputs.res || '1440p' }}
           ONLY: ${{ matrix.episode }}
-        run: python -u scripts/render.py
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          if [[ "$RES" != "1440p" && "$RES" != "1080p" ]]; then
+            echo "::error::Invalid resolution $RES (must be 1440p or 1080p)"
+            exit 1
+          fi
+          python -u scripts/render.py
 
       - name: Upload ${{ matrix.episode }} MP4
         uses: actions/upload-artifact@v4

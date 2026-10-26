@@ -41,15 +41,16 @@ def extract_audio(html: str, dst: Path) -> bool:
     return True
 
 
-def verify_rendered_mp4(mp4: Path, total: float, expected_res: str, has_audio: bool):
+def verify_rendered_mp4(mp4: Path, total: float, expected_res: str = "1440p", has_audio: bool = True):
     """
-    Strict post-render stream, dimension, duration, and decode integrity verification.
+    Strict post-render stream, dimension, frame rate, duration, and decode integrity verification.
     Raises ValueError or RuntimeError on ANY defect (hard failure).
     """
     target_w, target_h = (2560, 1440) if expected_res == "1440p" else (1920, 1080)
     
     probe = subprocess.run([
-        "ffprobe", "-v", "error", "-show_entries", "format=duration:stream=codec_type,width,height",
+        "ffprobe", "-v", "error",
+        "-show_entries", "format=duration:stream=codec_type,codec_name,width,height,r_frame_rate,channels,channel_layout",
         "-of", "json", str(mp4)
     ], capture_output=True, text=True)
     if probe.returncode != 0:
@@ -59,9 +60,14 @@ def verify_rendered_mp4(mp4: Path, total: float, expected_res: str, has_audio: b
     v_stream = next((s for s in info.get("streams", []) if s.get("codec_type") == "video"), None)
     a_stream = next((s for s in info.get("streams", []) if s.get("codec_type") == "audio"), None)
     
+    # 1. Video stream verification
     if v_stream is None:
         raise ValueError(f"CRITICAL RENDER DEFECT: {mp4.name} contains NO video stream!")
     
+    v_codec = v_stream.get("codec_name")
+    if not v_codec or v_codec not in ("h264", "hevc", "av1", "vp9"):
+        raise ValueError(f"CRITICAL RENDER DEFECT: {mp4.name} invalid or missing video codec: '{v_codec}'!")
+        
     actual_w = v_stream.get("width")
     actual_h = v_stream.get("height")
     if actual_w != target_w or actual_h != target_h:
@@ -70,9 +76,31 @@ def verify_rendered_mp4(mp4: Path, total: float, expected_res: str, has_audio: b
             f"expected exact {target_w}x{target_h} ({expected_res})!"
         )
     
-    if has_audio and a_stream is None:
-        raise ValueError(f"CRITICAL RENDER DEFECT: {mp4.name} contains NO audio stream when audio was expected!")
+    r_fps_str = v_stream.get("r_frame_rate", "0/1")
+    try:
+        num, den = map(float, r_fps_str.split("/"))
+        actual_fps = num / den if den != 0 else 0.0
+    except Exception:
+        actual_fps = 0.0
+    if abs(actual_fps - FPS) > 0.5:
+        raise ValueError(f"CRITICAL RENDER DEFECT: {mp4.name} frame rate is {actual_fps:.2f}fps, expected {FPS}fps!")
     
+    # 2. Audio stream verification
+    if has_audio:
+        if a_stream is None:
+            raise ValueError(f"CRITICAL RENDER DEFECT: {mp4.name} contains NO audio stream when narration audio was required!")
+        a_codec = a_stream.get("codec_name")
+        if not a_codec or a_codec not in ("aac", "mp3", "opus", "flac"):
+            raise ValueError(f"CRITICAL RENDER DEFECT: {mp4.name} invalid audio codec: '{a_codec}' (expected aac/mp3/opus)!")
+        channels = int(a_stream.get("channels", 0))
+        if channels < 1:
+            raise ValueError(f"CRITICAL RENDER DEFECT: {mp4.name} has invalid audio channel count ({channels})!")
+        layout = a_stream.get("channel_layout") or ("mono" if channels == 1 else "stereo" if channels == 2 else f"{channels}ch")
+        audio_desc = f"{a_codec} ({layout}, {channels}ch)"
+    else:
+        audio_desc = "none (no audio track required)"
+    
+    # 3. Duration & Drift Check
     dur_mp4 = float(info.get("format", {}).get("duration", 0))
     if abs(dur_mp4 - total) > 0.20:
         raise ValueError(
@@ -80,14 +108,14 @@ def verify_rendered_mp4(mp4: Path, total: float, expected_res: str, has_audio: b
             f"expected cue timeline {total:.2f}s by {abs(dur_mp4 - total):.2f}s (> 0.20s threshold)!"
         )
     
-    # Run full decoding pass with ffmpeg to null sink to catch corrupted frames or bitstream errors
+    # 4. Bitstream decoding pass via ffmpeg null sink
     decode_check = subprocess.run([
         "ffmpeg", "-v", "error", "-i", str(mp4), "-f", "null", "-"
     ], capture_output=True, text=True)
     if decode_check.returncode != 0 or decode_check.stderr.strip():
         raise RuntimeError(f"CRITICAL RENDER DEFECT: {mp4.name} failed bitstream decoding: {decode_check.stderr.strip()}")
     
-    print(f"[{mp4.stem}] MP4 VERIFIED: {actual_w}x{actual_h} ({expected_res}), duration={dur_mp4:.2f}s, audio={'yes' if a_stream else 'no'}")
+    print(f"[{mp4.stem}] MP4 VERIFIED: {v_codec} {actual_w}x{actual_h} @ {actual_fps:.1f}fps, audio: {audio_desc}, duration={dur_mp4:.2f}s")
 
 
 def render_one(page, html_path: Path) -> Path:

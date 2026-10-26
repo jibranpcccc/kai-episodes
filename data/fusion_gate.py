@@ -370,14 +370,24 @@ def extra_checks(s, F, beats, scenes, words, total):
 
     # --------------------------------------------------------------- 21b
     # visual cards stay visible for >= 1.0s after reveal completes
+    content_ids = set()
+    for i, x in enumerate(scene_html):
+        for m in re.finditer(r'<(\w+)([^>]*id="(w\d+_\d+)"[^>]*)>', x):
+            tag, attrs, rid = m.group(1), m.group(2), m.group(3)
+            cm = re.search(r'class="([^"]*)"', attrs)
+            cls_str = cm.group(1) if cm else ""
+            r = _role(tag, cls_str)
+            if r in ("row", "chip", "bar", "rail", "chain", "note") or any(k in cls_str for k in ("card", "compare__col", "col", "cell", "kpi", "diag", "verdict")):
+                content_ids.add("#" + rid)
+
     short_holds = []
     for sc in scenes:
         s_end = sc["e"]
         for b in beats:
             if b["group"] == sc["id"]:
                 el = b.get("el") or ""
-                # Check cards / nodes / compare columns (exclude source footers and HUD)
-                if any(x in el for x in ('06', '07', '08', '09', '10', '11', '12')):
+                # Role-based inspection: require >= 1.0s hold for content elements
+                if el in content_ids:
                     hold = s_end - b["e"]
                     if hold < 0.99:
                         short_holds.append((sc["id"] + 1, el, hold))
@@ -629,12 +639,17 @@ def main():
 
         flat_ws = [(w[0], tok) for w in words for tok in _toks(w[1])]
 
-        def match_anchor(anchor, t_target, window=6.0):
+        def match_anchor_in_scene(anchor, t_target, sc_start, sc_end):
             a_tokens = _toks(anchor)
-            if not a_tokens: return None
+            if not a_tokens:
+                return None
             k = len(a_tokens)
-            best, best_diff = None, float('inf')
+            best, best_diff = None, float("inf")
+            # 1. Search within the scene's spoken time window (+- 0.8s phrase boundary)
             for i in range(len(flat_ws) - k + 1):
+                t_word = flat_ws[i][0]
+                if t_word < sc_start - 0.80 or t_word > sc_end + 0.80:
+                    continue
                 matched = True
                 for j in range(k):
                     tok_a = a_tokens[j]
@@ -643,10 +658,26 @@ def main():
                         matched = False
                         break
                 if matched:
-                    diff = abs(flat_ws[i][0] - t_target)
-                    if diff < best_diff and diff <= window:
+                    diff = abs(t_word - t_target)
+                    if diff < best_diff:
                         best_diff = diff
-                        best = flat_ws[i][0]
+                        best = t_word
+
+            # 2. Fallback to wider window if scene boundary was offset
+            if best is None:
+                for i in range(len(flat_ws) - k + 1):
+                    matched = True
+                    for j in range(k):
+                        tok_a = a_tokens[j]
+                        tok_w = flat_ws[i+j][1]
+                        if tok_a != tok_w and not (j == k - 1 and tok_w.startswith(tok_a)):
+                            matched = False
+                            break
+                    if matched:
+                        diff = abs(flat_ws[i][0] - t_target)
+                        if diff < best_diff and diff <= 6.0:
+                            best_diff = diff
+                            best = flat_ws[i][0]
             return best
 
         v5_errs = []
@@ -655,29 +686,53 @@ def main():
         max_lead = 0.0
         for b in beats:
             anc = b.get("anchor")
-            if not anc:
+            if not anc or not anc.strip():
+                v5_errs.append("beat %s has missing or empty anchor phrase" % b.get("el"))
                 continue
+            sc_id = b.get("group", 0)
+            sc = scenes[sc_id] if 0 <= sc_id < len(scenes) else {"s": 0.0, "e": total}
             t_arr = b.get("arr", b["s"])
-            pt = match_anchor(anc, t_arr)
+            pt = match_anchor_in_scene(anc, t_arr, sc["s"], sc["e"])
             if pt is None:
-                v5_errs.append("anchor %r for %s not found in spoken text" % (anc, b.get("el")))
+                v5_errs.append("anchor %r for %s not found in scene %d spoken text" % (anc, b.get("el"), sc_id + 1))
                 continue
             off = t_arr - pt
+            nud = b.get("nudge")
+
+            # Normal cue: strictly within +-0.55s
             if abs(off) <= WORD_TOL:
+                # If an authored nudge was explicitly specified, verify it matches the actual measured offset
+                if nud is not None and abs(nud) > 1e-4:
+                    if abs(off - nud) > 0.25:
+                        v5_errs.append("authored nudge %+.3fs for %s does not match measured offset %+.3fs"
+                                       % (nud, b.get("el"), off))
+                        continue
                 within_tol += 1
                 continue
-            nud = b.get("nudge", 0)
-            if abs(nud) <= NUDGE_BOUND:
-                within_tol += 1
-                continue
-            if nud < 0 and -nud <= TEASE_BOUND:
-                early_teases += 1
-                lead = -off
-                if lead > max_lead:
-                    max_lead = lead
-                continue        # intentional early visual reveal
-            v5_errs.append("arrival for %s (%r) at %.2fs is %.2fs from phrase at %.2fs"
-                           % (b.get("el"), anc[:25], t_arr, off, pt))
+
+            # Explicitly authored early reveal (off < -WORD_TOL)
+            if nud is not None and nud < -1e-4:
+                # Must match measured offset
+                if abs(off - nud) > 0.25:
+                    v5_errs.append("authored early nudge %+.3fs for %s does not match measured offset %+.3fs"
+                                   % (nud, b.get("el"), off))
+                    continue
+                # Allowed early adjustment range is up to TEASE_BOUND (2.0s)
+                if -nud <= TEASE_BOUND and -off <= TEASE_BOUND:
+                    early_teases += 1
+                    lead = -off
+                    if lead > max_lead:
+                        max_lead = lead
+                    continue
+                else:
+                    v5_errs.append("early reveal for %s (%r) lead %.2fs exceeds allowed limit %.2fs"
+                                   % (b.get("el"), anc[:25], -off, TEASE_BOUND))
+                    continue
+
+            # If off > WORD_TOL or missing/zero nudge with abs(off) > WORD_TOL: FATAL ERROR
+            v5_errs.append("arrival for %s (%r) at %.2fs is %+.2fs from phrase at %.2fs (exceeds ±%.2fs tolerance; no valid early adjustment)"
+                           % (b.get("el"), anc[:25], t_arr, off, pt, WORD_TOL))
+
         if not v5_errs:
             ok("5", "%d cues strictly within ±%.2fs; %d intentional early reveals (max lead %.2fs) confirmed (total %d cues verified)"
                % (within_tol, WORD_TOL, early_teases, max_lead, len(beats)))
