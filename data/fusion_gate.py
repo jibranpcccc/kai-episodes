@@ -27,6 +27,7 @@ if not SPEC:
     elif 'bottleneck' in NAME.lower(): SPEC = 'spec_bottleneck'
     elif 'payback' in NAME.lower(): SPEC = 'spec_payback'
     elif 'dual' in NAME.lower() or 'gpu' in NAME.lower(): SPEC = 'spec_dual_gpu'
+    elif 'context' in NAME.lower(): SPEC = 'spec_context'
 
 sys.path.insert(0, os.path.join(ROOT, 'data'))
 # Prefer episodes/ as the canonical render target
