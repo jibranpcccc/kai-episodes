@@ -33,10 +33,10 @@ from collections import Counter, defaultdict
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAME = sys.argv[1] if len(sys.argv) > 1 else "BYTE-DUAL-GPU"
 
-# Resolve HTML path
-PATH = os.path.join(ROOT, NAME + ".html")
+# Resolve HTML path (prefer canonical episodes/ render target)
+PATH = os.path.join(ROOT, "episodes", NAME + ".html")
 if not os.path.exists(PATH):
-    PATH = os.path.join(ROOT, "episodes", NAME + ".html")
+    PATH = os.path.join(ROOT, NAME + ".html")
 if not os.path.exists(PATH):
     PATH = os.path.join(r"c:\Users\jibra\Desktop\1\Chad_Visuals", NAME + ".html")
 
