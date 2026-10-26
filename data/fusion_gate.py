@@ -25,6 +25,7 @@ if not SPEC:
     if 'vram' in NAME.lower(): SPEC = 'spec_vram'
     elif 'lora' in NAME.lower(): SPEC = 'spec_lora'
     elif 'bottleneck' in NAME.lower(): SPEC = 'spec_bottleneck'
+    elif 'payback' in NAME.lower(): SPEC = 'spec_payback'
 sys.path.insert(0, os.path.join(ROOT, 'data'))
 PATH = os.path.join(ROOT, NAME + ".html")
 if not os.path.exists(PATH):

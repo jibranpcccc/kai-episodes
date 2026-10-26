@@ -1,0 +1,1191 @@
+1
+00:00:00,000 --> 00:00:01,887
+Imagine spending eight hundred dollars on a
+
+2
+00:00:01,887 --> 00:00:03,714
+graphics card because you are tired of
+
+3
+00:00:03,714 --> 00:00:06,478
+paying for artificial intelligence. You install a
+
+4
+00:00:06,478 --> 00:00:08,882
+local model. It runs. It answers
+
+5
+00:00:08,882 --> 00:00:11,250
+questions. And every answer feels free.
+
+6
+00:00:11,570 --> 00:00:14,230
+Until someone asks a very uncomfortable question.
+
+7
+00:00:14,550 --> 00:00:15,795
+How many paid answers would you
+
+8
+00:00:15,795 --> 00:00:17,285
+have needed to buy before that
+
+9
+00:00:17,285 --> 00:00:19,420
+graphics card actually saved you money?
+
+10
+00:00:19,740 --> 00:00:21,198
+Not how many tokens the model can
+
+11
+00:00:21,198 --> 00:00:23,409
+generate. Not whether the model fits in
+
+12
+00:00:23,409 --> 00:00:25,549
+VRAM. And not whether a YouTube
+
+13
+00:00:25,549 --> 00:00:27,510
+benchmark makes the card look impressive.
+
+14
+00:00:27,830 --> 00:00:31,137
+I mean the entire bill. Hardware. Electricity.
+
+15
+00:00:31,137 --> 00:00:33,589
+Software. Time. And the quality of the
+
+16
+00:00:33,589 --> 00:00:35,110
+answers you are getting in return.
+
+17
+00:00:35,430 --> 00:00:37,641
+There is an argument online that local AI
+
+18
+00:00:37,641 --> 00:00:39,636
+is always cheaper because there is no
+
+19
+00:00:39,636 --> 00:00:41,896
+charge for each prompt. There is another
+
+20
+00:00:41,896 --> 00:00:44,372
+argument that cloud AI is always cheaper
+
+21
+00:00:44,372 --> 00:00:46,540
+because the provider buys hardware at scale.
+
+22
+00:00:46,860 --> 00:00:49,530
+Both arguments skip the same thing: your workload.
+
+23
+00:00:49,852 --> 00:00:51,535
+Today, we are going to build a real
+
+24
+00:00:51,535 --> 00:00:54,011
+decision framework for when local AI saves
+
+25
+00:00:54,011 --> 00:00:55,946
+money, when it does not, and when
+
+26
+00:00:55,946 --> 00:00:57,590
+the best answer is to use both.
+
+27
+00:00:57,910 --> 00:00:59,787
+Every dollar figure in our examples is
+
+28
+00:00:59,787 --> 00:01:02,540
+hypothetical, not a claim about today's GPU
+
+29
+00:01:02,540 --> 00:01:05,380
+prices or anyone's actual API bill.
+
+30
+00:01:05,704 --> 00:01:07,147
+Start with two people looking at
+
+31
+00:01:07,147 --> 00:01:08,840
+exactly the same graphics card.
+
+32
+00:01:09,160 --> 00:01:11,785
+The first person wants help writing emails, asking
+
+33
+00:01:11,785 --> 00:01:15,187
+technical questions, and occasionally explaining code. Maybe they
+
+34
+00:01:15,187 --> 00:01:16,966
+open an AI assistant a few times
+
+35
+00:01:16,966 --> 00:01:18,950
+a day. Some days, not at all.
+
+36
+00:01:19,270 --> 00:01:21,536
+The second person has an automated pipeline
+
+37
+00:01:21,536 --> 00:01:24,830
+processing documents every evening. It sends thousands
+
+38
+00:01:24,830 --> 00:01:28,363
+of model requests, checks structured outputs, retries
+
+39
+00:01:28,363 --> 00:01:30,719
+failures, and runs whether anybody is
+
+40
+00:01:30,719 --> 00:01:32,300
+sitting at the keyboard or not.
+
+41
+00:01:32,630 --> 00:01:36,330
+Same GPU. Same price. Completely different economics.
+
+42
+00:01:36,659 --> 00:01:38,846
+For the first person, the machine could spend
+
+43
+00:01:38,846 --> 00:01:40,590
+most of its life waiting for work.
+
+44
+00:01:40,919 --> 00:01:42,854
+For the second, it may be doing useful
+
+45
+00:01:42,854 --> 00:01:45,318
+inference for hours. And if the second person's
+
+46
+00:01:45,318 --> 00:01:48,250
+workload fits a smaller local model well, that
+
+47
+00:01:48,250 --> 00:01:51,500
+card might replace a substantial recurring API bill.
+
+48
+00:01:51,820 --> 00:01:53,751
+But here is the trap. Before comparing
+
+49
+00:01:53,751 --> 00:01:55,960
+costs, you must compare the same job.
+
+50
+00:01:56,280 --> 00:01:58,066
+A cloud subscription is not the same
+
+51
+00:01:58,066 --> 00:02:00,614
+thing as a cloud API. A subscription
+
+52
+00:02:00,614 --> 00:02:03,510
+may bundle a chat interface, tools, usage
+
+53
+00:02:03,510 --> 00:02:05,940
+limits, and access to multiple models.
+
+54
+00:02:06,260 --> 00:02:08,483
+An API may charge by input and
+
+55
+00:02:08,483 --> 00:02:11,331
+output tokens, with separate rates and sometimes
+
+56
+00:02:11,331 --> 00:02:14,420
+additional features. And rented GPU compute may
+
+57
+00:02:14,420 --> 00:02:16,764
+charge for elapsed server time, whether your
+
+58
+00:02:16,764 --> 00:02:19,380
+model is generating tokens or sitting idle.
+
+59
+00:02:19,700 --> 00:02:22,013
+Those are three different purchases. Putting all
+
+60
+00:02:22,013 --> 00:02:23,611
+of them under a single number called
+
+61
+00:02:23,611 --> 00:02:26,230
+cloud AI makes the calculation meaningless.
+
+62
+00:02:26,554 --> 00:02:28,164
+So step one is to write down
+
+63
+00:02:28,164 --> 00:02:29,991
+what you are actually replacing. Are you
+
+64
+00:02:29,991 --> 00:02:32,984
+replacing a personal chat subscription? A usage-based
+
+65
+00:02:32,984 --> 00:02:35,003
+API in a business workflow? Or a
+
+66
+00:02:35,003 --> 00:02:37,020
+rented server that hosts your own model?
+
+67
+00:02:37,340 --> 00:02:39,421
+If you cannot answer that, stop. You
+
+68
+00:02:39,421 --> 00:02:41,570
+do not have a break-even calculation yet.
+
+69
+00:02:41,890 --> 00:02:43,210
+Now consider the local machine.
+
+70
+00:02:43,530 --> 00:02:46,151
+The most obvious cost is the graphics card.
+
+71
+00:02:46,151 --> 00:02:48,206
+But buying a GPU is not always the
+
+72
+00:02:48,206 --> 00:02:50,890
+same as buying a working local AI computer.
+
+73
+00:02:51,210 --> 00:02:53,262
+You may also need more system memory, a
+
+74
+00:02:53,262 --> 00:02:56,447
+suitable power supply, enough storage for model files,
+
+75
+00:02:56,447 --> 00:02:58,350
+and cooling that can handle extended use.
+
+76
+00:02:58,670 --> 00:03:00,241
+And this matters because an existing
+
+77
+00:03:00,241 --> 00:03:02,296
+graphics card is a different financial
+
+78
+00:03:02,296 --> 00:03:04,280
+decision from a brand-new graphics card.
+
+79
+00:03:04,600 --> 00:03:06,321
+If you own the hardware already, the
+
+80
+00:03:06,321 --> 00:03:08,761
+purchase cost has already happened. The next
+
+81
+00:03:08,761 --> 00:03:10,913
+local inference job may cost you only
+
+82
+00:03:10,913 --> 00:03:14,090
+incremental power, wear, maintenance, and your time.
+
+83
+00:03:14,410 --> 00:03:16,337
+If you are buying hardware specifically to
+
+84
+00:03:16,337 --> 00:03:19,414
+avoid cloud bills, that entire incremental investment
+
+85
+00:03:19,414 --> 00:03:20,730
+needs to earn its way back.
+
+86
+00:03:21,050 --> 00:03:23,035
+Let's talk about electricity, because it
+
+87
+00:03:23,035 --> 00:03:25,000
+is where both sides exaggerate.
+
+88
+00:03:25,320 --> 00:03:28,475
+A GPU manufacturer's power specification is not
+
+89
+00:03:28,475 --> 00:03:30,578
+your electricity bill. It may describe a
+
+90
+00:03:30,578 --> 00:03:33,130
+board limit or a particular operating condition.
+
+91
+00:03:33,450 --> 00:03:36,409
+Your computer also has a CPU, memory,
+
+92
+00:03:36,409 --> 00:03:40,014
+fans, power-supply losses, and possibly a display.
+
+93
+00:03:40,014 --> 00:03:42,214
+And AI workloads do not necessarily
+
+94
+00:03:42,214 --> 00:03:44,220
+draw the same power every second.
+
+95
+00:03:44,540 --> 00:03:46,607
+The useful measurement is the extra power
+
+96
+00:03:46,607 --> 00:03:48,855
+your system consumes while doing the job,
+
+97
+00:03:48,855 --> 00:03:50,285
+compared with what it would have consumed
+
+98
+00:03:50,285 --> 00:03:52,870
+anyway. Ideally, measure that at the wall.
+
+99
+00:03:53,199 --> 00:03:56,084
+Here is the basic equation. Kilowatt-hours equals
+
+100
+00:03:56,084 --> 00:03:58,632
+power in kilowatts multiplied by hours of
+
+101
+00:03:58,632 --> 00:04:01,468
+operation. Multiply that by your local electricity
+
+102
+00:04:01,468 --> 00:04:03,500
+rate to estimate the energy charge.
+
+103
+00:04:03,820 --> 00:04:06,865
+Let's invent a simple example. Suppose local inference
+
+104
+00:04:06,865 --> 00:04:08,608
+adds an average of two hundred and fifty
+
+105
+00:04:08,608 --> 00:04:10,447
+watts at the wall. You use it for
+
+106
+00:04:10,447 --> 00:04:12,815
+two hours a day, thirty days a month,
+
+107
+00:04:12,815 --> 00:04:15,460
+and electricity costs twenty cents per kilowatt-hour.
+
+108
+00:04:15,780 --> 00:04:18,111
+Two hundred and fifty watts is one quarter
+
+109
+00:04:18,111 --> 00:04:20,178
+of a kilowatt. Two hours per day for
+
+110
+00:04:20,178 --> 00:04:23,424
+thirty days is sixty hours. One quarter multiplied
+
+111
+00:04:23,424 --> 00:04:26,933
+by sixty is fifteen kilowatt-hours. At twenty cents
+
+112
+00:04:26,933 --> 00:04:28,800
+each, that is three dollars per month.
+
+113
+00:04:29,129 --> 00:04:30,799
+Three dollars. Not three hundred
+
+114
+00:04:30,799 --> 00:04:32,940
+dollars. But not zero, either.
+
+115
+00:04:33,260 --> 00:04:35,919
+Now change only the runtime. If that extra
+
+116
+00:04:35,919 --> 00:04:37,710
+two hundred and fifty watts were sustained
+
+117
+00:04:37,710 --> 00:04:39,645
+around the clock for thirty days, the
+
+118
+00:04:39,645 --> 00:04:42,866
+calculation becomes one hundred and eighty kilowatt-hours,
+
+119
+00:04:42,866 --> 00:04:44,670
+or thirty-six dollars at the same rate.
+
+120
+00:04:44,992 --> 00:04:48,189
+That second example is deliberately constant power, not
+
+121
+00:04:48,189 --> 00:04:49,896
+a prediction of what an idle machine
+
+122
+00:04:49,896 --> 00:04:52,852
+will draw. Real workloads fluctuate. A server
+
+123
+00:04:52,852 --> 00:04:55,088
+may spend long periods at low power.
+
+124
+00:04:55,088 --> 00:04:57,850
+Cooling and local electricity rates also vary.
+
+125
+00:04:58,170 --> 00:05:00,821
+The lesson is simple. Measure operating time
+
+126
+00:05:00,821 --> 00:05:03,141
+and average power. Do not multiply a
+
+127
+00:05:03,141 --> 00:05:06,422
+GPU's maximum rated wattage by twenty-four hours
+
+128
+00:05:06,422 --> 00:05:08,270
+and pretend you have measured reality.
+
+129
+00:05:08,590 --> 00:05:10,989
+But electricity is only the visible running
+
+130
+00:05:10,989 --> 00:05:13,417
+cost. The hidden cost is capacity that
+
+131
+00:05:13,417 --> 00:05:15,240
+you paid for and did not use.
+
+132
+00:05:15,560 --> 00:05:18,396
+Imagine buying the card for eight hundred dollars.
+
+133
+00:05:18,396 --> 00:05:21,088
+For a hypothetical example, suppose the cloud service
+
+134
+00:05:21,088 --> 00:05:23,540
+doing the same work would cost fifteen dollars
+
+135
+00:05:23,540 --> 00:05:25,751
+per month, while the local system adds
+
+136
+00:05:25,751 --> 00:05:28,456
+three dollars of electricity per month. Ignore
+
+137
+00:05:28,456 --> 00:05:31,150
+maintenance and resale value for one moment.
+
+138
+00:05:31,470 --> 00:05:34,382
+Your avoided monthly cost is twelve dollars. Eight
+
+139
+00:05:34,382 --> 00:05:37,795
+hundred divided by twelve is about sixty-seven months.
+
+140
+00:05:37,795 --> 00:05:39,586
+More than five and a half years before
+
+141
+00:05:39,586 --> 00:05:41,750
+the original card purchase has been recovered.
+
+142
+00:05:42,070 --> 00:05:45,463
+Now take a different hypothetical workload. Suppose equivalent
+
+143
+00:05:45,463 --> 00:05:47,819
+cloud processing costs one hundred and twenty
+
+144
+00:05:47,819 --> 00:05:49,946
+dollars each month, while the same local
+
+145
+00:05:49,946 --> 00:05:52,674
+electrical cost is three dollars. The monthly
+
+146
+00:05:52,674 --> 00:05:55,020
+difference is one hundred and seventeen dollars.
+
+147
+00:05:55,340 --> 00:05:57,041
+Eight hundred divided by one hundred and
+
+148
+00:05:57,041 --> 00:05:59,310
+seventeen is just under seven months.
+
+149
+00:05:59,630 --> 00:06:03,380
+Same card. Same assumed electricity. Wildly different result.
+
+150
+00:06:03,700 --> 00:06:04,970
+But those numbers hide a second
+
+151
+00:06:04,970 --> 00:06:07,260
+trap. What does equivalent actually mean?
+
+152
+00:06:07,580 --> 00:06:09,520
+If the cloud model reliably solves a
+
+153
+00:06:09,520 --> 00:06:11,900
+difficult task and your local model needs
+
+154
+00:06:11,900 --> 00:06:14,844
+three attempts, manual corrections, and a second
+
+155
+00:06:14,844 --> 00:06:16,791
+model to check the answer, comparing the
+
+156
+00:06:16,791 --> 00:06:18,770
+price of one response is dishonest.
+
+157
+00:06:19,090 --> 00:06:21,364
+You need cost per successful task. Not
+
+158
+00:06:21,364 --> 00:06:23,432
+just cost per token. Not just tokens
+
+159
+00:06:23,432 --> 00:06:25,500
+per second. Cost per useful result.
+
+160
+00:06:25,824 --> 00:06:27,843
+For coding, a useful result might be a
+
+161
+00:06:27,843 --> 00:06:31,389
+patch that passes tests. For document extraction,
+
+162
+00:06:31,389 --> 00:06:33,340
+it might be a field captured correctly.
+
+163
+00:06:33,663 --> 00:06:35,874
+For summarization, it might be a report that
+
+164
+00:06:35,874 --> 00:06:38,891
+preserves the facts. For customer support, it might
+
+165
+00:06:38,891 --> 00:06:41,270
+be a response that actually resolves the issue.
+
+166
+00:06:41,590 --> 00:06:43,961
+When quality differs, the number of retries
+
+167
+00:06:43,961 --> 00:06:47,086
+changes. The number of human reviews changes.
+
+168
+00:06:47,086 --> 00:06:49,020
+And the apparent bargain can disappear.
+
+169
+00:06:49,340 --> 00:06:51,094
+This brings us to a cost that never
+
+170
+00:06:51,094 --> 00:06:54,310
+appears in most GPU comparisons: your own time.
+
+171
+00:06:54,630 --> 00:06:56,692
+Someone has to choose a model. Install a
+
+172
+00:06:56,692 --> 00:07:01,139
+runtime. Configure GPU drivers. Keep storage under control.
+
+173
+00:07:01,139 --> 00:07:05,249
+Update versions without breaking the workflow. Investigate failures.
+
+174
+00:07:05,249 --> 00:07:07,180
+And decide whether an answer was acceptable.
+
+175
+00:07:07,500 --> 00:07:09,281
+If you enjoy doing that, the time
+
+176
+00:07:09,281 --> 00:07:10,784
+can be part of the hobby. That
+
+177
+00:07:10,784 --> 00:07:12,538
+is a perfectly valid reason to run
+
+178
+00:07:12,538 --> 00:07:14,365
+local AI. But if you operate a
+
+179
+00:07:14,365 --> 00:07:16,986
+business and an employee spends hours maintaining
+
+180
+00:07:16,986 --> 00:07:19,140
+the system, those hours are not free.
+
+181
+00:07:19,460 --> 00:07:22,806
+Treat setup time separately from ongoing administration.
+
+182
+00:07:22,806 --> 00:07:24,693
+You may pay a one-time learning cost
+
+183
+00:07:24,693 --> 00:07:27,253
+that gets smaller as you gain experience.
+
+184
+00:07:27,253 --> 00:07:28,395
+Or you may build a fragile
+
+185
+00:07:28,395 --> 00:07:30,690
+pipeline that needs attention every week.
+
+186
+00:07:31,010 --> 00:07:32,253
+There is another reason people buy
+
+187
+00:07:32,253 --> 00:07:33,972
+local hardware even when it does
+
+188
+00:07:33,972 --> 00:07:35,880
+not win the spreadsheet: control.
+
+189
+00:07:36,200 --> 00:07:38,150
+Local AI can keep model inference on
+
+190
+00:07:38,150 --> 00:07:40,494
+equipment you operate. It can work without
+
+191
+00:07:40,494 --> 00:07:42,261
+an internet connection if the required
+
+192
+00:07:42,261 --> 00:07:44,720
+models and software are already installed.
+
+193
+00:07:45,040 --> 00:07:47,016
+And you can choose exactly when to update
+
+194
+00:07:47,016 --> 00:07:48,590
+the model instead of waking up to
+
+195
+00:07:48,590 --> 00:07:51,060
+an unexpected change in a hosted service.
+
+196
+00:07:51,380 --> 00:07:53,864
+Those can be valuable advantages. But local is
+
+197
+00:07:53,864 --> 00:07:57,193
+not automatically private. The surrounding application may still
+
+198
+00:07:57,193 --> 00:08:00,979
+check for updates, send telemetry, use remote tools,
+
+199
+00:08:00,979 --> 00:08:03,707
+or route some features through online services.
+
+200
+00:08:03,707 --> 00:08:05,380
+You have to inspect the whole workflow.
+
+201
+00:08:05,700 --> 00:08:08,688
+Cloud services also vary in their privacy, data
+
+202
+00:08:08,688 --> 00:08:12,498
+handling, reliability, and contractual options. The point is
+
+203
+00:08:12,498 --> 00:08:15,010
+not that one side is always safe. The
+
+204
+00:08:15,010 --> 00:08:18,435
+point is that confidentiality and operational control can
+
+205
+00:08:18,435 --> 00:08:21,150
+carry value beyond the cost per million tokens.
+
+206
+00:08:21,470 --> 00:08:24,598
+Now suppose your calculations favor buying a GPU.
+
+207
+00:08:24,598 --> 00:08:26,610
+There is still one final hardware question.
+
+208
+00:08:26,936 --> 00:08:28,487
+Will it stay useful long enough
+
+209
+00:08:28,487 --> 00:08:29,910
+to reach the break-even point?
+
+210
+00:08:30,230 --> 00:08:32,169
+A card purchased for today's model may
+
+211
+00:08:32,169 --> 00:08:35,414
+be constrained by tomorrow's requirements. An application
+
+212
+00:08:35,414 --> 00:08:37,998
+could demand a longer context window. A
+
+213
+00:08:37,998 --> 00:08:40,234
+newer model may need more memory. Or
+
+214
+00:08:40,234 --> 00:08:42,085
+the task may change from short chat
+
+215
+00:08:42,085 --> 00:08:45,130
+replies to document pipelines with parallel requests.
+
+216
+00:08:45,450 --> 00:08:47,666
+A cautious calculation tests more than one
+
+217
+00:08:47,666 --> 00:08:50,394
+outcome. What happens if cloud costs fall?
+
+218
+00:08:50,394 --> 00:08:51,692
+What happens if you run only
+
+219
+00:08:51,692 --> 00:08:53,460
+half as many tasks as planned?
+
+220
+00:08:53,780 --> 00:08:56,353
+What happens if electricity rises? What happens
+
+221
+00:08:56,353 --> 00:08:57,844
+if you sell the GPU in two
+
+222
+00:08:57,844 --> 00:08:59,640
+years instead of keeping it for five?
+
+223
+00:08:59,960 --> 00:09:01,171
+This is where I would reject the
+
+224
+00:09:01,171 --> 00:09:04,560
+usual local-versus-cloud argument entirely. You do
+
+225
+00:09:04,560 --> 00:09:06,130
+not have to choose one forever.
+
+226
+00:09:06,450 --> 00:09:10,485
+A hybrid setup can run small, repeatable, privacy-sensitive,
+
+227
+00:09:10,485 --> 00:09:13,514
+or high-volume tasks locally, while sending occasional
+
+228
+00:09:13,514 --> 00:09:15,617
+difficult jobs to a cloud model when
+
+229
+00:09:15,617 --> 00:09:18,140
+its extra capability is worth paying for.
+
+230
+00:09:18,460 --> 00:09:19,581
+You can use a local model
+
+231
+00:09:19,581 --> 00:09:21,732
+to classify documents and a hosted
+
+232
+00:09:21,732 --> 00:09:23,770
+model to review exceptional cases.
+
+233
+00:09:24,090 --> 00:09:26,929
+You can draft offline and verify online. You
+
+234
+00:09:26,929 --> 00:09:29,212
+can run a predictable nightly workload on your
+
+235
+00:09:29,212 --> 00:09:31,580
+own GPU without pretending that the same
+
+236
+00:09:31,580 --> 00:09:34,460
+GPU can handle every possible reasoning task.
+
+237
+00:09:34,780 --> 00:09:36,157
+So here is the actual audit
+
+238
+00:09:36,157 --> 00:09:37,890
+I would run before buying hardware.
+
+239
+00:09:38,254 --> 00:09:41,163
+First, collect thirty days of real usage.
+
+240
+00:09:41,163 --> 00:09:43,459
+Record how many requests you made, how
+
+241
+00:09:43,459 --> 00:09:45,706
+many input and output tokens were billed
+
+242
+00:09:45,706 --> 00:09:48,711
+where applicable, and what those requests accomplished.
+
+243
+00:09:48,711 --> 00:09:50,360
+Do not guess from a busy afternoon.
+
+244
+00:09:50,681 --> 00:09:54,263
+Second, separate subscriptions, API calls, and rented
+
+245
+00:09:54,263 --> 00:09:57,580
+GPU charges. Their pricing structures are different.
+
+246
+00:09:57,580 --> 00:10:01,787
+Include any caching, batch-processing discounts, storage fees,
+
+247
+00:10:01,787 --> 00:10:03,800
+or tool charges that genuinely apply.
+
+248
+00:10:04,135 --> 00:10:06,142
+Third, test a local model on the
+
+249
+00:10:06,142 --> 00:10:09,243
+same representative tasks. Measure whether the outputs
+
+250
+00:10:09,243 --> 00:10:11,322
+are good enough, how often they require
+
+251
+00:10:11,322 --> 00:10:13,790
+correction, and how long the workflow takes.
+
+252
+00:10:14,164 --> 00:10:17,205
+Fourth, estimate the full incremental hardware cost
+
+253
+00:10:17,205 --> 00:10:19,224
+and measure wall-power usage under the real
+
+254
+00:10:19,224 --> 00:10:23,310
+workload. Include any additional system components, cooling,
+
+255
+00:10:23,310 --> 00:10:24,980
+and maintenance that actually affect you.
+
+256
+00:10:25,329 --> 00:10:28,922
+Fifth, calculate more than one break-even scenario. Use
+
+257
+00:10:28,922 --> 00:10:33,141
+conservative assumptions for usage, quality, and hardware lifetime.
+
+258
+00:10:33,141 --> 00:10:35,377
+If the result changes completely when one
+
+259
+00:10:35,377 --> 00:10:38,440
+assumption moves a little, acknowledge that uncertainty.
+
+260
+00:10:38,760 --> 00:10:41,142
+And sixth, consider what money alone does
+
+261
+00:10:41,142 --> 00:10:44,123
+not measure: offline operation, control over
+
+262
+00:10:44,123 --> 00:10:46,959
+model versions, data-handling requirements, and how
+
+263
+00:10:46,959 --> 00:10:50,080
+much you enjoy—or dislike—maintaining the system.
+
+264
+00:10:50,400 --> 00:10:52,180
+Now we can give three honest verdicts.
+
+265
+00:10:52,500 --> 00:10:54,218
+If you ask a few questions a day
+
+266
+00:10:54,218 --> 00:10:55,961
+and already have access to a cloud
+
+267
+00:10:55,961 --> 00:10:58,053
+service that meets your needs, buying a
+
+268
+00:10:58,053 --> 00:11:00,480
+new GPU purely to save money may
+
+269
+00:11:00,480 --> 00:11:02,330
+never pay off within its useful life.
+
+270
+00:11:02,650 --> 00:11:04,888
+If you run a large, repeatable volume of
+
+271
+00:11:04,888 --> 00:11:07,833
+work and a local model delivers comparable successful
+
+272
+00:11:07,833 --> 00:11:11,871
+results, dedicated hardware can make strong economic sense.
+
+273
+00:11:11,871 --> 00:11:14,479
+The break-even point depends on your actual costs
+
+274
+00:11:14,479 --> 00:11:16,990
+and workload, not on a universal promise.
+
+275
+00:11:17,310 --> 00:11:18,613
+And if you already own a capable
+
+276
+00:11:18,613 --> 00:11:21,846
+GPU, test it before buying anything else.
+
+277
+00:11:21,846 --> 00:11:23,601
+You might have a useful local inference
+
+278
+00:11:23,601 --> 00:11:25,100
+machine sitting on your desk today.
+
+279
+00:11:25,420 --> 00:11:27,333
+Its incremental running cost is a
+
+280
+00:11:27,333 --> 00:11:29,124
+very different question from the cost
+
+281
+00:11:29,124 --> 00:11:30,870
+of building a whole new computer.
+
+282
+00:11:31,190 --> 00:11:33,565
+That is the real GPU payback trap.
+
+283
+00:11:33,565 --> 00:11:35,788
+People compare a one-time hardware price with
+
+284
+00:11:35,788 --> 00:11:38,048
+a monthly cloud price, draw a dramatic
+
+285
+00:11:38,048 --> 00:11:40,596
+line where they cross, and forget everything
+
+286
+00:11:40,596 --> 00:11:42,420
+that makes the two services different.
+
+287
+00:11:42,740 --> 00:11:45,286
+Price the workload. Test the quality. Measure
+
+288
+00:11:45,286 --> 00:11:47,740
+the power. Count the time. Then decide.
+
+289
+00:11:48,060 --> 00:11:49,950
+And tell me something in the comments. Are
+
+290
+00:11:49,950 --> 00:11:52,390
+you running local AI to save money, to
+
+291
+00:11:52,390 --> 00:11:55,106
+keep control of your data, to work offline,
+
+292
+00:11:55,106 --> 00:11:57,140
+or simply because you enjoy owning the machine?
+
+293
+00:11:57,463 --> 00:12:00,047
+Tell me your GPU, your main use case,
+
+294
+00:12:00,047 --> 00:12:01,478
+and whether you actually know what the
+
+295
+00:12:01,478 --> 00:12:03,780
+equivalent cloud workflow costs you each month.
+
+296
+00:12:04,100 --> 00:12:06,082
+This is Byte Forensics. We do not
+
+297
+00:12:06,082 --> 00:12:08,209
+just ask whether the model runs. We
+
+298
+00:12:08,209 --> 00:12:10,530
+ask what running it is really worth.

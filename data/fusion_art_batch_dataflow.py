@@ -54,23 +54,23 @@ def prompt_stream():
 
 # ==================================================================== dataflow 2
 def token_blocks():
-    """A prompt cut into tokens: a tight row of blocks under one gold bracket."""
+    """30-day billed usage telemetry audit log."""
     b = []
     b.append('<text x="40" y="28" font-family="FuseMono, monospace" font-size="15" '
-             'font-weight="800" fill="%s" letter-spacing="3">PROMPT TOKENS</text>' % GREY)
-    # --- the blocks, packed tight against each other
-    for i in range(14):
-        b.append('<rect x="%d" y="52" width="20" height="20" rx="2" fill="%s" opacity=".55"/>'
-                 % (40 + i * 24, INK))
+             'font-weight="800" fill="%s" letter-spacing="3">30-DAY USAGE LOG</text>' % GREY)
+    # --- 30 day blocks representing a calendar month of logs
+    for i in range(15):
+        b.append('<rect x="%d" y="52" width="18" height="20" rx="2" fill="%s" opacity="%s"/>'
+                 % (40 + i * 22, GOLD if i % 4 == 0 else INK, ".75" if i % 4 == 0 else ".35"))
     # --- the bracket, spanning the whole row
     b.append('<g data-amb="pulse" data-amb-k="0" data-amb-speed="1.4">')
-    b.append('<path d="M40 88 L40 102 L372 102 L372 88" fill="none" stroke="%s" '
+    b.append('<path d="M40 88 L40 102 L370 102 L370 88" fill="none" stroke="%s" '
              'stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' % GOLD)
     b.append('</g>')
-    # --- how many there are
-    b.append('<text x="206" y="130" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="16" font-weight="800" fill="%s" letter-spacing="3">1,024 TOKENS</text>'
-             % INK)
+    # --- description
+    b.append('<text x="205" y="130" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="15" font-weight="800" fill="%s" letter-spacing="2">BILLED USAGE AUDIT</text>'
+             % GOLD)
     return _svg("28 5 356 137", "".join(b), "token_blocks")
 
 
@@ -133,20 +133,20 @@ def kv_cache():
 
 # ==================================================================== dataflow 5
 def pipeline():
-    """A node chain: four stages, arrows between them, the output picked out in gold."""
+    """Automated document processing pipeline: four stages, retry & validation."""
     b = []
     b.append('<text x="40" y="32" font-family="FuseMono, monospace" font-size="15" '
-             'font-weight="800" fill="%s" letter-spacing="3">PIPELINE</text>' % GREY)
+             'font-weight="800" fill="%s" letter-spacing="3">DOCUMENT PIPELINE</text>' % GREY)
     # --- the four stages
-    stages = [("PROMPT", "TEXT"), ("PREFILL", "FULL PASS"),
-              ("DECODE", "1 TOKEN"), ("STREAM", "OUTPUT")]
+    stages = [("DOCUMENTS", "INGEST"), ("BATCH QUEUE", "API CALLS"),
+              ("STRUCTURED", "OUTPUTS"), ("VALIDATION", "RETRY GATE")]
     for i, (name, sub) in enumerate(stages):
         x = 40 + i * 168
         last = (i == 3)
         b.append('<rect x="%d" y="56" width="112" height="120" rx="12" fill="none" '
                  'stroke="%s" stroke-width="3"/>' % (x, GOLD if last else INK))
         b.append('<text x="%d" y="108" text-anchor="middle" font-family="FuseMono, monospace" '
-                 'font-size="15" font-weight="800" fill="%s" letter-spacing="2">%s</text>'
+                 'font-size="14" font-weight="800" fill="%s" letter-spacing="2">%s</text>'
                  % (x + 56, INK, name))
         b.append('<text x="%d" y="134" text-anchor="middle" font-family="FuseMono, monospace" '
                  'font-size="12" font-weight="700" fill="%s" letter-spacing="2">%s</text>'
@@ -161,7 +161,7 @@ def pipeline():
                  % (x + 34, x + 46, x + 34, INK))
     b.append('<text x="348" y="206" text-anchor="middle" font-family="FuseMono, monospace" '
              'font-size="13" font-weight="700" fill="%s" letter-spacing="2">'
-             'DATA FLOWS LEFT TO RIGHT</text>' % FAINT)
+             'AUTOMATED EVENING PIPELINE</text>' % FAINT)
     return _svg("28 9 640 212", "".join(b), "pipeline")
 
 

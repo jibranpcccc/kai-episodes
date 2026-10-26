@@ -114,43 +114,46 @@ def gpu_card():
 
 # ==================================================================== scene 3
 def collapse_curve():
-    """Prefill collapsing as context grows. Legend, axes and labels, no
-    collisions."""
-    pts = [(74, 62), (214, 96), (350, 176), (462, 238)]
-    labs = ["4K", "16K", "64K", "128K"]
+    """Capital recovery & payback trajectory curve. Fixed CapEx vs Accumulated Savings."""
+    pts = [(74, 210), (170, 170), (270, 130), (370, 90), (462, 50)]
+    labs = ["1 MO", "6 MOS", "12 MOS", "24 MOS"]
     b = []
-    # --- legend, two rows in the clear space top right
-    b.append('<path d="M252 20 L286 20" stroke="%s" stroke-width="4" stroke-linecap="round"/>' % RED)
-    b.append('<text x="296" y="26" font-family="FuseMono, monospace" font-size="16" '
-             'font-weight="800" fill="%s" letter-spacing="2">PREFILL</text>' % RED)
-    b.append('<path d="M252 42 L286 42" stroke="%s" stroke-width="3" stroke-dasharray="7 6" '
-             'stroke-linecap="round"/>' % CYAN)
-    b.append('<text x="296" y="48" font-family="FuseMono, monospace" font-size="16" '
-             'font-weight="800" fill="%s" letter-spacing="2">GENERATION</text>' % CYAN)
-    # --- axes
-    b.append('<path d="M58 56 L58 252 L468 252" fill="none" stroke="%s" stroke-width="2" '
-             'opacity=".45"/>' % INK)
-    b.append('<text x="58" y="46" font-family="FuseMono, monospace" font-size="13" '
-             'font-weight="700" fill="%s" letter-spacing="2">TOKENS/S</text>' % FAINT)
-    # --- generation, the graceful one
-    b.append('<path d="M58 50 L214 66 L350 106 L462 152" fill="none" stroke="%s" stroke-width="3" '
-             'stroke-dasharray="7 7" stroke-linecap="round" opacity=".8"/>' % CYAN)
-    # --- prefill, the one that collapses
-    d = "M" + " L".join("%.1f %.1f" % (x, y) for x, y in pts)
-    b.append('<path d="%s" fill="none" stroke="%s" stroke-width="4.5" stroke-linecap="round" '
-             'stroke-linejoin="round"/>' % (d, RED))
-    for i, (x, y) in enumerate(pts):
-        b.append('<g data-amb="pulse" data-amb-k="%d" data-amb-speed="1.25">' % i)
-        # data-draw-delay: the dot appears exactly as the line reaches it
-        b.append('<circle cx="%d" cy="%d" r="9" fill="%s" data-draw-delay="%s"/>'
-                 % (x, y, RED, ["0.0", "0.30", "0.66", "1.02"][i]))
-        b.append('</g>')
-        b.append('<text x="%d" y="276" text-anchor="middle" font-family="FuseMono, monospace" '
-                 'font-size="17" font-weight="700" fill="%s" letter-spacing="2">%s</text>'
-                 % (x, INK, labs[i]))
-    b.append('<text x="58" y="302" font-family="FuseMono, monospace" font-size="13" '
-             'font-weight="700" fill="%s" letter-spacing="2">CONTEXT</text>' % FAINT)
-    return _svg("48 8 462 308", "".join(b), "collapse")
+    # --- legend, two rows top right
+    b.append('<path d="M230 20 L264 20" stroke="%s" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>' % CYAN)
+    b.append('<text x="274" y="26" font-family="FuseMono, monospace" font-size="15" '
+             'font-weight="800" fill="%s" letter-spacing="2">AVOIDED OPEX</text>' % CYAN)
+    b.append('<path d="M230 42 L264 42" stroke="%s" stroke-width="4" stroke-linecap="round"/>' % GOLD)
+    b.append('<text x="274" y="48" font-family="FuseMono, monospace" font-size="15" '
+             'font-weight="800" fill="%s" letter-spacing="2">HARDWARE CAPEX</text>' % GOLD)
+    # --- the axis box
+    b.append('<path d="M74 48 L74 246 L468 246" fill="none" stroke="%s" stroke-width="2.5" '
+             'stroke-linecap="round" stroke-linejoin="round"/>' % INK)
+    b.append('<text x="64" y="52" text-anchor="end" font-family="FuseMono, monospace" '
+             'font-size="13" font-weight="700" fill="%s">USD ($)</text>' % GREY)
+    # --- horizontal fixed capex line ($800)
+    b.append('<path d="M74 130 L468 130" stroke="%s" stroke-width="2.5" stroke-dasharray="5 5" opacity=".7"/>' % GOLD)
+    b.append('<text x="472" y="134" font-family="FuseMono, monospace" font-size="12" '
+             'font-weight="700" fill="%s">CAPEX</text>' % GOLD)
+    # --- the rising avoided opex curve
+    d = ["M74 230"]
+    for x, y in pts:
+        d.append("L%d %d" % (x, y))
+    b.append('<path d="%s" fill="none" stroke="%s" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+             % (" ".join(d), CYAN))
+    # --- the break-even intersection point
+    b.append('<g data-amb="pulse" data-amb-k="0" data-amb-speed="1.8">')
+    b.append('<circle cx="270" cy="130" r="7" fill="%s"/>' % GOLD)
+    b.append('<circle cx="270" cy="130" r="14" fill="none" stroke="%s" stroke-width="2"/>' % GOLD)
+    b.append('<text x="270" y="112" text-anchor="middle" font-family="FuseMono, monospace" '
+             'font-size="13" font-weight="800" fill="%s" letter-spacing="1">BREAK-EVEN</text>' % GOLD)
+    b.append('</g>')
+    # --- x tick marks & labels
+    for i, lab in enumerate(labs):
+        x = 100 + i * 110
+        b.append('<path d="M%d 246 L%d 254" stroke="%s" stroke-width="2" stroke-linecap="round"/>' % (x, x, INK))
+        b.append('<text x="%d" y="272" text-anchor="middle" font-family="FuseMono, monospace" '
+                 'font-size="13" font-weight="700" fill="%s">%s</text>' % (x, GREY, lab))
+    return _svg("20 8 480 274", "".join(b), "collapse")
 
 
 # ==================================================================== scene 4
@@ -199,34 +202,34 @@ def stopwatch():
 
 # ==================================================================== scene 5
 def bandwidth_meter():
-    """Memory bus. The peak marker has to be unmissable."""
+    """Kill-A-Watt style electrical wall power telemetry meter."""
     b = []
     b.append('<text x="34" y="40" font-family="FuseMono, monospace" font-size="15" '
-             'font-weight="800" fill="%s" letter-spacing="3">BANDWIDTH</text>' % GREY)
-    # --- the bus
-    b.append('<rect x="34" y="132" width="412" height="40" rx="7" fill="rgba(56,217,232,.05)" '
+             'font-weight="800" fill="%s" letter-spacing="3">WALL POWER</text>' % GREY)
+    # Digital display box
+    b.append('<rect x="34" y="60" width="412" height="110" rx="10" fill="rgba(56,217,232,.04)" '
              'stroke="%s" stroke-width="2"/>' % CYAN)
+    # Segmented readout
+    b.append('<text x="56" y="125" font-family="FuseMono, monospace" font-size="44" '
+             'font-weight="900" fill="%s" letter-spacing="2">250.0</text>' % CYAN)
+    b.append('<text x="220" y="125" font-family="FuseMono, monospace" font-size="20" '
+             'font-weight="800" fill="%s" letter-spacing="2">WATTS (W)</text>' % GREY)
+    # Status indicator bars
     for i in range(13):
-        b.append('<rect x="%d" y="138" width="18" height="28" rx="2" fill="%s" opacity="%s"/>'
-                 % (46 + i * 30, CYAN, ".85" if i < 6 else ".16"))
-    # --- the peak, unmistakable
-    b.append('<g data-amb="pulse" data-amb-k="0" data-amb-speed="1.6">')
-    b.append('<path d="M196 104 L196 200" stroke="%s" stroke-width="4" stroke-dasharray="8 7" '
-             'stroke-linecap="round"/>' % GOLD)
-    b.append('<path d="M186 116 L196 104 L206 116" fill="none" stroke="%s" stroke-width="4" '
-             'stroke-linecap="round" stroke-linejoin="round"/>' % GOLD)
-    b.append('</g>')
-    b.append('<g data-amb="pulse" data-amb-k="1" data-amb-speed="1.6">')
-    b.append('<text x="196" y="92" text-anchor="middle" font-family="FuseMono, monospace" '
-             'font-size="15" font-weight="800" fill="%s" letter-spacing="2">THE LIMIT</text>' % GOLD)
-    b.append('</g>')
-    # --- read direction
-    b.append('<path d="M34 236 L446 236 M432 228 L446 236 L432 244" fill="none" stroke="%s" '
+        b.append('<rect x="%d" y="145" width="18" height="14" rx="2" fill="%s" opacity="%s"/>'
+                 % (56 + i * 28, GOLD if i < 8 else CYAN, ".85" if i < 8 else ".20"))
+    # Subtitle labels
+    b.append('<text x="34" y="200" font-family="FuseMono, monospace" font-size="14" '
+             'font-weight="700" fill="%s" letter-spacing="2">KILL-A-WATT TELEMETRY</text>' % GREY)
+    b.append('<text x="446" y="200" text-anchor="end" font-family="FuseMono, monospace" '
+             'font-size="14" font-weight="700" fill="%s" letter-spacing="2">REAL kWh DRAW</text>' % GOLD)
+    # Baseline arrow
+    b.append('<path d="M34 226 L446 226 M432 218 L446 226 L432 234" fill="none" stroke="%s" '
              'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>' % INK)
-    b.append('<text x="34" y="262" font-family="FuseMono, monospace" font-size="14" '
-             'font-weight="700" fill="%s" letter-spacing="2">READ EVERY WEIGHT</text>' % GREY)
-    b.append('<text x="446" y="262" text-anchor="end" font-family="FuseMono, monospace" '
-             'font-size="14" font-weight="700" fill="%s" letter-spacing="2">ONE PASS</text>' % INK)
+    b.append('<text x="34" y="252" font-family="FuseMono, monospace" font-size="14" '
+             'font-weight="700" fill="%s" letter-spacing="2">INCREMENTAL OVER IDLE</text>' % GREY)
+    b.append('<text x="446" y="252" text-anchor="end" font-family="FuseMono, monospace" '
+             'font-size="14" font-weight="700" fill="%s" letter-spacing="2">120V / 240V AC</text>' % INK)
     return _svg("24 20 432 252", "".join(b), "meter")
 
 

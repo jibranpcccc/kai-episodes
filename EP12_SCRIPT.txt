@@ -1,0 +1,95 @@
+# THE MISLEADING EQUATION: 16 + 16 != 32
+You have two graphics cards. Each one has sixteen gigabytes of VRAM. You do the math. Sixteen plus sixteen is thirty-two.
+So you download a local AI model that needs more than sixteen gigabytes of memory. You expect the second card to solve the problem. Instead, the model refuses to load, part of it lands in system RAM, or the answer comes out slower than before.
+And suddenly, the most obvious equation in your computer becomes the most misleading one.
+Today, we're answering a question that could save you from buying the wrong GPU. Can two sixteen-gigabyte cards really replace one thirty-two-gigabyte card? Can they run a larger model? Can they make one answer faster? And why do some dual-GPU builds perform beautifully while others become a very expensive troubleshooting project?
+There are no invented token-per-second results in this video. We're going to follow the data through the machine and separate three different goals that people keep mixing together.
+
+# PHYSICAL HARDWARE ISOLATION
+First, the rule that changes everything: two GPUs do not automatically become one GPU.
+Each graphics card has its own physical memory, its own processor, and its own connection to the rest of the system. Your computer can see thirty-two gigabytes of total installed VRAM across two cards. That does not mean every application can allocate one uninterrupted thirty-two-gigabyte block on either card.
+
+# THE TWO MINIBUSES ANALOGY
+Think of two sixteen-seat minibuses. Together they can transport thirty-two passengers. But you cannot put twenty passengers inside either minibus without deciding how to split the group.
+The same distinction applies to model weights. If your application knows how to divide a model across GPUs, the combined memory can become useful. If the application only supports one GPU, the second card may do absolutely nothing for that model.
+
+# BEYOND WEIGHTS: BUFFERS & KV CACHE
+And even when splitting works, the model file size is not the total memory requirement. The runtime also needs working buffers, attention-related state, and room for the active context. Other processes may already be using some VRAM. Memory pressure also depends on the precision and architecture of the model.
+So a model that occupies, let's say, twenty-four gigabytes on disk is not guaranteed to fit across two sixteen-gigabyte cards just because twenty-four is less than thirty-two. That's a hypothetical file size, not a measurement of any particular model.
+
+# THREE GOALS: CAPACITY, SPEED, CONCURRENCY
+Before shopping, ask a better question. What exactly are you trying to improve?
+There are three different answers: fit a bigger model, make one answer arrive faster, or serve more requests at once.
+Those three jobs can favor different configurations. Confusing them is where most bad buying advice begins.
+
+# LAYER SPLITTING (PIPELINE PARALLELISM)
+Let's start with fitting a bigger model.
+In a supported multi-GPU runtime, one common approach is to divide the model by layers. Imagine a stack of processing stages. The first graphics card holds the early stages. The second holds the later stages.
+Your input passes through the first set of layers. The intermediate result crosses to the other card. The second card completes the remaining work. The full model can live across both devices, even though neither device has enough memory to hold every weight alone.
+This is often called layer splitting or pipeline parallelism. And it is not merely a theoretical trick. It's an option described in the official llama.cpp multi-GPU guide.
+The advantage is straightforward. A model that would otherwise require substantial CPU offloading may be able to keep more of its work on graphics hardware.
+The catch is equally important. When you generate a single answer, the next token still has to make its way through the relevant model computation. The cards do not magically finish the same work twice as fast just because you installed two of them.
+Layer splitting also has its own memory placement rules. In llama.cpp's layer mode, for example, a layer's key-value cache is associated with the GPU holding that layer. The details vary across runtimes. You cannot assume every implementation splits weights, cache, and working buffers identically.
+And there's a physical connection between those two cards. The intermediate results have to move across it.
+
+# TENSOR PARALLELISM & INTERCONNECT BOTTLENECK
+Which brings us to the second approach: dividing the computation inside the layers themselves.
+This is called tensor parallelism. Instead of giving different sets of layers to different GPUs, the runtime distributes portions of certain operations across multiple GPUs. Both devices can work on parts of the same stage.
+That sounds like the obvious answer to making one response faster. Sometimes it helps. But now the GPUs may have to exchange and combine results repeatedly throughout the model.
+If communication is slow relative to computation, the extra card stops being a free speed boost. You spend time coordinating two processors that could have been working independently.
+The software matters here. A runtime must support the model architecture, precision, backend, and parallel mode you want to use. Some modes are experimental or have restrictions. A setting that works for one model is not a promise that every model will run.
+The current llama.cpp documentation, for example, treats its tensor-split path as more experimental than ordinary layer splitting. It also documents compatibility requirements and cases where interconnect speed hurts performance.
+vLLM supports tensor and pipeline parallel strategies too, but with different configuration choices and deployment goals. Those details must be checked against the specific version you're running.
+The lesson is not that one splitting method is always faster. The lesson is that 'two GPUs' is not a performance specification. The distribution method is part of the specification.
+
+# INDEPENDENT REPLICAS & DATA PARALLELISM
+Now imagine a very different situation. You already have a local model that fits comfortably on one sixteen-gigabyte GPU. What happens if you buy another identical card?
+You might not want to split the model at all.
+You could run separate model instances and send independent requests to each GPU. One card handles one group of requests; the other handles another. That is a form of data parallelism, and it can be useful when you're serving multiple users or running many independent jobs.
+But be precise about the benefit. Two separate sixteen-gigabyte replicas do not let one twenty-four-gigabyte model fit inside a single replica. Each instance still has its own memory limit.
+And if you are one person waiting for a single chat answer, running a second copy of the same model may not reduce your wait at all.
+This is why impressive server throughput screenshots can mislead desktop users. Total tokens generated across many simultaneous requests is a different measurement from the speed of one response on one screen.
+
+# THE MOTHERBOARD & PCIE LANE TRAP
+Now let's talk about something that gets almost no attention in those two-card shopping lists: the motherboard.
+A second PCI Express slot may physically look full-size without having the same electrical connection as the first. Some slots use fewer lanes. Some share lanes with storage or other devices. Some run through the chipset rather than using the same path to the CPU.
+The exact configuration depends on the processor, board, firmware, and which slots are occupied. You need the motherboard manual, not a photograph of two long slots.
+
+# THERMAL CLEARANCE & POWER REQUIREMENTS
+And even if two GPUs fit mechanically, their cooling systems might not. Thick cards can block each other, restrict airflow, or leave almost no room for cables.
+Power matters too. Your power supply must handle both cards and the rest of the system. You need suitable connectors, sustained cooling, and enough room inside the case. More hardware adds failure points and operating costs.
+Then there's interconnect speed. Some supported systems have high-bandwidth GPU-to-GPU links. Others communicate mainly over PCI Express. Not every modern consumer GPU offers a direct high-speed bridge, and you should never assume that two cards have one because the product pictures look similar.
+This does not mean PCI Express is always too slow. Layer splitting can work well without the same communication requirements as more tightly coupled tensor parallelism. The actual effect depends on the workload and implementation.
+It means you have to test the connection your machine really has.
+
+# ASYMMETRIC & MIXED-GPU SETUPS
+What about mixing an older sixteen-gigabyte GPU with a newer eight-gigabyte one?
+In some supported setups, uneven layer splits are possible. The software can assign more work to the larger card and less to the smaller one. But sixteen plus eight is not a guarantee of twenty-four gigabytes of usable model capacity.
+Each GPU still needs its own buffers and cache allocations. Different cards may have different compute features, memory bandwidth, backend support, and driver requirements. The slower device can influence end-to-end performance, particularly if your chosen distribution forces work through it.
+A runtime that handles two matching cards successfully may have restrictions with mixed generations, vendors, or precision formats. Even when both GPUs are detected, that does not prove every model and split mode will be supported.
+
+# THE 6-STEP PRE-PURCHASE AUDIT
+So here's the decision test I would use before spending money.
+First, write down the exact GPU models, not just their VRAM capacities. Include the motherboard, processor, power supply, and operating system.
+Second, choose one actual model file and quantization. Decide the context length and number of simultaneous requests you care about. A setup that runs a short prompt is not necessarily a setup that handles a long document or multiple users.
+Third, test a single GPU as your baseline. Record the memory allocation, whether any layers are on the CPU, how long the prompt takes to process, and how fast the response is generated. If you care about the user experience, also record time to first token.
+Fourth, test a supported two-GPU configuration with that exact same workload. Check the runtime logs to see where the model weights and cache really live. Do not assume that both cards being visible means both are doing useful work.
+Fifth, compare the right outcome. For one interactive chat, look at responsiveness and generation speed. For a server, measure completed requests and latency under realistic concurrency. For large-model access, ask whether the model runs reliably at the context length you need.
+Finally, repeat the measurements and check the quality of the actual answers. Do not treat one unusually fast run as your expected performance. And do not confuse an increase in hardware utilization with an increase in useful work.
+If you're using llama.cpp, its documentation explains options for listing devices, selecting devices, choosing split modes, and controlling split proportions. Don't blindly copy someone else's flags. Those options and their limitations can change by version and hardware backend.
+One warning is especially worth remembering: forcing peer-to-peer behavior or unsupported advanced settings can cause problems rather than solving them. A configuration is not an optimization just because the flag sounds powerful.
+
+# ONE 32GB GPU VS TWO 16GB GPUS
+Now we can finally compare the two buying choices.
+One thirty-two-gigabyte GPU gives you a large single-device memory budget. For a model and runtime that fit on it, that avoids the need to split work between two discrete cards. It can be a simpler system to configure and troubleshoot.
+But that doesn't prove it will outperform every possible pair of sixteen-gigabyte cards. Actual processing speed depends on the exact GPUs, their memory bandwidth and compute, the software, the workload, and the chosen parallel strategy.
+Two sixteen-gigabyte GPUs can make sense when you already own one, have a suitable system for the second, and need more aggregate accelerator memory for a model that supports splitting. They can also be useful for processing independent requests.
+But if your real problem is one slow chat response, the extra card might bring less improvement than you imagine. It could even make a poorly chosen configuration slower.
+And if the model already runs comfortably on your current GPU, you may be better off testing a different quantization, runtime, or context strategy before changing the hardware at all.
+
+# THE FINAL PAYBACK VERDICT
+That is the real verdict. Two GPUs are not fake VRAM. Their aggregate capacity is genuinely useful when software distributes work correctly. But they're not one giant card, and they're certainly not an automatic doubling of speed.
+So before buying the second GPU, finish this sentence: I need another card because I want to fit a larger model, speed up one response, or serve more people.
+If you don't know which one you're buying it for, you don't know whether you're solving the right problem.
+Tell me your exact two GPU models, the model you want to run, and whether you're optimizing for a single chat or many simultaneous requests. Those details are much more useful than saying you have thirty-two gigabytes of VRAM.
+This is Byte Forensics. Count the memory. Follow the data. Then decide if the second GPU is really the upgrade you need.

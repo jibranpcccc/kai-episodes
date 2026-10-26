@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       episode:
-        description: "Episode to validate and package (default: BYTE-VRAM)"
+        description: "Episode to validate and package (e.g. BYTE-DUAL-GPU, BYTE-PAYBACK, BYTE-VRAM)"
         required: false
-        default: "BYTE-VRAM"
+        default: "BYTE-DUAL-GPU"
 
 permissions:
   contents: read
@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   validate-and-package:
-    name: 30-Check Quality Gate & Package
+    name: 31-Check Quality Gate & Package
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -44,34 +44,33 @@ jobs:
           pip install playwright numpy pillow edge-tts -q
           python -m playwright install --with-deps chromium
 
-      - name: Run 30-Check Quality Gate on BYTE-VRAM
+      - name: Determine Episode to Validate
+        id: ep
         run: |
-          python -u scripts/check.py --only BYTE-VRAM
+          EP="${{ github.event.inputs.episode }}"
+          if [ -z "$EP" ]; then
+            EP="BYTE-DUAL-GPU"
+          fi
+          echo "selected_episode=$EP" >> $GITHUB_OUTPUT
 
-      - name: Upload BYTE-VRAM Verified Package (HTML + SRT + Chapters + QA)
+      - name: Run 31-Check Universal Quality Gate (fusion_gate.py)
+        run: |
+          EP="${{ steps.ep.outputs.selected_episode }}"
+          echo "Running Quality Gate on $EP..."
+          python -u data/fusion_gate.py "$EP"
+
+      - name: Upload Verified Episode Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: byte-vram-verified-package
+          name: ${{ steps.ep.outputs.selected_episode }}-verified-package
           path: |
-            episodes/BYTE-VRAM.html
-            episodes/BYTE-VRAM.srt
-            episodes/BYTE-VRAM-chapters.txt
-            episodes/BYTE-VRAM-scenes.txt
-            BYTE-VRAM-QA.md
-            BYTE-VRAM-SOURCES.md
-          if-no-files-found: error
-          retention-days: 30
-
-      - name: Upload BYTE-LORA Verified Package (HTML + SRT + Chapters + QA)
-        uses: actions/upload-artifact@v4
-        with:
-          name: byte-lora-verified-package
-          path: |
-            episodes/BYTE-LORA-FINAL.html
-            episodes/BYTE-LORA-FINAL.srt
-            episodes/BYTE-LORA-FINAL-chapters.txt
-            BYTE-LORA-QA.md
-            BYTE-LORA-SOURCES.md
-            BYTE-LORA-CHANGELOG.md
+            episodes/${{ steps.ep.outputs.selected_episode }}.html
+            episodes/${{ steps.ep.outputs.selected_episode }}.srt
+            episodes/${{ steps.ep.outputs.selected_episode }}-chapters.txt
+            episodes/${{ steps.ep.outputs.selected_episode }}-scenes.txt
+            ${{ steps.ep.outputs.selected_episode }}.html
+            ${{ steps.ep.outputs.selected_episode }}.srt
+            ${{ steps.ep.outputs.selected_episode }}-chapters.txt
+            ${{ steps.ep.outputs.selected_episode }}-scenes.txt
           if-no-files-found: ignore
           retention-days: 30

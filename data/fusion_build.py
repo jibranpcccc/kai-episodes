@@ -271,13 +271,16 @@ def schedule(beats, wtext, ws, win_dur=None):
     # Window boundary protection: guarantee all animations complete before window end
     # Preserves HERO_ALONE (Check 2) by keeping t1 intact and compressing beats after t1
     if win_dur is not None and len(beats) > 0:
-        max_win_time = win_dur - 0.04
-        max_end = max(times[i] + beats[i]["dur"] / 1000.0 for i in range(len(beats)))
-        if max_end > max_win_time:
-            distinct = sorted(list(set(times)))
-            if len(distinct) > 1 and distinct[1] - distinct[0] >= HERO_ALONE - 1e-6:
-                t0 = distinct[0]
-                t1 = distinct[1]
+        distinct = sorted(list(set(times)))
+        if len(distinct) > 1 and distinct[1] - distinct[0] >= HERO_ALONE - 1e-6:
+            t0 = distinct[0]
+            t1 = distinct[1]
+            min_span_needed = max(0, len(distinct) - 2) * MIN_GAP + 0.35
+            min_allowed_max = t1 + min_span_needed
+            desired_max = win_dur - min(1.50, max(0.04, win_dur * 0.28))
+            max_win_time = min(max(min_allowed_max, desired_max), win_dur - 0.04)
+            max_end = max(times[i] + beats[i]["dur"] / 1000.0 for i in range(len(beats)))
+            if max_end > max_win_time:
                 factors = []
                 for i in range(len(beats)):
                     if times[i] > t1:
@@ -289,8 +292,14 @@ def schedule(beats, wtext, ws, win_dur=None):
                     scale_factor = min(factors)
                     scale_factor = max(0.1, min(1.0, scale_factor))
                     times = [t if t <= t1 else round(t1 + (t - t1) * scale_factor, 3) for t in times]
-            else:
-                t0 = times[0]
+        else:
+            t0 = times[0]
+            min_span_needed = max(0, len(distinct) - 1) * MIN_GAP + 0.35
+            min_allowed_max = t0 + min_span_needed
+            desired_max = win_dur - min(1.50, max(0.04, win_dur * 0.28))
+            max_win_time = min(max(min_allowed_max, desired_max), win_dur - 0.04)
+            max_end = max(times[i] + beats[i]["dur"] / 1000.0 for i in range(len(beats)))
+            if max_end > max_win_time:
                 factors = []
                 for i in range(len(beats)):
                     room = max_win_time - t0 - beats[i]["dur"] / 1000.0
@@ -301,6 +310,30 @@ def schedule(beats, wtext, ws, win_dur=None):
                     scale_factor = min(factors)
                     scale_factor = max(0.1, min(1.0, scale_factor))
                     times = [round(t0 + (t - t0) * scale_factor, 3) for t in times]
+
+        # Final safety guarantee: strictly enforce MIN_GAP between distinct arrival times
+        raw_distinct = sorted(list(set(round(t, 3) for t in times)))
+        if len(raw_distinct) > 1:
+            adjusted = [raw_distinct[0]]
+            for gi in range(1, len(raw_distinct)):
+                prev = adjusted[gi - 1]
+                curr = raw_distinct[gi]
+                if curr - prev < MIN_GAP:
+                    curr = round(prev + MIN_GAP + 0.002, 3)
+                adjusted.append(curr)
+            # Ensure none exceeded scene end
+            if adjusted[-1] > win_dur - 0.04:
+                # compress back slightly while preserving MIN_GAP
+                total_span = adjusted[-1] - adjusted[0]
+                avail_span = (win_dur - 0.04) - adjusted[0]
+                if total_span > 1e-4 and avail_span > 0:
+                    ratio = avail_span / total_span
+                    if ratio * MIN_GAP >= MIN_GAP - 0.005:
+                        adjusted = [round(adjusted[0] + (t - adjusted[0]) * ratio, 3) for t in adjusted]
+            old_to_new = {old: new for old, new in zip(raw_distinct, adjusted)}
+            times = [old_to_new.get(round(t, 3), t) for t in times]
+
+
 
     for i, b in enumerate(beats):
         b["_nudge"] = round(times[i] - b["_t0"], 3)
@@ -598,7 +631,7 @@ def r_rail(w, win):
                   % (rid, r["lab"], r["cls"], vid,
                      " railrow__val--red" if r["cls"] == "red" else "", disp))
         win.beat(rid, "edge", r["at"], dur=300, ease="edge",
-               fill=dict(sel="#%s .railrow__fill" % rid, w=r["pct"]), fdur=340, fd=0.08)
+               fill=dict(sel="#%s .railrow__fill" % rid, w=r.get("pct", 75.0)), fdur=340, fd=0.08)
         if nv is not None:
             win.beat(vid, "count", r["at"], dur=300, ease="rise",
                      count=dict(sel="#%s [data-num]" % vid, to=nv, dec=0), cdur=340)
@@ -635,14 +668,14 @@ def r_chain(w, win):
         last = (i == len(chain) - 1)
         nodes += ('<div id="%s" data-fx="1" class="chain__node%s">'
                   '<b>%s</b><span>%s</span></div>'
-                  % (nid, " chain__node--gold" if last else "", n["t"], n["s"]))
+                  % (nid, " chain__node--gold" if last else "", n.get("t", n.get("name", "")), n.get("s", n.get("sub", ""))))
         win.beat(nid, "pop", n["at"], dur=300, ease="pop")
         if not last:
             aid = win.nid()
             nodes += ('<div id="%s" data-fx="1" class="chain__arrow">&rarr;</div>' % aid)
             win.beat(aid, "wipein", ats[i + 1], dur=200, ease="wipe")
     cols = ""
-    for c in w["compare"]:
+    for c in w.get("compare", []):
         cid = win.nid()
         cols += ('<div id="%s" data-fx="1" class="compare__col compare__col--%s">'
                  '<div class="compare__title">%s</div>'
@@ -650,7 +683,7 @@ def r_chain(w, win):
                  % (cid, c["cls"], c["title"], c["body"]))
         win.beat(cid, "wipein", c["at"], dur=320, ease="wipe")
     sat = w.get("source_at") or (w["closing"]["at"] if w.get("closing")
-                                 else w["compare"][-1]["at"])
+                                 else (w["compare"][-1]["at"] if w.get("compare") else w["chain"][-1]["at"]))
     src = source(win, sat, w["source"])
     ch = ""
     if w.get("closing"):
@@ -747,13 +780,13 @@ def r_title(w, win):
                      '<div class="lbl lbl--gray">%s</div>'
                      '%s%s</div></div>'
                      % (svg, eid, w["kicker"], w["title"], w.get("sub", ""), ch, tape))
-    win.beat(svgid, "draw", w["head_at"], dur=880, ease="draw", sdur=600)
-    win.beat(eid, "slam", w["head_at"], dur=620, ease="slam")
+    win.beat(svgid, "draw", w.get("head_at") or w.get("header_at"), dur=880, ease="draw", sdur=600)
+    win.beat(eid, "slam", w.get("head_at") or w.get("header_at"), dur=620, ease="slam")
     inner = "".join(win.parts)
     src = ""
     if w.get("source"):
         sat = (w.get("source_at")
-               or (w["closing"]["at"] if w.get("closing") else w["head_at"]))
+               or (w["closing"]["at"] if w.get("closing") else w.get("head_at") or w.get("header_at")))
         src = source(win, sat, w["source"])
     return '<div class="scene__inner">%s%s</div>' % (inner, src)
 
@@ -778,7 +811,7 @@ def r_strip(w, win):
                      % (a, cap, it["label"]))
     src = ""
     if w.get("source"):
-        src = source(win, w["items"][-1]["at"], w["source"])
+        src = source(win, w.get("source_at") or w["items"][-1]["at"], w["source"])
     ch = ""
     if w.get("closing"):
         ch = closing_chip(win, w["closing"]["at"], w["closing"]["c"], w["closing"]["t"])
@@ -818,7 +851,7 @@ def r_nodes(w, win):
                   '<div class="chain__num">%02d</div>'
                   '<div class="chain__lab"><b>%s</b><span>%s</span></div></div>'
                   % (nid, " chain__node--gold" if last else "", i + 1,
-                     n["t"], n["s"]))
+                     n.get("t", n.get("name", "")), n.get("s", n.get("sub", ""))))
         win.beat(nid, "pop", n["at"], dur=300, ease="pop")
         if not last:
             aid = win.nid()

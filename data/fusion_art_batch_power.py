@@ -61,17 +61,22 @@ def _hexfield(x0, y0, x1, y1, r=18.0):
 
 
 # ==================================================================== scene 1
+_psu_seq = 0
+
 def psu():
     """A power supply unit: fan grille over a honeycomb vent, socket and cables."""
+    global _psu_seq
+    _psu_seq += 1
+    vent_id = "psu-vent-%d" % _psu_seq
     b = []
     # --- the case
     b.append('<rect x="54" y="54" width="420" height="200" rx="10" fill="none" '
              'stroke="%s" stroke-width="3"/>' % INK)
     # --- the honeycomb vent panel. The lattice is clipped so it stops dead at
     #     the panel edge instead of spilling over the case.
-    b.append('<defs><clipPath id="psu-vent"><rect x="70" y="70" width="388" '
-             'height="168" rx="6"/></clipPath></defs>')
-    b.append('<g clip-path="url(#psu-vent)">')
+    b.append('<defs><clipPath id="%s"><rect x="70" y="70" width="388" '
+             'height="168" rx="6"/></clipPath></defs>' % vent_id)
+    b.append('<g clip-path="url(#%s)">' % vent_id)
     b.append('<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>'
              % (_hexfield(70, 70, 458, 238), HAIR))
     b.append('</g>')
