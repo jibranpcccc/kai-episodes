@@ -215,7 +215,7 @@ W = [   {   'art': 'gpu_16gb',
         'vo': "So a model that occupies, let's say, twenty-four gigabytes on disk is not guaranteed to fit across two "
               "sixteen-gigabyte cards just because twenty-four is less than thirty-two. That's a hypothetical file "
               'size, not a measurement of any particular model.'},
-    {   'art': 'switch',
+    {   'art': 'chip',
         'art_at': 'better question',
         'art_caption': 'THREE DISTINCT WORKLOAD GOALS',
         'chain': [   {'at': 'fit a bigger model', 't': 'GOAL 1: FIT BIGGER MODEL'},

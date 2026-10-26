@@ -47,13 +47,26 @@ jobs:
       - name: Determine Episode to Validate
         id: ep
         run: |
-          EP="${{ github.event.inputs.episode }}"
-          if [ -z "$EP" ]; then
-            EP="BYTE-DUAL-GPU"
+          if [ -n "${{ github.event.inputs.episode }}" ]; then
+            EP="${{ github.event.inputs.episode }}"
+          else
+            # Detect changed episode from git diff HEAD~1
+            CHANGED=$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | grep -E '^(episodes/)?BYTE-[A-Za-z0-9_-]+\.html$' | head -1 | sed -E 's|^(episodes/)?||; s|\.html$||')
+            if [ -n "$CHANGED" ]; then
+              EP="$CHANGED"
+            else
+              EP="BYTE-DUAL-GPU"
+            fi
+          fi
+          # Strict episode allowlist format validation
+          if ! [[ "$EP" =~ ^[A-Za-z0-9_-]+$ ]]; then
+            echo "Error: Invalid episode name format '$EP'" >&2
+            exit 1
           fi
           echo "selected_episode=$EP" >> $GITHUB_OUTPUT
+          echo "Selected episode: $EP"
 
-      - name: Run 31-Check Universal Quality Gate (fusion_gate.py)
+      - name: Run Universal FUSION Quality Gate (fusion_gate.py)
         run: |
           EP="${{ steps.ep.outputs.selected_episode }}"
           echo "Running Quality Gate on $EP..."
@@ -65,6 +78,26 @@ jobs:
           echo "Running Deep Episode Auditor on $EP..."
           python -u data/deep_episode_auditor.py "$EP"
 
+      - name: Generate Authoritative SHA-256 Release Manifest
+        run: |
+          EP="${{ steps.ep.outputs.selected_episode }}"
+          python -c "
+          import hashlib, json, os
+          ep = '$EP'
+          files = [f'episodes/{ep}.html', f'episodes/{ep}.srt', f'episodes/{ep}-chapters.txt', f'episodes/{ep}-scenes.txt']
+          manifest = {
+              'commit': os.environ.get('GITHUB_SHA', '${{ github.sha }}'),
+              'episode': ep,
+              'artifacts': {}
+          }
+          for f in files:
+              if os.path.exists(f):
+                  manifest['artifacts'][f] = hashlib.sha256(open(f, 'rb').read()).hexdigest()
+          with open(f'episodes/{ep}-manifest.json', 'w', encoding='utf-8') as mf:
+              json.dump(manifest, mf, indent=2)
+          print('Generated authoritative manifest for', ep)
+          "
+
       - name: Upload Verified Episode Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -74,9 +107,6 @@ jobs:
             episodes/${{ steps.ep.outputs.selected_episode }}.srt
             episodes/${{ steps.ep.outputs.selected_episode }}-chapters.txt
             episodes/${{ steps.ep.outputs.selected_episode }}-scenes.txt
-            ${{ steps.ep.outputs.selected_episode }}.html
-            ${{ steps.ep.outputs.selected_episode }}.srt
-            ${{ steps.ep.outputs.selected_episode }}-chapters.txt
-            ${{ steps.ep.outputs.selected_episode }}-scenes.txt
-          if-no-files-found: ignore
+            episodes/${{ steps.ep.outputs.selected_episode }}-manifest.json
+          if-no-files-found: error
           retention-days: 30

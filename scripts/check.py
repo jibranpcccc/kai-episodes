@@ -213,14 +213,36 @@ def main():
             html = f.read_text(encoding="utf-8")
             if "window.FUSION" in html:
                 gate_py = ROOT / "data" / "fusion_gate.py"
+                auditor_py = ROOT / "data" / "deep_episode_auditor.py"
+                
+                # 1. Canonical source divergence check
+                root_f = ROOT / f"{name}.html"
+                epis_f = EPISODES / f"{name}.html"
+                if root_f.exists() and epis_f.exists():
+                    import hashlib
+                    h1 = hashlib.sha256(root_f.read_bytes()).hexdigest()
+                    h2 = hashlib.sha256(epis_f.read_bytes()).hexdigest()
+                    if h1 != h2:
+                        fail(name, f"CANONICAL DIVERGENCE: root ({h1[:12]}) and episodes/ ({h2[:12]}) differ!")
+                
+                # 2. Run Universal FUSION Quality Gate
                 if gate_py.exists():
-                    print(f"[{name}] Running 30-check FUSION Quality Gate...")
+                    print(f"[{name}] Running Universal FUSION Quality Gate on episodes/{name}.html...")
                     res = subprocess.run([sys.executable, str(gate_py), name], cwd=str(ROOT))
                     if res.returncode != 0:
                         fail(name, "FUSION quality gate failed")
                     else:
-                        print(f"  {name:22} GATE PASS")
-                    continue
+                        print(f"  {name:22} FUSION GATE PASS")
+
+                # 3. Run Deep Episode Semantic & Fact-Check Auditor
+                if auditor_py.exists():
+                    print(f"[{name}] Running Deep Episode Auditor on episodes/{name}.html...")
+                    res_aud = subprocess.run([sys.executable, str(auditor_py), name], cwd=str(ROOT))
+                    if res_aud.returncode != 0:
+                        fail(name, "Deep Episode Auditor failed")
+                    else:
+                        print(f"  {name:22} DEEP AUDITOR PASS")
+                continue
             ep = check_static(name, html)
             if ep:
                 check_audio(name, html, ep, tmp)

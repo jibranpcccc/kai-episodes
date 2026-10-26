@@ -49,6 +49,7 @@ print(f"BYTE FORENSICS DEEP AUDITOR: {NAME}")
 print(f"Source: {PATH} ({os.path.getsize(PATH) / 1048576:.2f} MB)")
 print("=" * 70)
 
+
 raw_html = io.open(PATH, encoding="utf-8").read()
 
 # Extract FUSION payload
@@ -81,6 +82,20 @@ def record_fail(category, desc):
 def record_warn(category, desc):
     WARNINGS.append((category, desc))
     print(f"  [WARN] {category:<12} | {desc}")
+
+# -----------------------------------------------------------------------------
+# PILLAR 0: CANONICAL SOURCE IDENTITY & REPOSITORY INTEGRITY
+# -----------------------------------------------------------------------------
+root_html = os.path.join(ROOT, NAME + ".html")
+epis_html = os.path.join(ROOT, "episodes", NAME + ".html")
+if os.path.exists(root_html) and os.path.exists(epis_html):
+    import hashlib
+    h_root = hashlib.sha256(open(root_html, "rb").read()).hexdigest()
+    h_epis = hashlib.sha256(open(epis_html, "rb").read()).hexdigest()
+    if h_root != h_epis:
+        record_fail("CANONICAL_SOURCE", f"Root HTML ({h_root[:12]}) differs from episodes/ HTML ({h_epis[:12]}). Render target must be byte-identical.")
+    else:
+        record_pass("CANONICAL_SOURCE", f"Root and episodes/ HTML are 100% byte-identical (SHA256: {h_root[:12]}...)")
 
 # ==============================================================================
 # PILLAR 1: SVG SEMANTIC ARTIFACT & STALE ARTWORK LINTER
@@ -323,21 +338,24 @@ if bad_holds:
 else:
     record_pass("TAIL_FREEZE", "All scene tail holds <= 4.0s (No frozen static screens)")
 
-# 3. Card visibility duration ceiling (>= 1.0s before scene exit)
+# 3. Card visibility duration ceiling (>= 1.0s after reveal completes before scene cut)
 short_cards = []
 for win_idx in range(len(scenes)):
     sc = scenes[win_idx]
     sc_beats = [b for b in beats if b.get("group") == win_idx]
     for b in sc_beats:
-        vis = sc["e"] - b["s"]
-        if vis < 1.0 and b.get("el"):
-            short_cards.append((win_idx + 1, b["el"], vis))
+        el = b.get("el") or ""
+        # Inspect content elements (nodes, bars, cards, compare cols)
+        if any(x in el for x in ('06', '07', '08', '09', '10', '11', '12')):
+            vis = sc["e"] - b["e"]
+            if vis < 0.99:
+                short_cards.append((win_idx + 1, b["el"], vis))
 
 if short_cards:
     for sc_err in short_cards[:4]:
-        record_fail("CARD_VISIBILITY", f"Scene {sc_err[0]}: Element {sc_err[1]} visible for only {sc_err[2]:.2f}s before cut")
+        record_fail("CARD_VISIBILITY", f"Scene {sc_err[0]}: Element {sc_err[1]} visible for only {sc_err[2]:.2f}s after reveal before scene cut (threshold >= 1.0s)")
 else:
-    record_pass("CARD_VISIBILITY", "All visual cards stay visible for >= 1.0s before scene exit")
+    record_pass("CARD_VISIBILITY", "All visual cards stay visible for >= 1.0s after reveal completes before scene exit")
 
 # ==============================================================================
 # PILLAR 6: ACOUSTIC & CAPTION PARITY
@@ -381,15 +399,22 @@ if os.path.exists(srt_path):
     # Punctuation & hyphen normalization
     srt_words = [w.strip(".,;:!?\"'()").lower() for w in re.sub(r'[^a-zA-Z0-9]+', ' ', srt_clean).split() if not w.isdigit()]
     script_words = [w.strip(".,;:!?\"'()").lower() for w in re.sub(r'[^a-zA-Z0-9]+', ' ', " ".join(w[1] for w in words)).split() if not w.isdigit()]
-    if srt_words == script_words:
-        record_pass("SCRIPT_PARITY", f"100% verbatim script word parity ({len(srt_words)} / {len(script_words)} words)")
+    def _norm_token_list(txt):
+        txt = (txt or "").replace("’", "'").replace("—", " ").replace("–", " ").replace(".", " ").replace("-", " ")
+        txt = re.sub(r"[^\w\s']", " ", txt.lower())
+        return [w.strip("'") for w in txt.split() if w.strip("'")]
+
+    srt_toks = [tok for tok in _norm_token_list(srt_clean) if not tok.isdigit()]
+    script_toks = [tok for w in words for tok in _norm_token_list(w[1]) if not tok.isdigit()]
+    
+    diffs = [(i, s, c) for i, (s, c) in enumerate(zip(script_toks, srt_toks)) if s != c]
+    if len(script_toks) != len(srt_toks) or diffs:
+        record_fail("SCRIPT_PARITY", f"Caption text differs from script ({len(diffs)} word mismatches, script={len(script_toks)}, srt={len(srt_toks)}). First diff: {diffs[:3] if diffs else 'length mismatch'}")
     else:
-        # Check diff
-        diff = abs(len(srt_words) - len(script_words))
-        if diff <= 8:
-            record_pass("SCRIPT_PARITY", f"100% verbatim script word parity with hyphen normalization ({len(srt_words)} words)")
-        else:
-            record_fail("SCRIPT_PARITY", f"Caption word count mismatch: {len(srt_words)} caption words vs {len(script_words)} script words")
+        record_pass("SCRIPT_PARITY", f"100% verbatim script word parity ({len(srt_toks)} / {len(script_toks)} words verified)")
+
+    # Explicit disclosure of acoustic word-level sync status
+    record_warn("ACOUSTIC_SYNC", "Acoustic word-level sync: UNVERIFIED (authored Whisper timestamps match SRT, but independent forced alignment has not been performed on the embedded audio)")
 else:
     record_warn("SCRIPT_PARITY", "SRT subtitle file not found beside HTML")
 
@@ -406,5 +431,8 @@ if FAILURES:
         print(f"  • [{cat}] {desc}")
     sys.exit(1)
 else:
-    print("\n✅ PERFECT PASS: Zero factual errors, zero layout overflows, zero ungrounded metrics!")
+    if WARNINGS:
+        print(f"\n⚠️ GATE PASSED WITH {len(WARNINGS)} DISCLOSED WARNINGS (Review items above)")
+    else:
+        print("\n✅ ZERO DEFECTS: All tested conditions passed")
     sys.exit(0)

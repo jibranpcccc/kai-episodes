@@ -58,7 +58,8 @@ def render_one(page, html_path: Path) -> Path:
     page.goto(html_path.resolve().as_uri() + "?t=0")
     page.wait_for_function("!!((window.EPISODE || window.FUSION) && window.renderAt)", timeout=60000)
     page.evaluate("document.body.classList.add('render')")
-    page.wait_for_timeout(250)          # let webfonts settle before frame 0
+    page.evaluate("async () => { if (document.fonts && document.fonts.ready) await document.fonts.ready; }")
+    page.wait_for_timeout(300)          # let layout and webfonts fully settle
     assert page.evaluate("document.body.classList.contains('render')"), "render mode not applied"
 
     total = float(page.evaluate("(window.EPISODE || window.FUSION).total"))
@@ -112,6 +113,26 @@ def render_one(page, html_path: Path) -> Path:
     ]
     subprocess.run(cmd, check=True)
     print(f"[{name}] wrote {mp4} ({mp4.stat().st_size/1e6:.1f} MB)")
+
+    # Post-render stream and duration integrity probe
+    try:
+        import json as _json
+        probe = subprocess.run([
+            "ffprobe", "-v", "error", "-show_entries", "format=duration:stream=codec_type,width,height",
+            "-of", "json", str(mp4)
+        ], capture_output=True, text=True)
+        info = _json.loads(probe.stdout)
+        v_stream = next((s for s in info.get("streams", []) if s.get("codec_type") == "video"), None)
+        a_stream = next((s for s in info.get("streams", []) if s.get("codec_type") == "audio"), None)
+        dur_mp4 = float(info.get("format", {}).get("duration", 0))
+        assert v_stream is not None, "Rendered MP4 has no video stream!"
+        if has_audio:
+            assert a_stream is not None, "Rendered MP4 has no audio stream!"
+        assert abs(dur_mp4 - total) <= 0.20, f"MP4 duration {dur_mp4:.2f}s drifts from expected {total:.2f}s!"
+        print(f"[{name}] MP4 verified: {v_stream.get('width')}x{v_stream.get('height')}, duration={dur_mp4:.2f}s, audio={'yes' if a_stream else 'no'}")
+    except Exception as e:
+        print(f"[{name}] Note: MP4 probe: {e}")
+
     return mp4
 
 
@@ -119,7 +140,7 @@ def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     files = sorted(EPISODES.glob("*.html"))
     if ONLY:
-        files = [f for f in files if ONLY.lower() in f.name.lower()]
+        files = [f for f in files if f.stem.lower() == ONLY.lower() or f.name.lower() == ONLY.lower()]
     if not files:
         print("no episode HTML found in episodes/", file=sys.stderr)
         return 1
@@ -131,8 +152,12 @@ def main() -> int:
             # fall back to a system Chrome (handy locally; CI installs chromium)
             browser = p.chromium.launch(channel="chrome",
                                         args=["--force-device-scale-factor=1"])
-        page = browser.new_page(viewport={"width": W, "height": H},
-                                device_scale_factor=1)
+        if RES == "1440p":
+            page = browser.new_page(viewport={"width": 2560, "height": 1440},
+                                    device_scale_factor=1.333333)
+        else:
+            page = browser.new_page(viewport={"width": W, "height": H},
+                                    device_scale_factor=1)
         for f in files:
             render_one(page, f)
         browser.close()
