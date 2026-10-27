@@ -2,9 +2,9 @@
   "episode": "BYTE-CONTEXT",
   "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
   "artifacts": {
-    "episodes/BYTE-CONTEXT.html": "0643c25f590cf694304d61673c3ab19ef5eea27cb6cc32c53e23abf99c475675",
+    "episodes/BYTE-CONTEXT.html": "e1a83c27130bed8f5b90737c6e1a7003dc6df1bfd66a50e04f41acf16b257244",
     "episodes/BYTE-CONTEXT.srt": "66254dc475da5d25961e3261ebbd75deb1d30296349ee9d079dd72f26819139e",
-    "episodes/BYTE-CONTEXT-scenes.txt": "209d0237e1f45cf4e1d7482cc0fe4b3d6aea6288a53530956411f67e2914355a",
-    "episodes/BYTE-CONTEXT-chapters.txt": "0bef1495222b64002b6db5069090dc4d55e3ce4e9354077e34fa85521bc78d22"
+    "episodes/BYTE-CONTEXT-chapters.txt": "0bef1495222b64002b6db5069090dc4d55e3ce4e9354077e34fa85521bc78d22",
+    "episodes/BYTE-CONTEXT-scenes.txt": "9d2591678909218eed2d032e02a31d2f791f29f2c708663a732da52923184877"
   }
 }

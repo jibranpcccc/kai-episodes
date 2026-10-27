@@ -1,0 +1,1862 @@
+[
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "context_window",
+    "cap": "You download a local AI model that promises a context window of one hundred and twenty-eight thousand tokens. That sounds enormous.",
+    "c_tag": "cyan",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "128K"
+      },
+      {
+        "c": "gold",
+        "t": "context window"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "tokens",
+        "u": "K",
+        "v": "128"
+      },
+      {
+        "c": "gold",
+        "lab": "memory",
+        "u": "GB",
+        "v": "16"
+      }
+    ],
+    "idx": 0
+  },
+  {
+    "title": "Context Window #2",
+    "art": "context_window",
+    "cap": "Enough for a long report, a mountain of code, or an entire conversation that never seems to end. Then you load the model. You paste in a document.",
+    "c_tag": "cyan",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "Context Window",
+        "val": "128K",
+        "sub": "tokens"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "Model Load",
+        "val": "2*layers*heads*dim",
+        "sub": "memory math"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "Document Paste",
+        "val": "CLI",
+        "sub": "parameters"
+      }
+    ],
+    "idx": 1
+  },
+  {
+    "title": "GPU Memory Overflow",
+    "art": "gpu_24gb",
+    "cap": "Context Window Trap",
+    "c_tag": "hot",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "VRAM Allocated",
+        "unit": "GB",
+        "val": 16,
+        "pct": 66.67
+      },
+      {
+        "cls": "hot",
+        "lab": "VRAM Requested",
+        "unit": "GB",
+        "val": 24,
+        "pct": 100
+      }
+    ],
+    "idx": 2
+  },
+  {
+    "title": "Context Window Trap",
+    "art": "warning",
+    "cap": "The Silent Memory Trap",
+    "c_tag": "cyan",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "Advertised Context Window",
+        "val": "128K Tokens",
+        "pct": "100%"
+      },
+      {
+        "cls": "red",
+        "lab": "Effective Context Window",
+        "val": "16K Tokens",
+        "pct": "12.5%"
+      }
+    ],
+    "idx": 3
+  },
+  {
+    "title": "Context Window Trap",
+    "art": "warning",
+    "cap": "Even when the text fits, the model may not use every part of it correctly.",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Context Window",
+        "s": "The maximum number of tokens the model can process at once."
+      },
+      {
+        "t": "KV Cache",
+        "s": "Stores key-value pairs for attention mechanisms, consuming significant memory."
+      },
+      {
+        "t": "Prompt Stream",
+        "s": "The input text provided to the model, which must fit within the context window."
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Expected Behavior",
+        "body": "The model should utilize all parts of the prompt stream within the context window."
+      },
+      {
+        "cls": "gold",
+        "title": "Actual Behavior",
+        "body": "The model may fail to use every part of the prompt stream correctly, even if it fits within the context window."
+      }
+    ],
+    "idx": 4
+  },
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "context_window",
+    "cap": "The journey of a long prompt through a local AI system",
+    "c_tag": "Window #6",
+    "note_head": "Today we are following one long prompt through a local AI system, from the model specification to the GPU memory, all the way to the answer.",
+    "note_items": [
+      {
+        "t": "Model specification: --max-model-len 128K tokens"
+      },
+      {
+        "t": "GPU memory: 16GB VRAM"
+      },
+      {
+        "t": "KV cache: 2*layers*heads*dim*128K tokens"
+      },
+      {
+        "t": "Prompt stream: 128K tokens"
+      },
+      {
+        "t": "Answer: Generated after processing the entire prompt"
+      }
+    ],
+    "idx": 5
+  },
+  {
+    "title": "Window #7",
+    "c_tag": "context_window",
+    "items": [
+      {
+        "key": "context_window",
+        "label": "Context Window"
+      },
+      {
+        "key": "kv_cache",
+        "label": "KV Cache"
+      },
+      {
+        "key": "prompt_stream",
+        "label": "Prompt Stream"
+      }
+    ],
+    "idx": 6
+  },
+  {
+    "title": "Context Window: The Silent Memory Trap",
+    "art": "context_window",
+    "cap": "A context window is the working information made available to the model for a particular generation. It can contain instructions, prior messages, documents, tool results, and the beginning of the model's own response.",
+    "c_tag": "Context Window",
+    "chain": [
+      {
+        "t": "Instructions",
+        "s": "The initial set of directives provided to the model."
+      },
+      {
+        "t": "Prior Messages",
+        "s": "Historical exchanges that form the context of the current interaction."
+      },
+      {
+        "t": "Documents",
+        "s": "External data sources integrated into the context window."
+      },
+      {
+        "t": "Tool Results",
+        "s": "Outputs from external tools or APIs used within the context."
+      },
+      {
+        "t": "Model's Response",
+        "s": "The beginning of the model's generated output."
+      }
+    ],
+    "idx": 7
+  },
+  {
+    "title": "TOKENIZATION",
+    "art": "folder",
+    "cap": "TOKENIZATION",
+    "c_tag": "cyan",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "Tokenizer"
+      },
+      {
+        "c": "gold",
+        "t": "Token"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "Word",
+        "u": "tokens",
+        "v": "1-3"
+      },
+      {
+        "c": "gold",
+        "lab": "Punctuation",
+        "u": "tokens",
+        "v": "1"
+      }
+    ],
+    "idx": 8
+  },
+  {
+    "title": "Context Window #10",
+    "art": "warning",
+    "cap": "The Silent Memory Trap",
+    "c_tag": "cyan",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "Page-to-Token Ratio",
+        "val": "100:?",
+        "sub": "Inconsistent due to variable tokenization"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "Context Budget",
+        "val": "Limited",
+        "sub": "Not always fully allocable to input"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "Memory Constraint",
+        "val": "128K",
+        "sub": "Silent trap for large documents"
+      }
+    ],
+    "idx": 9
+  },
+  {
+    "title": "Context Window Allocation",
+    "art": "context_window",
+    "cap": "Token Allocation",
+    "c_tag": "cyan",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "Prompt Tokens",
+        "unit": "tokens",
+        "val": 128000,
+        "pct": 100
+      },
+      {
+        "cls": "hot",
+        "lab": "Generated Tokens",
+        "unit": "tokens",
+        "val": 0,
+        "pct": 0
+      }
+    ],
+    "idx": 10
+  },
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "context_window",
+    "cap": "The 128K token budget: a silent memory trap for large language models.",
+    "c_tag": "context_window",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "128K Token Budget",
+        "val": "128,000",
+        "pct": "100%"
+      },
+      {
+        "cls": "red",
+        "lab": "Model/Application Limits",
+        "val": "Variable",
+        "pct": "N/A"
+      }
+    ],
+    "idx": 11
+  },
+  {
+    "title": "Window #13",
+    "art": "context_window",
+    "cap": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Context Window",
+        "s": "The maximum number of tokens the model can process at once."
+      },
+      {
+        "t": "System Prompts",
+        "s": "Instructions or rules given to the model before the user's input."
+      },
+      {
+        "t": "Chat Formatting",
+        "s": "The structure and syntax used to format the conversation between the user and the model."
+      },
+      {
+        "t": "Overhead",
+        "s": "Additional memory required for metadata, buffers, and other non-token data."
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Current Context Window",
+        "body": "8,000 tokens"
+      },
+      {
+        "cls": "gold",
+        "title": "Required Context Window",
+        "body": "8,000 tokens + System Prompts + Chat Formatting + Overhead"
+      }
+    ],
+    "idx": 12
+  },
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "warning",
+    "cap": "The context window limit is a silent memory trap, not a promise of full response.",
+    "c_tag": "Context Window Limit",
+    "note_head": "128K Tokens: A Ceiling, Not a Promise",
+    "note_items": [
+      {
+        "t": "128,000 tokens is the advertised ceiling for context window."
+      },
+      {
+        "t": "This limit is not a guarantee of full response quality."
+      },
+      {
+        "t": "The first of four separate limits begins here."
+      }
+    ],
+    "idx": 13
+  },
+  {
+    "title": "Context Configuration",
+    "c_tag": "cyan",
+    "items": [
+      {
+        "key": "context_window",
+        "label": "Supported Context Window"
+      },
+      {
+        "key": "kv_cache",
+        "label": "Key-Value Cache"
+      },
+      {
+        "key": "prompt_stream",
+        "label": "Prompt Stream"
+      }
+    ],
+    "idx": 14
+  },
+  {
+    "title": "Software Context Limit",
+    "art": "warning",
+    "cap": "Local application enforces a smaller active context than the model's published maximum.",
+    "c_tag": "gold",
+    "chain": [
+      {
+        "t": "Model Published Max Context",
+        "s": "8192 tokens"
+      },
+      {
+        "t": "Local Application Active Context",
+        "s": "4096 tokens"
+      },
+      {
+        "t": "Context Window Reduction",
+        "s": "50%"
+      }
+    ],
+    "idx": 15
+  },
+  {
+    "title": "Context Size Settings",
+    "art": "context_window",
+    "cap": "Model Configuration Parameters",
+    "c_tag": "cyan",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "llama.cpp"
+      },
+      {
+        "c": "gold",
+        "t": "vLLM"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "Context Size",
+        "u": "tokens",
+        "v": "2048"
+      },
+      {
+        "c": "gold",
+        "lab": "Max Model Length",
+        "u": "tokens",
+        "v": "4096"
+      }
+    ],
+    "idx": 16
+  },
+  {
+    "title": "Configuration Constraints",
+    "art": "checklist",
+    "cap": "CLI Parameters and Memory Math",
+    "c_tag": "cyan",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "--max-model-len",
+        "val": "2*layers*heads*dim",
+        "sub": "Memory math for model length"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "-c",
+        "val": "128K",
+        "sub": "Context window size"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "GPU Memory",
+        "val": "16GB",
+        "sub": "Typical GPU memory constraint"
+      }
+    ],
+    "idx": 17
+  },
+  {
+    "title": "Memory Limits",
+    "art": "ram_stick",
+    "cap": "The advertised model limit and the configured runtime limit are different facts. The third limit is physical memory.",
+    "c_tag": "Memory",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "Advertised Model Limit",
+        "unit": "GB",
+        "val": 128,
+        "pct": 100
+      },
+      {
+        "cls": "hot",
+        "lab": "Configured Runtime Limit",
+        "unit": "GB",
+        "val": 64,
+        "pct": 50
+      },
+      {
+        "cls": "gold",
+        "lab": "Physical Memory",
+        "unit": "GB",
+        "val": 32,
+        "pct": 25
+      }
+    ],
+    "idx": 18
+  },
+  {
+    "title": "Key-Value Cache",
+    "art": "kv_cache",
+    "cap": "The key-value cache stores intermediate representations of tokens processed by the transformer's attention layers.",
+    "c_tag": "Memory",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "Key Cache",
+        "val": "2*layers*heads*dim",
+        "pct": "50%"
+      },
+      {
+        "cls": "gold",
+        "lab": "Value Cache",
+        "val": "2*layers*heads*dim",
+        "pct": "50%"
+      }
+    ],
+    "idx": 19
+  },
+  {
+    "title": "KV Cache Optimization",
+    "art": "kv_cache",
+    "cap": "Autoregressive Generation Efficiency",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Key-Value Cache",
+        "s": "Stores intermediate representations to avoid recomputation."
+      },
+      {
+        "t": "Memory Savings",
+        "s": "Reduces redundant calculations during token generation."
+      },
+      {
+        "t": "Performance Boost",
+        "s": "Speeds up autoregressive generation by leveraging cached data."
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Without Cache",
+        "body": "Full recomputation for each new token."
+      },
+      {
+        "cls": "gold",
+        "title": "With Cache",
+        "body": "Partial recomputation using stored representations."
+      }
+    ],
+    "idx": 20
+  },
+  {
+    "title": "Context Window",
+    "art": "context_window",
+    "cap": "The context window is a dynamic memory space that grows with each request, acting as a working set of notes for the current task.",
+    "c_tag": "cyan",
+    "note_head": "Key Aspects of the Context Window",
+    "note_items": [
+      {
+        "t": "Dynamic Memory Allocation: The context window expands and contracts based on the current request, ensuring optimal memory usage."
+      },
+      {
+        "t": "Working Notes: It serves as a growing set of working notes for the current request, capturing all relevant information."
+      },
+      {
+        "t": "Model Weights: The machinery behind the context window, which are the model weights, remain static and are not part of the dynamic memory allocation."
+      }
+    ],
+    "idx": 21
+  },
+  {
+    "title": "Key-Value Cache",
+    "c_tag": "cyan",
+    "items": [
+      {
+        "key": "kv_cache",
+        "label": "Key-Value Cache"
+      },
+      {
+        "key": "context_window",
+        "label": "Context Window"
+      },
+      {
+        "key": "cache_grid",
+        "label": "Cache Grid"
+      }
+    ],
+    "idx": 22
+  },
+  {
+    "title": "Cache Memory Scaling Factors",
+    "art": "cache_grid",
+    "cap": "The context window scales with these factors",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Token Count",
+        "s": "The number of tokens processed in the prompt and generated response."
+      },
+      {
+        "t": "Layers",
+        "s": "The depth of the transformer model, affecting the number of computations."
+      },
+      {
+        "t": "Key-Value Heads",
+        "s": "The number of attention heads and their dimensions, impacting the size of the KV cache."
+      },
+      {
+        "t": "Storage Precision",
+        "s": "The bit depth used for storing model weights and activations."
+      },
+      {
+        "t": "Sequences Served",
+        "s": "The number of concurrent sequences being processed."
+      }
+    ],
+    "idx": 23
+  },
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "warning",
+    "cap": "A warning sign with a CPU chip inside, representing the potential pitfalls of context window limitations.",
+    "c_tag": "cyan",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "Context Window"
+      },
+      {
+        "c": "gold",
+        "t": "Memory Math"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "Max Model Length",
+        "u": "tokens",
+        "v": "128K"
+      },
+      {
+        "c": "gold",
+        "lab": "Memory Calculation",
+        "u": "GB",
+        "v": "2*layers*heads*dim"
+      }
+    ],
+    "idx": 24
+  },
+  {
+    "title": "32 LAYERS, 8 HEADS, 128 VALUES",
+    "art": "context_window",
+    "cap": "32 LAYERS, 8 HEADS, 128 VALUES",
+    "c_tag": "cyan",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "LAYERS",
+        "val": "32",
+        "sub": "32 layers"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "HEADS",
+        "val": "8",
+        "sub": "8 key-value heads per layer"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "VALUES",
+        "val": "128",
+        "sub": "128 values per head"
+      }
+    ],
+    "idx": 25
+  },
+  {
+    "title": "32K TOKEN CACHE",
+    "art": "kv_cache",
+    "cap": "32K TOKEN CACHE",
+    "c_tag": "cyan",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "32K TOKEN CACHE",
+        "unit": "GB",
+        "val": 4,
+        "pct": 100
+      },
+      {
+        "cls": "hot",
+        "lab": "8K TOKEN CACHE",
+        "unit": "GB",
+        "val": 1,
+        "pct": 25
+      }
+    ],
+    "idx": 26
+  },
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "ram_stick",
+    "cap": "At one hundred and twenty-eight thousand tokens, it would be about sixteen gibibytes.",
+    "c_tag": "memory",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "Context Window",
+        "val": "128K",
+        "pct": "100%"
+      },
+      {
+        "cls": "red",
+        "lab": "Memory Usage",
+        "val": "16GiB",
+        "pct": "12.5%"
+      }
+    ],
+    "idx": 27
+  },
+  {
+    "title": "Window #29",
+    "art": "gpu_24gb",
+    "cap": "The Shock of the Context Cache",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Model Weights",
+        "s": "Fit comfortably on a graphics card"
+      },
+      {
+        "t": "Context Cache",
+        "s": "Pushes the whole workload over the edge"
+      },
+      {
+        "t": "Memory Allocation",
+        "s": "24GB VRAM limit reached"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Model Weights",
+        "body": "2*layers*heads*dim = 2*32*32*128 = 262,144 bytes"
+      },
+      {
+        "cls": "gold",
+        "title": "Context Cache",
+        "body": "128K tokens * 128 bytes/token = 16,384,000 bytes"
+      }
+    ],
+    "idx": 28
+  },
+  {
+    "title": "Quantization Impact",
+    "art": "kv_cache",
+    "cap": "Quantization does not uniformly reduce cache precision",
+    "c_tag": "Quantization",
+    "note_head": "Key Points:",
+    "note_items": [
+      {
+        "t": "Quantization reduces weight file size but not cache precision uniformly"
+      },
+      {
+        "t": "Cache numbers vary with model architecture"
+      },
+      {
+        "t": "Grouped-query attention reduces key-value heads count"
+      }
+    ],
+    "idx": 29
+  },
+  {
+    "title": "Window #31",
+    "c_tag": "gold",
+    "items": [
+      {
+        "key": "sliding-window",
+        "label": "Sliding-Window"
+      },
+      {
+        "key": "quantized-cache",
+        "label": "Quantized Cache"
+      },
+      {
+        "key": "offloaded-cache",
+        "label": "Offloaded Cache"
+      },
+      {
+        "key": "four-gibibyte",
+        "label": "4 GiB"
+      }
+    ],
+    "idx": 30
+  },
+  {
+    "title": "Runtime Serving Multiple Requests",
+    "art": "gpu_24gb",
+    "cap": "GPU Memory Under Pressure",
+    "c_tag": "hot",
+    "chain": [
+      {
+        "t": "Context Window",
+        "s": "128K tokens"
+      },
+      {
+        "t": "KV Cache",
+        "s": "2*layers*heads*dim"
+      },
+      {
+        "t": "Runtime",
+        "s": "Serving 4 requests"
+      }
+    ],
+    "idx": 31
+  },
+  {
+    "title": "Memory Math",
+    "art": "ram_stick",
+    "cap": "Active User State",
+    "c_tag": "cyan",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "2*layers*heads*dim"
+      },
+      {
+        "c": "gold",
+        "t": "multiple users"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "Active Sequences",
+        "u": "users",
+        "v": "N"
+      },
+      {
+        "c": "gold",
+        "lab": "Memory per User",
+        "u": "GB",
+        "v": "M"
+      }
+    ],
+    "idx": 32
+  },
+  {
+    "title": "Context Window #34",
+    "art": "context_window",
+    "cap": "A context size that works for one short chat may not be practical with long requests running at the same time.",
+    "c_tag": "Context Window",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "Short Chat",
+        "val": "128K Tokens",
+        "sub": "Single Request"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "Long Requests",
+        "val": "512K Tokens",
+        "sub": "Multiple Requests"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "Memory Usage",
+        "val": "2GB",
+        "sub": "Per Request"
+      }
+    ],
+    "idx": 33
+  },
+  {
+    "title": "Context Window #35",
+    "art": "warning",
+    "cap": "Insufficient Cache Memory Error",
+    "c_tag": "hot",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "Context Window",
+        "unit": "tokens",
+        "val": 128000,
+        "pct": 100
+      },
+      {
+        "cls": "hot",
+        "lab": "Cache Memory",
+        "unit": "GB",
+        "val": 16,
+        "pct": 50
+      }
+    ],
+    "idx": 34
+  },
+  {
+    "title": "Context Window Limits",
+    "art": "warning",
+    "cap": "The fourth limit is more subtle. Even if the model supports the tokens, the runtime accepts them, and the hardware stores them, the model may not use all that information reliably.",
+    "c_tag": "cyan",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "Model Capacity",
+        "val": "128K",
+        "pct": "100%"
+      },
+      {
+        "cls": "red",
+        "lab": "Effective Usage",
+        "val": "92K",
+        "pct": "72%"
+      }
+    ],
+    "idx": 35
+  },
+  {
+    "title": "Context Position Impact",
+    "art": "context_window",
+    "cap": "The influence of fact position on retrieval accuracy in long-context models.",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Fact Position",
+        "s": "The position of a fact within the context window can significantly impact its retrieval accuracy."
+      },
+      {
+        "t": "Retrieval Accuracy",
+        "s": "Models may struggle to retrieve facts placed at the beginning or end of the context window."
+      },
+      {
+        "t": "Long-Context Research",
+        "s": "Research indicates that the optimal position for a fact is typically in the middle of the context window."
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Early Position",
+        "body": "Facts placed at the beginning of the context window may be less likely to be retrieved accurately."
+      },
+      {
+        "cls": "gold",
+        "title": "Middle Position",
+        "body": "Facts placed in the middle of the context window are more likely to be retrieved accurately."
+      }
+    ],
+    "idx": 36
+  },
+  {
+    "title": "Lost in the Middle",
+    "art": "context_window",
+    "cap": "Researchers found that information near the beginning or end of a long input was easier for models to use than information buried in the middle.",
+    "c_tag": "cyan",
+    "note_head": "Key Findings from Lost in the Middle Study",
+    "note_items": [
+      {
+        "t": "Edge Information Advantage: Models performed better with data at the start or end of inputs compared to middle data."
+      },
+      {
+        "t": "Context Window Limitations: The study highlighted challenges with processing information in the middle of large context windows."
+      },
+      {
+        "t": "Token Position Impact: Token positions significantly affected model performance, with edge tokens being more accessible."
+      }
+    ],
+    "idx": 37
+  },
+  {
+    "title": "Model Variability",
+    "c_tag": "cyan",
+    "items": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "task",
+        "label": "Task"
+      },
+      {
+        "key": "evaluation",
+        "label": "Evaluation"
+      }
+    ],
+    "idx": 38
+  },
+  {
+    "title": "Context Window Warning",
+    "art": "warning",
+    "cap": "Large numerical context limit is not the same as reliable recall across the entire window.",
+    "c_tag": "hot",
+    "chain": [
+      {
+        "t": "Context Window",
+        "s": "40 reports"
+      },
+      {
+        "t": "Memory Allocation",
+        "s": "2*layers*heads*dim"
+      },
+      {
+        "t": "Recall Reliability",
+        "s": "Not guaranteed"
+      }
+    ],
+    "idx": 39
+  },
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "warning",
+    "cap": "A warning sign with a memory chip inside, symbolizing the hidden trap in context window management.",
+    "c_tag": "Memory Trap",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "Context Window"
+      },
+      {
+        "c": "gold",
+        "t": "Memory Management"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "Max Context Length",
+        "u": "tokens",
+        "v": "128K"
+      },
+      {
+        "c": "gold",
+        "lab": "Hidden Variable",
+        "u": "order",
+        "v": "Report Sequence"
+      }
+    ],
+    "idx": 40
+  },
+  {
+    "title": "Why Not Load a Giant Document?",
+    "art": "folder",
+    "cap": "A folder with a large document, representing the challenge of loading a giant document into a model's context window.",
+    "c_tag": "hot",
+    "rows": [
+      {
+        "cls": "hot",
+        "rank": "01",
+        "name": "Document Size",
+        "val": "100MB",
+        "sub": "The size of a typical large document that might be challenging to load into a model's context window."
+      },
+      {
+        "cls": "hot",
+        "rank": "02",
+        "name": "Token Count",
+        "val": "200,000",
+        "sub": "The number of tokens in the document, which is significantly larger than the model's context window."
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "Context Window",
+        "val": "128K",
+        "sub": "The maximum number of tokens the model can handle in its context window."
+      }
+    ],
+    "idx": 41
+  },
+  {
+    "title": "Window #43",
+    "art": "clock",
+    "cap": "The clock is ticking, and the memory meter is being watched closely.",
+    "c_tag": "cyan",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "Context Window",
+        "unit": "tokens",
+        "val": 128000,
+        "pct": 100
+      },
+      {
+        "cls": "hot",
+        "lab": "Memory Usage",
+        "unit": "GB",
+        "val": 16,
+        "pct": 80
+      }
+    ],
+    "idx": 42
+  },
+  {
+    "title": "Prefill Processing",
+    "art": "prompt_stream",
+    "cap": "The model processes the input prompt before generating the first answer token.",
+    "c_tag": "cyan",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "Prompt Length",
+        "val": "128K tokens",
+        "pct": "100%"
+      },
+      {
+        "cls": "red",
+        "lab": "Processing Time",
+        "val": "~500ms",
+        "pct": "50%"
+      }
+    ],
+    "idx": 43
+  },
+  {
+    "title": "Decoding the Silent Memory Trap",
+    "art": "kv_cache",
+    "cap": "Key-Value Cache Under Load",
+    "c_tag": "decoding",
+    "chain": [
+      {
+        "t": "Prompt Processing",
+        "s": "A very long prompt can demand substantial computation and data movement, even when the final answer will only be a few sentences."
+      },
+      {
+        "t": "Token Generation",
+        "s": "Then comes decoding: generating output tokens, usually one step after another."
+      },
+      {
+        "t": "Memory Management",
+        "s": "The KV cache must efficiently manage these operations to prevent memory bottlenecks."
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Before Optimization",
+        "body": "High memory usage during prompt processing and token generation leads to inefficient data movement."
+      },
+      {
+        "cls": "gold",
+        "title": "After Optimization",
+        "body": "Optimized KV cache management reduces memory bottlenecks and improves overall performance."
+      }
+    ],
+    "idx": 44
+  },
+  {
+    "title": "Cache Efficiency",
+    "art": "cache_grid",
+    "cap": "KV Cache Reuse",
+    "c_tag": "cyan",
+    "note_head": "Cache Impact",
+    "note_items": [
+      {
+        "t": "Reuses prior key and value states"
+      },
+      {
+        "t": "Does not eliminate long context limitations"
+      },
+      {
+        "t": "Attention and memory traffic remain critical"
+      },
+      {
+        "t": "Implementations vary widely"
+      }
+    ],
+    "idx": 45
+  },
+  {
+    "title": "Latency Metrics",
+    "c_tag": "Latency",
+    "items": [
+      {
+        "key": "First Token Latency",
+        "label": "Time taken to generate the first token after prompt submission."
+      },
+      {
+        "key": "Generation Latency",
+        "label": "Time taken to generate subsequent tokens after the first token is produced."
+      },
+      {
+        "key": "Total Latency",
+        "label": "Sum of first token latency and generation latency."
+      }
+    ],
+    "idx": 46
+  },
+  {
+    "title": "Window #48",
+    "art": "context_window",
+    "cap": "A system can generate tokens quickly once it begins, yet feel painfully slow because it spent so long reading the prompt. There are clever optimizations. Flash Attention and related kernels reduce certain memory and computation costs.",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Prompt Processing",
+        "s": "Reading and tokenizing the prompt can be slow, especially for large context windows."
+      },
+      {
+        "t": "Token Generation",
+        "s": "Once processing is complete, token generation can be rapid, leveraging the KV cache."
+      },
+      {
+        "t": "Optimizations",
+        "s": "Flash Attention and related kernels help reduce memory and computation costs during processing."
+      }
+    ],
+    "idx": 47
+  },
+  {
+    "title": "Cache Optimization",
+    "art": "cache_grid",
+    "cap": "Cache quantization and prefix caching",
+    "c_tag": "Optimization",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "Quantization"
+      },
+      {
+        "c": "gold",
+        "t": "Prefix Caching"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "Space Saved",
+        "u": "GB",
+        "v": "2.5"
+      },
+      {
+        "c": "gold",
+        "lab": "Prefix Reuse",
+        "u": "%",
+        "v": "75"
+      }
+    ],
+    "idx": 48
+  },
+  {
+    "title": "Context Window #50",
+    "art": "warning",
+    "cap": "The largest advertised context window is not always the best setting for every task.",
+    "c_tag": "cyan",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "Max Context Length",
+        "val": "128K",
+        "sub": "Tokens"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "Memory Math",
+        "val": "2*layers*heads*dim",
+        "sub": "Bytes per token"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "Task Efficiency",
+        "val": "85%",
+        "sub": "Utilization"
+      }
+    ],
+    "idx": 49
+  },
+  {
+    "title": "Window #51",
+    "art": "warning",
+    "cap": "Positional-Scaling Settings",
+    "c_tag": "cyan",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "Positional Parameters",
+        "unit": "tokens",
+        "val": "128K",
+        "pct": "100%"
+      },
+      {
+        "cls": "hot",
+        "lab": "Model Accuracy",
+        "unit": "%",
+        "val": "85%",
+        "pct": "85%"
+      }
+    ],
+    "idx": 50
+  },
+  {
+    "title": "Window #52",
+    "art": "warning",
+    "cap": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "c_tag": "cyan",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "Context Window",
+        "val": "128K",
+        "pct": "100%"
+      },
+      {
+        "cls": "red",
+        "lab": "Memory Usage",
+        "val": "2*layers*heads*dim",
+        "pct": "80%"
+      }
+    ],
+    "idx": 51
+  },
+  {
+    "title": "Context Limit Verification",
+    "art": "checklist",
+    "cap": "Ensure model and application context limits align",
+    "c_tag": "Verification",
+    "chain": [
+      {
+        "t": "Model Documentation",
+        "s": "Check the official documentation for the exact model version's advertised context limit."
+      },
+      {
+        "t": "Application Configuration",
+        "s": "Review the running application's configured context limit using CLI parameters like --max-model-len or --context-window."
+      },
+      {
+        "t": "Record Values",
+        "s": "Document both the model's advertised limit and the application's configured limit for comparison."
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Model Advertised Limit",
+        "body": "4096 tokens"
+      },
+      {
+        "cls": "gold",
+        "title": "Application Configured Limit",
+        "body": "2048 tokens"
+      }
+    ],
+    "idx": 52
+  },
+  {
+    "title": "Runtime Logs Inspection",
+    "art": "folder",
+    "cap": "Inspecting runtime logs for model weights and cache memory allocation.",
+    "c_tag": "cyan",
+    "note_head": "Inspect runtime logs for:",
+    "note_items": [
+      {
+        "t": "Model weights loading locations"
+      },
+      {
+        "t": "Cache memory allocation"
+      },
+      {
+        "t": "Active cache precision"
+      },
+      {
+        "t": "CPU memory placement"
+      }
+    ],
+    "idx": 53
+  },
+  {
+    "title": "Context Window",
+    "c_tag": "cyan",
+    "items": [
+      {
+        "key": "128K",
+        "label": "Context Window"
+      },
+      {
+        "key": "Backend Logs",
+        "label": "Diagnostics"
+      },
+      {
+        "key": "Workload Testing",
+        "label": "Modest Context"
+      }
+    ],
+    "idx": 54
+  },
+  {
+    "title": "Context Window #56",
+    "art": "context_window",
+    "cap": "Increase context window in steps, monitor VRAM and performance metrics.",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Step 1: Increase Context Window",
+        "s": "Use the same model, quantization, and questions."
+      },
+      {
+        "t": "Step 2: Monitor VRAM",
+        "s": "Record available VRAM during processing."
+      },
+      {
+        "t": "Step 3: Track Performance",
+        "s": "Measure prompt-processing time, time to first token, and output generation speed."
+      },
+      {
+        "t": "Step 4: Test Answer Quality",
+        "s": "Evaluate the quality of the generated answers."
+      }
+    ],
+    "idx": 55
+  },
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "context_window",
+    "cap": "Put one known fact near the start, one in the middle, and one at the end of a document. Ask precise questions with answers you can independently verify. Repeat with more than one example.",
+    "c_tag": "cyan",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "start"
+      },
+      {
+        "c": "gold",
+        "t": "middle"
+      },
+      {
+        "c": "hot",
+        "t": "end"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "Start",
+        "u": "fact",
+        "v": "1"
+      },
+      {
+        "c": "gold",
+        "lab": "Middle",
+        "u": "fact",
+        "v": "1"
+      },
+      {
+        "c": "hot",
+        "lab": "End",
+        "u": "fact",
+        "v": "1"
+      }
+    ],
+    "idx": 56
+  },
+  {
+    "title": "Design Window #58",
+    "art": "context_window",
+    "cap": "Reserve space for the answer. Count the system instructions, previous messages, inserted documents, tool results, and expected output.",
+    "c_tag": "cyan",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "System Instructions",
+        "val": "256 tokens",
+        "sub": "Reserved for model directives"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "Previous Messages",
+        "val": "512 tokens",
+        "sub": "Historical conversation context"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "Inserted Documents",
+        "val": "1024 tokens",
+        "sub": "External data references"
+      },
+      {
+        "cls": "cyan",
+        "rank": "04",
+        "name": "Tool Results",
+        "val": "256 tokens",
+        "sub": "Output from external tools"
+      },
+      {
+        "cls": "gold",
+        "rank": "05",
+        "name": "Expected Output",
+        "val": "512 tokens",
+        "sub": "Reserved for model response"
+      }
+    ],
+    "idx": 57
+  },
+  {
+    "title": "Context Window Analysis",
+    "art": "context_window",
+    "cap": "Analyzing the context window's behavior",
+    "c_tag": "cyan",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "Messages Kept",
+        "unit": "tokens",
+        "val": 128000,
+        "pct": 100
+      },
+      {
+        "cls": "hot",
+        "lab": "Messages Discarded",
+        "unit": "tokens",
+        "val": 0,
+        "pct": 0
+      }
+    ],
+    "idx": 58
+  },
+  {
+    "title": "RAG: Retrieval-Augmented Generation",
+    "art": "folder",
+    "cap": "A folder containing relevant passages for retrieval.",
+    "c_tag": "cyan",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "Knowledge Base",
+        "val": "10,000 passages",
+        "pct": "100%"
+      },
+      {
+        "cls": "red",
+        "lab": "Relevant Passages",
+        "val": "100 passages",
+        "pct": "1%"
+      }
+    ],
+    "idx": 59
+  },
+  {
+    "title": "Window #61",
+    "art": "warning",
+    "cap": "Retrieval can select the wrong passages, omit a crucial detail, or lose context needed to interpret a quotation.",
+    "c_tag": "gold",
+    "chain": [
+      {
+        "t": "Retrieval",
+        "s": "The process of selecting relevant passages from a large dataset."
+      },
+      {
+        "t": "Context",
+        "s": "The surrounding information needed to interpret a quotation accurately."
+      },
+      {
+        "t": "Interpretation",
+        "s": "The process of understanding the meaning of a quotation based on its context."
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Incorrect Retrieval",
+        "body": "Selects wrong passages, omits crucial details, or loses context."
+      },
+      {
+        "cls": "gold",
+        "title": "Correct Retrieval",
+        "body": "Selects relevant passages, includes crucial details, and maintains context."
+      }
+    ],
+    "idx": 60
+  },
+  {
+    "title": "Focused Retrieval vs. Full Context",
+    "art": "context_window",
+    "cap": "A focused retrieval system vs. a full context window approach",
+    "c_tag": "cyan",
+    "note_head": "Key Considerations for Large Document Tasks",
+    "note_items": [
+      {
+        "t": "Focused retrieval can reduce memory usage by only processing relevant documents"
+      },
+      {
+        "t": "Full context may improve accuracy but requires more memory and processing power"
+      },
+      {
+        "t": "The choice depends on the specific requirements of the task and available resources"
+      }
+    ],
+    "idx": 61
+  },
+  {
+    "title": "Context Window #63",
+    "c_tag": "cyan",
+    "items": [
+      {
+        "key": "whole-book editing",
+        "label": "Whole-Book Editing"
+      },
+      {
+        "key": "complex cross-document reasoning",
+        "label": "Cross-Document Reasoning"
+      },
+      {
+        "key": "questions that depend on broad structure",
+        "label": "Broad Structure Queries"
+      },
+      {
+        "key": "larger context",
+        "label": "Larger Context"
+      },
+      {
+        "key": "careful chunking",
+        "label": "Careful Chunking"
+      },
+      {
+        "key": "multiple passes",
+        "label": "Multiple Passes"
+      }
+    ],
+    "idx": 62
+  },
+  {
+    "title": "Context Strategy",
+    "art": "scales",
+    "cap": "The correct strategy depends on the task, not on whichever context number looks biggest in a model comparison table.",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Task-Specific",
+        "s": "cyan"
+      },
+      {
+        "t": "Context",
+        "s": "gold"
+      },
+      {
+        "t": "Strategy",
+        "s": "hot"
+      }
+    ],
+    "idx": 63
+  },
+  {
+    "title": "Context Window: The Silent Memory Trap",
+    "art": "context_window",
+    "cap": "The context window is a silent memory trap, where older material can be retrieved, summarized, or dropped.",
+    "c_tag": "Context Window",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "Active Context"
+      },
+      {
+        "c": "gold",
+        "t": "Disk Storage"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "Active Context",
+        "u": "tokens",
+        "v": "128K"
+      },
+      {
+        "c": "gold",
+        "lab": "Disk Storage",
+        "u": "GB",
+        "v": "100+"
+      }
+    ],
+    "idx": 64
+  },
+  {
+    "title": "Window #66",
+    "art": "warning",
+    "cap": "The Verdict: Model and Runtime Limits",
+    "c_tag": "verdict",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "Model Limit",
+        "val": "2*layers*heads*dim",
+        "sub": "Memory math for context window"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "Runtime Limit",
+        "val": "128K tokens",
+        "sub": "Context window size"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "Transparency",
+        "val": "Non-transparent",
+        "sub": "Memory behavior inconsistency"
+      }
+    ],
+    "idx": 65
+  },
+  {
+    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "art": "warning",
+    "cap": "Context Window Limits",
+    "c_tag": "hardware",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "Hardware Limit",
+        "unit": "tokens",
+        "val": 128000,
+        "pct": 100
+      },
+      {
+        "cls": "hot",
+        "lab": "Effective-Use Limit",
+        "unit": "tokens",
+        "val": 80000,
+        "pct": 63.28
+      }
+    ],
+    "idx": 66
+  },
+  {
+    "title": "Window #68",
+    "art": "warning",
+    "cap": "The system cannot guarantee the current GPU's memory sufficiency, interface configuration, prompt processing speed, or fact retrieval accuracy.",
+    "c_tag": "red",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "GPU Memory",
+        "val": "16GB",
+        "pct": 80
+      },
+      {
+        "cls": "red",
+        "lab": "Context Window",
+        "val": "128K",
+        "pct": 100
+      }
+    ],
+    "idx": 67
+  },
+  {
+    "title": "Window #69",
+    "art": "warning",
+    "cap": "Before buying more hardware or changing every advanced setting, measure the real bottleneck. Is the prompt being truncated? Is the cache running out of memory? Is prefill taking too long?",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Prompt Truncation",
+        "s": "Check if the prompt is being truncated with --max-model-len or similar CLI parameters."
+      },
+      {
+        "t": "Cache Memory",
+        "s": "Verify if the KV cache is running out of memory with calculations like 2*layers*heads*dim."
+      },
+      {
+        "t": "Prefill Time",
+        "s": "Measure the time taken for prefill to identify bottlenecks."
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "Before Optimization",
+        "body": "High latency, truncated prompts, memory overflow."
+      },
+      {
+        "cls": "gold",
+        "title": "After Optimization",
+        "body": "Reduced latency, full prompts, efficient memory usage."
+      }
+    ],
+    "idx": 68
+  },
+  {
+    "title": "Context Window Conundrum",
+    "art": "warning",
+    "cap": "A warning sign with a question mark inside, representing the uncertainty in solving the wrong problem.",
+    "c_tag": "hot",
+    "note_head": "Solving the Wrong Problem",
+    "note_items": [
+      {
+        "t": "All evidence fits, but the answer is wrong."
+      },
+      {
+        "t": "Different solutions are needed for different problems."
+      },
+      {
+        "t": "Solving the wrong problem can cost hours, money, or accuracy."
+      }
+    ],
+    "idx": 69
+  },
+  {
+    "title": "Context Window #71",
+    "c_tag": "cyan",
+    "items": [
+      {
+        "key": "local_model",
+        "label": "Local Model"
+      },
+      {
+        "key": "gpu",
+        "label": "GPU"
+      },
+      {
+        "key": "context_setting",
+        "label": "Context Setting"
+      },
+      {
+        "key": "prompt_behavior",
+        "label": "Prompt Behavior"
+      }
+    ],
+    "idx": 70
+  },
+  {
+    "title": "Context Window Analysis",
+    "art": "context_window",
+    "cap": "Analyzing the actual usable tokens in your system",
+    "c_tag": "cyan",
+    "chain": [
+      {
+        "t": "Token Count",
+        "s": "128K"
+      },
+      {
+        "t": "Memory Math",
+        "s": "2*layers*heads*dim"
+      },
+      {
+        "t": "System Check",
+        "s": "CLI: --max-model-len"
+      }
+    ],
+    "idx": 71
+  }
+]
