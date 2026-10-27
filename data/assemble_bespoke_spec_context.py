@@ -362,7 +362,7 @@ SUBTITLE = "The Engineering Reality: Model vs Runtime Limits, KV Cache Footprint
 DOC_TITLE = "BYTE FORENSICS · 128K CONTEXT WINDOW: THE SILENT MEMORY TRAP"
 KICKER = "BYTE FORENSICS · EPISODE 13"
 VOICE = "en-US-AndrewNeural"
-RATE = "+4%"
+RATE = "-4%"
 
 CHAPTERS = ''' + pprint.pformat(CHAPTERS) + '''
 

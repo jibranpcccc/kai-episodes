@@ -582,7 +582,7 @@ body.render #subs{display:none!important}
   display:flex;align-items:center;gap:6px;padding:7px 9px;border-radius:11px;
   background:rgba(12,12,11,.86);border:1px solid #3A352E;
   font-family:var(--mono, ui-monospace, monospace);
-  opacity:.34;transition:opacity .18s ease;
+  opacity:.88;transition:opacity .18s ease;
 }
 #ctl:hover{opacity:1}
 #ctl button{

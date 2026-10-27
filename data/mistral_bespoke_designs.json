@@ -1,1860 +1,1788 @@
 [
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "title": "THE 128,000 TOKEN PROMISE",
     "art": "context_window",
-    "cap": "You download a local AI model that promises a context window of one hundred and twenty-eight thousand tokens. That sounds enormous.",
-    "c_tag": "cyan",
+    "cap": "ADVERTISED SEQUENCE SPECIFICATION",
+    "c_tag": "SPECIFICATION CEILING",
     "chips": [
       {
         "c": "cyan",
-        "t": "128K"
+        "t": "128K ADVERTISED"
       },
       {
         "c": "gold",
-        "t": "context window"
+        "t": "LOCAL LLM SPEC"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "tokens",
+        "lab": "SEQUENCE",
         "u": "K",
         "v": "128"
       },
       {
         "c": "gold",
-        "lab": "memory",
-        "u": "GB",
-        "v": "16"
+        "lab": "STATUS",
+        "u": "PROMISE",
+        "v": "CLAIM"
       }
     ],
     "idx": 0
   },
   {
-    "title": "Context Window #2",
-    "art": "context_window",
-    "cap": "Enough for a long report, a mountain of code, or an entire conversation that never seems to end. Then you load the model. You paste in a document.",
-    "c_tag": "cyan",
+    "title": "THREE PROMISED USE CASES",
+    "art": "folder",
+    "cap": "WHAT 128K TOKENS SEEMS TO ENABLE",
+    "c_tag": "THE PROMISE",
     "rows": [
       {
         "cls": "cyan",
         "rank": "01",
-        "name": "Context Window",
-        "val": "128K",
-        "sub": "tokens"
+        "name": "LONG REPORT",
+        "val": "300+ PAGES",
+        "sub": "FINANCIAL AUDIT"
       },
       {
         "cls": "gold",
         "rank": "02",
-        "name": "Model Load",
-        "val": "2*layers*heads*dim",
-        "sub": "memory math"
+        "name": "MOUNTAIN OF CODE",
+        "val": "FULL REPO",
+        "sub": "MULTI-FILE LOGIC"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "Document Paste",
-        "val": "CLI",
-        "sub": "parameters"
+        "name": "ENDLESS CHAT",
+        "val": "MULTI-TURN",
+        "sub": "PERSISTENT MEMORY"
       }
     ],
     "idx": 1
   },
   {
-    "title": "GPU Memory Overflow",
-    "art": "gpu_24gb",
-    "cap": "Context Window Trap",
-    "c_tag": "hot",
+    "title": "THE REALITY: THREE FAILURES",
+    "art": "warning",
+    "cap": "WHAT ACTUALLY HAPPENS AT SCALE",
+    "c_tag": "EXECUTION BREAKDOWN",
     "bars": [
       {
-        "cls": "cyan",
-        "lab": "VRAM Allocated",
-        "unit": "GB",
-        "val": 16,
-        "pct": 66.67
+        "cls": "hot",
+        "lab": "VRAM EXHAUSTION",
+        "unit": "MEMORY",
+        "val": "OOM CRASH",
+        "pct": 98.0
       },
       {
-        "cls": "hot",
-        "lab": "VRAM Requested",
-        "unit": "GB",
-        "val": 24,
-        "pct": 100
+        "cls": "cyan",
+        "lab": "FIRST TOKEN DELAY",
+        "unit": "LATENCY",
+        "val": "TIMEOUT",
+        "pct": 92.0
       }
     ],
     "idx": 2
   },
   {
-    "title": "Context Window Trap",
-    "art": "warning",
-    "cap": "The Silent Memory Trap",
-    "c_tag": "cyan",
+    "title": "THE ADVERTISED SPEC TRAP",
+    "art": "scales",
+    "cap": "SPECIFICATION VS HARDWARE CAPACITY",
+    "c_tag": "PHYSICAL DISCONNECT",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "Advertised Context Window",
-        "val": "128K Tokens",
-        "pct": "100%"
+        "lab": "ADVERTISED WINDOW",
+        "val": "128K TOKENS",
+        "pct": 100.0
       },
       {
         "cls": "red",
-        "lab": "Effective Context Window",
-        "val": "16K Tokens",
-        "pct": "12.5%"
+        "lab": "HARDWARE CAPACITY",
+        "val": "OUT OF MEMORY",
+        "pct": 25.0
       }
     ],
     "idx": 3
   },
   {
-    "title": "Context Window Trap",
+    "title": "FITTING TEXT VS USING TEXT",
     "art": "warning",
-    "cap": "Even when the text fits, the model may not use every part of it correctly.",
-    "c_tag": "cyan",
+    "cap": "ATTENTION AND RETRIEVAL FIDELITY",
+    "c_tag": "RECALL DISCONNECT",
     "chain": [
       {
-        "t": "Context Window",
-        "s": "The maximum number of tokens the model can process at once."
+        "t": "VRAM ALLOCATION",
+        "s": "TEXT FITS ON GPU"
       },
       {
-        "t": "KV Cache",
-        "s": "Stores key-value pairs for attention mechanisms, consuming significant memory."
+        "t": "ATTENTION PASS",
+        "s": "COMPUTE EXECUTION"
       },
       {
-        "t": "Prompt Stream",
-        "s": "The input text provided to the model, which must fit within the context window."
+        "t": "ACCURATE RETRIEVAL",
+        "s": "RELIABLE EXTRACTION"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Expected Behavior",
-        "body": "The model should utilize all parts of the prompt stream within the context window."
+        "title": "PHYSICAL FIT",
+        "body": "CONTEXT ALLOCATED"
       },
       {
         "cls": "gold",
-        "title": "Actual Behavior",
-        "body": "The model may fail to use every part of the prompt stream correctly, even if it fits within the context window."
+        "title": "RECALL FIDELITY",
+        "body": "DETAIL MISSED"
       }
     ],
     "idx": 4
   },
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
-    "art": "context_window",
-    "cap": "The journey of a long prompt through a local AI system",
-    "c_tag": "Window #6",
-    "note_head": "Today we are following one long prompt through a local AI system, from the model specification to the GPU memory, all the way to the answer.",
+    "title": "TRACING THE PROMPT PIPELINE",
+    "art": "prompt_stream",
+    "cap": "END-TO-END EXECUTION AUDIT",
+    "c_tag": "BYTE FORENSICS",
+    "note_head": "PROMPT EXECUTION PATH",
     "note_items": [
       {
-        "t": "Model specification: --max-model-len 128K tokens"
+        "t": "MODEL SPECIFICATION: ADVERTISED CONTEXT"
       },
       {
-        "t": "GPU memory: 16GB VRAM"
+        "t": "PHYSICAL MEMORY: KV CACHE ALLOCATION"
       },
       {
-        "t": "KV cache: 2*layers*heads*dim*128K tokens"
-      },
-      {
-        "t": "Prompt stream: 128K tokens"
-      },
-      {
-        "t": "Answer: Generated after processing the entire prompt"
+        "t": "GENERATION SPEED: PREFILL VS DECODE"
       }
     ],
     "idx": 5
   },
   {
-    "title": "Window #7",
-    "c_tag": "context_window",
+    "title": "THREE CORE INVESTIGATIONS",
+    "c_tag": "EXECUTIVE AUDIT",
     "items": [
       {
-        "key": "context_window",
-        "label": "Context Window"
+        "key": "ram_stick",
+        "label": "VRAM RUNS OUT"
       },
       {
-        "key": "kv_cache",
-        "label": "KV Cache"
+        "key": "clock",
+        "label": "LATENCY SPIKE"
       },
       {
-        "key": "prompt_stream",
-        "label": "Prompt Stream"
+        "key": "chip",
+        "label": "SMALLER CONTEXT"
       }
     ],
     "idx": 6
   },
   {
-    "title": "Context Window: The Silent Memory Trap",
+    "title": "WORKING MEMORY VS STORAGE",
     "art": "context_window",
-    "cap": "A context window is the working information made available to the model for a particular generation. It can contain instructions, prior messages, documents, tool results, and the beginning of the model's own response.",
-    "c_tag": "Context Window",
+    "cap": "TRANSIENT GENERATION STATE",
+    "c_tag": "NOT PERMANENT",
     "chain": [
       {
-        "t": "Instructions",
-        "s": "The initial set of directives provided to the model."
+        "t": "SYSTEM PROMPT",
+        "s": "CORE INSTRUCTIONS"
       },
       {
-        "t": "Prior Messages",
-        "s": "Historical exchanges that form the context of the current interaction."
+        "t": "CHAT & DOCUMENTS",
+        "s": "PRIOR MESSAGES & TOOLS"
       },
       {
-        "t": "Documents",
-        "s": "External data sources integrated into the context window."
-      },
-      {
-        "t": "Tool Results",
-        "s": "Outputs from external tools or APIs used within the context."
-      },
-      {
-        "t": "Model's Response",
-        "s": "The beginning of the model's generated output."
+        "t": "ACTIVE RESPONSE",
+        "s": "AUTOREGRESSIVE OUTPUT"
       }
     ],
     "idx": 7
   },
   {
-    "title": "TOKENIZATION",
-    "art": "folder",
-    "cap": "TOKENIZATION",
-    "c_tag": "cyan",
+    "title": "WORDS ARE NOT TOKENS",
+    "art": "chip",
+    "cap": "TOKENIZER SUB-WORD SEGMENTATION",
+    "c_tag": "TOKEN EXPANSION",
     "chips": [
       {
         "c": "cyan",
-        "t": "Tokenizer"
+        "t": "SUB-WORD SLICES"
       },
       {
         "c": "gold",
-        "t": "Token"
+        "t": "SYNTAX & FORMATTING"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "Word",
-        "u": "tokens",
-        "v": "1-3"
+        "lab": "PUNCTUATION",
+        "u": "TOKENS",
+        "v": "SPLIT"
       },
       {
         "c": "gold",
-        "lab": "Punctuation",
-        "u": "tokens",
-        "v": "1"
+        "lab": "FORMATTING",
+        "u": "TOKENS",
+        "v": "EXTRA"
       }
     ],
     "idx": 8
   },
   {
-    "title": "Context Window #10",
-    "art": "warning",
-    "cap": "The Silent Memory Trap",
-    "c_tag": "cyan",
+    "title": "NO CONVERSION SHORTCUT",
+    "art": "folder",
+    "cap": "PAGE COUNT != TOKEN COUNT",
+    "c_tag": "MEASURE EXACT",
     "rows": [
       {
         "cls": "cyan",
         "rank": "01",
-        "name": "Page-to-Token Ratio",
-        "val": "100:?",
-        "sub": "Inconsistent due to variable tokenization"
+        "name": "100-PAGE DOC",
+        "val": "VARIABLE",
+        "sub": "NO FIXED RATIO"
       },
       {
         "cls": "gold",
         "rank": "02",
-        "name": "Context Budget",
-        "val": "Limited",
-        "sub": "Not always fully allocable to input"
+        "name": "CODE & INDENTS",
+        "val": "EXPANDED",
+        "sub": "HIGH TOKEN DENSITY"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "Memory Constraint",
-        "val": "128K",
-        "sub": "Silent trap for large documents"
+        "name": "INPUT BUDGET",
+        "val": "LIMITED",
+        "sub": "SHARED LIMIT"
       }
     ],
     "idx": 9
   },
   {
-    "title": "Context Window Allocation",
-    "art": "context_window",
-    "cap": "Token Allocation",
-    "c_tag": "cyan",
+    "title": "THE SHARED CONTEXT BUDGET",
+    "art": "scales",
+    "cap": "INPUT VS OUTPUT ALLOCATION",
+    "c_tag": "ZERO ANSWER ROOM",
     "bars": [
       {
-        "cls": "cyan",
-        "lab": "Prompt Tokens",
-        "unit": "tokens",
-        "val": 128000,
-        "pct": 100
+        "cls": "hot",
+        "lab": "PROMPT INPUT",
+        "unit": "TOKENS",
+        "val": "128K",
+        "pct": 98.0
       },
       {
-        "cls": "hot",
-        "lab": "Generated Tokens",
-        "unit": "tokens",
-        "val": 0,
-        "pct": 0
+        "cls": "cyan",
+        "lab": "ROOM FOR ANSWER",
+        "unit": "TOKENS",
+        "val": "0 TOKENS",
+        "pct": 2.0
       }
     ],
     "idx": 10
   },
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
-    "art": "context_window",
-    "cap": "The 128K token budget: a silent memory trap for large language models.",
-    "c_tag": "context_window",
+    "title": "APPLICATION OUTPUT CEILINGS",
+    "art": "warning",
+    "cap": "RUNTIME OUTPUT GENERATION CONSTRAINTS",
+    "c_tag": "HARD CEILINGS",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "128K Token Budget",
-        "val": "128,000",
-        "pct": "100%"
+        "lab": "TOTAL BUDGET",
+        "val": "128K TOKENS",
+        "pct": 100.0
       },
       {
         "cls": "red",
-        "lab": "Model/Application Limits",
-        "val": "Variable",
-        "pct": "N/A"
+        "lab": "MAX OUTPUT LIMIT",
+        "val": "APPLICATION CAP",
+        "pct": 30.0
       }
     ],
     "idx": 11
   },
   {
-    "title": "Window #13",
-    "art": "context_window",
-    "cap": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
-    "c_tag": "cyan",
+    "title": "RESERVING OUTPUT HEADROOM",
+    "art": "cache_grid",
+    "cap": "BUDGETING FOR GENERATION",
+    "c_tag": "HEADROOM LAW",
     "chain": [
       {
-        "t": "Context Window",
-        "s": "The maximum number of tokens the model can process at once."
+        "t": "SYSTEM OVERHEAD",
+        "s": "CHAT TEMPLATE & ROLES"
       },
       {
-        "t": "System Prompts",
-        "s": "Instructions or rules given to the model before the user's input."
+        "t": "PROMPT SOURCE",
+        "s": "USER QUERY & DOCUMENTS"
       },
       {
-        "t": "Chat Formatting",
-        "s": "The structure and syntax used to format the conversation between the user and the model."
-      },
-      {
-        "t": "Overhead",
-        "s": "Additional memory required for metadata, buffers, and other non-token data."
+        "t": "OUTPUT RESERVE",
+        "s": "8,000 GENERATED TOKENS"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Current Context Window",
-        "body": "8,000 tokens"
+        "title": "MAX INPUT SPACE",
+        "body": "120,000 TOKENS"
       },
       {
         "cls": "gold",
-        "title": "Required Context Window",
-        "body": "8,000 tokens + System Prompts + Chat Formatting + Overhead"
+        "title": "OUTPUT RESERVE",
+        "body": "8,000 TOKENS"
       }
     ],
     "idx": 12
   },
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "title": "CEILING VS REALISTIC INPUT",
     "art": "warning",
-    "cap": "The context window limit is a silent memory trap, not a promise of full response.",
-    "c_tag": "Context Window Limit",
-    "note_head": "128K Tokens: A Ceiling, Not a Promise",
+    "cap": "UNDERSTANDING CONTEXT BOUNDARIES",
+    "c_tag": "CEILING LAW",
+    "note_head": "CONTEXT ALLOCATION REALITY",
     "note_items": [
       {
-        "t": "128,000 tokens is the advertised ceiling for context window."
+        "t": "128K IS A COMBINED HARD CEILING"
       },
       {
-        "t": "This limit is not a guarantee of full response quality."
+        "t": "INPUT MUST LEAVE ADEQUATE ANSWER ROOM"
       },
       {
-        "t": "The first of four separate limits begins here."
+        "t": "SYSTEM TEMPLATES CONSUME HIDDEN TOKENS"
       }
     ],
     "idx": 13
   },
   {
-    "title": "Context Configuration",
-    "c_tag": "cyan",
+    "title": "LIMIT 1: MODEL ARCHITECTURE",
+    "c_tag": "FIRST LIMIT",
     "items": [
       {
-        "key": "context_window",
-        "label": "Supported Context Window"
+        "key": "chip",
+        "label": "BASE ARCHITECTURE"
       },
       {
-        "key": "kv_cache",
-        "label": "Key-Value Cache"
+        "key": "folder",
+        "label": "TRAINING DATASET"
       },
       {
-        "key": "prompt_stream",
-        "label": "Prompt Stream"
+        "key": "checklist",
+        "label": "PUBLISHED SPEC"
       }
     ],
     "idx": 14
   },
   {
-    "title": "Software Context Limit",
-    "art": "warning",
-    "cap": "Local application enforces a smaller active context than the model's published maximum.",
-    "c_tag": "gold",
+    "title": "LIMIT 2: RUNTIME SOFTWARE",
+    "art": "laptop",
+    "cap": "SOFTWARE CONFIGURATION CONSTRAINTS",
+    "c_tag": "SECOND LIMIT",
     "chain": [
       {
-        "t": "Model Published Max Context",
-        "s": "8192 tokens"
+        "t": "PUBLISHED MODEL SPEC",
+        "s": "THEORETICAL MAXIMUM"
       },
       {
-        "t": "Local Application Active Context",
-        "s": "4096 tokens"
+        "t": "LOCAL APP DEFAULT",
+        "s": "CONSERVATIVE SETTING"
       },
       {
-        "t": "Context Window Reduction",
-        "s": "50%"
+        "t": "EFFECTIVE RUNTIME",
+        "s": "ACTIVE CONFIGURED WINDOW"
       }
     ],
     "idx": 15
   },
   {
-    "title": "Context Size Settings",
-    "art": "context_window",
-    "cap": "Model Configuration Parameters",
-    "c_tag": "cyan",
+    "title": "CONFIGURED CLI PARAMETERS",
+    "art": "chip",
+    "cap": "EXPLICIT INFERENCE ENGINE FLAGS",
+    "c_tag": "FLAG CONTROL",
     "chips": [
       {
         "c": "cyan",
-        "t": "llama.cpp"
+        "t": "LLAMA.CPP: -C FLAG"
       },
       {
         "c": "gold",
-        "t": "vLLM"
+        "t": "VLLM: --MAX-MODEL-LEN"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "Context Size",
-        "u": "tokens",
-        "v": "2048"
+        "lab": "LLAMA.CPP",
+        "u": "FLAG",
+        "v": "-C"
       },
       {
         "c": "gold",
-        "lab": "Max Model Length",
-        "u": "tokens",
-        "v": "4096"
+        "lab": "VLLM",
+        "u": "FLAG",
+        "v": "MAXLEN"
       }
     ],
     "idx": 16
   },
   {
-    "title": "Configuration Constraints",
-    "art": "checklist",
-    "cap": "CLI Parameters and Memory Math",
-    "c_tag": "cyan",
+    "title": "BACKEND MEMORY CONSTRAINTS",
+    "art": "motherboard",
+    "cap": "INFERENCE ENGINE ARCHITECTURE",
+    "c_tag": "BACKEND RULES",
     "rows": [
       {
         "cls": "cyan",
         "rank": "01",
-        "name": "--max-model-len",
-        "val": "2*layers*heads*dim",
-        "sub": "Memory math for model length"
+        "name": "LLAMA.CPP",
+        "val": "-C CONTEXT",
+        "sub": "CPU/GPU SPLIT"
       },
       {
         "cls": "gold",
         "rank": "02",
-        "name": "-c",
-        "val": "128K",
-        "sub": "Context window size"
+        "name": "VLLM ENGINE",
+        "val": "GPU POOL",
+        "sub": "PAGED ATTENTION"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "GPU Memory",
-        "val": "16GB",
-        "sub": "Typical GPU memory constraint"
+        "name": "BACKEND DRIVER",
+        "val": "VRAM WALL",
+        "sub": "ALLOCATION BUFFER"
       }
     ],
     "idx": 17
   },
   {
-    "title": "Memory Limits",
-    "art": "ram_stick",
-    "cap": "The advertised model limit and the configured runtime limit are different facts. The third limit is physical memory.",
-    "c_tag": "Memory",
+    "title": "LIMIT 3: PHYSICAL MEMORY",
+    "art": "gpu_24gb",
+    "cap": "WEIGHTS VS WORKING ALLOCATIONS",
+    "c_tag": "THIRD LIMIT",
     "bars": [
       {
         "cls": "cyan",
-        "lab": "Advertised Model Limit",
-        "unit": "GB",
-        "val": 128,
-        "pct": 100
+        "lab": "STATIC WEIGHT FILE",
+        "unit": "VRAM",
+        "val": "LOADED",
+        "pct": 50.0
       },
       {
         "cls": "hot",
-        "lab": "Configured Runtime Limit",
-        "unit": "GB",
-        "val": 64,
-        "pct": 50
-      },
-      {
-        "cls": "gold",
-        "lab": "Physical Memory",
-        "unit": "GB",
-        "val": 32,
-        "pct": 25
+        "lab": "DYNAMIC RUNTIME MEM",
+        "unit": "VRAM",
+        "val": "REQUIRED",
+        "pct": 95.0
       }
     ],
     "idx": 18
   },
   {
-    "title": "Key-Value Cache",
+    "title": "ENTER THE KEY-VALUE CACHE",
     "art": "kv_cache",
-    "cap": "The key-value cache stores intermediate representations of tokens processed by the transformer's attention layers.",
-    "c_tag": "Memory",
+    "cap": "ATTENTION STATE REPRESENTATION",
+    "c_tag": "TRANSFORMER MATH",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "Key Cache",
-        "val": "2*layers*heads*dim",
-        "pct": "50%"
+        "lab": "KEY VECTORS",
+        "val": "ATTENTION KEYS",
+        "pct": 50.0
       },
       {
         "cls": "gold",
-        "lab": "Value Cache",
-        "val": "2*layers*heads*dim",
-        "pct": "50%"
+        "lab": "VALUE VECTORS",
+        "val": "ATTENTION VALUES",
+        "pct": 50.0
       }
     ],
     "idx": 19
   },
   {
-    "title": "KV Cache Optimization",
-    "art": "kv_cache",
-    "cap": "Autoregressive Generation Efficiency",
-    "c_tag": "cyan",
+    "title": "AVOIDING RECOMPUTATION",
+    "art": "cache_grid",
+    "cap": "AUTOREGRESSIVE CACHING SPEEDUP",
+    "c_tag": "CACHING SAVES TTFT",
     "chain": [
       {
-        "t": "Key-Value Cache",
-        "s": "Stores intermediate representations to avoid recomputation."
+        "t": "PREVIOUS TOKENS",
+        "s": "COMPUTE KV ONCE"
       },
       {
-        "t": "Memory Savings",
-        "s": "Reduces redundant calculations during token generation."
+        "t": "VRAM STORAGE",
+        "s": "SAVE TO KV CACHE"
       },
       {
-        "t": "Performance Boost",
-        "s": "Speeds up autoregressive generation by leveraging cached data."
+        "t": "NEW TOKEN DECODE",
+        "s": "READ PAST WITHOUT RECALC"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Without Cache",
-        "body": "Full recomputation for each new token."
+        "title": "WITHOUT CACHE",
+        "body": "RECOMPUTE ALL TOKENS"
       },
       {
         "cls": "gold",
-        "title": "With Cache",
-        "body": "Partial recomputation using stored representations."
+        "title": "WITH KV CACHE",
+        "body": "REUSE STORED VECTORS"
       }
     ],
     "idx": 20
   },
   {
-    "title": "Context Window",
-    "art": "context_window",
-    "cap": "The context window is a dynamic memory space that grows with each request, acting as a working set of notes for the current task.",
-    "c_tag": "cyan",
-    "note_head": "Key Aspects of the Context Window",
+    "title": "WORKING NOTES ANALOGY",
+    "art": "chip",
+    "cap": "MACHINERY VS WORKING STATE",
+    "c_tag": "ANALOGY",
+    "note_head": "TRANSFORMER EXECUTION ANALOGY",
     "note_items": [
       {
-        "t": "Dynamic Memory Allocation: The context window expands and contracts based on the current request, ensuring optimal memory usage."
+        "t": "WEIGHTS ARE THE MACHINERY (STATIC LOAD)"
       },
       {
-        "t": "Working Notes: It serves as a growing set of working notes for the current request, capturing all relevant information."
+        "t": "KV CACHE IS THE WORKING NOTES (DYNAMIC GROWTH)"
       },
       {
-        "t": "Model Weights: The machinery behind the context window, which are the model weights, remain static and are not part of the dynamic memory allocation."
+        "t": "LONGER CONTEXT EXPANDS NOTES CONTINUOUSLY"
       }
     ],
     "idx": 21
   },
   {
-    "title": "Key-Value Cache",
-    "c_tag": "cyan",
+    "title": "SEQUENCE SCALING PRESSURE",
+    "c_tag": "LINEAR GROWTH",
     "items": [
       {
-        "key": "kv_cache",
-        "label": "Key-Value Cache"
-      },
-      {
         "key": "context_window",
-        "label": "Context Window"
+        "label": "LONGER INPUT"
       },
       {
-        "key": "cache_grid",
-        "label": "Cache Grid"
+        "key": "kv_cache",
+        "label": "MORE KV DATA"
+      },
+      {
+        "key": "warning",
+        "label": "VRAM SURGE"
       }
     ],
     "idx": 22
   },
   {
-    "title": "Cache Memory Scaling Factors",
-    "art": "cache_grid",
-    "cap": "The context window scales with these factors",
-    "c_tag": "cyan",
+    "title": "KV CACHE SCALING DRIVERS",
+    "art": "die",
+    "cap": "SIX HARDWARE PARAMETERS",
+    "c_tag": "SCALING DRIVERS",
     "chain": [
       {
-        "t": "Token Count",
-        "s": "The number of tokens processed in the prompt and generated response."
+        "t": "LAYERS & HEADS",
+        "s": "TRANSFORMER DEPTH & GQA"
       },
       {
-        "t": "Layers",
-        "s": "The depth of the transformer model, affecting the number of computations."
+        "t": "HEAD DIM & PRECISION",
+        "s": "BYTES PER STORED ELEMENT"
       },
       {
-        "t": "Key-Value Heads",
-        "s": "The number of attention heads and their dimensions, impacting the size of the KV cache."
-      },
-      {
-        "t": "Storage Precision",
-        "s": "The bit depth used for storing model weights and activations."
-      },
-      {
-        "t": "Sequences Served",
-        "s": "The number of concurrent sequences being processed."
+        "t": "TOKENS & BATCH SIZE",
+        "s": "SEQUENCE COUNT SERVED"
       }
     ],
     "idx": 23
   },
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
-    "art": "warning",
-    "cap": "A warning sign with a CPU chip inside, representing the potential pitfalls of context window limitations.",
-    "c_tag": "cyan",
+    "title": "HYPOTHETICAL MATH MODEL",
+    "art": "scales",
+    "cap": "PEDAGOGICAL CALCULATION ARCHITECTURE",
+    "c_tag": "ILLUSTRATIVE ONLY",
     "chips": [
       {
         "c": "cyan",
-        "t": "Context Window"
+        "t": "EDUCATIONAL FORMULA"
       },
       {
         "c": "gold",
-        "t": "Memory Math"
+        "t": "NOT NAMED BENCHMARK"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "Max Model Length",
-        "u": "tokens",
-        "v": "128K"
+        "lab": "PURPOSE",
+        "u": "TYPE",
+        "v": "MATH"
       },
       {
         "c": "gold",
-        "lab": "Memory Calculation",
-        "u": "GB",
-        "v": "2*layers*heads*dim"
+        "lab": "BENCHMARK",
+        "u": "DATA",
+        "v": "MODEL"
       }
     ],
     "idx": 24
   },
   {
-    "title": "32 LAYERS, 8 HEADS, 128 VALUES",
-    "art": "context_window",
-    "cap": "32 LAYERS, 8 HEADS, 128 VALUES",
-    "c_tag": "cyan",
+    "title": "THE KV CACHE FORMULA",
+    "art": "ram_stick",
+    "cap": "2 * LAYERS * HEADS * DIM * BYTES",
+    "c_tag": "THE ARCHITECTURE",
     "rows": [
       {
         "cls": "cyan",
         "rank": "01",
-        "name": "LAYERS",
-        "val": "32",
-        "sub": "32 layers"
+        "name": "32 LAYERS",
+        "val": "DEPTH",
+        "sub": "TRANSFORMER BLOCKS"
       },
       {
         "cls": "gold",
         "rank": "02",
-        "name": "HEADS",
-        "val": "8",
-        "sub": "8 key-value heads per layer"
+        "name": "8 KV HEADS",
+        "val": "DIM: 128",
+        "sub": "GQA HEAD GROUPING"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "VALUES",
-        "val": "128",
-        "sub": "128 values per head"
+        "name": "FP16 PRECISION",
+        "val": "2 BYTES",
+        "sub": "KEY + VALUE VECTORS"
       }
     ],
     "idx": 25
   },
   {
-    "title": "32K TOKEN CACHE",
-    "art": "kv_cache",
-    "cap": "32K TOKEN CACHE",
-    "c_tag": "cyan",
+    "title": "8K VS 32K CONTEXT CACHE",
+    "art": "vram_module",
+    "cap": "PHYSICAL MEMORY COMPARISON",
+    "c_tag": "SCALING PROOF",
     "bars": [
       {
         "cls": "cyan",
-        "lab": "32K TOKEN CACHE",
-        "unit": "GB",
-        "val": 4,
-        "pct": 100
+        "lab": "8,000 TOKENS",
+        "unit": "GIB",
+        "val": "1.0 GIB",
+        "pct": 25.0
       },
       {
         "cls": "hot",
-        "lab": "8K TOKEN CACHE",
-        "unit": "GB",
-        "val": 1,
-        "pct": 25
+        "lab": "32,000 TOKENS",
+        "unit": "GIB",
+        "val": "4.0 GIB",
+        "pct": 100.0
       }
     ],
     "idx": 26
   },
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
-    "art": "ram_stick",
-    "cap": "At one hundred and twenty-eight thousand tokens, it would be about sixteen gibibytes.",
-    "c_tag": "memory",
+    "title": "128K TOKENS: 16 GIBIBYTES",
+    "art": "gpu_24gb",
+    "cap": "128K SEQUENCE VRAM FOOTPRINT",
+    "c_tag": "THE 16GB WALL",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "Context Window",
-        "val": "128K",
-        "pct": "100%"
+        "lab": "32K TOKENS",
+        "val": "4.0 GIB VRAM",
+        "pct": 25.0
       },
       {
         "cls": "red",
-        "lab": "Memory Usage",
-        "val": "16GiB",
-        "pct": "12.5%"
+        "lab": "128K TOKENS",
+        "val": "16.0 GIB VRAM",
+        "pct": 100.0
       }
     ],
     "idx": 27
   },
   {
-    "title": "Window #29",
-    "art": "gpu_24gb",
-    "cap": "The Shock of the Context Cache",
-    "c_tag": "cyan",
+    "title": "THE VRAM CLIFF",
+    "art": "warning",
+    "cap": "CACHE OVERFLOWING HARDWARE",
+    "c_tag": "CRITICAL SHOCK",
     "chain": [
       {
-        "t": "Model Weights",
-        "s": "Fit comfortably on a graphics card"
+        "t": "MODEL WEIGHTS",
+        "s": "FITS ON GRAPHICS CARD"
       },
       {
-        "t": "Context Cache",
-        "s": "Pushes the whole workload over the edge"
+        "t": "KV CACHE EXPANDS",
+        "s": "16 GIB ADDED VRAM"
       },
       {
-        "t": "Memory Allocation",
-        "s": "24GB VRAM limit reached"
+        "t": "TOTAL ALLOCATION",
+        "s": "WORKLOAD PUSHED OVER EDGE"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Model Weights",
-        "body": "2*layers*heads*dim = 2*32*32*128 = 262,144 bytes"
+        "title": "WEIGHTS LOADED",
+        "body": "FITS COMFORTABLY"
       },
       {
         "cls": "gold",
-        "title": "Context Cache",
-        "body": "128K tokens * 128 bytes/token = 16,384,000 bytes"
+        "title": "KV CACHE SURGE",
+        "body": "SYSTEM CRASH / OOM"
       }
     ],
     "idx": 28
   },
   {
-    "title": "Quantization Impact",
-    "art": "kv_cache",
-    "cap": "Quantization does not uniformly reduce cache precision",
-    "c_tag": "Quantization",
-    "note_head": "Key Points:",
+    "title": "WEIGHT QUANTIZATION LIMITS",
+    "art": "chip",
+    "cap": "WEIGHTS != CACHE PRECISION",
+    "c_tag": "QUANTIZATION LAW",
+    "note_head": "CACHE PRECISION REALITY",
     "note_items": [
       {
-        "t": "Quantization reduces weight file size but not cache precision uniformly"
+        "t": "QUANTIZING WEIGHTS LEAVES KV CACHE IN FP16"
       },
       {
-        "t": "Cache numbers vary with model architecture"
+        "t": "CACHE PRECISION REQUIRES SEPARATE ENGINE FLAGS"
       },
       {
-        "t": "Grouped-query attention reduces key-value heads count"
+        "t": "ARCHITECTURE CHANGES TOTAL HEAD COUNT"
       }
     ],
     "idx": 29
   },
   {
-    "title": "Window #31",
-    "c_tag": "gold",
+    "title": "CACHE MITIGATION DESIGNS",
+    "c_tag": "ARCHITECTURES",
     "items": [
       {
-        "key": "sliding-window",
-        "label": "Sliding-Window"
+        "key": "die",
+        "label": "GROUPED QUERY"
       },
       {
-        "key": "quantized-cache",
-        "label": "Quantized Cache"
+        "key": "clock",
+        "label": "SLIDING WINDOW"
       },
       {
-        "key": "offloaded-cache",
-        "label": "Offloaded Cache"
-      },
-      {
-        "key": "four-gibibyte",
-        "label": "4 GiB"
+        "key": "ram_stick",
+        "label": "OFFLOADED CACHE"
       }
     ],
     "idx": 30
   },
   {
-    "title": "Runtime Serving Multiple Requests",
-    "art": "gpu_24gb",
-    "cap": "GPU Memory Under Pressure",
-    "c_tag": "hot",
+    "title": "FITTING WEIGHTS VS CONVERSATION",
+    "art": "warning",
+    "cap": "CORE HARDWARE PRINCIPLE",
+    "c_tag": "GOLDEN RULE",
     "chain": [
       {
-        "t": "Context Window",
-        "s": "128K tokens"
+        "t": "STATIC WEIGHTS",
+        "s": "CONSTANT MEMORY CONSUMPTION"
       },
       {
-        "t": "KV Cache",
-        "s": "2*layers*heads*dim"
+        "t": "LONG CONVERSATION",
+        "s": "EXPANDING STATE VECTOR"
       },
       {
-        "t": "Runtime",
-        "s": "Serving 4 requests"
+        "t": "MULTI-USER LOAD",
+        "s": "MULTIPLIED CACHE FOOTPRINTS"
       }
     ],
     "idx": 31
   },
   {
-    "title": "Memory Math",
-    "art": "ram_stick",
-    "cap": "Active User State",
-    "c_tag": "cyan",
+    "title": "MULTI-USER CONCURRENCY",
+    "art": "lan_link",
+    "cap": "SHARED RUNTIME STATE CAPACITY",
+    "c_tag": "CONCURRENCY SURGE",
     "chips": [
       {
         "c": "cyan",
-        "t": "2*layers*heads*dim"
+        "t": "ACTIVE SESSIONS"
       },
       {
         "c": "gold",
-        "t": "multiple users"
+        "t": "PER-USER KV POOLS"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "Active Sequences",
-        "u": "users",
-        "v": "N"
+        "lab": "CONCURRENCY",
+        "u": "USERS",
+        "v": "MULTI"
       },
       {
         "c": "gold",
-        "lab": "Memory per User",
-        "u": "GB",
-        "v": "M"
+        "lab": "VRAM POOL",
+        "u": "STATE",
+        "v": "DIVIDED"
       }
     ],
     "idx": 32
   },
   {
-    "title": "Context Window #34",
-    "art": "context_window",
-    "cap": "A context size that works for one short chat may not be practical with long requests running at the same time.",
-    "c_tag": "Context Window",
+    "title": "CONCURRENT MEMORY EXHAUSTION",
+    "art": "warning",
+    "cap": "SCALING CONTEXT UNDER BATCH LOAD",
+    "c_tag": "RESOURCE SQUEEZE",
     "rows": [
       {
         "cls": "cyan",
         "rank": "01",
-        "name": "Short Chat",
-        "val": "128K Tokens",
-        "sub": "Single Request"
+        "name": "1 SHORT CHAT",
+        "val": "STABLE",
+        "sub": "MODERATE VRAM"
       },
       {
         "cls": "gold",
         "rank": "02",
-        "name": "Long Requests",
-        "val": "512K Tokens",
-        "sub": "Multiple Requests"
+        "name": "LONG CONVERSATIONS",
+        "val": "SCALING",
+        "sub": "EXPANDED CACHE"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "Memory Usage",
-        "val": "2GB",
-        "sub": "Per Request"
+        "name": "CONCURRENT BATCH",
+        "val": "COLLAPSE",
+        "sub": "OOM ALLOCATION"
       }
     ],
     "idx": 33
   },
   {
-    "title": "Context Window #35",
-    "art": "warning",
-    "cap": "Insufficient Cache Memory Error",
-    "c_tag": "hot",
+    "title": "INSUFFICIENT CACHE ERRORS",
+    "art": "vram_module",
+    "cap": "STARTUP CRASHES & LAUNCH REFUSALS",
+    "c_tag": "ALLOCATION CRASH",
     "bars": [
       {
         "cls": "cyan",
-        "lab": "Context Window",
-        "unit": "tokens",
-        "val": 128000,
-        "pct": 100
+        "lab": "WEIGHTS LOADED",
+        "unit": "STATUS",
+        "val": "SUCCESS",
+        "pct": 100.0
       },
       {
         "cls": "hot",
-        "lab": "Cache Memory",
-        "unit": "GB",
-        "val": 16,
-        "pct": 50
+        "lab": "KV CACHE RESERVATION",
+        "unit": "STATUS",
+        "val": "REFUSED",
+        "pct": 10.0
       }
     ],
     "idx": 34
   },
   {
-    "title": "Context Window Limits",
-    "art": "warning",
-    "cap": "The fourth limit is more subtle. Even if the model supports the tokens, the runtime accepts them, and the hardware stores them, the model may not use all that information reliably.",
-    "c_tag": "cyan",
+    "title": "LIMIT 4: RETRIEVAL RELIABILITY",
+    "art": "scales",
+    "cap": "THE SUBTLE ACCURACY CEILING",
+    "c_tag": "FOURTH LIMIT",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "Model Capacity",
-        "val": "128K",
-        "pct": "100%"
+        "lab": "HARDWARE STORAGE",
+        "val": "STORED IN VRAM",
+        "pct": 100.0
       },
       {
         "cls": "red",
-        "lab": "Effective Usage",
-        "val": "92K",
-        "pct": "72%"
+        "lab": "RETRIEVAL RECALL",
+        "val": "UNRELIABLE USE",
+        "pct": 40.0
       }
     ],
     "idx": 35
   },
   {
-    "title": "Context Position Impact",
+    "title": "POSITIONAL RETRIEVAL BIAS",
     "art": "context_window",
-    "cap": "The influence of fact position on retrieval accuracy in long-context models.",
-    "c_tag": "cyan",
+    "cap": "FACT POSITION INFLUENCES RECALL",
+    "c_tag": "RESEARCH FINDING",
     "chain": [
       {
-        "t": "Fact Position",
-        "s": "The position of a fact within the context window can significantly impact its retrieval accuracy."
+        "t": "PROMPT START",
+        "s": "HIGH ATTENTION WEIGHT"
       },
       {
-        "t": "Retrieval Accuracy",
-        "s": "Models may struggle to retrieve facts placed at the beginning or end of the context window."
+        "t": "PROMPT MIDDLE",
+        "s": "ATTENTION DECAY ZONE"
       },
       {
-        "t": "Long-Context Research",
-        "s": "Research indicates that the optimal position for a fact is typically in the middle of the context window."
+        "t": "PROMPT END",
+        "s": "RECENCY ATTENTION BOOST"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Early Position",
-        "body": "Facts placed at the beginning of the context window may be less likely to be retrieved accurately."
+        "title": "DOCUMENT EDGES",
+        "body": "ACCURATE RETRIEVAL"
       },
       {
         "cls": "gold",
-        "title": "Middle Position",
-        "body": "Facts placed in the middle of the context window are more likely to be retrieved accurately."
+        "title": "MIDDLE REGION",
+        "body": "ATTENTION BLIND SPOT"
       }
     ],
     "idx": 36
   },
   {
-    "title": "Lost in the Middle",
-    "art": "context_window",
-    "cap": "Researchers found that information near the beginning or end of a long input was easier for models to use than information buried in the middle.",
-    "c_tag": "cyan",
-    "note_head": "Key Findings from Lost in the Middle Study",
+    "title": "LOST IN THE MIDDLE",
+    "art": "warning",
+    "cap": "THE FAMOUS ATTENTION U-CURVE",
+    "c_tag": "THE U-CURVE",
+    "note_head": "LOST IN THE MIDDLE FINDINGS",
     "note_items": [
       {
-        "t": "Edge Information Advantage: Models performed better with data at the start or end of inputs compared to middle data."
+        "t": "INFORMATION AT BEGINNING: ACCURATE RECALL"
       },
       {
-        "t": "Context Window Limitations: The study highlighted challenges with processing information in the middle of large context windows."
+        "t": "INFORMATION AT END: ACCURATE RECALL"
       },
       {
-        "t": "Token Position Impact: Token positions significantly affected model performance, with edge tokens being more accessible."
+        "t": "INFORMATION IN MIDDLE: HIGH RETRIEVAL FAILURE"
       }
     ],
     "idx": 37
   },
   {
-    "title": "Model Variability",
-    "c_tag": "cyan",
+    "title": "EVALUATING MODEL VARIANCE",
+    "c_tag": "DIFFERING RESULTS",
     "items": [
       {
-        "key": "model",
-        "label": "Model"
+        "key": "chip",
+        "label": "MODEL FAMILY"
       },
       {
-        "key": "task",
-        "label": "Task"
+        "key": "folder",
+        "label": "TASK NATURE"
       },
       {
-        "key": "evaluation",
-        "label": "Evaluation"
+        "key": "checklist",
+        "label": "BENCHMARK SUITE"
       }
     ],
     "idx": 38
   },
   {
-    "title": "Context Window Warning",
-    "art": "warning",
-    "cap": "Large numerical context limit is not the same as reliable recall across the entire window.",
-    "c_tag": "hot",
+    "title": "NUMERICAL LIMIT != RECALL",
+    "art": "folder",
+    "cap": "SEARCHING ACROSS 50 DOCUMENTS",
+    "c_tag": "NUMERICAL ILLUSION",
     "chain": [
       {
-        "t": "Context Window",
-        "s": "40 reports"
+        "t": "50 DOCUMENTS LOADED",
+        "s": "128,000 CONTEXT WINDOW"
       },
       {
-        "t": "Memory Allocation",
-        "s": "2*layers*heads*dim"
+        "t": "ATTENTION DISPERSION",
+        "s": "DILUTED FOCUS ACROSS TOKENS"
       },
       {
-        "t": "Recall Reliability",
-        "s": "Not guaranteed"
+        "t": "RECALL DISCONNECT",
+        "s": "CRUCIAL FACT OVERLOOKED"
       }
     ],
     "idx": 39
   },
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "title": "THE BURIED FACT TEST",
     "art": "warning",
-    "cap": "A warning sign with a memory chip inside, symbolizing the hidden trap in context window management.",
-    "c_tag": "Memory Trap",
+    "cap": "ORDER SENSITIVITY IN RETRIEVAL",
+    "c_tag": "ORDER TRAP",
     "chips": [
       {
         "c": "cyan",
-        "t": "Context Window"
+        "t": "BURIED HALFWAY"
       },
       {
         "c": "gold",
-        "t": "Memory Management"
+        "t": "ORDER SENSITIVE"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "Max Context Length",
-        "u": "tokens",
-        "v": "128K"
+        "lab": "FACT POSITION",
+        "u": "INDEX",
+        "v": "MIDDLE"
       },
       {
         "c": "gold",
-        "lab": "Hidden Variable",
-        "u": "order",
-        "v": "Report Sequence"
+        "lab": "ANSWER RECALL",
+        "u": "STATE",
+        "v": "SHIFT"
       }
     ],
     "idx": 40
   },
   {
-    "title": "Why Not Load a Giant Document?",
-    "art": "folder",
-    "cap": "A folder with a large document, representing the challenge of loading a giant document into a model's context window.",
-    "c_tag": "hot",
+    "title": "BEYOND LOADING TESTS",
+    "art": "checklist",
+    "cap": "LOADING A FILE PROVES NOTHING",
+    "c_tag": "TRUE AUDIT",
     "rows": [
       {
-        "cls": "hot",
+        "cls": "cyan",
         "rank": "01",
-        "name": "Document Size",
-        "val": "100MB",
-        "sub": "The size of a typical large document that might be challenging to load into a model's context window."
+        "name": "LOADING TEST",
+        "val": "TRIVIAL",
+        "sub": "MERE VRAM BUFFER"
       },
       {
-        "cls": "hot",
+        "cls": "gold",
         "rank": "02",
-        "name": "Token Count",
-        "val": "200,000",
-        "sub": "The number of tokens in the document, which is significantly larger than the model's context window."
+        "name": "RETRIEVAL AUDIT",
+        "val": "CRITICAL",
+        "sub": "MEASURE EXACT RECALL"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "Context Window",
-        "val": "128K",
-        "sub": "The maximum number of tokens the model can handle in its context window."
+        "name": "VERDICT",
+        "val": "BENCHMARK",
+        "sub": "TEST NEEDLE POSITIONS"
       }
     ],
     "idx": 41
   },
   {
-    "title": "Window #43",
-    "art": "clock",
-    "cap": "The clock is ticking, and the memory meter is being watched closely.",
-    "c_tag": "cyan",
+    "title": "3-POSITION NEEDLE AUDIT",
+    "art": "context_window",
+    "cap": "TESTING BEGINNING, MIDDLE, AND END",
+    "c_tag": "NEEDLE AUDIT",
     "bars": [
       {
         "cls": "cyan",
-        "lab": "Context Window",
-        "unit": "tokens",
-        "val": 128000,
-        "pct": 100
+        "lab": "BEGINNING & END",
+        "unit": "RECALL",
+        "val": "CONSISTENT",
+        "pct": 95.0
       },
       {
         "cls": "hot",
-        "lab": "Memory Usage",
-        "unit": "GB",
-        "val": 16,
-        "pct": 80
+        "lab": "MIDDLE POSITION",
+        "unit": "RECALL",
+        "val": "DEGRADED",
+        "pct": 40.0
       }
     ],
     "idx": 42
   },
   {
-    "title": "Prefill Processing",
+    "title": "THE PREFILL PASS",
     "art": "prompt_stream",
-    "cap": "The model processes the input prompt before generating the first answer token.",
-    "c_tag": "cyan",
+    "cap": "INITIAL PROMPT INGESTION PHASE",
+    "c_tag": "STAGE ONE",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "Prompt Length",
-        "val": "128K tokens",
-        "pct": "100%"
+        "lab": "PREFILL COMPUTE",
+        "val": "PARALLEL PASS",
+        "pct": 100.0
       },
       {
-        "cls": "red",
-        "lab": "Processing Time",
-        "val": "~500ms",
-        "pct": "50%"
+        "cls": "gold",
+        "lab": "FIRST TOKEN OUT",
+        "val": "TTFT LATENCY",
+        "pct": 80.0
       }
     ],
     "idx": 43
   },
   {
-    "title": "Decoding the Silent Memory Trap",
-    "art": "kv_cache",
-    "cap": "Key-Value Cache Under Load",
-    "c_tag": "decoding",
+    "title": "LONG PROMPT COMPUTE SURGE",
+    "art": "clock",
+    "cap": "MASSIVE PREFILL COMPUTE COST",
+    "c_tag": "COMPUTE COST",
     "chain": [
       {
-        "t": "Prompt Processing",
-        "s": "A very long prompt can demand substantial computation and data movement, even when the final answer will only be a few sentences."
+        "t": "120K INPUT PROMPT",
+        "s": "HUGE MATRIX MULTIPLICATION"
       },
       {
-        "t": "Token Generation",
-        "s": "Then comes decoding: generating output tokens, usually one step after another."
+        "t": "VRAM DATA MOVEMENT",
+        "s": "SATURATED MEMORY BUS"
       },
       {
-        "t": "Memory Management",
-        "s": "The KV cache must efficiently manage these operations to prevent memory bottlenecks."
+        "t": "SHORT ANSWER",
+        "s": "30 GENERATED TOKENS"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Before Optimization",
-        "body": "High memory usage during prompt processing and token generation leads to inefficient data movement."
+        "title": "PREFILL DEMAND",
+        "body": "MILLIONS OF FLOP OPERATIONS"
       },
       {
         "cls": "gold",
-        "title": "After Optimization",
-        "body": "Optimized KV cache management reduces memory bottlenecks and improves overall performance."
+        "title": "FINAL OUTPUT",
+        "body": "FEW SHORT SENTENCES"
       }
     ],
     "idx": 44
   },
   {
-    "title": "Cache Efficiency",
-    "art": "cache_grid",
-    "cap": "KV Cache Reuse",
-    "c_tag": "cyan",
-    "note_head": "Cache Impact",
+    "title": "THE CONTEXT IS NEVER FREE",
+    "art": "vram_module",
+    "cap": "BANDWIDTH & ATTENTION SCALING",
+    "c_tag": "PHYSICS LAW",
+    "note_head": "HARDWARE REALITY",
     "note_items": [
       {
-        "t": "Reuses prior key and value states"
+        "t": "KV CACHE ELIMINATES PAST RECALCULATION"
       },
       {
-        "t": "Does not eliminate long context limitations"
+        "t": "EVERY NEW TOKEN STILL READS FULL CACHE"
       },
       {
-        "t": "Attention and memory traffic remain critical"
-      },
-      {
-        "t": "Implementations vary widely"
+        "t": "BANDWIDTH CONSUMPTION GROWS WITH LENGTH"
       }
     ],
     "idx": 45
   },
   {
-    "title": "Latency Metrics",
-    "c_tag": "Latency",
+    "title": "THE TWO CRITICAL METRICS",
+    "c_tag": "TWO SPEEDS",
     "items": [
       {
-        "key": "First Token Latency",
-        "label": "Time taken to generate the first token after prompt submission."
+        "key": "clock",
+        "label": "TIME TO FIRST TOKEN"
       },
       {
-        "key": "Generation Latency",
-        "label": "Time taken to generate subsequent tokens after the first token is produced."
+        "key": "chip",
+        "label": "DECODING THROUGHPUT"
       },
       {
-        "key": "Total Latency",
-        "label": "Sum of first token latency and generation latency."
+        "key": "scales",
+        "label": "OVERALL LATENCY"
       }
     ],
     "idx": 46
   },
   {
-    "title": "Window #48",
-    "art": "context_window",
-    "cap": "A system can generate tokens quickly once it begins, yet feel painfully slow because it spent so long reading the prompt. There are clever optimizations. Flash Attention and related kernels reduce certain memory and computation costs.",
-    "c_tag": "cyan",
+    "title": "PREFILL VS DECODE BOTTLENECK",
+    "art": "warning",
+    "cap": "IDENTIFYING THE REAL SLOWDOWN",
+    "c_tag": "DIAGNOSTIC",
     "chain": [
       {
-        "t": "Prompt Processing",
-        "s": "Reading and tokenizing the prompt can be slow, especially for large context windows."
+        "t": "FAST DECODING SPEED",
+        "s": "40 TOKENS PER SECOND"
       },
       {
-        "t": "Token Generation",
-        "s": "Once processing is complete, token generation can be rapid, leveraging the KV cache."
+        "t": "PAINFUL PREFILL WAIT",
+        "s": "30 SECONDS TO FIRST TOKEN"
       },
       {
-        "t": "Optimizations",
-        "s": "Flash Attention and related kernels help reduce memory and computation costs during processing."
+        "t": "CACHE PRESSURE",
+        "s": "BANDWIDTH SATURATION SLOWDOWN"
       }
     ],
     "idx": 47
   },
   {
-    "title": "Cache Optimization",
+    "title": "CACHE OPTIMIZATION TECHNIQUES",
     "art": "cache_grid",
-    "cap": "Cache quantization and prefix caching",
-    "c_tag": "Optimization",
+    "cap": "QUANTIZATION & PREFIX CACHING",
+    "c_tag": "OPTIMIZATION",
     "chips": [
       {
         "c": "cyan",
-        "t": "Quantization"
+        "t": "KV QUANTIZATION"
       },
       {
         "c": "gold",
-        "t": "Prefix Caching"
+        "t": "PREFIX CACHING"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "Space Saved",
-        "u": "GB",
-        "v": "2.5"
+        "lab": "QUANTIZATION",
+        "u": "SAVING",
+        "v": "VRAM"
       },
       {
         "c": "gold",
-        "lab": "Prefix Reuse",
-        "u": "%",
-        "v": "75"
+        "lab": "PREFIX CACHE",
+        "u": "SPEED",
+        "v": "REUSE"
       }
     ],
     "idx": 48
   },
   {
-    "title": "Context Window #50",
-    "art": "warning",
-    "cap": "The largest advertised context window is not always the best setting for every task.",
-    "c_tag": "cyan",
+    "title": "BIGGEST != BEST SETTING",
+    "art": "scales",
+    "cap": "STRATEGIC CONTEXT SIZING",
+    "c_tag": "TASK BALANCE",
     "rows": [
       {
         "cls": "cyan",
         "rank": "01",
-        "name": "Max Context Length",
-        "val": "128K",
-        "sub": "Tokens"
+        "name": "ADVERTISED SPEC",
+        "val": "128K CEILING",
+        "sub": "MAXIMUM ALLOWED"
       },
       {
         "cls": "gold",
         "rank": "02",
-        "name": "Memory Math",
-        "val": "2*layers*heads*dim",
-        "sub": "Bytes per token"
+        "name": "TASK DEMAND",
+        "val": "TARGETED",
+        "sub": "ACTUAL NEEDED TOKENS"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "Task Efficiency",
-        "val": "85%",
-        "sub": "Utilization"
+        "name": "OPTIMAL SIZE",
+        "val": "BALANCED",
+        "sub": "FASTEST & MOST ACCURATE"
       }
     ],
     "idx": 49
   },
   {
-    "title": "Window #51",
+    "title": "POSITIONAL SCALING TRAP",
     "art": "warning",
-    "cap": "Positional-Scaling Settings",
-    "c_tag": "cyan",
+    "cap": "ROPE EXTRAPOLATION VS REASONING",
+    "c_tag": "SCALING ILLUSION",
     "bars": [
       {
         "cls": "cyan",
-        "lab": "Positional Parameters",
-        "unit": "tokens",
-        "val": "128K",
-        "pct": "100%"
+        "lab": "POSITION SCALING",
+        "unit": "ROPE",
+        "val": "EXTENDED",
+        "pct": 100.0
       },
       {
         "cls": "hot",
-        "lab": "Model Accuracy",
-        "unit": "%",
-        "val": "85%",
-        "pct": "85%"
+        "lab": "LOGICAL REASONING",
+        "unit": "QUALITY",
+        "val": "DEGRADED",
+        "pct": 45.0
       }
     ],
     "idx": 50
   },
   {
-    "title": "Window #52",
-    "art": "warning",
-    "cap": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
-    "c_tag": "cyan",
+    "title": "THE 6-STEP CONTEXT AUDIT",
+    "art": "checklist",
+    "cap": "PRACTICAL VERIFICATION METHODOLOGY",
+    "c_tag": "AUDIT PROTOCOL",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "Context Window",
-        "val": "128K",
-        "pct": "100%"
+        "lab": "EXPANDED WINDOW",
+        "val": "UNTESTED CONFIG",
+        "pct": 100.0
       },
       {
-        "cls": "red",
-        "lab": "Memory Usage",
-        "val": "2*layers*heads*dim",
-        "pct": "80%"
+        "cls": "gold",
+        "lab": "6-STEP AUDIT",
+        "val": "PROVEN RELIABLE",
+        "pct": 100.0
       }
     ],
     "idx": 51
   },
   {
-    "title": "Context Limit Verification",
+    "title": "STEP 1: COMPARE LIMITS",
     "art": "checklist",
-    "cap": "Ensure model and application context limits align",
-    "c_tag": "Verification",
+    "cap": "PUBLISHED VS CONFIGURED LIMITS",
+    "c_tag": "AUDIT STEP 1",
     "chain": [
       {
-        "t": "Model Documentation",
-        "s": "Check the official documentation for the exact model version's advertised context limit."
+        "t": "MODEL SPEC CARD",
+        "s": "RECORD PUBLISHED LIMIT"
       },
       {
-        "t": "Application Configuration",
-        "s": "Review the running application's configured context limit using CLI parameters like --max-model-len or --context-window."
+        "t": "SOFTWARE CONFIG",
+        "s": "CHECK RUNTIME SETTING"
       },
       {
-        "t": "Record Values",
-        "s": "Document both the model's advertised limit and the application's configured limit for comparison."
+        "t": "PARITY CHECK",
+        "s": "VERIFY BOTH NUMBERS AGREE"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Model Advertised Limit",
-        "body": "4096 tokens"
+        "title": "PUBLISHED CARD",
+        "body": "SPECIFICATION MAX"
       },
       {
         "cls": "gold",
-        "title": "Application Configured Limit",
-        "body": "2048 tokens"
+        "title": "RUNTIME SETTING",
+        "body": "CONFIGURED LIMIT"
       }
     ],
     "idx": 52
   },
   {
-    "title": "Runtime Logs Inspection",
-    "art": "folder",
-    "cap": "Inspecting runtime logs for model weights and cache memory allocation.",
-    "c_tag": "cyan",
-    "note_head": "Inspect runtime logs for:",
+    "title": "STEP 2: INSPECT RUNTIME LOGS",
+    "art": "laptop",
+    "cap": "LOG TELEMETRY VERIFICATION",
+    "c_tag": "AUDIT STEP 2",
+    "note_head": "LOG CHECKLIST",
     "note_items": [
       {
-        "t": "Model weights loading locations"
+        "t": "WEIGHT PLACEMENT: GPU VRAM VS CPU RAM"
       },
       {
-        "t": "Cache memory allocation"
+        "t": "CACHE ALLOCATION: ALLOCATED GIB FOOTPRINT"
       },
       {
-        "t": "Active cache precision"
+        "t": "CACHE PRECISION: FP16 VS QUANTIZED KV"
       },
       {
-        "t": "CPU memory placement"
+        "t": "CPU OFFLOAD: ZERO UNWANTED SYSTEM RAM SPILL"
       }
     ],
     "idx": 53
   },
   {
-    "title": "Context Window",
-    "c_tag": "cyan",
+    "title": "STEP 3: TEST REAL WORKLOADS",
+    "c_tag": "AUDIT STEP 3",
     "items": [
       {
-        "key": "128K",
-        "label": "Context Window"
+        "key": "laptop",
+        "label": "BACKEND LOGS"
       },
       {
-        "key": "Backend Logs",
-        "label": "Diagnostics"
+        "key": "prompt_stream",
+        "label": "START WITH SHORT"
       },
       {
-        "key": "Workload Testing",
-        "label": "Modest Context"
+        "key": "clock",
+        "label": "BASELINE TIMING"
       }
     ],
     "idx": 54
   },
   {
-    "title": "Context Window #56",
-    "art": "context_window",
-    "cap": "Increase context window in steps, monitor VRAM and performance metrics.",
-    "c_tag": "cyan",
+    "title": "STEP 4: STEPWISE BENCHMARK",
+    "art": "scales",
+    "cap": "MEASURE METRICS ACROSS SIZES",
+    "c_tag": "AUDIT STEP 4",
     "chain": [
       {
-        "t": "Step 1: Increase Context Window",
-        "s": "Use the same model, quantization, and questions."
+        "t": "INCREASE IN STEPS",
+        "s": "4K -> 16K -> 32K -> 64K"
       },
       {
-        "t": "Step 2: Monitor VRAM",
-        "s": "Record available VRAM during processing."
+        "t": "RECORD METRICS",
+        "s": "AVAILABLE VRAM & TTFT SPEED"
       },
       {
-        "t": "Step 3: Track Performance",
-        "s": "Measure prompt-processing time, time to first token, and output generation speed."
-      },
-      {
-        "t": "Step 4: Test Answer Quality",
-        "s": "Evaluate the quality of the generated answers."
+        "t": "AUDIT ACCURACY",
+        "s": "VERIFY RECALL AT EACH STEP"
       }
     ],
     "idx": 55
   },
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
+    "title": "NEEDLE IN HAYSTACK AUDIT",
     "art": "context_window",
-    "cap": "Put one known fact near the start, one in the middle, and one at the end of a document. Ask precise questions with answers you can independently verify. Repeat with more than one example.",
-    "c_tag": "cyan",
+    "cap": "RIGOROUS RECALL BENCHMARKING",
+    "c_tag": "RECALL TEST",
     "chips": [
       {
         "c": "cyan",
-        "t": "start"
+        "t": "THREE POSITIONS"
       },
       {
         "c": "gold",
-        "t": "middle"
-      },
-      {
-        "c": "hot",
-        "t": "end"
+        "t": "UNGUESSABLE FACTS"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "Start",
-        "u": "fact",
-        "v": "1"
+        "lab": "NEEDLE TEST",
+        "u": "LOC",
+        "v": "START"
       },
       {
         "c": "gold",
-        "lab": "Middle",
-        "u": "fact",
-        "v": "1"
-      },
-      {
-        "c": "hot",
-        "lab": "End",
-        "u": "fact",
-        "v": "1"
+        "lab": "NEEDLE TEST",
+        "u": "LOC",
+        "v": "MIDDLE"
       }
     ],
     "idx": 56
   },
   {
-    "title": "Design Window #58",
-    "art": "context_window",
-    "cap": "Reserve space for the answer. Count the system instructions, previous messages, inserted documents, tool results, and expected output.",
-    "c_tag": "cyan",
+    "title": "STEP 5: RESERVE ANSWER SPACE",
+    "art": "warning",
+    "cap": "LOADING IS NOT COMPREHENSION",
+    "c_tag": "AUDIT STEP 5",
     "rows": [
       {
         "cls": "cyan",
         "rank": "01",
-        "name": "System Instructions",
-        "val": "256 tokens",
-        "sub": "Reserved for model directives"
+        "name": "SYSTEM TEMPLATE",
+        "val": "OVERHEAD",
+        "sub": "ROLES & INSTRUCTIONS"
       },
       {
         "cls": "gold",
         "rank": "02",
-        "name": "Previous Messages",
-        "val": "512 tokens",
-        "sub": "Historical conversation context"
+        "name": "INPUT SOURCE",
+        "val": "PRIMARY",
+        "sub": "DOCUMENTS & QUERY"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "Inserted Documents",
-        "val": "1024 tokens",
-        "sub": "External data references"
-      },
-      {
-        "cls": "cyan",
-        "rank": "04",
-        "name": "Tool Results",
-        "val": "256 tokens",
-        "sub": "Output from external tools"
-      },
-      {
-        "cls": "gold",
-        "rank": "05",
-        "name": "Expected Output",
-        "val": "512 tokens",
-        "sub": "Reserved for model response"
+        "name": "OUTPUT RESERVE",
+        "val": "MANDATORY",
+        "sub": "FULL ANSWER CAPACITY"
       }
     ],
     "idx": 57
   },
   {
-    "title": "Context Window Analysis",
-    "art": "context_window",
-    "cap": "Analyzing the context window's behavior",
-    "c_tag": "cyan",
+    "title": "STEP 6: RIGHT-SIZED CONTEXT",
+    "art": "scales",
+    "cap": "SILENT TRUNCATION & TRUE NEED",
+    "c_tag": "AUDIT STEP 6",
     "bars": [
       {
         "cls": "cyan",
-        "lab": "Messages Kept",
-        "unit": "tokens",
-        "val": 128000,
-        "pct": 100
+        "lab": "ACTIVE RETENTION",
+        "unit": "KEPT",
+        "val": "VERIFIED",
+        "pct": 80.0
       },
       {
         "cls": "hot",
-        "lab": "Messages Discarded",
-        "unit": "tokens",
-        "val": 0,
-        "pct": 0
+        "lab": "SILENT DISCARD",
+        "unit": "LOST",
+        "val": "TRUNCATED",
+        "pct": 20.0
       }
     ],
     "idx": 58
   },
   {
-    "title": "RAG: Retrieval-Augmented Generation",
+    "title": "RAG VS GIGANTIC CONTEXT",
     "art": "folder",
-    "cap": "A folder containing relevant passages for retrieval.",
-    "c_tag": "cyan",
+    "cap": "RETRIEVAL-AUGMENTED GENERATION",
+    "c_tag": "RAG ARCHITECTURE",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "Knowledge Base",
-        "val": "10,000 passages",
-        "pct": "100%"
+        "lab": "ENTIRE KNOWLEDGE BASE",
+        "val": "10,000 PASSAGES",
+        "pct": 100.0
       },
       {
-        "cls": "red",
-        "lab": "Relevant Passages",
-        "val": "100 passages",
-        "pct": "1%"
+        "cls": "gold",
+        "lab": "FILTERED CONTEXT",
+        "val": "FOCUSED EXCERPTS",
+        "pct": 20.0
       }
     ],
     "idx": 59
   },
   {
-    "title": "Window #61",
+    "title": "RETRIEVAL TRADE-OFFS",
     "art": "warning",
-    "cap": "Retrieval can select the wrong passages, omit a crucial detail, or lose context needed to interpret a quotation.",
-    "c_tag": "gold",
+    "cap": "RAG HAS FAILURE MODES TOO",
+    "c_tag": "TRADE-OFFS",
     "chain": [
       {
-        "t": "Retrieval",
-        "s": "The process of selecting relevant passages from a large dataset."
+        "t": "QUERY RETRIEVAL",
+        "s": "TOP-K PASSAGE SELECTION"
       },
       {
-        "t": "Context",
-        "s": "The surrounding information needed to interpret a quotation accurately."
+        "t": "POTENTIAL OMISSIONS",
+        "s": "MISSING KEY CONNECTIONS"
       },
       {
-        "t": "Interpretation",
-        "s": "The process of understanding the meaning of a quotation based on its context."
+        "t": "SYNTHESIS ACCURACY",
+        "s": "DEPENDS ON RETRIEVED CHUNKS"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Incorrect Retrieval",
-        "body": "Selects wrong passages, omits crucial details, or loses context."
+        "title": "FULL CONTEXT RISK",
+        "body": "LOST IN THE MIDDLE"
       },
       {
         "cls": "gold",
-        "title": "Correct Retrieval",
-        "body": "Selects relevant passages, includes crucial details, and maintains context."
+        "title": "RETRIEVAL RISK",
+        "body": "WRONG PASSAGES RETRIEVED"
       }
     ],
     "idx": 60
   },
   {
-    "title": "Focused Retrieval vs. Full Context",
-    "art": "context_window",
-    "cap": "A focused retrieval system vs. a full context window approach",
-    "c_tag": "cyan",
-    "note_head": "Key Considerations for Large Document Tasks",
+    "title": "FOCUSED RETRIEVAL ADVANTAGE",
+    "art": "checklist",
+    "cap": "EFFICIENCY ACROSS DOCUMENT POOLS",
+    "c_tag": "STRATEGY",
+    "note_head": "DOCUMENT AUDIT COMPARISON",
     "note_items": [
       {
-        "t": "Focused retrieval can reduce memory usage by only processing relevant documents"
+        "t": "FOCUSED RETRIEVAL KEEPS VRAM FOOTPRINT LOW"
       },
       {
-        "t": "Full context may improve accuracy but requires more memory and processing power"
+        "t": "PREFILL RUNS IN FRACTION OF A SECOND"
       },
       {
-        "t": "The choice depends on the specific requirements of the task and available resources"
+        "t": "REDUCES ATTENTION DISPERSION OVERHEAD"
       }
     ],
     "idx": 61
   },
   {
-    "title": "Context Window #63",
-    "c_tag": "cyan",
+    "title": "WHEN LARGE CONTEXT IS NEEDED",
+    "c_tag": "DEEP REASONING",
     "items": [
       {
-        "key": "whole-book editing",
-        "label": "Whole-Book Editing"
+        "key": "folder",
+        "label": "WHOLE-BOOK EDIT"
       },
       {
-        "key": "complex cross-document reasoning",
-        "label": "Cross-Document Reasoning"
+        "key": "scales",
+        "label": "BROAD STRUCTURE"
       },
       {
-        "key": "questions that depend on broad structure",
-        "label": "Broad Structure Queries"
-      },
-      {
-        "key": "larger context",
-        "label": "Larger Context"
-      },
-      {
-        "key": "careful chunking",
-        "label": "Careful Chunking"
-      },
-      {
-        "key": "multiple passes",
-        "label": "Multiple Passes"
+        "key": "chip",
+        "label": "MULTIPLE PASSES"
       }
     ],
     "idx": 62
   },
   {
-    "title": "Context Strategy",
+    "title": "TASK-DRIVEN ARCHITECTURE",
     "art": "scales",
-    "cap": "The correct strategy depends on the task, not on whichever context number looks biggest in a model comparison table.",
-    "c_tag": "cyan",
+    "cap": "IGNORE THE BIGGEST NUMBER TABLE",
+    "c_tag": "TASK DRIVEN",
     "chain": [
       {
-        "t": "Task-Specific",
-        "s": "cyan"
+        "t": "ANALYZE TASK DEMAND",
+        "s": "IDENTIFY REAL CONTEXT NEED"
       },
       {
-        "t": "Context",
-        "s": "gold"
+        "t": "IGNORE MARKETING NUMBERS",
+        "s": "BIGGEST NUMBER IS NOT BEST"
       },
       {
-        "t": "Strategy",
-        "s": "hot"
+        "t": "VERIFY APPLICATION LOGS",
+        "s": "CHECK ACTUAL RETENTION"
       }
     ],
     "idx": 63
   },
   {
-    "title": "Context Window: The Silent Memory Trap",
-    "art": "context_window",
-    "cap": "The context window is a silent memory trap, where older material can be retrieved, summarized, or dropped.",
-    "c_tag": "Context Window",
+    "title": "TRANSCRIPTS != ACTIVE CONTEXT",
+    "art": "laptop",
+    "cap": "UI ILLUSION VS REAL PROMPT",
+    "c_tag": "UI ILLUSION",
     "chips": [
       {
         "c": "cyan",
-        "t": "Active Context"
+        "t": "SAVED ON DISK"
       },
       {
         "c": "gold",
-        "t": "Disk Storage"
+        "t": "TRUNCATED PROMPT"
       }
     ],
     "stats": [
       {
         "c": "cyan",
-        "lab": "Active Context",
-        "u": "tokens",
-        "v": "128K"
+        "lab": "UI DISPLAY",
+        "u": "TURNS",
+        "v": "ALL"
       },
       {
         "c": "gold",
-        "lab": "Disk Storage",
-        "u": "GB",
-        "v": "100+"
+        "lab": "MODEL FEED",
+        "u": "TURNS",
+        "v": "RECENT"
       }
     ],
     "idx": 64
   },
   {
-    "title": "Window #66",
+    "title": "TRANSPARENCY IN CONTEXT",
     "art": "warning",
-    "cap": "The Verdict: Model and Runtime Limits",
-    "c_tag": "verdict",
+    "cap": "SILENT CONTEXT ROLLING HAZARDS",
+    "c_tag": "SILENT AMNESIA",
     "rows": [
       {
         "cls": "cyan",
         "rank": "01",
-        "name": "Model Limit",
-        "val": "2*layers*heads*dim",
-        "sub": "Memory math for context window"
+        "name": "CONTEXT ROLLING",
+        "val": "SENSIBLE",
+        "sub": "PREVENTS OOM"
       },
       {
         "cls": "gold",
         "rank": "02",
-        "name": "Runtime Limit",
-        "val": "128K tokens",
-        "sub": "Context window size"
+        "name": "TRANSPARENCY",
+        "val": "CRITICAL",
+        "sub": "USER MUST KNOW"
       },
       {
         "cls": "hot",
         "rank": "03",
-        "name": "Transparency",
-        "val": "Non-transparent",
-        "sub": "Memory behavior inconsistency"
+        "name": "SILENT SHIFT",
+        "val": "AMNESIA",
+        "sub": "FORGETS PRIOR FACTS"
       }
     ],
     "idx": 65
   },
   {
-    "title": "128K CONTEXT WINDOW: THE SILENT MEMORY TRAP",
-    "art": "warning",
-    "cap": "Context Window Limits",
-    "c_tag": "hardware",
+    "title": "THE FOUR SEPARATE LIMITS",
+    "art": "scales",
+    "cap": "FOUR NUMBERS THAT DIFFER",
+    "c_tag": "THE FOUR LIMITS",
     "bars": [
       {
         "cls": "cyan",
-        "lab": "Hardware Limit",
-        "unit": "tokens",
-        "val": 128000,
-        "pct": 100
+        "lab": "MODEL & SOFTWARE",
+        "unit": "LIMIT",
+        "val": "SPECIFIED",
+        "pct": 100.0
       },
       {
         "cls": "hot",
-        "lab": "Effective-Use Limit",
-        "unit": "tokens",
-        "val": 80000,
-        "pct": 63.28
+        "lab": "HARDWARE & USE",
+        "unit": "LIMIT",
+        "val": "PHYSICAL",
+        "pct": 40.0
       }
     ],
     "idx": 66
   },
   {
-    "title": "Window #68",
-    "art": "warning",
-    "cap": "The system cannot guarantee the current GPU's memory sufficiency, interface configuration, prompt processing speed, or fact retrieval accuracy.",
-    "c_tag": "red",
+    "title": "A SPEC IS NOT A GUARANTEE",
+    "art": "gpu_24gb",
+    "cap": "THE ADVERTISED SPEC IS JUST A LABEL",
+    "c_tag": "FINAL WARNING",
     "rails": [
       {
         "cls": "cyan",
-        "lab": "GPU Memory",
-        "val": "16GB",
-        "pct": 80
+        "lab": "128K SPEC LABEL",
+        "val": "ADVERTISED SPEC",
+        "pct": 100.0
       },
       {
         "cls": "red",
-        "lab": "Context Window",
-        "val": "128K",
-        "pct": 100
+        "lab": "SYSTEM GUARANTEE",
+        "val": "ZERO PROMISE",
+        "pct": 20.0
       }
     ],
     "idx": 67
   },
   {
-    "title": "Window #69",
-    "art": "warning",
-    "cap": "Before buying more hardware or changing every advanced setting, measure the real bottleneck. Is the prompt being truncated? Is the cache running out of memory? Is prefill taking too long?",
-    "c_tag": "cyan",
+    "title": "MEASURE THE REAL BOTTLENECK",
+    "art": "checklist",
+    "cap": "DIAGNOSTIC TRIAGE PROTOCOL",
+    "c_tag": "MEASURE FIRST",
     "chain": [
       {
-        "t": "Prompt Truncation",
-        "s": "Check if the prompt is being truncated with --max-model-len or similar CLI parameters."
+        "t": "PROMPT TRUNCATION",
+        "s": "CHECK APP SLICING"
       },
       {
-        "t": "Cache Memory",
-        "s": "Verify if the KV cache is running out of memory with calculations like 2*layers*heads*dim."
+        "t": "SYSTEM RAM SPILL",
+        "s": "CHECK CPU OFFLOADING"
       },
       {
-        "t": "Prefill Time",
-        "s": "Measure the time taken for prefill to identify bottlenecks."
+        "t": "PREFILL LATENCY",
+        "s": "MEASURE TIME TO FIRST TOKEN"
       }
     ],
     "compare": [
       {
         "cls": "dim",
-        "title": "Before Optimization",
-        "body": "High latency, truncated prompts, memory overflow."
+        "title": "GUESSING SETTINGS",
+        "body": "RANDOM HARDWARE SPEND"
       },
       {
         "cls": "gold",
-        "title": "After Optimization",
-        "body": "Reduced latency, full prompts, efficient memory usage."
+        "title": "MEASURED BOTTLENECK",
+        "body": "TARGETED ENGINEERING FIX"
       }
     ],
     "idx": 68
   },
   {
-    "title": "Context Window Conundrum",
-    "art": "warning",
-    "cap": "A warning sign with a question mark inside, representing the uncertainty in solving the wrong problem.",
-    "c_tag": "hot",
-    "note_head": "Solving the Wrong Problem",
+    "title": "DIAGNOSE BEFORE SOLVING",
+    "art": "scales",
+    "cap": "EACH FAILURE HAS A DIFFERENT FIX",
+    "c_tag": "BYTE FORENSICS LAW",
+    "note_head": "ENGINEERING SOLUTIONS",
     "note_items": [
       {
-        "t": "All evidence fits, but the answer is wrong."
+        "t": "OOM CRASH -> REDUCE CONTEXT OR ENABLE KV QUANT"
       },
       {
-        "t": "Different solutions are needed for different problems."
+        "t": "PREFILL DELAY -> IMPLEMENT PREFIX CACHING OR RAG"
       },
       {
-        "t": "Solving the wrong problem can cost hours, money, or accuracy."
+        "t": "RETRIEVAL LOSS -> REORDER FACTS OR RIGHT-SIZE CHUNKS"
       }
     ],
     "idx": 69
   },
   {
-    "title": "Context Window #71",
-    "c_tag": "cyan",
-    "items": [
+    "title": "COMMUNITY FORENSICS AUDIT",
+    "art": "gpu",
+    "cap": "SHARE YOUR HARDWARE TELEMETRY",
+    "c_tag": "TELL US BELOW",
+    "chips": [
       {
-        "key": "local_model",
-        "label": "Local Model"
+        "c": "cyan",
+        "t": "SHARE YOUR GPU"
       },
       {
-        "key": "gpu",
-        "label": "GPU"
+        "c": "gold",
+        "t": "CONTEXT SETTING"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "SYMPTOM",
+        "u": "TYPE",
+        "v": "CRASH"
       },
       {
-        "key": "context_setting",
-        "label": "Context Setting"
-      },
-      {
-        "key": "prompt_behavior",
-        "label": "Prompt Behavior"
+        "c": "gold",
+        "lab": "DIAGNOSTIC",
+        "u": "DATA",
+        "v": "LOGS"
       }
     ],
     "idx": 70
   },
   {
-    "title": "Context Window Analysis",
-    "art": "context_window",
-    "cap": "Analyzing the actual usable tokens in your system",
-    "c_tag": "cyan",
+    "title": "THE FINAL VERDICT",
+    "art": "chip",
+    "cap": "BYTE FORENSICS EPISODE 13",
+    "c_tag": "USABLE TOKENS ONLY",
     "chain": [
       {
-        "t": "Token Count",
-        "s": "128K"
+        "t": "DONT JUST COUNT TOKENS",
+        "s": "ADVERTISED SPECIFICATIONS ARE JUST CEILINGS"
       },
       {
-        "t": "Memory Math",
-        "s": "2*layers*heads*dim"
+        "t": "AUDIT YOUR HARDWARE",
+        "s": "MEASURE VRAM, PREFILL SPEED, AND RECALL"
       },
       {
-        "t": "System Check",
-        "s": "CLI: --max-model-len"
+        "t": "BYTE FORENSICS",
+        "s": "FIND OUT WHAT YOUR SYSTEM CAN ACTUALLY USE"
       }
     ],
     "idx": 71
