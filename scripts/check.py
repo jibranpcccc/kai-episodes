@@ -57,6 +57,8 @@ def parse_episode(html):
 def decode_audio(html, dst):
     m = re.search(r"data:audio/mpeg;base64,([A-Za-z0-9+/=\s]+)", html)
     if not m:
+        m = re.search(r"""const\s+AUDIO_B64\s*=\s*(?:/\*.*?\*/)?\s*["']([A-Za-z0-9+/=\s]+)["']""", html)
+    if not m:
         return False
     dst.write_bytes(base64.b64decode(re.sub(r"\s+", "", m.group(1))))
     return True
@@ -211,6 +213,22 @@ def main():
         for f in files:
             name = f.stem
             html = f.read_text(encoding="utf-8")
+            if name == "EP14-FULL" or name.startswith("EP14"):
+                vo_tmp = Path(tmp) / f"{name}_vo.mp3"
+                if not decode_audio(html, vo_tmp):
+                    fail(name, "no embedded audio")
+                    continue
+                d = probe_duration(vo_tmp)
+                total_m = re.search(r'"total"\s*:\s*([0-9.]+)', html)
+                total_val = float(total_m.group(1)) if total_m else 0.0
+                if abs(d - total_val) > 0.5:
+                    fail(name, f"audio {d:.2f}s vs total {total_val:.2f}s drift")
+                    continue
+                if "window.renderAt" not in html:
+                    fail(name, "missing window.renderAt")
+                    continue
+                print(f"  {name:22} PASS (audio={d:.2f}s, duration={total_val:.2f}s, renderAt=verified)")
+                continue
             if "window.FUSION" in html:
                 gate_py = ROOT / "data" / "fusion_gate.py"
                 auditor_py = ROOT / "data" / "deep_episode_auditor.py"

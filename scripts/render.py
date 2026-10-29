@@ -36,6 +36,8 @@ W, H = 1920, 1080
 def extract_audio(html: str, dst: Path) -> bool:
     m = re.search(r"data:audio/mpeg;base64,([A-Za-z0-9+/=\s]+)", html)
     if not m:
+        m = re.search(r"""const\s+AUDIO_B64\s*=\s*(?:/\*.*?\*/)?\s*["']([A-Za-z0-9+/=\s]+)["']""", html)
+    if not m:
         return False
     dst.write_bytes(base64.b64decode(re.sub(r"\s+", "", m.group(1))))
     return True
