@@ -430,6 +430,27 @@
     if (barEl) barEl.style.width = (TOTAL ? (t / TOTAL * 100) : 0).toFixed(3) + '%';
     if (gprogEl) gprogEl.style.width = (TOTAL ? (t / TOTAL * 100) : 0).toFixed(3) + '%';
     if (tcEl) tcEl.textContent = t.toFixed(1) + ' / ' + TOTAL.toFixed(1);
+
+    if (subActiveEl && !document.body.classList.contains('render') && F.words && F.words.length) {
+      var wi = -1;
+      for (var w = 0; w < F.words.length; w++) {
+        if (F.words[w][0] <= t) wi = w;
+        else break;
+      }
+      if (wi >= 0) {
+        var startW = Math.max(0, wi - 3);
+        var endW = Math.min(F.words.length, startW + 8);
+        if (endW - startW < 8) startW = Math.max(0, endW - 8);
+        var subHtml = '';
+        for (var k = startW; k < endW; k++) {
+          var isAct = (k === wi);
+          subHtml += '<span class="sub-word' + (isAct ? ' sub-word--on' : '') + '">' + F.words[k][1] + '</span> ';
+        }
+        subActiveEl.innerHTML = subHtml.trim();
+      } else {
+        subActiveEl.innerHTML = '';
+      }
+    }
   }
 
   /* ==========================================================
@@ -448,6 +469,7 @@
   stage.appendChild(mk('div', { id: 'tc' }, '0.0 / ' + TOTAL.toFixed(1)));
   stage.appendChild(mk('div', { id: 'cue' }, ''));
   stage.appendChild(mk('div', { id: 'wm' }, F.watermark || 'Byte Forensics'));
+  stage.appendChild(mk('div', { id: 'subs' }, '<div id="sub-active"></div>'));
   stage.appendChild(mk('div', { id: 'start' },
     '<div class="k">' + (F.kicker || '') + '</div>' +
     '<div class="t">' + (F.title || '') + '</div>' +
@@ -469,6 +491,7 @@
   var tcEl  = document.getElementById('tc');
   var cueEl = document.getElementById('cue');
   var startEl = document.getElementById('start');
+  var subActiveEl = document.getElementById('sub-active');
 
   buildAnimations();
 
@@ -551,6 +574,7 @@
   window.renderAt = function (t) {
     lastIdx = -1;
     F.__t = t;
+    document.body.classList.add('render');
     renderState(t);
     startEl.classList.add('hide');
     startEl.style.display = 'none';

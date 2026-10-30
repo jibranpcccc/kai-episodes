@@ -550,6 +550,11 @@ html,body{height:100%;background:#000;font-family:var(--mono)}
 #wm{position:absolute;right:26px;bottom:52px;font-family:var(--mono);font-size:13px;
     letter-spacing:.16em;color:#3E4340;z-index:70;text-transform:uppercase}
 
+/* live kinetic subtitles */
+#subs{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;align-items:center;z-index:75;pointer-events:none}
+#sub-active{background:rgba(13,17,16,.94);border:1.5px solid rgba(245,197,49,.4);box-shadow:0 8px 30px rgba(0,0,0,.85);border-radius:999px;padding:8px 32px;font-family:var(--mono);font-size:22px;font-weight:700;letter-spacing:.03em;color:rgba(246,246,244,.35);max-width:1450px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sub-word--on{color:var(--gold)!important;text-shadow:0 0 16px rgba(245,197,49,.85);font-weight:800}
+
 /* dip-to-black between scenes */
 #dip{position:absolute;inset:0;background:#000;opacity:0;z-index:80;pointer-events:none}
 
@@ -576,7 +581,7 @@ html,body{height:100%;background:#000;font-family:var(--mono)}
   display:flex;align-items:center;gap:6px;padding:7px 9px;border-radius:11px;
   background:rgba(12,12,11,.86);border:1px solid #3A352E;
   font-family:var(--mono, ui-monospace, monospace);
-  opacity:.34;transition:opacity .18s ease;
+  opacity:.88;transition:opacity .18s ease;
 }
 #ctl:hover{opacity:1}
 #ctl button{
@@ -686,4 +691,9 @@ html,body{height:100%;background:#000;font-family:var(--mono)}
 body.render{overflow:hidden;background:#000}
 body.render .stage{transform:none!important}
 body.render #hud,body.render #tc,body.render #cue,body.render #start,
-body.render #wm,body.render #ctl{display:none!important}
+body.render #wm,body.render #ctl,body.render #boot,body.render #bar,body.render #rail,
+body.render #ticks,body.render .src,body.render .kicker,body.render .kicker-line,body.render .boot__mark,
+.render #hud,.render #tc,.render #cue,.render #start,
+.render #wm,.render #ctl,.render #boot,.render #bar,.render #rail,
+.render #ticks,.render .src,.render .kicker,.render .kicker-line,.render .boot__mark,
+#ctl.hide,#boot.hide{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}

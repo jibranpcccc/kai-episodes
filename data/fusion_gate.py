@@ -26,10 +26,14 @@ if not SPEC:
     elif 'lora' in NAME.lower(): SPEC = 'spec_lora'
     elif 'bottleneck' in NAME.lower(): SPEC = 'spec_bottleneck'
     elif 'payback' in NAME.lower(): SPEC = 'spec_payback'
+    elif 'dual' in NAME.lower() or 'gpu' in NAME.lower(): SPEC = 'spec_dual_gpu'
+    elif 'context' in NAME.lower(): SPEC = 'spec_context'
+
 sys.path.insert(0, os.path.join(ROOT, 'data'))
-PATH = os.path.join(ROOT, NAME + ".html")
+# Prefer episodes/ as the canonical render target
+PATH = os.path.join(ROOT, "episodes", NAME + ".html")
 if not os.path.exists(PATH):
-    PATH = os.path.join(ROOT, "episodes", NAME + ".html")
+    PATH = os.path.join(ROOT, NAME + ".html")
 
 # ---- the law, restated independently of the builder ------------------
 MIN_GAP = 0.30
@@ -224,21 +228,37 @@ def extra_checks(s, F, beats, scenes, words, total):
                                    for k in range(len(stamps) - 1))))
 
         # the caption TEXT must be the script's own words
-        if SPEC:
+        if not SPEC:
+            bad("14e", "no authoritative SPEC provided or detected; cannot verify script parity against spec")
+        else:
             try:
                 import importlib
                 mod = importlib.import_module(SPEC)
-                script = [w for win in mod.W for w in _words(win["vo"])]
-                capn = [w for _, _, t in cues for w in _words(t)]
-                same = sum(1 for a, b in zip(script, capn) if a == b)
-                if same == len(script) == len(capn):
-                    ok("14e", "caption text is the script's own words (%d/%d)"
-                       % (same, len(script)))
+                
+                def _norm_token_list(txt):
+                    txt = (txt or "").replace("’", "'").replace("—", " ").replace("–", " ").replace(".", " ").replace("-", " ")
+                    txt = re.sub(r"[^\w\s']", " ", txt.lower())
+                    return [w.strip("'") for w in txt.split() if w.strip("'")]
+                
+                script = [tok for win in mod.W for tok in _norm_token_list(win["vo"])]
+                capn = [tok for _, _, t in cues for tok in _norm_token_list(t)]
+                f_words = [tok for w in words for tok in _norm_token_list(w[1])]
+                
+                diffs = [(i, s, c) for i, (s, c) in enumerate(zip(script, capn)) if s != c]
+                if len(script) != len(capn) or diffs:
+                    bad("14e", "caption text is not the script's own words (%d diffs, script=%d, srt=%d). First diff: %s"
+                        % (len(diffs), len(script), len(capn), diffs[:3] if diffs else "length mismatch"))
                 else:
-                    bad("14e", "caption text is not the script's own words "
-                               "(%d of %d match)" % (same, len(script)))
+                    ok("14e", "caption text matches authoritative script 100%% verbatim (%d/%d words)" % (len(script), len(script)))
+                
+                f_diffs = [(i, s, f) for i, (s, f) in enumerate(zip(script, f_words)) if s != f]
+                if len(script) != len(f_words) or f_diffs:
+                    bad("14f", "FUSION word timeline does not match script (%d diffs). First diff: %s"
+                        % (len(f_diffs), f_diffs[:3] if f_diffs else "length mismatch"))
+                else:
+                    ok("14f", "FUSION word timeline matches authoritative script 100%% verbatim (%d words)" % len(script))
             except Exception as e:
-                warn("14e", "could not compare the captions with the spec: %s" % e)
+                bad("14e", "could not compare the captions with the spec: %s" % e)
 
     # --------------------------------------------------------------- 15
     # every window carries a source footer
@@ -349,6 +369,35 @@ def extra_checks(s, F, beats, scenes, words, total):
     else:
         ok("21", "no window ends on more than %.1fs of frozen screen" % FROZEN_MAX)
 
+    # --------------------------------------------------------------- 21b
+    # visual cards stay visible for >= 1.0s after reveal completes
+    content_ids = set()
+    for i, x in enumerate(scene_html):
+        for m in re.finditer(r'<(\w+)([^>]*id="(w\d+_\d+)"[^>]*)>', x):
+            tag, attrs, rid = m.group(1), m.group(2), m.group(3)
+            cm = re.search(r'class="([^"]*)"', attrs)
+            cls_str = cm.group(1) if cm else ""
+            r = _role(tag, cls_str)
+            if r in ("row", "chip", "bar", "rail", "chain", "note") or any(k in cls_str for k in ("card", "compare__col", "col", "cell", "kpi", "diag", "verdict")):
+                content_ids.add("#" + rid)
+
+    short_holds = []
+    for sc in scenes:
+        s_end = sc["e"]
+        for b in beats:
+            if b["group"] == sc["id"]:
+                el = b.get("el") or ""
+                # Role-based inspection: require >= 1.0s hold for content elements
+                if el in content_ids:
+                    hold = s_end - b["e"]
+                    if hold < 0.99:
+                        short_holds.append((sc["id"] + 1, el, hold))
+    if short_holds:
+        bad("21b", "%d visual element(s) visible for < 1.0s before scene cut: %s"
+            % (len(short_holds), ["scene %d %s (%.2fs hold)" % sh for sh in short_holds[:4]]))
+    else:
+        ok("21b", "all visual elements remain visible for >= 1.0s after reveal finishes")
+
     # --------------------------------------------------------------- 22
     # a bar must carry a unit, and never a throughput unit on a score
     BENCH = ("mmlu", "flan", "gsm", "humaneval", "arc", "hellaswag", "winogrande")
@@ -401,6 +450,19 @@ def main():
     beats, scenes, words, total = F["beats"], F["scenes"], F["words"], F["total"]
     print("FUSION GATE  %s   runtime %.1fs   beats %d   words %d\n"
           % (NAME, total, len(beats), len(words)))
+
+    # ---------------------------------------------------------------
+    # 0  canonical HTML identity (root vs episodes/)
+    root_html = os.path.join(ROOT, NAME + ".html")
+    epis_html = os.path.join(ROOT, "episodes", NAME + ".html")
+    if os.path.exists(root_html) and os.path.exists(epis_html):
+        import hashlib
+        h_root = hashlib.sha256(open(root_html, "rb").read()).hexdigest()
+        h_epis = hashlib.sha256(open(epis_html, "rb").read()).hexdigest()
+        if h_root != h_epis:
+            bad("0", "CANONICAL DIVERGENCE: root HTML (%s) differs from episodes/ HTML (%s). Render target must be byte-identical." % (h_root[:12], h_epis[:12]))
+        else:
+            ok("0", "root and episodes/ HTML are byte-identical (SHA256: %s...)" % h_root[:12])
 
     # ---------------------------------------------------------------
     # 1  no two beats closer than MIN_GAP inside a scene
@@ -571,40 +633,123 @@ def main():
             bad("9", "undefined vars: %s" % dom["undef"][:6])
 
         # ---------------------------------------------------------------
-        # 5  every beat lands on the word that introduces it
-        def word_at(ws, t):
-            best = None
-            for wt, txt in ws:
-                if wt <= t + 1e-6:
-                    best = (wt, txt)
-                else:
-                    break
+        # 5  every beat lands on the spoken anchor phrase that introduces it
+        def _toks(w):
+            w = (w or "").lower().replace("’", "'").replace("—", " ").replace("–", " ").replace(".", " ").replace("-", " ")
+            return [x.strip("'") for x in re.sub(r"[^\w\s']", " ", w).split() if x.strip("'")]
+
+        flat_ws = [(w[0], tok) for w in words for tok in _toks(w[1])]
+
+        def match_anchor_in_scene(anchor, t_target, sc_start, sc_end):
+            a_tokens = _toks(anchor)
+            if not a_tokens:
+                return None
+            k = len(a_tokens)
+            best, best_diff = None, float("inf")
+            # 1. Search within the scene's spoken time window (+- 0.8s phrase boundary)
+            for i in range(len(flat_ws) - k + 1):
+                t_word = flat_ws[i][0]
+                if t_word < sc_start - 0.80 or t_word > sc_end + 0.80:
+                    continue
+                matched = True
+                for j in range(k):
+                    tok_a = a_tokens[j]
+                    tok_w = flat_ws[i+j][1]
+                    if tok_a != tok_w and not (j == k - 1 and tok_w.startswith(tok_a)):
+                        matched = False
+                        break
+                if matched:
+                    diff = abs(t_word - t_target)
+                    if diff < best_diff:
+                        best_diff = diff
+                        best = t_word
+
+            # 2. Fallback to wider window if scene boundary was offset
+            if best is None:
+                for i in range(len(flat_ws) - k + 1):
+                    matched = True
+                    for j in range(k):
+                        tok_a = a_tokens[j]
+                        tok_w = flat_ws[i+j][1]
+                        if tok_a != tok_w and not (j == k - 1 and tok_w.startswith(tok_a)):
+                            matched = False
+                            break
+                    if matched:
+                        diff = abs(flat_ws[i][0] - t_target)
+                        if diff < best_diff and diff <= 6.0:
+                            best_diff = diff
+                            best = flat_ws[i][0]
             return best
 
-        v5 = 0
-        seen_groups = set()
+        v5_errs = []
+        within_tol = 0
+        early_teases = 0
+        max_lead = 0.0
         for b in beats:
-            key = (b["group"], b.get("anchor"))
-            if key in seen_groups:
+            anc = b.get("anchor")
+            if not anc or not anc.strip():
+                v5_errs.append("beat %s has missing or empty anchor phrase" % b.get("el"))
                 continue
-            seen_groups.add(key)
+            sc_id = b.get("group", 0)
+            sc = scenes[sc_id] if 0 <= sc_id < len(scenes) else {"s": 0.0, "e": total}
             t_arr = b.get("arr", b["s"])
-            w = word_at(words, t_arr)
-            if w is None:
+            pt = match_anchor_in_scene(anc, t_arr, sc["s"], sc["e"])
+            if pt is None:
+                v5_errs.append("anchor %r for %s not found in scene %d spoken text" % (anc, b.get("el"), sc_id + 1))
                 continue
-            off = t_arr - w[0]
+            off = t_arr - pt
+            nud = b.get("nudge")
+
+            # Normal cue: strictly within +-0.55s
             if abs(off) <= WORD_TOL:
+                # If an authored nudge was explicitly specified, verify it matches the actual measured offset
+                if nud is not None and abs(nud) > 1e-4:
+                    if abs(off - nud) > 0.25:
+                        v5_errs.append("authored nudge %+.3fs for %s does not match measured offset %+.3fs"
+                                       % (nud, b.get("el"), off))
+                        continue
+                within_tol += 1
                 continue
-            nud = b.get("nudge", 0)
-            if abs(nud) <= NUDGE_BOUND:
-                continue
-            if nud < 0 and -nud <= TEASE_BOUND:
-                continue        # a deliberate tease: it lands before its word
-            v5 += 1
-            bad("5", "arrival for %r at %.2fs is %.2fs from the word '%s'"
-                % ((b.get("anchor") or "")[:30], t_arr, off, w[1]))
-        if v5 == 0:
-            ok("5", "every arrival lands within %.2fs of its spoken word" % WORD_TOL)
+
+            # Explicitly authored early reveal (off < -WORD_TOL)
+            if nud is not None and nud < -1e-4:
+                # Must match measured offset
+                if abs(off - nud) > 0.25:
+                    v5_errs.append("authored early nudge %+.3fs for %s does not match measured offset %+.3fs"
+                                   % (nud, b.get("el"), off))
+                    continue
+                # Allowed early adjustment range is up to TEASE_BOUND (2.0s)
+                if -nud <= TEASE_BOUND and -off <= TEASE_BOUND:
+                    early_teases += 1
+                    lead = -off
+                    if lead > max_lead:
+                        max_lead = lead
+                    continue
+                else:
+                    v5_errs.append("early reveal for %s (%r) lead %.2fs exceeds allowed limit %.2fs"
+                                   % (b.get("el"), anc[:25], -off, TEASE_BOUND))
+                    continue
+
+            # If off > WORD_TOL or missing/zero nudge with abs(off) > WORD_TOL: FATAL ERROR
+            v5_errs.append("arrival for %s (%r) at %.2fs is %+.2fs from phrase at %.2fs (exceeds ±%.2fs tolerance; no valid early adjustment)"
+                           % (b.get("el"), anc[:25], t_arr, off, pt, WORD_TOL))
+
+        if not v5_errs:
+            ok("5", "%d cues strictly within ±%.2fs; %d intentional early reveals (max lead %.2fs) confirmed (total %d cues verified)"
+               % (within_tol, WORD_TOL, early_teases, max_lead, len(beats)))
+        else:
+            bad("5", "%d cue(s) miss spoken anchor phrase: %s" % (len(v5_errs), v5_errs[:4]))
+
+        # ---------------------------------------------------------------
+        # Run extra static, caption, spec, and chapter checks before heavy screenshot sampling
+        extra_checks(s, F, beats, scenes, words, total)
+        if any(code in ('0', '14e') for code, _ in FAILS):
+            b.close()
+            print("\n%d passed   %d warnings   %d failed" % (len(PASSES), len(WARNS), len(FAILS)))
+            print("\nFAILED")
+            for n, m in FAILS:
+                print("   [%s] %s" % (n, m))
+            return 1
 
         # ---------------------------------------------------------------
         # 11  static-frame band + 12  ink coverage, sampled at 3 fps
@@ -762,9 +907,6 @@ def main():
                         % (tp, TRUE_PEAK_MAX))
         else:
             bad("8", "could not measure loudness")
-
-    # ---------------------------------------------------------------
-    extra_checks(s, F, beats, scenes, words, total)
 
     # ---------------------------------------------------------------
     print("\n%d passed   %d warnings   %d failed" % (len(PASSES), len(WARNS), len(FAILS)))

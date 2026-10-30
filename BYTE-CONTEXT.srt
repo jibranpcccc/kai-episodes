@@ -1,0 +1,1183 @@
+1
+00:00:00,000 --> 00:00:02,108
+You download a local AI model that
+
+2
+00:00:02,108 --> 00:00:04,725
+promises a context window of one hundred
+
+3
+00:00:04,725 --> 00:00:07,760
+and twenty-eight thousand tokens. That sounds enormous.
+
+4
+00:00:08,080 --> 00:00:10,443
+Enough for a long report, a mountain
+
+5
+00:00:10,443 --> 00:00:13,138
+of code, or an entire conversation that
+
+6
+00:00:13,138 --> 00:00:15,104
+never seems to end. Then you load
+
+7
+00:00:15,104 --> 00:00:17,300
+the model. You paste in a document.
+
+8
+00:00:17,620 --> 00:00:20,199
+Your GPU memory fills up, the first
+
+9
+00:00:20,199 --> 00:00:23,272
+answer takes forever, or the application refuses
+
+10
+00:00:23,272 --> 00:00:25,707
+the request. And if it does answer,
+
+11
+00:00:25,707 --> 00:00:28,064
+it confidently misses a detail you know
+
+12
+00:00:28,064 --> 00:00:29,610
+is sitting right there in the text.
+
+13
+00:00:29,930 --> 00:00:31,910
+What happened to those one hundred and twenty-eight
+
+14
+00:00:31,910 --> 00:00:35,217
+thousand tokens? Here is the trap: a model
+
+15
+00:00:35,217 --> 00:00:38,173
+can advertise a large context window without your
+
+16
+00:00:38,173 --> 00:00:41,030
+computer being able to run that window efficiently.
+
+17
+00:00:41,350 --> 00:00:43,461
+And even when the text fits, that
+
+18
+00:00:43,461 --> 00:00:45,062
+does not guarantee the model will
+
+19
+00:00:45,062 --> 00:00:46,990
+use every part of it correctly.
+
+20
+00:00:47,310 --> 00:00:49,546
+Today we are following one long prompt
+
+21
+00:00:49,546 --> 00:00:51,864
+through a local AI system, from the
+
+22
+00:00:51,864 --> 00:00:54,755
+model specification to the GPU memory,
+
+23
+00:00:54,755 --> 00:00:56,070
+all the way to the answer.
+
+24
+00:00:56,390 --> 00:00:58,089
+We will find out what actually runs
+
+25
+00:00:58,089 --> 00:01:01,227
+out, why long conversations slow down, and
+
+26
+00:01:01,227 --> 00:01:03,779
+when a smaller, smarter context can beat
+
+27
+00:01:03,779 --> 00:01:06,344
+a gigantic one. First, forget the
+
+28
+00:01:06,344 --> 00:01:08,890
+idea that context is permanent memory.
+
+29
+00:01:09,210 --> 00:01:12,012
+A context window is the working information
+
+30
+00:01:12,012 --> 00:01:13,848
+made available to the model for a
+
+31
+00:01:13,848 --> 00:01:17,507
+particular generation. It can contain instructions, prior
+
+32
+00:01:17,507 --> 00:01:20,697
+messages, documents, tool results, and the
+
+33
+00:01:20,697 --> 00:01:22,810
+beginning of the model's own response.
+
+34
+00:01:23,130 --> 00:01:25,839
+A token is not necessarily one word.
+
+35
+00:01:25,839 --> 00:01:28,066
+Depending on the tokenizer, a word can
+
+36
+00:01:28,066 --> 00:01:30,813
+be one token, several tokens, or part
+
+37
+00:01:30,813 --> 00:01:34,524
+of a token sequence. Punctuation, code, special
+
+38
+00:01:34,524 --> 00:01:37,200
+chat markers, and formatting also count.
+
+39
+00:01:37,521 --> 00:01:40,633
+So a one-hundred-page document cannot be converted into
+
+40
+00:01:40,633 --> 00:01:44,214
+a reliable token count using page numbers alone.
+
+41
+00:01:44,214 --> 00:01:46,154
+And the full context budget is not
+
+42
+00:01:46,154 --> 00:01:48,110
+always yours to spend on the input.
+
+43
+00:01:48,430 --> 00:01:52,432
+In many runtimes, prompt tokens and generated tokens
+
+44
+00:01:52,432 --> 00:01:55,426
+share the configured context limit. If you fill
+
+45
+00:01:55,426 --> 00:01:58,122
+the entire allowance with source material, you
+
+46
+00:01:58,122 --> 00:02:00,090
+may leave no room for the answer.
+
+47
+00:02:00,412 --> 00:02:03,563
+Separate model or application output limits may apply
+
+48
+00:02:03,563 --> 00:02:08,430
+as well. So imagine a hypothetical one-hundred-and-twenty-eight-thousand-token budget.
+
+49
+00:02:08,750 --> 00:02:10,534
+If you want the model to generate eight
+
+50
+00:02:10,534 --> 00:02:12,643
+thousand tokens, you need to leave enough
+
+51
+00:02:12,643 --> 00:02:14,987
+space for those eight thousand plus any
+
+52
+00:02:14,987 --> 00:02:18,310
+system prompts, chat formatting, and other overhead.
+
+53
+00:02:18,630 --> 00:02:20,704
+One hundred and twenty-eight thousand tokens is
+
+54
+00:02:20,704 --> 00:02:22,631
+a ceiling, not a promise that you
+
+55
+00:02:22,631 --> 00:02:24,884
+can paste in that much text and
+
+56
+00:02:24,884 --> 00:02:27,514
+still receive a full response. Now comes
+
+57
+00:02:27,514 --> 00:02:29,380
+the first of four separate limits.
+
+58
+00:02:29,700 --> 00:02:33,228
+The model itself has a supported context configuration.
+
+59
+00:02:33,228 --> 00:02:35,832
+That number may come from its architecture, training
+
+60
+00:02:35,832 --> 00:02:39,752
+setup, and published configuration. Some models are designed
+
+61
+00:02:39,752 --> 00:02:42,370
+or adapted for longer sequences than others.
+
+62
+00:02:42,690 --> 00:02:45,069
+The second limit belongs to the software running
+
+63
+00:02:45,069 --> 00:02:47,985
+the model. A local application may choose a
+
+64
+00:02:47,985 --> 00:02:51,370
+smaller active context than the model's published maximum.
+
+65
+00:02:51,690 --> 00:02:54,023
+Changing the model file does not force the
+
+66
+00:02:54,023 --> 00:02:57,187
+application to use the largest supported value.
+
+67
+00:02:57,187 --> 00:03:01,978
+For example, llama.cpp exposes a context-size setting.
+
+68
+00:03:01,978 --> 00:03:04,970
+vLLM exposes a maximum model length setting.
+
+69
+00:03:05,290 --> 00:03:08,903
+Both also have other configuration and memory constraints.
+
+70
+00:03:08,903 --> 00:03:11,416
+The exact command names and behavior depend on
+
+71
+00:03:11,416 --> 00:03:13,380
+which version and backend you are running.
+
+72
+00:03:13,700 --> 00:03:15,738
+The important point is that the advertised
+
+73
+00:03:15,738 --> 00:03:18,277
+model limit and the configured runtime limit
+
+74
+00:03:18,277 --> 00:03:20,894
+are different facts. The third limit is
+
+75
+00:03:20,894 --> 00:03:23,850
+physical memory. Not just the model weights.
+
+76
+00:03:23,850 --> 00:03:25,350
+Not just the file you downloaded.
+
+77
+00:03:25,670 --> 00:03:27,840
+The memory needed while the model reads
+
+78
+00:03:27,840 --> 00:03:30,587
+and generates. This is where the key-value
+
+79
+00:03:30,587 --> 00:03:33,413
+cache enters the story. When a transformer
+
+80
+00:03:33,413 --> 00:03:36,512
+processes earlier tokens, its attention layers
+
+81
+00:03:36,512 --> 00:03:40,170
+calculate representations called keys and values.
+
+82
+00:03:40,490 --> 00:03:45,102
+During autoregressive generation, a supported caching implementation saves
+
+83
+00:03:45,102 --> 00:03:48,058
+those representations so the model does not need
+
+84
+00:03:48,058 --> 00:03:50,988
+to recompute the entire past in exactly
+
+85
+00:03:50,988 --> 00:03:53,300
+the same way for every new token.
+
+86
+00:03:53,620 --> 00:03:55,220
+Think of it as a growing set
+
+87
+00:03:55,220 --> 00:03:57,655
+of working notes for the current request.
+
+88
+00:03:57,655 --> 00:03:59,210
+The model weights are the machinery.
+
+89
+00:03:59,530 --> 00:04:02,024
+The key-value cache is some of the temporary
+
+90
+00:04:02,024 --> 00:04:04,472
+state the machinery needs to keep track
+
+91
+00:04:04,472 --> 00:04:07,401
+of the conversation. For an ordinary full-attention
+
+92
+00:04:07,401 --> 00:04:10,917
+transformer with a conventional cache, longer sequences
+
+93
+00:04:10,917 --> 00:04:13,500
+need more stored key and value data.
+
+94
+00:04:13,820 --> 00:04:16,535
+Cache memory scales with token count, with the
+
+95
+00:04:16,535 --> 00:04:19,282
+number of layers, with the key-value heads and
+
+96
+00:04:19,282 --> 00:04:22,017
+their dimensions, with the storage precision, and
+
+97
+00:04:22,017 --> 00:04:24,300
+with how many sequences are being served.
+
+98
+00:04:24,627 --> 00:04:27,869
+Here is a calculation, but listen carefully: this
+
+99
+00:04:27,869 --> 00:04:30,031
+is a made-up architecture for explaining the
+
+100
+00:04:30,031 --> 00:04:32,309
+math. It is not a measured benchmark
+
+101
+00:04:32,309 --> 00:04:35,170
+for any GPU or named AI model.
+
+102
+00:04:35,490 --> 00:04:39,351
+Imagine thirty-two layers, eight key-value heads per layer,
+
+103
+00:04:39,351 --> 00:04:41,760
+one hundred and twenty-eight values per head, and
+
+104
+00:04:41,760 --> 00:04:44,676
+two bytes for each stored value. Every cached
+
+105
+00:04:44,676 --> 00:04:47,010
+token needs both a key and a value.
+
+106
+00:04:47,330 --> 00:04:51,556
+With that hypothetical design, a thirty-two-thousand-token cache occupies
+
+107
+00:04:51,556 --> 00:04:55,801
+about four gibibytes before implementation overhead and any
+
+108
+00:04:55,801 --> 00:04:59,694
+other allocations. At eight thousand tokens, the same
+
+109
+00:04:59,694 --> 00:05:02,890
+illustrative cache would occupy about one gibibyte.
+
+110
+00:05:03,210 --> 00:05:05,543
+At one hundred and twenty-eight thousand tokens,
+
+111
+00:05:05,543 --> 00:05:07,630
+it would be about sixteen gibibytes.
+
+112
+00:05:07,953 --> 00:05:09,880
+That is the shock. The model weights
+
+113
+00:05:09,880 --> 00:05:12,068
+could already fit comfortably on a graphics
+
+114
+00:05:12,068 --> 00:05:14,620
+card, while the context cache pushes
+
+115
+00:05:14,620 --> 00:05:16,660
+the whole workload over the edge.
+
+116
+00:05:16,980 --> 00:05:19,588
+Reducing the weight file through quantization does
+
+117
+00:05:19,588 --> 00:05:22,257
+not automatically reduce the cache to the
+
+118
+00:05:22,257 --> 00:05:25,460
+same precision. The specific cache numbers change
+
+119
+00:05:25,460 --> 00:05:28,807
+with the actual model architecture. Grouped-query attention
+
+120
+00:05:28,807 --> 00:05:31,420
+can reduce the number of key-value heads.
+
+121
+00:05:31,740 --> 00:05:34,806
+Sliding-window and other attention patterns can change
+
+122
+00:05:34,806 --> 00:05:37,449
+which tokens a layer needs to retain.
+
+123
+00:05:37,449 --> 00:05:41,212
+Some runtimes use quantized or offloaded caches.
+
+124
+00:05:41,212 --> 00:05:44,038
+So never copy those four-gibibyte numbers onto
+
+125
+00:05:44,038 --> 00:05:47,120
+an unrelated model and call them specifications.
+
+126
+00:05:47,440 --> 00:05:50,021
+But the principle is real: fitting the weights
+
+127
+00:05:50,021 --> 00:05:52,105
+is not the same as fitting a long
+
+128
+00:05:52,105 --> 00:05:54,761
+conversation. Now think about what happens when the
+
+129
+00:05:54,761 --> 00:05:57,770
+runtime is also serving more than one request.
+
+130
+00:05:58,090 --> 00:06:00,189
+A chat server might hold active state
+
+131
+00:06:00,189 --> 00:06:03,249
+for multiple users. Depending on its scheduling
+
+132
+00:06:03,249 --> 00:06:05,879
+and cache design, the available memory
+
+133
+00:06:05,879 --> 00:06:08,460
+must support those active sequences too.
+
+134
+00:06:08,780 --> 00:06:10,682
+A context size that works for one
+
+135
+00:06:10,682 --> 00:06:12,870
+short chat may not be practical with
+
+136
+00:06:12,870 --> 00:06:15,070
+long requests running at the same time.
+
+137
+00:06:15,390 --> 00:06:17,311
+This is why you sometimes see errors
+
+138
+00:06:17,311 --> 00:06:20,020
+about insufficient cache memory even after the
+
+139
+00:06:20,020 --> 00:06:22,259
+weights have loaded. And it's why blindly
+
+140
+00:06:22,259 --> 00:06:23,978
+raising the context setting can make
+
+141
+00:06:23,978 --> 00:06:26,430
+a previously stable system stop launching.
+
+142
+00:06:26,750 --> 00:06:29,215
+The fourth limit is more subtle. Even if
+
+143
+00:06:29,215 --> 00:06:32,301
+the model supports the tokens, the runtime accepts
+
+144
+00:06:32,301 --> 00:06:34,905
+them, and the hardware stores them, the model
+
+145
+00:06:34,905 --> 00:06:37,720
+may not use all that information reliably.
+
+146
+00:06:38,040 --> 00:06:40,476
+Long-context research has demonstrated that the
+
+147
+00:06:40,476 --> 00:06:42,598
+position of a fact can influence
+
+148
+00:06:42,598 --> 00:06:44,770
+whether a model retrieves it correctly.
+
+149
+00:06:45,090 --> 00:06:47,245
+In the study called Lost in the Middle,
+
+150
+00:06:47,245 --> 00:06:50,396
+the researchers found cases where information near the
+
+151
+00:06:50,396 --> 00:06:52,401
+beginning or the end of a long
+
+152
+00:06:52,401 --> 00:06:54,966
+input was easier for tested models to
+
+153
+00:06:54,966 --> 00:06:57,110
+use than information buried in the middle.
+
+154
+00:06:57,430 --> 00:06:58,879
+That is not a claim that every
+
+155
+00:06:58,879 --> 00:07:01,925
+modern model always forgets the middle. Results
+
+156
+00:07:01,925 --> 00:07:04,880
+differ by model, task, and evaluation.
+
+157
+00:07:05,200 --> 00:07:06,567
+It is a warning that a large
+
+158
+00:07:06,567 --> 00:07:09,393
+numerical context limit is not the same
+
+159
+00:07:09,393 --> 00:07:12,557
+as reliable recall across the entire window.
+
+160
+00:07:12,557 --> 00:07:14,920
+Imagine giving a model forty reports.
+
+161
+00:07:15,240 --> 00:07:18,371
+One report, buried halfway through, contains the
+
+162
+00:07:18,371 --> 00:07:21,041
+single number that answers your question. You
+
+163
+00:07:21,041 --> 00:07:22,968
+may discover that changing the order of
+
+164
+00:07:22,968 --> 00:07:25,559
+those reports changes the answer, even
+
+165
+00:07:25,559 --> 00:07:27,260
+though none of the facts changed.
+
+166
+00:07:27,580 --> 00:07:28,844
+This is why one of the most
+
+167
+00:07:28,844 --> 00:07:31,904
+useful long-context tests is not asking whether
+
+168
+00:07:31,904 --> 00:07:33,880
+the model loads a giant document.
+
+169
+00:07:34,200 --> 00:07:36,649
+It is placing the same important detail near
+
+170
+00:07:36,649 --> 00:07:39,526
+the beginning, the middle, and the end, and
+
+171
+00:07:39,526 --> 00:07:42,261
+checking whether the answers stay correct. Now let's
+
+172
+00:07:42,261 --> 00:07:44,780
+follow the clock, not just the memory meter.
+
+173
+00:07:45,100 --> 00:07:46,927
+Before a model can produce the first
+
+174
+00:07:46,927 --> 00:07:49,010
+answer token, it must process the
+
+175
+00:07:49,010 --> 00:07:51,549
+input prompt. That initial pass is
+
+176
+00:07:51,549 --> 00:07:54,170
+often called prefill or prompt processing.
+
+177
+00:07:54,490 --> 00:07:57,254
+A very long prompt can demand substantial
+
+178
+00:07:57,254 --> 00:07:59,924
+computation and data movement, even when the
+
+179
+00:07:59,924 --> 00:08:01,747
+final answer will only be a few
+
+180
+00:08:01,747 --> 00:08:05,366
+sentences. Then comes decoding: generating output
+
+181
+00:08:05,366 --> 00:08:08,140
+tokens, usually one step after another.
+
+182
+00:08:08,460 --> 00:08:11,097
+The cache helps by reusing prior key and
+
+183
+00:08:11,097 --> 00:08:13,219
+value states, but it does not make
+
+184
+00:08:13,219 --> 00:08:16,123
+a very long context free. Attention and
+
+185
+00:08:16,123 --> 00:08:19,310
+memory traffic still matter, and implementations vary.
+
+186
+00:08:19,631 --> 00:08:21,323
+That gives you two separate speeds to
+
+187
+00:08:21,323 --> 00:08:23,198
+measure. How long did it take to
+
+188
+00:08:23,198 --> 00:08:25,269
+get the first token? And how quickly
+
+189
+00:08:25,269 --> 00:08:27,900
+did the answer arrive after generation started?
+
+190
+00:08:28,220 --> 00:08:30,781
+A system can generate tokens quickly once it
+
+191
+00:08:30,781 --> 00:08:33,581
+begins, yet feel painfully slow because it
+
+192
+00:08:33,581 --> 00:08:36,068
+spent so long reading the prompt. There
+
+193
+00:08:36,068 --> 00:08:39,570
+are clever optimizations. Flash Attention and related
+
+194
+00:08:39,570 --> 00:08:43,050
+kernels reduce certain memory and computation costs.
+
+195
+00:08:43,370 --> 00:08:45,964
+Cache quantization can save space on supported
+
+196
+00:08:45,964 --> 00:08:49,207
+backends. Prefix caching can reuse work when
+
+197
+00:08:49,207 --> 00:08:52,449
+requests share an identical prefix. Some engines
+
+198
+00:08:52,449 --> 00:08:54,460
+can move cache data to other memory.
+
+199
+00:08:54,780 --> 00:08:56,740
+But none of these features automatically
+
+200
+00:08:56,740 --> 00:08:59,631
+turns the largest advertised context into
+
+201
+00:08:59,631 --> 00:09:01,840
+the best setting for every task.
+
+202
+00:09:02,160 --> 00:09:03,908
+And there is another trap: making the
+
+203
+00:09:03,908 --> 00:09:07,189
+context longer through positional-scaling settings is not
+
+204
+00:09:07,189 --> 00:09:09,156
+the same as proving that the model
+
+205
+00:09:09,156 --> 00:09:11,708
+remains accurate at the new length. A
+
+206
+00:09:11,708 --> 00:09:14,700
+runtime may let you change positional parameters.
+
+207
+00:09:15,020 --> 00:09:16,710
+That does not guarantee the model was
+
+208
+00:09:16,710 --> 00:09:19,861
+trained or validated to reason reliably across
+
+209
+00:09:19,861 --> 00:09:22,100
+that expanded window. So what should you
+
+210
+00:09:22,100 --> 00:09:24,861
+do instead of immediately setting everything
+
+211
+00:09:24,861 --> 00:09:26,450
+to one hundred and twenty-eight thousand?
+
+212
+00:09:26,812 --> 00:09:29,690
+First, find the real context limit published
+
+213
+00:09:29,690 --> 00:09:31,799
+for the exact model version, and check
+
+214
+00:09:31,799 --> 00:09:35,067
+the running application's configured limit. Record both
+
+215
+00:09:35,067 --> 00:09:37,112
+numbers. Do not assume the model
+
+216
+00:09:37,112 --> 00:09:39,090
+page and the software settings agree.
+
+217
+00:09:39,410 --> 00:09:43,034
+Second, inspect the runtime logs. Check where model
+
+218
+00:09:43,034 --> 00:09:45,664
+weights are loaded, how much cache memory is
+
+219
+00:09:45,664 --> 00:09:49,114
+allocated, which cache precision is active, and whether
+
+220
+00:09:49,114 --> 00:09:51,290
+any memory has been placed on the CPU.
+
+221
+00:09:51,610 --> 00:09:54,123
+If your interface hides those details, use
+
+222
+00:09:54,123 --> 00:09:58,172
+the backend logs or supported diagnostics. Third,
+
+223
+00:09:58,172 --> 00:09:59,800
+test the workload you actually care
+
+224
+00:09:59,800 --> 00:10:02,140
+about. Start with a modest context.
+
+225
+00:10:02,460 --> 00:10:04,233
+Then increase it in steps using the
+
+226
+00:10:04,233 --> 00:10:06,889
+same model, the same quantization, and the
+
+227
+00:10:06,889 --> 00:10:11,511
+same questions. Record available VRAM, the prompt-processing
+
+228
+00:10:11,511 --> 00:10:14,376
+time, time to first token, and output
+
+229
+00:10:14,376 --> 00:10:17,530
+generation speed. Fourth, test answer quality.
+
+230
+00:10:17,855 --> 00:10:20,199
+Put one known fact near the start,
+
+231
+00:10:20,199 --> 00:10:21,631
+one in the middle, and one at
+
+232
+00:10:21,631 --> 00:10:23,923
+the end of a document. Ask precise
+
+233
+00:10:23,923 --> 00:10:27,217
+questions with answers you can independently verify.
+
+234
+00:10:27,217 --> 00:10:28,890
+Repeat with more than one example.
+
+235
+00:10:29,210 --> 00:10:31,830
+A successful model load is not a successful
+
+236
+00:10:31,830 --> 00:10:34,877
+comprehension test. Fifth, reserve space for the
+
+237
+00:10:34,877 --> 00:10:38,926
+answer. Count the system instructions, previous messages,
+
+238
+00:10:38,926 --> 00:10:42,790
+inserted documents, tool results, and expected output.
+
+239
+00:10:43,110 --> 00:10:46,639
+If the application silently truncates older messages or
+
+240
+00:10:46,639 --> 00:10:50,077
+shifts the context, learn exactly what it keeps
+
+241
+00:10:50,077 --> 00:10:53,280
+and what it discards. And sixth, question whether
+
+242
+00:10:53,280 --> 00:10:55,820
+the model needs the whole document at once.
+
+243
+00:10:56,153 --> 00:10:58,509
+For searching a knowledge base, a retrieval
+
+244
+00:10:58,509 --> 00:11:00,957
+system can locate a smaller collection of
+
+245
+00:11:00,957 --> 00:11:03,939
+relevant passages and pass those passages to
+
+246
+00:11:03,939 --> 00:11:05,723
+the model. That is the basic
+
+247
+00:11:05,723 --> 00:11:09,510
+idea behind retrieval-augmented generation, or RAG.
+
+248
+00:11:09,830 --> 00:11:12,216
+It is not a magic cure. Retrieval can
+
+249
+00:11:12,216 --> 00:11:16,018
+select the wrong passages, omit a crucial detail,
+
+250
+00:11:16,018 --> 00:11:18,880
+or lose context needed to interpret a quotation.
+
+251
+00:11:19,200 --> 00:11:20,675
+But when the task is answering a
+
+252
+00:11:20,675 --> 00:11:23,410
+question from a large collection of documents,
+
+253
+00:11:23,410 --> 00:11:26,014
+focused retrieval may be more useful than
+
+254
+00:11:26,014 --> 00:11:28,340
+pouring every page into the prompt.
+
+255
+00:11:28,715 --> 00:11:32,882
+For whole-book editing, complex cross-document reasoning, or questions
+
+256
+00:11:32,882 --> 00:11:35,434
+that depend on broad structure, you may still
+
+257
+00:11:35,434 --> 00:11:39,420
+need larger context, careful chunking, or multiple passes.
+
+258
+00:11:39,740 --> 00:11:42,495
+The correct strategy depends on the task, not
+
+259
+00:11:42,495 --> 00:11:44,995
+on whichever context number looks biggest in a
+
+260
+00:11:44,995 --> 00:11:48,570
+model comparison table. And one final distinction matters.
+
+261
+00:11:48,890 --> 00:11:51,240
+Saving a chat transcript on disk is
+
+262
+00:11:51,240 --> 00:11:53,558
+not the same as keeping every line
+
+263
+00:11:53,558 --> 00:11:56,917
+inside the model's active context. Your application
+
+264
+00:11:56,917 --> 00:11:59,742
+might retrieve, summarize, or drop older
+
+265
+00:11:59,742 --> 00:12:02,110
+material. That can be useful engineering.
+
+266
+00:12:02,430 --> 00:12:04,598
+But if it isn't transparent, the model
+
+267
+00:12:04,598 --> 00:12:07,215
+can seem to remember something one moment
+
+268
+00:12:07,215 --> 00:12:09,025
+and forget it the next. So here
+
+269
+00:12:09,025 --> 00:12:10,835
+is the verdict. There is a model
+
+270
+00:12:10,835 --> 00:12:12,900
+limit. There is a runtime limit.
+
+271
+00:12:13,220 --> 00:12:15,012
+There is a hardware limit. And there
+
+272
+00:12:15,012 --> 00:12:17,889
+is an effective-use limit. Those four numbers
+
+273
+00:12:17,889 --> 00:12:21,405
+do not have to match. A one-hundred-and-twenty-eight-thousand-token
+
+274
+00:12:21,405 --> 00:12:24,020
+label can describe a supported capability.
+
+275
+00:12:24,340 --> 00:12:26,550
+It does not promise that your current GPU
+
+276
+00:12:26,550 --> 00:12:29,571
+has enough memory, that your interface is configured
+
+277
+00:12:29,571 --> 00:12:31,550
+to use it, that the first answer
+
+278
+00:12:31,550 --> 00:12:34,193
+will arrive quickly, or that every fact
+
+279
+00:12:34,193 --> 00:12:36,570
+inside the window will be retrieved correctly.
+
+280
+00:12:36,890 --> 00:12:39,975
+Before buying more hardware or changing every advanced
+
+281
+00:12:39,975 --> 00:12:43,061
+setting, measure the real bottleneck. Is the prompt
+
+282
+00:12:43,061 --> 00:12:45,340
+being truncated? Is the cache running out
+
+283
+00:12:45,340 --> 00:12:47,750
+of memory? Is prefill taking too long?
+
+284
+00:12:48,070 --> 00:12:50,477
+Or is the answer simply wrong even though
+
+285
+00:12:50,477 --> 00:12:53,355
+all the evidence fits? Those problems require
+
+286
+00:12:53,355 --> 00:12:56,037
+different solutions. And solving the wrong one
+
+287
+00:12:56,037 --> 00:12:58,381
+can cost you hours, money, or the
+
+288
+00:12:58,381 --> 00:13:00,650
+very accuracy you were trying to improve.
+
+289
+00:13:00,970 --> 00:13:03,209
+Tell me the exact local model, your
+
+290
+00:13:03,209 --> 00:13:06,126
+GPU, the context setting you use, and
+
+291
+00:13:06,126 --> 00:13:07,441
+what happens when you feed it a
+
+292
+00:13:07,441 --> 00:13:10,527
+long prompt. Does it crash, crawl,
+
+293
+00:13:10,527 --> 00:13:12,420
+truncate, or give the wrong answer?
+
+294
+00:13:12,740 --> 00:13:14,831
+This is Byte Forensics. Don't just
+
+295
+00:13:14,831 --> 00:13:16,771
+count the tokens. Find out which
+
+296
+00:13:16,771 --> 00:13:19,590
+ones your system can actually use.

@@ -1,0 +1,1790 @@
+[
+  {
+    "title": "THE 128,000 TOKEN PROMISE",
+    "art": "context_window",
+    "cap": "ADVERTISED SEQUENCE SPECIFICATION",
+    "c_tag": "SPECIFICATION CEILING",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "128K ADVERTISED"
+      },
+      {
+        "c": "gold",
+        "t": "LOCAL LLM SPEC"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "SEQUENCE",
+        "u": "K",
+        "v": "128"
+      },
+      {
+        "c": "gold",
+        "lab": "STATUS",
+        "u": "PROMISE",
+        "v": "CLAIM"
+      }
+    ],
+    "idx": 0
+  },
+  {
+    "title": "THREE PROMISED USE CASES",
+    "art": "folder",
+    "cap": "WHAT 128K TOKENS SEEMS TO ENABLE",
+    "c_tag": "THE PROMISE",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "LONG REPORT",
+        "val": "300+ PAGES",
+        "sub": "FINANCIAL AUDIT"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "MOUNTAIN OF CODE",
+        "val": "FULL REPO",
+        "sub": "MULTI-FILE LOGIC"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "ENDLESS CHAT",
+        "val": "MULTI-TURN",
+        "sub": "PERSISTENT MEMORY"
+      }
+    ],
+    "idx": 1
+  },
+  {
+    "title": "THE REALITY: THREE FAILURES",
+    "art": "warning",
+    "cap": "WHAT ACTUALLY HAPPENS AT SCALE",
+    "c_tag": "EXECUTION BREAKDOWN",
+    "bars": [
+      {
+        "cls": "hot",
+        "lab": "VRAM EXHAUSTION",
+        "unit": "MEMORY",
+        "val": "OOM CRASH",
+        "pct": 98.0
+      },
+      {
+        "cls": "cyan",
+        "lab": "FIRST TOKEN DELAY",
+        "unit": "LATENCY",
+        "val": "TIMEOUT",
+        "pct": 92.0
+      }
+    ],
+    "idx": 2
+  },
+  {
+    "title": "THE ADVERTISED SPEC TRAP",
+    "art": "scales",
+    "cap": "SPECIFICATION VS HARDWARE CAPACITY",
+    "c_tag": "PHYSICAL DISCONNECT",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "ADVERTISED WINDOW",
+        "val": "128K TOKENS",
+        "pct": 100.0
+      },
+      {
+        "cls": "red",
+        "lab": "HARDWARE CAPACITY",
+        "val": "OUT OF MEMORY",
+        "pct": 25.0
+      }
+    ],
+    "idx": 3
+  },
+  {
+    "title": "FITTING TEXT VS USING TEXT",
+    "art": "warning",
+    "cap": "ATTENTION AND RETRIEVAL FIDELITY",
+    "c_tag": "RECALL DISCONNECT",
+    "chain": [
+      {
+        "t": "VRAM ALLOCATION",
+        "s": "TEXT FITS ON GPU"
+      },
+      {
+        "t": "ATTENTION PASS",
+        "s": "COMPUTE EXECUTION"
+      },
+      {
+        "t": "ACCURATE RETRIEVAL",
+        "s": "RELIABLE EXTRACTION"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "PHYSICAL FIT",
+        "body": "CONTEXT ALLOCATED"
+      },
+      {
+        "cls": "gold",
+        "title": "RECALL FIDELITY",
+        "body": "DETAIL MISSED"
+      }
+    ],
+    "idx": 4
+  },
+  {
+    "title": "TRACING THE PROMPT PIPELINE",
+    "art": "prompt_stream",
+    "cap": "END-TO-END EXECUTION AUDIT",
+    "c_tag": "BYTE FORENSICS",
+    "note_head": "PROMPT EXECUTION PATH",
+    "note_items": [
+      {
+        "t": "MODEL SPECIFICATION: ADVERTISED CONTEXT"
+      },
+      {
+        "t": "PHYSICAL MEMORY: KV CACHE ALLOCATION"
+      },
+      {
+        "t": "GENERATION SPEED: PREFILL VS DECODE"
+      }
+    ],
+    "idx": 5
+  },
+  {
+    "title": "THREE CORE INVESTIGATIONS",
+    "c_tag": "EXECUTIVE AUDIT",
+    "items": [
+      {
+        "key": "ram_stick",
+        "label": "VRAM RUNS OUT"
+      },
+      {
+        "key": "clock",
+        "label": "LATENCY SPIKE"
+      },
+      {
+        "key": "chip",
+        "label": "SMALLER CONTEXT"
+      }
+    ],
+    "idx": 6
+  },
+  {
+    "title": "WORKING MEMORY VS STORAGE",
+    "art": "context_window",
+    "cap": "TRANSIENT GENERATION STATE",
+    "c_tag": "NOT PERMANENT",
+    "chain": [
+      {
+        "t": "SYSTEM PROMPT",
+        "s": "CORE INSTRUCTIONS"
+      },
+      {
+        "t": "CHAT & DOCUMENTS",
+        "s": "PRIOR MESSAGES & TOOLS"
+      },
+      {
+        "t": "ACTIVE RESPONSE",
+        "s": "AUTOREGRESSIVE OUTPUT"
+      }
+    ],
+    "idx": 7
+  },
+  {
+    "title": "WORDS ARE NOT TOKENS",
+    "art": "chip",
+    "cap": "TOKENIZER SUB-WORD SEGMENTATION",
+    "c_tag": "TOKEN EXPANSION",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "SUB-WORD SLICES"
+      },
+      {
+        "c": "gold",
+        "t": "SYNTAX & FORMATTING"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "PUNCTUATION",
+        "u": "TOKENS",
+        "v": "SPLIT"
+      },
+      {
+        "c": "gold",
+        "lab": "FORMATTING",
+        "u": "TOKENS",
+        "v": "EXTRA"
+      }
+    ],
+    "idx": 8
+  },
+  {
+    "title": "NO CONVERSION SHORTCUT",
+    "art": "folder",
+    "cap": "PAGE COUNT != TOKEN COUNT",
+    "c_tag": "MEASURE EXACT",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "100-PAGE DOC",
+        "val": "VARIABLE",
+        "sub": "NO FIXED RATIO"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "CODE & INDENTS",
+        "val": "EXPANDED",
+        "sub": "HIGH TOKEN DENSITY"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "INPUT BUDGET",
+        "val": "LIMITED",
+        "sub": "SHARED LIMIT"
+      }
+    ],
+    "idx": 9
+  },
+  {
+    "title": "THE SHARED CONTEXT BUDGET",
+    "art": "scales",
+    "cap": "INPUT VS OUTPUT ALLOCATION",
+    "c_tag": "ZERO ANSWER ROOM",
+    "bars": [
+      {
+        "cls": "hot",
+        "lab": "PROMPT INPUT",
+        "unit": "TOKENS",
+        "val": "128K",
+        "pct": 98.0
+      },
+      {
+        "cls": "cyan",
+        "lab": "ROOM FOR ANSWER",
+        "unit": "TOKENS",
+        "val": "0 TOKENS",
+        "pct": 2.0
+      }
+    ],
+    "idx": 10
+  },
+  {
+    "title": "APPLICATION OUTPUT CEILINGS",
+    "art": "warning",
+    "cap": "RUNTIME OUTPUT GENERATION CONSTRAINTS",
+    "c_tag": "HARD CEILINGS",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "TOTAL BUDGET",
+        "val": "128K TOKENS",
+        "pct": 100.0
+      },
+      {
+        "cls": "red",
+        "lab": "MAX OUTPUT LIMIT",
+        "val": "APPLICATION CAP",
+        "pct": 30.0
+      }
+    ],
+    "idx": 11
+  },
+  {
+    "title": "RESERVING OUTPUT HEADROOM",
+    "art": "cache_grid",
+    "cap": "BUDGETING FOR GENERATION",
+    "c_tag": "HEADROOM LAW",
+    "chain": [
+      {
+        "t": "SYSTEM OVERHEAD",
+        "s": "CHAT TEMPLATE & ROLES"
+      },
+      {
+        "t": "PROMPT SOURCE",
+        "s": "USER QUERY & DOCUMENTS"
+      },
+      {
+        "t": "OUTPUT RESERVE",
+        "s": "8,000 GENERATED TOKENS"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "MAX INPUT SPACE",
+        "body": "120,000 TOKENS"
+      },
+      {
+        "cls": "gold",
+        "title": "OUTPUT RESERVE",
+        "body": "8,000 TOKENS"
+      }
+    ],
+    "idx": 12
+  },
+  {
+    "title": "CEILING VS REALISTIC INPUT",
+    "art": "warning",
+    "cap": "UNDERSTANDING CONTEXT BOUNDARIES",
+    "c_tag": "CEILING LAW",
+    "note_head": "CONTEXT ALLOCATION REALITY",
+    "note_items": [
+      {
+        "t": "128K IS A COMBINED HARD CEILING"
+      },
+      {
+        "t": "INPUT MUST LEAVE ADEQUATE ANSWER ROOM"
+      },
+      {
+        "t": "SYSTEM TEMPLATES CONSUME HIDDEN TOKENS"
+      }
+    ],
+    "idx": 13
+  },
+  {
+    "title": "LIMIT 1: MODEL ARCHITECTURE",
+    "c_tag": "FIRST LIMIT",
+    "items": [
+      {
+        "key": "chip",
+        "label": "BASE ARCHITECTURE"
+      },
+      {
+        "key": "folder",
+        "label": "TRAINING DATASET"
+      },
+      {
+        "key": "checklist",
+        "label": "PUBLISHED SPEC"
+      }
+    ],
+    "idx": 14
+  },
+  {
+    "title": "LIMIT 2: RUNTIME SOFTWARE",
+    "art": "laptop",
+    "cap": "SOFTWARE CONFIGURATION CONSTRAINTS",
+    "c_tag": "SECOND LIMIT",
+    "chain": [
+      {
+        "t": "PUBLISHED MODEL SPEC",
+        "s": "THEORETICAL MAXIMUM"
+      },
+      {
+        "t": "LOCAL APP DEFAULT",
+        "s": "CONSERVATIVE SETTING"
+      },
+      {
+        "t": "EFFECTIVE RUNTIME",
+        "s": "ACTIVE CONFIGURED WINDOW"
+      }
+    ],
+    "idx": 15
+  },
+  {
+    "title": "CONFIGURED CLI PARAMETERS",
+    "art": "chip",
+    "cap": "EXPLICIT INFERENCE ENGINE FLAGS",
+    "c_tag": "FLAG CONTROL",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "LLAMA.CPP: -C FLAG"
+      },
+      {
+        "c": "gold",
+        "t": "VLLM: --MAX-MODEL-LEN"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "LLAMA.CPP",
+        "u": "FLAG",
+        "v": "-C"
+      },
+      {
+        "c": "gold",
+        "lab": "VLLM",
+        "u": "FLAG",
+        "v": "MAXLEN"
+      }
+    ],
+    "idx": 16
+  },
+  {
+    "title": "BACKEND MEMORY CONSTRAINTS",
+    "art": "motherboard",
+    "cap": "INFERENCE ENGINE ARCHITECTURE",
+    "c_tag": "BACKEND RULES",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "LLAMA.CPP",
+        "val": "-C CONTEXT",
+        "sub": "CPU/GPU SPLIT"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "VLLM ENGINE",
+        "val": "GPU POOL",
+        "sub": "PAGED ATTENTION"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "BACKEND DRIVER",
+        "val": "VRAM WALL",
+        "sub": "ALLOCATION BUFFER"
+      }
+    ],
+    "idx": 17
+  },
+  {
+    "title": "LIMIT 3: PHYSICAL MEMORY",
+    "art": "gpu_24gb",
+    "cap": "WEIGHTS VS WORKING ALLOCATIONS",
+    "c_tag": "THIRD LIMIT",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "STATIC WEIGHT FILE",
+        "unit": "VRAM",
+        "val": "LOADED",
+        "pct": 50.0
+      },
+      {
+        "cls": "hot",
+        "lab": "DYNAMIC RUNTIME MEM",
+        "unit": "VRAM",
+        "val": "REQUIRED",
+        "pct": 95.0
+      }
+    ],
+    "idx": 18
+  },
+  {
+    "title": "ENTER THE KEY-VALUE CACHE",
+    "art": "kv_cache",
+    "cap": "ATTENTION STATE REPRESENTATION",
+    "c_tag": "TRANSFORMER MATH",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "KEY VECTORS",
+        "val": "ATTENTION KEYS",
+        "pct": 50.0
+      },
+      {
+        "cls": "gold",
+        "lab": "VALUE VECTORS",
+        "val": "ATTENTION VALUES",
+        "pct": 50.0
+      }
+    ],
+    "idx": 19
+  },
+  {
+    "title": "AVOIDING RECOMPUTATION",
+    "art": "cache_grid",
+    "cap": "AUTOREGRESSIVE CACHING SPEEDUP",
+    "c_tag": "CACHING SAVES TTFT",
+    "chain": [
+      {
+        "t": "PREVIOUS TOKENS",
+        "s": "COMPUTE KV ONCE"
+      },
+      {
+        "t": "VRAM STORAGE",
+        "s": "SAVE TO KV CACHE"
+      },
+      {
+        "t": "NEW TOKEN DECODE",
+        "s": "READ PAST WITHOUT RECALC"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "WITHOUT CACHE",
+        "body": "RECOMPUTE ALL TOKENS"
+      },
+      {
+        "cls": "gold",
+        "title": "WITH KV CACHE",
+        "body": "REUSE STORED VECTORS"
+      }
+    ],
+    "idx": 20
+  },
+  {
+    "title": "WORKING NOTES ANALOGY",
+    "art": "chip",
+    "cap": "MACHINERY VS WORKING STATE",
+    "c_tag": "ANALOGY",
+    "note_head": "TRANSFORMER EXECUTION ANALOGY",
+    "note_items": [
+      {
+        "t": "WEIGHTS ARE THE MACHINERY (STATIC LOAD)"
+      },
+      {
+        "t": "KV CACHE IS THE WORKING NOTES (DYNAMIC GROWTH)"
+      },
+      {
+        "t": "LONGER CONTEXT EXPANDS NOTES CONTINUOUSLY"
+      }
+    ],
+    "idx": 21
+  },
+  {
+    "title": "SEQUENCE SCALING PRESSURE",
+    "c_tag": "LINEAR GROWTH",
+    "items": [
+      {
+        "key": "context_window",
+        "label": "LONGER INPUT"
+      },
+      {
+        "key": "kv_cache",
+        "label": "MORE KV DATA"
+      },
+      {
+        "key": "warning",
+        "label": "VRAM SURGE"
+      }
+    ],
+    "idx": 22
+  },
+  {
+    "title": "KV CACHE SCALING DRIVERS",
+    "art": "die",
+    "cap": "SIX HARDWARE PARAMETERS",
+    "c_tag": "SCALING DRIVERS",
+    "chain": [
+      {
+        "t": "LAYERS & HEADS",
+        "s": "TRANSFORMER DEPTH & GQA"
+      },
+      {
+        "t": "HEAD DIM & PRECISION",
+        "s": "BYTES PER STORED ELEMENT"
+      },
+      {
+        "t": "TOKENS & BATCH SIZE",
+        "s": "SEQUENCE COUNT SERVED"
+      }
+    ],
+    "idx": 23
+  },
+  {
+    "title": "HYPOTHETICAL MATH MODEL",
+    "art": "scales",
+    "cap": "PEDAGOGICAL CALCULATION ARCHITECTURE",
+    "c_tag": "ILLUSTRATIVE ONLY",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "EDUCATIONAL FORMULA"
+      },
+      {
+        "c": "gold",
+        "t": "NOT NAMED BENCHMARK"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "PURPOSE",
+        "u": "TYPE",
+        "v": "MATH"
+      },
+      {
+        "c": "gold",
+        "lab": "BENCHMARK",
+        "u": "DATA",
+        "v": "MODEL"
+      }
+    ],
+    "idx": 24
+  },
+  {
+    "title": "THE KV CACHE FORMULA",
+    "art": "ram_stick",
+    "cap": "2 * LAYERS * HEADS * DIM * BYTES",
+    "c_tag": "THE ARCHITECTURE",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "32 LAYERS",
+        "val": "DEPTH",
+        "sub": "TRANSFORMER BLOCKS"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "8 KV HEADS",
+        "val": "DIM: 128",
+        "sub": "GQA HEAD GROUPING"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "FP16 PRECISION",
+        "val": "2 BYTES",
+        "sub": "KEY + VALUE VECTORS"
+      }
+    ],
+    "idx": 25
+  },
+  {
+    "title": "8K VS 32K CONTEXT CACHE",
+    "art": "vram_module",
+    "cap": "PHYSICAL MEMORY COMPARISON",
+    "c_tag": "SCALING PROOF",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "8,000 TOKENS",
+        "unit": "GIB",
+        "val": "1.0 GIB",
+        "pct": 25.0
+      },
+      {
+        "cls": "hot",
+        "lab": "32,000 TOKENS",
+        "unit": "GIB",
+        "val": "4.0 GIB",
+        "pct": 100.0
+      }
+    ],
+    "idx": 26
+  },
+  {
+    "title": "128K TOKENS: 16 GIBIBYTES",
+    "art": "gpu_24gb",
+    "cap": "128K SEQUENCE VRAM FOOTPRINT",
+    "c_tag": "THE 16GB WALL",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "32K TOKENS",
+        "val": "4.0 GIB VRAM",
+        "pct": 25.0
+      },
+      {
+        "cls": "red",
+        "lab": "128K TOKENS",
+        "val": "16.0 GIB VRAM",
+        "pct": 100.0
+      }
+    ],
+    "idx": 27
+  },
+  {
+    "title": "THE VRAM CLIFF",
+    "art": "warning",
+    "cap": "CACHE OVERFLOWING HARDWARE",
+    "c_tag": "CRITICAL SHOCK",
+    "chain": [
+      {
+        "t": "MODEL WEIGHTS",
+        "s": "FITS ON GRAPHICS CARD"
+      },
+      {
+        "t": "KV CACHE EXPANDS",
+        "s": "16 GIB ADDED VRAM"
+      },
+      {
+        "t": "TOTAL ALLOCATION",
+        "s": "WORKLOAD PUSHED OVER EDGE"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "WEIGHTS LOADED",
+        "body": "FITS COMFORTABLY"
+      },
+      {
+        "cls": "gold",
+        "title": "KV CACHE SURGE",
+        "body": "SYSTEM CRASH / OOM"
+      }
+    ],
+    "idx": 28
+  },
+  {
+    "title": "WEIGHT QUANTIZATION LIMITS",
+    "art": "chip",
+    "cap": "WEIGHTS != CACHE PRECISION",
+    "c_tag": "QUANTIZATION LAW",
+    "note_head": "CACHE PRECISION REALITY",
+    "note_items": [
+      {
+        "t": "QUANTIZING WEIGHTS LEAVES KV CACHE IN FP16"
+      },
+      {
+        "t": "CACHE PRECISION REQUIRES SEPARATE ENGINE FLAGS"
+      },
+      {
+        "t": "ARCHITECTURE CHANGES TOTAL HEAD COUNT"
+      }
+    ],
+    "idx": 29
+  },
+  {
+    "title": "CACHE MITIGATION DESIGNS",
+    "c_tag": "ARCHITECTURES",
+    "items": [
+      {
+        "key": "die",
+        "label": "GROUPED QUERY"
+      },
+      {
+        "key": "clock",
+        "label": "SLIDING WINDOW"
+      },
+      {
+        "key": "ram_stick",
+        "label": "OFFLOADED CACHE"
+      }
+    ],
+    "idx": 30
+  },
+  {
+    "title": "FITTING WEIGHTS VS CONVERSATION",
+    "art": "warning",
+    "cap": "CORE HARDWARE PRINCIPLE",
+    "c_tag": "GOLDEN RULE",
+    "chain": [
+      {
+        "t": "STATIC WEIGHTS",
+        "s": "CONSTANT MEMORY CONSUMPTION"
+      },
+      {
+        "t": "LONG CONVERSATION",
+        "s": "EXPANDING STATE VECTOR"
+      },
+      {
+        "t": "MULTI-USER LOAD",
+        "s": "MULTIPLIED CACHE FOOTPRINTS"
+      }
+    ],
+    "idx": 31
+  },
+  {
+    "title": "MULTI-USER CONCURRENCY",
+    "art": "lan_link",
+    "cap": "SHARED RUNTIME STATE CAPACITY",
+    "c_tag": "CONCURRENCY SURGE",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "ACTIVE SESSIONS"
+      },
+      {
+        "c": "gold",
+        "t": "PER-USER KV POOLS"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "CONCURRENCY",
+        "u": "USERS",
+        "v": "MULTI"
+      },
+      {
+        "c": "gold",
+        "lab": "VRAM POOL",
+        "u": "STATE",
+        "v": "DIVIDED"
+      }
+    ],
+    "idx": 32
+  },
+  {
+    "title": "CONCURRENT MEMORY EXHAUSTION",
+    "art": "warning",
+    "cap": "SCALING CONTEXT UNDER BATCH LOAD",
+    "c_tag": "RESOURCE SQUEEZE",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "1 SHORT CHAT",
+        "val": "STABLE",
+        "sub": "MODERATE VRAM"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "LONG CONVERSATIONS",
+        "val": "SCALING",
+        "sub": "EXPANDED CACHE"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "CONCURRENT BATCH",
+        "val": "COLLAPSE",
+        "sub": "OOM ALLOCATION"
+      }
+    ],
+    "idx": 33
+  },
+  {
+    "title": "INSUFFICIENT CACHE ERRORS",
+    "art": "vram_module",
+    "cap": "STARTUP CRASHES & LAUNCH REFUSALS",
+    "c_tag": "ALLOCATION CRASH",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "WEIGHTS LOADED",
+        "unit": "STATUS",
+        "val": "SUCCESS",
+        "pct": 100.0
+      },
+      {
+        "cls": "hot",
+        "lab": "KV CACHE RESERVATION",
+        "unit": "STATUS",
+        "val": "REFUSED",
+        "pct": 10.0
+      }
+    ],
+    "idx": 34
+  },
+  {
+    "title": "LIMIT 4: RETRIEVAL RELIABILITY",
+    "art": "scales",
+    "cap": "THE SUBTLE ACCURACY CEILING",
+    "c_tag": "FOURTH LIMIT",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "HARDWARE STORAGE",
+        "val": "STORED IN VRAM",
+        "pct": 100.0
+      },
+      {
+        "cls": "red",
+        "lab": "RETRIEVAL RECALL",
+        "val": "UNRELIABLE USE",
+        "pct": 40.0
+      }
+    ],
+    "idx": 35
+  },
+  {
+    "title": "POSITIONAL RETRIEVAL BIAS",
+    "art": "context_window",
+    "cap": "FACT POSITION INFLUENCES RECALL",
+    "c_tag": "RESEARCH FINDING",
+    "chain": [
+      {
+        "t": "PROMPT START",
+        "s": "HIGH ATTENTION WEIGHT"
+      },
+      {
+        "t": "PROMPT MIDDLE",
+        "s": "ATTENTION DECAY ZONE"
+      },
+      {
+        "t": "PROMPT END",
+        "s": "RECENCY ATTENTION BOOST"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "DOCUMENT EDGES",
+        "body": "ACCURATE RETRIEVAL"
+      },
+      {
+        "cls": "gold",
+        "title": "MIDDLE REGION",
+        "body": "ATTENTION BLIND SPOT"
+      }
+    ],
+    "idx": 36
+  },
+  {
+    "title": "LOST IN THE MIDDLE",
+    "art": "warning",
+    "cap": "THE FAMOUS ATTENTION U-CURVE",
+    "c_tag": "THE U-CURVE",
+    "note_head": "LOST IN THE MIDDLE FINDINGS",
+    "note_items": [
+      {
+        "t": "INFORMATION AT BEGINNING: ACCURATE RECALL"
+      },
+      {
+        "t": "INFORMATION AT END: ACCURATE RECALL"
+      },
+      {
+        "t": "INFORMATION IN MIDDLE: HIGH RETRIEVAL FAILURE"
+      }
+    ],
+    "idx": 37
+  },
+  {
+    "title": "EVALUATING MODEL VARIANCE",
+    "c_tag": "DIFFERING RESULTS",
+    "items": [
+      {
+        "key": "chip",
+        "label": "MODEL FAMILY"
+      },
+      {
+        "key": "folder",
+        "label": "TASK NATURE"
+      },
+      {
+        "key": "checklist",
+        "label": "BENCHMARK SUITE"
+      }
+    ],
+    "idx": 38
+  },
+  {
+    "title": "NUMERICAL LIMIT != RECALL",
+    "art": "folder",
+    "cap": "SEARCHING ACROSS 50 DOCUMENTS",
+    "c_tag": "NUMERICAL ILLUSION",
+    "chain": [
+      {
+        "t": "50 DOCUMENTS LOADED",
+        "s": "128,000 CONTEXT WINDOW"
+      },
+      {
+        "t": "ATTENTION DISPERSION",
+        "s": "DILUTED FOCUS ACROSS TOKENS"
+      },
+      {
+        "t": "RECALL DISCONNECT",
+        "s": "CRUCIAL FACT OVERLOOKED"
+      }
+    ],
+    "idx": 39
+  },
+  {
+    "title": "THE BURIED FACT TEST",
+    "art": "warning",
+    "cap": "ORDER SENSITIVITY IN RETRIEVAL",
+    "c_tag": "ORDER TRAP",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "BURIED HALFWAY"
+      },
+      {
+        "c": "gold",
+        "t": "ORDER SENSITIVE"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "FACT POSITION",
+        "u": "INDEX",
+        "v": "MIDDLE"
+      },
+      {
+        "c": "gold",
+        "lab": "ANSWER RECALL",
+        "u": "STATE",
+        "v": "SHIFT"
+      }
+    ],
+    "idx": 40
+  },
+  {
+    "title": "BEYOND LOADING TESTS",
+    "art": "checklist",
+    "cap": "LOADING A FILE PROVES NOTHING",
+    "c_tag": "TRUE AUDIT",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "LOADING TEST",
+        "val": "TRIVIAL",
+        "sub": "MERE VRAM BUFFER"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "RETRIEVAL AUDIT",
+        "val": "CRITICAL",
+        "sub": "MEASURE EXACT RECALL"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "VERDICT",
+        "val": "BENCHMARK",
+        "sub": "TEST NEEDLE POSITIONS"
+      }
+    ],
+    "idx": 41
+  },
+  {
+    "title": "3-POSITION NEEDLE AUDIT",
+    "art": "context_window",
+    "cap": "TESTING BEGINNING, MIDDLE, AND END",
+    "c_tag": "NEEDLE AUDIT",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "BEGINNING & END",
+        "unit": "RECALL",
+        "val": "CONSISTENT",
+        "pct": 95.0
+      },
+      {
+        "cls": "hot",
+        "lab": "MIDDLE POSITION",
+        "unit": "RECALL",
+        "val": "DEGRADED",
+        "pct": 40.0
+      }
+    ],
+    "idx": 42
+  },
+  {
+    "title": "THE PREFILL PASS",
+    "art": "prompt_stream",
+    "cap": "INITIAL PROMPT INGESTION PHASE",
+    "c_tag": "STAGE ONE",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "PREFILL COMPUTE",
+        "val": "PARALLEL PASS",
+        "pct": 100.0
+      },
+      {
+        "cls": "gold",
+        "lab": "FIRST TOKEN OUT",
+        "val": "TTFT LATENCY",
+        "pct": 80.0
+      }
+    ],
+    "idx": 43
+  },
+  {
+    "title": "LONG PROMPT COMPUTE SURGE",
+    "art": "clock",
+    "cap": "MASSIVE PREFILL COMPUTE COST",
+    "c_tag": "COMPUTE COST",
+    "chain": [
+      {
+        "t": "120K INPUT PROMPT",
+        "s": "HUGE MATRIX MULTIPLICATION"
+      },
+      {
+        "t": "VRAM DATA MOVEMENT",
+        "s": "SATURATED MEMORY BUS"
+      },
+      {
+        "t": "SHORT ANSWER",
+        "s": "30 GENERATED TOKENS"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "PREFILL DEMAND",
+        "body": "MILLIONS OF FLOP OPERATIONS"
+      },
+      {
+        "cls": "gold",
+        "title": "FINAL OUTPUT",
+        "body": "FEW SHORT SENTENCES"
+      }
+    ],
+    "idx": 44
+  },
+  {
+    "title": "THE CONTEXT IS NEVER FREE",
+    "art": "vram_module",
+    "cap": "BANDWIDTH & ATTENTION SCALING",
+    "c_tag": "PHYSICS LAW",
+    "note_head": "HARDWARE REALITY",
+    "note_items": [
+      {
+        "t": "KV CACHE ELIMINATES PAST RECALCULATION"
+      },
+      {
+        "t": "EVERY NEW TOKEN STILL READS FULL CACHE"
+      },
+      {
+        "t": "BANDWIDTH CONSUMPTION GROWS WITH LENGTH"
+      }
+    ],
+    "idx": 45
+  },
+  {
+    "title": "THE TWO CRITICAL METRICS",
+    "c_tag": "TWO SPEEDS",
+    "items": [
+      {
+        "key": "clock",
+        "label": "TIME TO FIRST TOKEN"
+      },
+      {
+        "key": "chip",
+        "label": "DECODING THROUGHPUT"
+      },
+      {
+        "key": "scales",
+        "label": "OVERALL LATENCY"
+      }
+    ],
+    "idx": 46
+  },
+  {
+    "title": "PREFILL VS DECODE BOTTLENECK",
+    "art": "warning",
+    "cap": "IDENTIFYING THE REAL SLOWDOWN",
+    "c_tag": "DIAGNOSTIC",
+    "chain": [
+      {
+        "t": "FAST DECODING SPEED",
+        "s": "40 TOKENS PER SECOND"
+      },
+      {
+        "t": "PAINFUL PREFILL WAIT",
+        "s": "30 SECONDS TO FIRST TOKEN"
+      },
+      {
+        "t": "CACHE PRESSURE",
+        "s": "BANDWIDTH SATURATION SLOWDOWN"
+      }
+    ],
+    "idx": 47
+  },
+  {
+    "title": "CACHE OPTIMIZATION TECHNIQUES",
+    "art": "cache_grid",
+    "cap": "QUANTIZATION & PREFIX CACHING",
+    "c_tag": "OPTIMIZATION",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "KV QUANTIZATION"
+      },
+      {
+        "c": "gold",
+        "t": "PREFIX CACHING"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "QUANTIZATION",
+        "u": "SAVING",
+        "v": "VRAM"
+      },
+      {
+        "c": "gold",
+        "lab": "PREFIX CACHE",
+        "u": "SPEED",
+        "v": "REUSE"
+      }
+    ],
+    "idx": 48
+  },
+  {
+    "title": "BIGGEST != BEST SETTING",
+    "art": "scales",
+    "cap": "STRATEGIC CONTEXT SIZING",
+    "c_tag": "TASK BALANCE",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "ADVERTISED SPEC",
+        "val": "128K CEILING",
+        "sub": "MAXIMUM ALLOWED"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "TASK DEMAND",
+        "val": "TARGETED",
+        "sub": "ACTUAL NEEDED TOKENS"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "OPTIMAL SIZE",
+        "val": "BALANCED",
+        "sub": "FASTEST & MOST ACCURATE"
+      }
+    ],
+    "idx": 49
+  },
+  {
+    "title": "POSITIONAL SCALING TRAP",
+    "art": "warning",
+    "cap": "ROPE EXTRAPOLATION VS REASONING",
+    "c_tag": "SCALING ILLUSION",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "POSITION SCALING",
+        "unit": "ROPE",
+        "val": "EXTENDED",
+        "pct": 100.0
+      },
+      {
+        "cls": "hot",
+        "lab": "LOGICAL REASONING",
+        "unit": "QUALITY",
+        "val": "DEGRADED",
+        "pct": 45.0
+      }
+    ],
+    "idx": 50
+  },
+  {
+    "title": "THE 6-STEP CONTEXT AUDIT",
+    "art": "checklist",
+    "cap": "PRACTICAL VERIFICATION METHODOLOGY",
+    "c_tag": "AUDIT PROTOCOL",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "EXPANDED WINDOW",
+        "val": "UNTESTED CONFIG",
+        "pct": 100.0
+      },
+      {
+        "cls": "gold",
+        "lab": "6-STEP AUDIT",
+        "val": "PROVEN RELIABLE",
+        "pct": 100.0
+      }
+    ],
+    "idx": 51
+  },
+  {
+    "title": "STEP 1: COMPARE LIMITS",
+    "art": "checklist",
+    "cap": "PUBLISHED VS CONFIGURED LIMITS",
+    "c_tag": "AUDIT STEP 1",
+    "chain": [
+      {
+        "t": "MODEL SPEC CARD",
+        "s": "RECORD PUBLISHED LIMIT"
+      },
+      {
+        "t": "SOFTWARE CONFIG",
+        "s": "CHECK RUNTIME SETTING"
+      },
+      {
+        "t": "PARITY CHECK",
+        "s": "VERIFY BOTH NUMBERS AGREE"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "PUBLISHED CARD",
+        "body": "SPECIFICATION MAX"
+      },
+      {
+        "cls": "gold",
+        "title": "RUNTIME SETTING",
+        "body": "CONFIGURED LIMIT"
+      }
+    ],
+    "idx": 52
+  },
+  {
+    "title": "STEP 2: INSPECT RUNTIME LOGS",
+    "art": "laptop",
+    "cap": "LOG TELEMETRY VERIFICATION",
+    "c_tag": "AUDIT STEP 2",
+    "note_head": "LOG CHECKLIST",
+    "note_items": [
+      {
+        "t": "WEIGHT PLACEMENT: GPU VRAM VS CPU RAM"
+      },
+      {
+        "t": "CACHE ALLOCATION: ALLOCATED GIB FOOTPRINT"
+      },
+      {
+        "t": "CACHE PRECISION: FP16 VS QUANTIZED KV"
+      },
+      {
+        "t": "CPU OFFLOAD: ZERO UNWANTED SYSTEM RAM SPILL"
+      }
+    ],
+    "idx": 53
+  },
+  {
+    "title": "STEP 3: TEST REAL WORKLOADS",
+    "c_tag": "AUDIT STEP 3",
+    "items": [
+      {
+        "key": "laptop",
+        "label": "BACKEND LOGS"
+      },
+      {
+        "key": "prompt_stream",
+        "label": "START WITH SHORT"
+      },
+      {
+        "key": "clock",
+        "label": "BASELINE TIMING"
+      }
+    ],
+    "idx": 54
+  },
+  {
+    "title": "STEP 4: STEPWISE BENCHMARK",
+    "art": "scales",
+    "cap": "MEASURE METRICS ACROSS SIZES",
+    "c_tag": "AUDIT STEP 4",
+    "chain": [
+      {
+        "t": "INCREASE IN STEPS",
+        "s": "4K -> 16K -> 32K -> 64K"
+      },
+      {
+        "t": "RECORD METRICS",
+        "s": "AVAILABLE VRAM & TTFT SPEED"
+      },
+      {
+        "t": "AUDIT ACCURACY",
+        "s": "VERIFY RECALL AT EACH STEP"
+      }
+    ],
+    "idx": 55
+  },
+  {
+    "title": "NEEDLE IN HAYSTACK AUDIT",
+    "art": "context_window",
+    "cap": "RIGOROUS RECALL BENCHMARKING",
+    "c_tag": "RECALL TEST",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "THREE POSITIONS"
+      },
+      {
+        "c": "gold",
+        "t": "UNGUESSABLE FACTS"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "NEEDLE TEST",
+        "u": "LOC",
+        "v": "START"
+      },
+      {
+        "c": "gold",
+        "lab": "NEEDLE TEST",
+        "u": "LOC",
+        "v": "MIDDLE"
+      }
+    ],
+    "idx": 56
+  },
+  {
+    "title": "STEP 5: RESERVE ANSWER SPACE",
+    "art": "warning",
+    "cap": "LOADING IS NOT COMPREHENSION",
+    "c_tag": "AUDIT STEP 5",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "SYSTEM TEMPLATE",
+        "val": "OVERHEAD",
+        "sub": "ROLES & INSTRUCTIONS"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "INPUT SOURCE",
+        "val": "PRIMARY",
+        "sub": "DOCUMENTS & QUERY"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "OUTPUT RESERVE",
+        "val": "MANDATORY",
+        "sub": "FULL ANSWER CAPACITY"
+      }
+    ],
+    "idx": 57
+  },
+  {
+    "title": "STEP 6: RIGHT-SIZED CONTEXT",
+    "art": "scales",
+    "cap": "SILENT TRUNCATION & TRUE NEED",
+    "c_tag": "AUDIT STEP 6",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "ACTIVE RETENTION",
+        "unit": "KEPT",
+        "val": "VERIFIED",
+        "pct": 80.0
+      },
+      {
+        "cls": "hot",
+        "lab": "SILENT DISCARD",
+        "unit": "LOST",
+        "val": "TRUNCATED",
+        "pct": 20.0
+      }
+    ],
+    "idx": 58
+  },
+  {
+    "title": "RAG VS GIGANTIC CONTEXT",
+    "art": "folder",
+    "cap": "RETRIEVAL-AUGMENTED GENERATION",
+    "c_tag": "RAG ARCHITECTURE",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "ENTIRE KNOWLEDGE BASE",
+        "val": "10,000 PASSAGES",
+        "pct": 100.0
+      },
+      {
+        "cls": "gold",
+        "lab": "FILTERED CONTEXT",
+        "val": "FOCUSED EXCERPTS",
+        "pct": 20.0
+      }
+    ],
+    "idx": 59
+  },
+  {
+    "title": "RETRIEVAL TRADE-OFFS",
+    "art": "warning",
+    "cap": "RAG HAS FAILURE MODES TOO",
+    "c_tag": "TRADE-OFFS",
+    "chain": [
+      {
+        "t": "QUERY RETRIEVAL",
+        "s": "TOP-K PASSAGE SELECTION"
+      },
+      {
+        "t": "POTENTIAL OMISSIONS",
+        "s": "MISSING KEY CONNECTIONS"
+      },
+      {
+        "t": "SYNTHESIS ACCURACY",
+        "s": "DEPENDS ON RETRIEVED CHUNKS"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "FULL CONTEXT RISK",
+        "body": "LOST IN THE MIDDLE"
+      },
+      {
+        "cls": "gold",
+        "title": "RETRIEVAL RISK",
+        "body": "WRONG PASSAGES RETRIEVED"
+      }
+    ],
+    "idx": 60
+  },
+  {
+    "title": "FOCUSED RETRIEVAL ADVANTAGE",
+    "art": "checklist",
+    "cap": "EFFICIENCY ACROSS DOCUMENT POOLS",
+    "c_tag": "STRATEGY",
+    "note_head": "DOCUMENT AUDIT COMPARISON",
+    "note_items": [
+      {
+        "t": "FOCUSED RETRIEVAL KEEPS VRAM FOOTPRINT LOW"
+      },
+      {
+        "t": "PREFILL RUNS IN FRACTION OF A SECOND"
+      },
+      {
+        "t": "REDUCES ATTENTION DISPERSION OVERHEAD"
+      }
+    ],
+    "idx": 61
+  },
+  {
+    "title": "WHEN LARGE CONTEXT IS NEEDED",
+    "c_tag": "DEEP REASONING",
+    "items": [
+      {
+        "key": "folder",
+        "label": "WHOLE-BOOK EDIT"
+      },
+      {
+        "key": "scales",
+        "label": "BROAD STRUCTURE"
+      },
+      {
+        "key": "chip",
+        "label": "MULTIPLE PASSES"
+      }
+    ],
+    "idx": 62
+  },
+  {
+    "title": "TASK-DRIVEN ARCHITECTURE",
+    "art": "scales",
+    "cap": "IGNORE THE BIGGEST NUMBER TABLE",
+    "c_tag": "TASK DRIVEN",
+    "chain": [
+      {
+        "t": "ANALYZE TASK DEMAND",
+        "s": "IDENTIFY REAL CONTEXT NEED"
+      },
+      {
+        "t": "IGNORE MARKETING NUMBERS",
+        "s": "BIGGEST NUMBER IS NOT BEST"
+      },
+      {
+        "t": "VERIFY APPLICATION LOGS",
+        "s": "CHECK ACTUAL RETENTION"
+      }
+    ],
+    "idx": 63
+  },
+  {
+    "title": "TRANSCRIPTS != ACTIVE CONTEXT",
+    "art": "laptop",
+    "cap": "UI ILLUSION VS REAL PROMPT",
+    "c_tag": "UI ILLUSION",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "SAVED ON DISK"
+      },
+      {
+        "c": "gold",
+        "t": "TRUNCATED PROMPT"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "UI DISPLAY",
+        "u": "TURNS",
+        "v": "ALL"
+      },
+      {
+        "c": "gold",
+        "lab": "MODEL FEED",
+        "u": "TURNS",
+        "v": "RECENT"
+      }
+    ],
+    "idx": 64
+  },
+  {
+    "title": "TRANSPARENCY IN CONTEXT",
+    "art": "warning",
+    "cap": "SILENT CONTEXT ROLLING HAZARDS",
+    "c_tag": "SILENT AMNESIA",
+    "rows": [
+      {
+        "cls": "cyan",
+        "rank": "01",
+        "name": "CONTEXT ROLLING",
+        "val": "SENSIBLE",
+        "sub": "PREVENTS OOM"
+      },
+      {
+        "cls": "gold",
+        "rank": "02",
+        "name": "TRANSPARENCY",
+        "val": "CRITICAL",
+        "sub": "USER MUST KNOW"
+      },
+      {
+        "cls": "hot",
+        "rank": "03",
+        "name": "SILENT SHIFT",
+        "val": "AMNESIA",
+        "sub": "FORGETS PRIOR FACTS"
+      }
+    ],
+    "idx": 65
+  },
+  {
+    "title": "THE FOUR SEPARATE LIMITS",
+    "art": "scales",
+    "cap": "FOUR NUMBERS THAT DIFFER",
+    "c_tag": "THE FOUR LIMITS",
+    "bars": [
+      {
+        "cls": "cyan",
+        "lab": "MODEL & SOFTWARE",
+        "unit": "LIMIT",
+        "val": "SPECIFIED",
+        "pct": 100.0
+      },
+      {
+        "cls": "hot",
+        "lab": "HARDWARE & USE",
+        "unit": "LIMIT",
+        "val": "PHYSICAL",
+        "pct": 40.0
+      }
+    ],
+    "idx": 66
+  },
+  {
+    "title": "A SPEC IS NOT A GUARANTEE",
+    "art": "gpu_24gb",
+    "cap": "THE ADVERTISED SPEC IS JUST A LABEL",
+    "c_tag": "FINAL WARNING",
+    "rails": [
+      {
+        "cls": "cyan",
+        "lab": "128K SPEC LABEL",
+        "val": "ADVERTISED SPEC",
+        "pct": 100.0
+      },
+      {
+        "cls": "red",
+        "lab": "SYSTEM GUARANTEE",
+        "val": "ZERO PROMISE",
+        "pct": 20.0
+      }
+    ],
+    "idx": 67
+  },
+  {
+    "title": "MEASURE THE REAL BOTTLENECK",
+    "art": "checklist",
+    "cap": "DIAGNOSTIC TRIAGE PROTOCOL",
+    "c_tag": "MEASURE FIRST",
+    "chain": [
+      {
+        "t": "PROMPT TRUNCATION",
+        "s": "CHECK APP SLICING"
+      },
+      {
+        "t": "SYSTEM RAM SPILL",
+        "s": "CHECK CPU OFFLOADING"
+      },
+      {
+        "t": "PREFILL LATENCY",
+        "s": "MEASURE TIME TO FIRST TOKEN"
+      }
+    ],
+    "compare": [
+      {
+        "cls": "dim",
+        "title": "GUESSING SETTINGS",
+        "body": "RANDOM HARDWARE SPEND"
+      },
+      {
+        "cls": "gold",
+        "title": "MEASURED BOTTLENECK",
+        "body": "TARGETED ENGINEERING FIX"
+      }
+    ],
+    "idx": 68
+  },
+  {
+    "title": "DIAGNOSE BEFORE SOLVING",
+    "art": "scales",
+    "cap": "EACH FAILURE HAS A DIFFERENT FIX",
+    "c_tag": "BYTE FORENSICS LAW",
+    "note_head": "ENGINEERING SOLUTIONS",
+    "note_items": [
+      {
+        "t": "OOM CRASH -> REDUCE CONTEXT OR ENABLE KV QUANT"
+      },
+      {
+        "t": "PREFILL DELAY -> IMPLEMENT PREFIX CACHING OR RAG"
+      },
+      {
+        "t": "RETRIEVAL LOSS -> REORDER FACTS OR RIGHT-SIZE CHUNKS"
+      }
+    ],
+    "idx": 69
+  },
+  {
+    "title": "COMMUNITY FORENSICS AUDIT",
+    "art": "gpu",
+    "cap": "SHARE YOUR HARDWARE TELEMETRY",
+    "c_tag": "TELL US BELOW",
+    "chips": [
+      {
+        "c": "cyan",
+        "t": "SHARE YOUR GPU"
+      },
+      {
+        "c": "gold",
+        "t": "CONTEXT SETTING"
+      }
+    ],
+    "stats": [
+      {
+        "c": "cyan",
+        "lab": "SYMPTOM",
+        "u": "TYPE",
+        "v": "CRASH"
+      },
+      {
+        "c": "gold",
+        "lab": "DIAGNOSTIC",
+        "u": "DATA",
+        "v": "LOGS"
+      }
+    ],
+    "idx": 70
+  },
+  {
+    "title": "THE FINAL VERDICT",
+    "art": "chip",
+    "cap": "BYTE FORENSICS EPISODE 13",
+    "c_tag": "USABLE TOKENS ONLY",
+    "chain": [
+      {
+        "t": "DONT JUST COUNT TOKENS",
+        "s": "ADVERTISED SPECIFICATIONS ARE JUST CEILINGS"
+      },
+      {
+        "t": "AUDIT YOUR HARDWARE",
+        "s": "MEASURE VRAM, PREFILL SPEED, AND RECALL"
+      },
+      {
+        "t": "BYTE FORENSICS",
+        "s": "FIND OUT WHAT YOUR SYSTEM CAN ACTUALLY USE"
+      }
+    ],
+    "idx": 71
+  }
+]

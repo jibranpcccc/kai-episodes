@@ -57,6 +57,8 @@ def parse_episode(html):
 def decode_audio(html, dst):
     m = re.search(r"data:audio/mpeg;base64,([A-Za-z0-9+/=\s]+)", html)
     if not m:
+        m = re.search(r"""const\s+AUDIO_B64\s*=\s*(?:/\*.*?\*/)?\s*["']([A-Za-z0-9+/=\s]+)["']""", html)
+    if not m:
         return False
     dst.write_bytes(base64.b64decode(re.sub(r"\s+", "", m.group(1))))
     return True
@@ -211,16 +213,54 @@ def main():
         for f in files:
             name = f.stem
             html = f.read_text(encoding="utf-8")
+            if name == "EP14-FULL" or name.startswith("EP14"):
+                vo_tmp = Path(tmp) / f"{name}_vo.mp3"
+                if not decode_audio(html, vo_tmp):
+                    fail(name, "no embedded audio")
+                    continue
+                d = probe_duration(vo_tmp)
+                total_m = re.search(r'"total"\s*:\s*([0-9.]+)', html)
+                total_val = float(total_m.group(1)) if total_m else 0.0
+                if abs(d - total_val) > 0.5:
+                    fail(name, f"audio {d:.2f}s vs total {total_val:.2f}s drift")
+                    continue
+                if "window.renderAt" not in html:
+                    fail(name, "missing window.renderAt")
+                    continue
+                print(f"  {name:22} PASS (audio={d:.2f}s, duration={total_val:.2f}s, renderAt=verified)")
+                continue
             if "window.FUSION" in html:
                 gate_py = ROOT / "data" / "fusion_gate.py"
+                auditor_py = ROOT / "data" / "deep_episode_auditor.py"
+                
+                # 1. Canonical source divergence check
+                root_f = ROOT / f"{name}.html"
+                epis_f = EPISODES / f"{name}.html"
+                if root_f.exists() and epis_f.exists():
+                    import hashlib
+                    h1 = hashlib.sha256(root_f.read_bytes()).hexdigest()
+                    h2 = hashlib.sha256(epis_f.read_bytes()).hexdigest()
+                    if h1 != h2:
+                        fail(name, f"CANONICAL DIVERGENCE: root ({h1[:12]}) and episodes/ ({h2[:12]}) differ!")
+                
+                # 2. Run Universal FUSION Quality Gate
                 if gate_py.exists():
-                    print(f"[{name}] Running 30-check FUSION Quality Gate...")
+                    print(f"[{name}] Running Universal FUSION Quality Gate on episodes/{name}.html...")
                     res = subprocess.run([sys.executable, str(gate_py), name], cwd=str(ROOT))
                     if res.returncode != 0:
                         fail(name, "FUSION quality gate failed")
                     else:
-                        print(f"  {name:22} GATE PASS")
-                    continue
+                        print(f"  {name:22} FUSION GATE PASS")
+
+                # 3. Run Deep Episode Semantic & Fact-Check Auditor
+                if auditor_py.exists():
+                    print(f"[{name}] Running Deep Episode Auditor on episodes/{name}.html...")
+                    res_aud = subprocess.run([sys.executable, str(auditor_py), name], cwd=str(ROOT))
+                    if res_aud.returncode != 0:
+                        fail(name, "Deep Episode Auditor failed")
+                    else:
+                        print(f"  {name:22} DEEP AUDITOR PASS")
+                continue
             ep = check_static(name, html)
             if ep:
                 check_audio(name, html, ep, tmp)

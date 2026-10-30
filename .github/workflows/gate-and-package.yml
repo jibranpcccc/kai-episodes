@@ -2,6 +2,8 @@ name: Byte Forensics Quality Gate & Package
 
 on:
   push:
+    branches: [ main, 'fix/**' ]
+  pull_request:
     branches: [ main ]
   workflow_dispatch:
     inputs:
@@ -26,6 +28,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -34,8 +38,10 @@ jobs:
 
       - name: Install FFmpeg
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -y ffmpeg
+          if ! command -v ffmpeg &> /dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends ffmpeg
+          fi
           ffmpeg -version | head -1
 
       - name: Install Python Dependencies
@@ -46,24 +52,97 @@ jobs:
 
       - name: Determine Episode to Validate
         id: ep
+        env:
+          INPUT_EP: ${{ github.event.inputs.episode }}
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ github.base_ref }}
         run: |
-          EP="${{ github.event.inputs.episode }}"
-          if [ -z "$EP" ]; then
-            EP="BYTE-DUAL-GPU"
+          if [ -n "$INPUT_EP" ]; then
+            EP="$INPUT_EP"
+          elif [ "$EVENT_NAME" = "pull_request" ] && [ -n "$BASE_REF" ]; then
+            git fetch origin "$BASE_REF" --depth=50 2>/dev/null || true
+            CHANGED=$(git diff --name-only origin/"$BASE_REF"...HEAD | grep -E '^(episodes/)?BYTE-[A-Za-z0-9_-]+\.html$' | head -1 | sed -E 's|^(episodes/)?||; s|\.html$||')
+            EP="${CHANGED:-BYTE-DUAL-GPU}"
+          else
+            CHANGED=$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | grep -E '^(episodes/)?BYTE-[A-Za-z0-9_-]+\.html$' | head -1 | sed -E 's|^(episodes/)?||; s|\.html$||')
+            EP="${CHANGED:-BYTE-DUAL-GPU}"
+          fi
+          # Strict episode allowlist format validation
+          if ! [[ "$EP" =~ ^[A-Za-z0-9_-]+$ ]]; then
+            echo "::error::Invalid episode name format '$EP'" >&2
+            exit 1
           fi
           echo "selected_episode=$EP" >> $GITHUB_OUTPUT
+          echo "Selected episode: $EP"
 
-      - name: Run 31-Check Universal Quality Gate (fusion_gate.py)
+      - name: Run Quality Gate Regression Test Suite
         run: |
-          EP="${{ steps.ep.outputs.selected_episode }}"
-          echo "Running Quality Gate on $EP..."
+          echo "Executing Negative Regression Test Suite..."
+          python -u tests/test_quality_gates_rejection.py
+
+      - name: Run Universal FUSION Quality Gate (fusion_gate.py)
+        env:
+          EP: ${{ steps.ep.outputs.selected_episode }}
+        run: |
+          echo "Running Universal Quality Gate on $EP..."
           python -u data/fusion_gate.py "$EP"
 
       - name: Run Deep Episode Semantic & Fact-Check Auditor
+        env:
+          EP: ${{ steps.ep.outputs.selected_episode }}
         run: |
-          EP="${{ steps.ep.outputs.selected_episode }}"
           echo "Running Deep Episode Auditor on $EP..."
           python -u data/deep_episode_auditor.py "$EP"
+
+      - name: Verify All Required Deliverables Exist
+        env:
+          EP: ${{ steps.ep.outputs.selected_episode }}
+        run: |
+          python -c "
+          import os, sys
+          ep = os.environ['EP']
+          reqs = [
+              f'episodes/{ep}.html',
+              f'episodes/{ep}.srt',
+              f'episodes/{ep}-chapters.txt',
+              f'episodes/{ep}-scenes.txt'
+          ]
+          missing = [f for f in reqs if not os.path.exists(f) or os.path.getsize(f) == 0]
+          if missing:
+              print(f'::error::Missing required deliverables: {missing}')
+              sys.exit(1)
+          print('All required deliverables present and non-empty.')
+          "
+
+      - name: Generate Authoritative SHA-256 Release Manifest
+        env:
+          EP: ${{ steps.ep.outputs.selected_episode }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          python -c "
+          import hashlib, json, os, sys
+          ep = os.environ['EP']
+          files = [
+              f'episodes/{ep}.html',
+              f'episodes/{ep}.srt',
+              f'episodes/{ep}-chapters.txt',
+              f'episodes/{ep}-scenes.txt'
+          ]
+          manifest = {
+              'commit': os.environ.get('COMMIT_SHA', ''),
+              'episode': ep,
+              'artifacts': {}
+          }
+          for f in files:
+              if not os.path.exists(f):
+                  print(f'::error::File not found for manifest: {f}')
+                  sys.exit(1)
+              manifest['artifacts'][f] = hashlib.sha256(open(f, 'rb').read()).hexdigest()
+          manifest_path = f'episodes/{ep}-manifest.json'
+          with open(manifest_path, 'w', encoding='utf-8') as mf:
+              json.dump(manifest, mf, indent=2)
+          print('Generated authoritative manifest for', ep, 'at', manifest_path)
+          "
 
       - name: Upload Verified Episode Artifacts
         uses: actions/upload-artifact@v4
@@ -74,9 +153,6 @@ jobs:
             episodes/${{ steps.ep.outputs.selected_episode }}.srt
             episodes/${{ steps.ep.outputs.selected_episode }}-chapters.txt
             episodes/${{ steps.ep.outputs.selected_episode }}-scenes.txt
-            ${{ steps.ep.outputs.selected_episode }}.html
-            ${{ steps.ep.outputs.selected_episode }}.srt
-            ${{ steps.ep.outputs.selected_episode }}-chapters.txt
-            ${{ steps.ep.outputs.selected_episode }}-scenes.txt
-          if-no-files-found: ignore
+            episodes/${{ steps.ep.outputs.selected_episode }}-manifest.json
+          if-no-files-found: error
           retention-days: 30
