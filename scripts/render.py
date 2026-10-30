@@ -137,7 +137,21 @@ def render_one(page, html_path: Path) -> Path:
     # we also set the class explicitly in case the query string is dropped.
     page.goto(html_path.resolve().as_uri() + "?t=0")
     page.wait_for_function("!!((window.EPISODE || window.FUSION) && window.renderAt)", timeout=60000)
-    page.evaluate("document.body.classList.add('render')")
+    page.evaluate("""() => {
+        document.body.classList.add('render');
+        const style = document.createElement('style');
+        style.id = 'pure-clean-render-canvas-override';
+        style.textContent = `
+            #ctl, #boot, #bar, #tc, #wm, #rail, #ticks, .src, .kicker, .kicker-line,
+            .boot__mark, [id*="ctl"], [id*="tc"], [class*="src"], #hud, #cue, #start {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }""")
     page.evaluate("async () => { if (document.fonts && document.fonts.ready) await document.fonts.ready; }")
     page.wait_for_timeout(300)          # let layout and webfonts fully settle
     assert page.evaluate("document.body.classList.contains('render')"), "render mode not applied"
